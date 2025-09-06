@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "sql_query": "SELECT fm.latitude, fm.longitude, AVG(m.temperature) AS surface_temperature FROM measurements m JOIN floats_metadata fm ON m.metadata_id = fm.id WHERE m.pressure < 10 GROUP BY fm.latitude, fm.longitude ORDER BY fm.latitude, fm.longitude LIMIT 1000;",
+  "results": [
+    {
+      "latitude": -9.857,
+      "longitude": 55.953,
+      "surface_temperature": 27.768392845075958
+    }
+  ],
+  "result_count": 1,
+  "query": "Show surface temperature distribution",
+  "processing_time": 4.7148,
+  "columns": [
+    "latitude",
+    "longitude",
+    "surface_temperature"
+  ],
+  "data_types": {
+    "latitude": "float64",
+    "longitude": "float64",
+    "surface_temperature": "float64"
+  },
+  "timestamp": "2025-09-04T21:31:49.652602"
+}

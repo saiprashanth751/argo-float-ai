@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "sql_query": "SELECT fm.institution, COUNT(m.id) AS measurement_count FROM measurements m JOIN floats_metadata fm ON m.metadata_id = fm.id GROUP BY fm.institution ORDER BY measurement_count DESC LIMIT 1000;",
+  "results": [
+    {
+      "institution": "FR GDAC",
+      "measurement_count": 4379
+    }
+  ],
+  "result_count": 1,
+  "query": "Count measurements by institution",
+  "processing_time": 1.642951,
+  "columns": [
+    "institution",
+    "measurement_count"
+  ],
+  "data_types": {
+    "institution": "object",
+    "measurement_count": "int64"
+  },
+  "timestamp": "2025-09-04T21:31:44.934408"
+}

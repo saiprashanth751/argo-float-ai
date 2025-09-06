@@ -1,0 +1,3725 @@
+{
+  "success": true,
+  "sql_query": "SELECT fm.project_name, AVG(m.temperature) AS avg_temperature, m.pressure FROM measurements m JOIN floats_metadata fm ON m.metadata_id = fm.id WHERE m.temperature IS NOT NULL GROUP BY fm.project_name, m.pressure ORDER BY fm.project_name, m.pressure ASC LIMIT 10000;",
+  "results": [
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.38800048828125,
+      "pressure": 2.5999999046325684
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.31100082397461,
+      "pressure": 3.5999999046325684
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.812999725341797,
+      "pressure": 3.9000000953674316
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.60028566632952,
+      "pressure": 4.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.60212516784668,
+      "pressure": 4.099999904632568
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.487090891057793,
+      "pressure": 4.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.586181640625,
+      "pressure": 4.300000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.505000041081356,
+      "pressure": 4.400000095367432
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.08885724203927,
+      "pressure": 4.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.801090760664508,
+      "pressure": 4.599999904632568
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.836399841308594,
+      "pressure": 4.699999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.283499717712402,
+      "pressure": 4.800000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.922000885009766,
+      "pressure": 4.900000095367432
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.597999572753906,
+      "pressure": 5.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.498999913533527,
+      "pressure": 5.099999904632568
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.494000244140626,
+      "pressure": 5.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.341071401323592,
+      "pressure": 5.300000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.98099994659424,
+      "pressure": 5.400000095367432
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.581666628519695,
+      "pressure": 5.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.17128562927246,
+      "pressure": 5.599999904632568
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.657857486179896,
+      "pressure": 5.699999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.201333151923286,
+      "pressure": 5.800000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.938181617043234,
+      "pressure": 5.900000095367432
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.4685001373291,
+      "pressure": 6.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.683249950408936,
+      "pressure": 6.099999904632568
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.67175006866455,
+      "pressure": 6.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.43000030517578,
+      "pressure": 6.300000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 30.326000213623047,
+      "pressure": 6.400000095367432
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.458999633789062,
+      "pressure": 6.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.915000279744465,
+      "pressure": 10.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.095166842142742,
+      "pressure": 10.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 29.261999130249023,
+      "pressure": 10.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.665428706577845,
+      "pressure": 10.300000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.177428926740372,
+      "pressure": 10.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.209749937057495,
+      "pressure": 10.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.837250232696533,
+      "pressure": 10.600000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.754666487375896,
+      "pressure": 10.699999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.887200164794923,
+      "pressure": 10.800000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.9961427961077,
+      "pressure": 10.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.46439971923828,
+      "pressure": 11.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.714799880981445,
+      "pressure": 11.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.27233378092448,
+      "pressure": 11.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.302000045776367,
+      "pressure": 11.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.52199935913086,
+      "pressure": 14.800000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.604000091552734,
+      "pressure": 14.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.766499519348145,
+      "pressure": 15.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.64162516593933,
+      "pressure": 15.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.536999940872192,
+      "pressure": 15.199999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.37818180431019,
+      "pressure": 15.300000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.90974998474121,
+      "pressure": 15.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.94499986821955,
+      "pressure": 15.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.899333318074543,
+      "pressure": 15.600000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.81825017929077,
+      "pressure": 15.699999809265137
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.481333414713543,
+      "pressure": 15.800000190734863
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.34842872619629,
+      "pressure": 15.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.14637517929077,
+      "pressure": 16.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 29.510499954223633,
+      "pressure": 16.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 29.53499984741211,
+      "pressure": 16.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.295600128173827,
+      "pressure": 16.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.441999435424805,
+      "pressure": 19.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.05900001525879,
+      "pressure": 19.799999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.625,
+      "pressure": 19.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.411999702453613,
+      "pressure": 20.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.323499997456867,
+      "pressure": 20.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.77316665649414,
+      "pressure": 20.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.27666664123535,
+      "pressure": 20.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.156714303152903,
+      "pressure": 20.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.13349994023641,
+      "pressure": 20.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.07800006866455,
+      "pressure": 20.600000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.119375228881836,
+      "pressure": 20.700000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.948833465576172,
+      "pressure": 20.799999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.851222144232857,
+      "pressure": 20.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.710333188374836,
+      "pressure": 21.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.833999633789062,
+      "pressure": 21.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.66825008392334,
+      "pressure": 21.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.389750003814697,
+      "pressure": 21.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.520000457763672,
+      "pressure": 21.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.51300048828125,
+      "pressure": 24.799999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.378000259399414,
+      "pressure": 24.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.825000127156574,
+      "pressure": 25.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.211750030517578,
+      "pressure": 25.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.369857243129186,
+      "pressure": 25.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.86924950281779,
+      "pressure": 25.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.299333572387695,
+      "pressure": 25.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.629071508135116,
+      "pressure": 25.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.86539993286133,
+      "pressure": 25.600000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.908249855041504,
+      "pressure": 25.700000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.309888627794052,
+      "pressure": 25.799999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.066875219345093,
+      "pressure": 25.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.097199630737304,
+      "pressure": 26.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.84666633605957,
+      "pressure": 26.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.793333689371746,
+      "pressure": 26.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.17480010986328,
+      "pressure": 26.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.19300079345703,
+      "pressure": 29.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.05699920654297,
+      "pressure": 29.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.748499870300293,
+      "pressure": 30.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.6552001953125,
+      "pressure": 30.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.40500020980835,
+      "pressure": 30.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.138624906539917,
+      "pressure": 30.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.76400025685628,
+      "pressure": 30.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.599428721836635,
+      "pressure": 30.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.619900131225585,
+      "pressure": 30.600000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.920857293265207,
+      "pressure": 30.700000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.62847070132985,
+      "pressure": 30.799999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.50474977493286,
+      "pressure": 30.899999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.894800186157227,
+      "pressure": 31.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.184500694274902,
+      "pressure": 31.100000381469727
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.03350067138672,
+      "pressure": 31.200000762939453
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.362000465393066,
+      "pressure": 31.299999237060547
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.261499881744385,
+      "pressure": 31.399999618530273
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.132999897003174,
+      "pressure": 31.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.05699920654297,
+      "pressure": 34.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.886999130249023,
+      "pressure": 34.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.076666514078777,
+      "pressure": 34.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.934666951497395,
+      "pressure": 35.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.00200080871582,
+      "pressure": 35.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.724428721836635,
+      "pressure": 35.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.084750175476074,
+      "pressure": 35.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.690818093039773,
+      "pressure": 35.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.089555104573567,
+      "pressure": 35.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.31487536430359,
+      "pressure": 35.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.390428270612443,
+      "pressure": 35.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.48700008392334,
+      "pressure": 35.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.01933330959744,
+      "pressure": 35.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.860499382019043,
+      "pressure": 36.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.25474977493286,
+      "pressure": 36.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.509400177001954,
+      "pressure": 36.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.28683344523112,
+      "pressure": 36.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.93999989827474,
+      "pressure": 36.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.92300033569336,
+      "pressure": 36.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 28.027000427246094,
+      "pressure": 36.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.281999588012695,
+      "pressure": 39.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.152999877929688,
+      "pressure": 39.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.98414284842355,
+      "pressure": 40.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.088428497314453,
+      "pressure": 40.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.877874851226807,
+      "pressure": 40.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.63700008392334,
+      "pressure": 40.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.21399974822998,
+      "pressure": 40.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.35075044631958,
+      "pressure": 40.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.028625011444092,
+      "pressure": 40.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.970100021362306,
+      "pressure": 40.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.292624711990356,
+      "pressure": 40.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.41271427699498,
+      "pressure": 41.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.053800201416017,
+      "pressure": 41.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.16416645050049,
+      "pressure": 41.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.01940002441406,
+      "pressure": 41.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.824999809265137,
+      "pressure": 41.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.61833318074544,
+      "pressure": 44.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.242499351501465,
+      "pressure": 45.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.807000350952148,
+      "pressure": 45.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.13183307647705,
+      "pressure": 45.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.123499870300293,
+      "pressure": 45.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.913999557495117,
+      "pressure": 45.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.985428673880442,
+      "pressure": 45.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.495727365667168,
+      "pressure": 45.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.764111200968426,
+      "pressure": 45.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.882111231486004,
+      "pressure": 45.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.591571262904576,
+      "pressure": 45.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.709333419799805,
+      "pressure": 46.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.775333404541016,
+      "pressure": 46.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.76500015258789,
+      "pressure": 46.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.109199905395506,
+      "pressure": 46.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.180999755859375,
+      "pressure": 46.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.795000076293945,
+      "pressure": 46.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.464000701904297,
+      "pressure": 54.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.395000457763672,
+      "pressure": 54.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.712000846862793,
+      "pressure": 55.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.1587495803833,
+      "pressure": 55.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 27.06433359781901,
+      "pressure": 55.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.94533348083496,
+      "pressure": 55.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.738299751281737,
+      "pressure": 55.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.43455547756619,
+      "pressure": 55.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.051200103759765,
+      "pressure": 55.599998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.82563643022017,
+      "pressure": 55.70000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.551454717462715,
+      "pressure": 55.79999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.6096248626709,
+      "pressure": 55.900001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.940500259399414,
+      "pressure": 56.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.740750312805176,
+      "pressure": 56.099998474121094
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.169400024414063,
+      "pressure": 56.20000076293945
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.741000175476074,
+      "pressure": 56.29999923706055
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.799666086832683,
+      "pressure": 56.400001525878906
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.874000549316406,
+      "pressure": 56.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.7810001373291,
+      "pressure": 63.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.61199951171875,
+      "pressure": 64.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.78350067138672,
+      "pressure": 64.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.30699920654297,
+      "pressure": 65.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.255000432332356,
+      "pressure": 65.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.69749927520752,
+      "pressure": 65.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.818249940872192,
+      "pressure": 65.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.962857382638113,
+      "pressure": 65.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.891444312201607,
+      "pressure": 65.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.65369987487793,
+      "pressure": 65.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.504416783650715,
+      "pressure": 65.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.82925001780192,
+      "pressure": 65.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.10641686121623,
+      "pressure": 65.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.821800231933594,
+      "pressure": 66.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.22939987182617,
+      "pressure": 66.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.136500358581543,
+      "pressure": 66.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.963749885559082,
+      "pressure": 66.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.738000869750977,
+      "pressure": 66.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 26.231000900268555,
+      "pressure": 66.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.041000366210938,
+      "pressure": 66.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.003999710083008,
+      "pressure": 74.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.947999954223633,
+      "pressure": 74.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.513999938964844,
+      "pressure": 75.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.983500003814697,
+      "pressure": 75.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.55500030517578,
+      "pressure": 75.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.85279998779297,
+      "pressure": 75.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.07776949955867,
+      "pressure": 75.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.745222303602432,
+      "pressure": 75.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.602846292349007,
+      "pressure": 75.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.532799911499023,
+      "pressure": 75.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.356399726867675,
+      "pressure": 75.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.422454660589043,
+      "pressure": 75.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.115200424194335,
+      "pressure": 76.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.50739974975586,
+      "pressure": 76.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.164999961853027,
+      "pressure": 76.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.55400021870931,
+      "pressure": 76.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.108999888102215,
+      "pressure": 76.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.280000686645508,
+      "pressure": 76.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.427000045776367,
+      "pressure": 84.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.916000366210938,
+      "pressure": 84.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.445500373840332,
+      "pressure": 85.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.518666585286457,
+      "pressure": 85.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.182000023978098,
+      "pressure": 85.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.904500007629395,
+      "pressure": 85.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.30328587123326,
+      "pressure": 85.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.046714237758092,
+      "pressure": 85.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.980937361717224,
+      "pressure": 85.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.274571418762207,
+      "pressure": 85.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.994777891370987,
+      "pressure": 85.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.340833346048992,
+      "pressure": 86.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.150333722432453,
+      "pressure": 86.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.804000091552734,
+      "pressure": 86.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.13149929046631,
+      "pressure": 86.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.05900001525879,
+      "pressure": 86.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.930999755859375,
+      "pressure": 86.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.336000442504883,
+      "pressure": 94.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.13700008392334,
+      "pressure": 95.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.826000213623047,
+      "pressure": 95.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.44666639963786,
+      "pressure": 95.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 23.179199981689454,
+      "pressure": 95.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.17750015258789,
+      "pressure": 95.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.312299919128417,
+      "pressure": 95.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.65285723549979,
+      "pressure": 95.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.80533324347602,
+      "pressure": 95.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.145199966430663,
+      "pressure": 95.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.856777826944988,
+      "pressure": 95.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.32200002670288,
+      "pressure": 96.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.615999221801758,
+      "pressure": 96.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.65150022506714,
+      "pressure": 96.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.372750282287598,
+      "pressure": 96.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.16900062561035,
+      "pressure": 96.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.277999877929688,
+      "pressure": 104.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 25.403499603271484,
+      "pressure": 104.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 24.07900047302246,
+      "pressure": 105.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.641667048136394,
+      "pressure": 105.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.39545440673828,
+      "pressure": 105.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.194200007120767,
+      "pressure": 105.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.791909304532137,
+      "pressure": 105.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.905764860265396,
+      "pressure": 105.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.425125122070312,
+      "pressure": 105.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.610700035095213,
+      "pressure": 105.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.853333791097004,
+      "pressure": 105.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.57140007019043,
+      "pressure": 106.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.77050018310547,
+      "pressure": 106.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.85099983215332,
+      "pressure": 106.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.45650005340576,
+      "pressure": 106.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.968000411987305,
+      "pressure": 106.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.871000289916992,
+      "pressure": 106.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.49400043487549,
+      "pressure": 114.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.15399932861328,
+      "pressure": 114.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.3149995803833,
+      "pressure": 115.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.58549976348877,
+      "pressure": 115.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.37339973449707,
+      "pressure": 115.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.56572740728205,
+      "pressure": 115.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.50499975681305,
+      "pressure": 115.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.955833435058594,
+      "pressure": 115.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.399700164794922,
+      "pressure": 115.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.781687378883362,
+      "pressure": 115.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.453222274780273,
+      "pressure": 115.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.790600204467772,
+      "pressure": 115.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.648400115966798,
+      "pressure": 116.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.619999885559082,
+      "pressure": 116.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.505000432332356,
+      "pressure": 116.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.047000885009766,
+      "pressure": 116.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.975000381469727,
+      "pressure": 116.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.66950035095215,
+      "pressure": 116.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.500999450683594,
+      "pressure": 124.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.189000129699707,
+      "pressure": 124.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.310500144958496,
+      "pressure": 124.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.375,
+      "pressure": 125.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.71500015258789,
+      "pressure": 125.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 22.331666946411133,
+      "pressure": 125.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.572143145969935,
+      "pressure": 125.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.102727283130992,
+      "pressure": 125.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.67300033569336,
+      "pressure": 125.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.51582364475026,
+      "pressure": 125.5999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.885083198547363,
+      "pressure": 125.69999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.598666826883953,
+      "pressure": 125.80000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.156666649712456,
+      "pressure": 125.9000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.95860004425049,
+      "pressure": 126.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.18479976654053,
+      "pressure": 126.0999984741211
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.371000289916992,
+      "pressure": 126.19999694824219
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.8435001373291,
+      "pressure": 126.30000305175781
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.54599952697754,
+      "pressure": 126.4000015258789
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.715999603271484,
+      "pressure": 134.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.75100016593933,
+      "pressure": 134.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.298999786376953,
+      "pressure": 134.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.959999084472656,
+      "pressure": 135.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.901333808898926,
+      "pressure": 135.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.026249885559082,
+      "pressure": 135.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.32680034637451,
+      "pressure": 135.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.722933451334637,
+      "pressure": 135.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.870250066121418,
+      "pressure": 135.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.86716667811076,
+      "pressure": 135.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.840999950062145,
+      "pressure": 135.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.694200134277345,
+      "pressure": 135.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 20.454800033569335,
+      "pressure": 135.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.858666631910538,
+      "pressure": 136.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.647200012207032,
+      "pressure": 136.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.657749891281128,
+      "pressure": 136.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.272000312805176,
+      "pressure": 136.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.647000312805176,
+      "pressure": 144.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.197999954223633,
+      "pressure": 144.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.87600040435791,
+      "pressure": 144.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.616999626159668,
+      "pressure": 145.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.614999771118164,
+      "pressure": 145.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.524499893188477,
+      "pressure": 145.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.34799995422363,
+      "pressure": 145.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.83550000190735,
+      "pressure": 145.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 21.00377739800347,
+      "pressure": 145.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.76624999046326,
+      "pressure": 145.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.911374807357788,
+      "pressure": 145.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 19.142500162124634,
+      "pressure": 145.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.177374839782715,
+      "pressure": 145.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.561333338419598,
+      "pressure": 146.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.50433349609375,
+      "pressure": 146.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.697500228881836,
+      "pressure": 146.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.23266633351644,
+      "pressure": 146.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.071500301361084,
+      "pressure": 146.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.960999965667725,
+      "pressure": 164.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.01799964904785,
+      "pressure": 164.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.721333185831707,
+      "pressure": 165.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.888000170389812,
+      "pressure": 165.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.906300163269044,
+      "pressure": 165.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.685111045837402,
+      "pressure": 165.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.459454363042656,
+      "pressure": 165.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 18.045000076293945,
+      "pressure": 165.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.596857411520823,
+      "pressure": 165.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.902666833665636,
+      "pressure": 165.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.43400001525879,
+      "pressure": 165.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.595333099365234,
+      "pressure": 166.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.995857102530342,
+      "pressure": 166.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.699000358581543,
+      "pressure": 166.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.239999771118164,
+      "pressure": 184.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.992000102996826,
+      "pressure": 184.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.258833249409992,
+      "pressure": 185.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.335875272750854,
+      "pressure": 185.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.083750009536743,
+      "pressure": 185.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.37399999300639,
+      "pressure": 185.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.424636494029652,
+      "pressure": 185.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.157454577359285,
+      "pressure": 185.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 16.78686663309733,
+      "pressure": 185.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.49655532836914,
+      "pressure": 185.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.825571468898229,
+      "pressure": 185.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.42585699898856,
+      "pressure": 186.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.095999717712402,
+      "pressure": 186.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.663000106811523,
+      "pressure": 186.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.965999603271484,
+      "pressure": 204.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.228000164031982,
+      "pressure": 204.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.602666536966959,
+      "pressure": 205.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.105666478474935,
+      "pressure": 205.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.879999796549479,
+      "pressure": 205.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.961777687072754,
+      "pressure": 205.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.348908857865768,
+      "pressure": 205.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.934399922688803,
+      "pressure": 205.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.265538288996769,
+      "pressure": 205.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.572769311758188,
+      "pressure": 205.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.574999968210856,
+      "pressure": 205.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.524285997663226,
+      "pressure": 205.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.626333236694336,
+      "pressure": 206.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.071000099182129,
+      "pressure": 206.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.413999557495117,
+      "pressure": 206.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.817999839782715,
+      "pressure": 206.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.427000045776367,
+      "pressure": 223.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.682000160217285,
+      "pressure": 224.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.368333498636881,
+      "pressure": 224.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.466000080108643,
+      "pressure": 224.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.436333338419596,
+      "pressure": 225.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 17.187333424886067,
+      "pressure": 225.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.331833203633627,
+      "pressure": 225.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 15.176444477505154,
+      "pressure": 225.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.916538385244516,
+      "pressure": 225.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.829600048065185,
+      "pressure": 225.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.680416663487753,
+      "pressure": 225.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.392933400472005,
+      "pressure": 225.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.720700073242188,
+      "pressure": 225.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.125399971008301,
+      "pressure": 225.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.011333147684732,
+      "pressure": 226.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.543999671936035,
+      "pressure": 226.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.494000434875488,
+      "pressure": 226.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.267000198364258,
+      "pressure": 226.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.706000328063965,
+      "pressure": 244.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.563499927520752,
+      "pressure": 244.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.12933317820231,
+      "pressure": 245.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.869874954223633,
+      "pressure": 245.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.375200080871583,
+      "pressure": 245.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.697818062522195,
+      "pressure": 245.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.247142655508858,
+      "pressure": 245.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.201916694641113,
+      "pressure": 245.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.962250073750814,
+      "pressure": 245.60000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.904909047213467,
+      "pressure": 245.6999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.431400108337403,
+      "pressure": 245.8000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.361000061035156,
+      "pressure": 245.89999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.942000071207682,
+      "pressure": 246.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.018249750137329,
+      "pressure": 246.10000610351562
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.179666519165039,
+      "pressure": 246.1999969482422
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.540500164031982,
+      "pressure": 246.3000030517578
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.041000366210938,
+      "pressure": 246.39999389648438
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.60099983215332,
+      "pressure": 294.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.72849988937378,
+      "pressure": 294.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 14.380500316619873,
+      "pressure": 295.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.541714259556361,
+      "pressure": 295.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.806857177189418,
+      "pressure": 295.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.265750050544739,
+      "pressure": 295.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.440937638282776,
+      "pressure": 295.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.619799995422364,
+      "pressure": 295.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 13.061636491255326,
+      "pressure": 295.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.564799976348876,
+      "pressure": 295.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.954333305358887,
+      "pressure": 295.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.753999922010633,
+      "pressure": 296.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.542999903361002,
+      "pressure": 296.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.49049997329712,
+      "pressure": 296.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.45300006866455,
+      "pressure": 344.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.9399995803833,
+      "pressure": 344.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.610400199890137,
+      "pressure": 345.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.529999732971191,
+      "pressure": 345.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.692666610081991,
+      "pressure": 345.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 12.125727220015092,
+      "pressure": 345.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.756999890009562,
+      "pressure": 345.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.668600018819173,
+      "pressure": 345.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.796499907970428,
+      "pressure": 345.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.671249866485596,
+      "pressure": 345.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.109833081563314,
+      "pressure": 345.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.670000076293945,
+      "pressure": 345.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.053000450134277,
+      "pressure": 346.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.018499851226807,
+      "pressure": 346.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.994999885559082,
+      "pressure": 346.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.741000175476074,
+      "pressure": 346.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.031000137329102,
+      "pressure": 393.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.175000190734863,
+      "pressure": 394.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.439000288645426,
+      "pressure": 394.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.026000022888184,
+      "pressure": 395.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.856555408901638,
+      "pressure": 395.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.115222295125326,
+      "pressure": 395.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.08263635635376,
+      "pressure": 395.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.88771424974714,
+      "pressure": 395.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 11.510900115966797,
+      "pressure": 395.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.3184445699056,
+      "pressure": 395.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.491499900817871,
+      "pressure": 395.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.872499942779541,
+      "pressure": 395.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.188999811808268,
+      "pressure": 395.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.968000411987305,
+      "pressure": 396.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.960000038146973,
+      "pressure": 396.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.960000038146973,
+      "pressure": 396.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.371000289916992,
+      "pressure": 444.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.827250003814697,
+      "pressure": 444.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.19700002670288,
+      "pressure": 445.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.093666394551596,
+      "pressure": 445.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.917727210304953,
+      "pressure": 445.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.781749963760376,
+      "pressure": 445.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.849454532970082,
+      "pressure": 445.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.510999997456869,
+      "pressure": 445.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.893090854991566,
+      "pressure": 445.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.2050834496816,
+      "pressure": 445.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.770833492279053,
+      "pressure": 445.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.532500267028809,
+      "pressure": 445.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.623199844360352,
+      "pressure": 446.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.63599967956543,
+      "pressure": 446.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.316666603088379,
+      "pressure": 446.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.72599983215332,
+      "pressure": 446.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.37600040435791,
+      "pressure": 446.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.347999572753906,
+      "pressure": 493.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.179500102996826,
+      "pressure": 494.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.295499801635742,
+      "pressure": 495.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.968399810791016,
+      "pressure": 495.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.667571340288434,
+      "pressure": 495.20001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.998454614119096,
+      "pressure": 495.29998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 10.133647189420813,
+      "pressure": 495.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.719374895095825,
+      "pressure": 495.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.24766657087538,
+      "pressure": 495.6000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.851571491786412,
+      "pressure": 495.70001220703125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.694999885559081,
+      "pressure": 495.79998779296875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.153600072860717,
+      "pressure": 495.8999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.268125176429749,
+      "pressure": 496.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.038000106811523,
+      "pressure": 496.1000061035156
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.95300006866455,
+      "pressure": 496.3999938964844
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.762999534606934,
+      "pressure": 594.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.059000015258789,
+      "pressure": 594.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.726666609446207,
+      "pressure": 595.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 9.127833525339762,
+      "pressure": 595.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.96922222773234,
+      "pressure": 595.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.854428700038365,
+      "pressure": 595.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.546214308057513,
+      "pressure": 595.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.743428548177084,
+      "pressure": 595.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.763599967956543,
+      "pressure": 595.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.539099979400635,
+      "pressure": 595.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.136500120162964,
+      "pressure": 595.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.071999549865723,
+      "pressure": 595.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.338833411534628,
+      "pressure": 596.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.057999610900879,
+      "pressure": 596.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.21560001373291,
+      "pressure": 596.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.265000343322754,
+      "pressure": 596.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.88700008392334,
+      "pressure": 694.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.892000198364258,
+      "pressure": 694.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.228333314259848,
+      "pressure": 695.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 8.051999855041505,
+      "pressure": 695.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.729142802102225,
+      "pressure": 695.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.967499937329974,
+      "pressure": 695.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.957157887910542,
+      "pressure": 695.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.966833233833313,
+      "pressure": 695.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.567909110676158,
+      "pressure": 695.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.640714236668178,
+      "pressure": 695.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.626333289676243,
+      "pressure": 695.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.506999969482422,
+      "pressure": 696.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.674999952316284,
+      "pressure": 696.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.559000015258789,
+      "pressure": 696.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.605999946594238,
+      "pressure": 696.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.497000217437744,
+      "pressure": 696.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.800000190734863,
+      "pressure": 793.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.484000205993652,
+      "pressure": 794.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.303999900817871,
+      "pressure": 794.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.8480000495910645,
+      "pressure": 795.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.257500052452087,
+      "pressure": 795.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.2940000428093805,
+      "pressure": 795.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.267222219043308,
+      "pressure": 795.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.123666763305664,
+      "pressure": 795.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.152090939608487,
+      "pressure": 795.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.059642859867641,
+      "pressure": 795.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.849699974060059,
+      "pressure": 795.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.98800007502238,
+      "pressure": 795.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.9839999335152765,
+      "pressure": 795.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.706999778747559,
+      "pressure": 796.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.861999988555908,
+      "pressure": 796.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.062333265940349,
+      "pressure": 796.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.8460001945495605,
+      "pressure": 796.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.23199987411499,
+      "pressure": 894.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.306000232696533,
+      "pressure": 894.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 7.003333409627278,
+      "pressure": 895.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.500444412231445,
+      "pressure": 895.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.57999997138977,
+      "pressure": 895.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.631357090813773,
+      "pressure": 895.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.669222195943196,
+      "pressure": 895.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.485099983215332,
+      "pressure": 895.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.5779230411236105,
+      "pressure": 895.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.47839994430542,
+      "pressure": 895.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.332888815138075,
+      "pressure": 895.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.488111178080241,
+      "pressure": 896.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.394500017166138,
+      "pressure": 896.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.496500015258789,
+      "pressure": 896.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.40500020980835,
+      "pressure": 896.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.894000053405762,
+      "pressure": 993.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.2749998569488525,
+      "pressure": 994.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.677999973297119,
+      "pressure": 995.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.314750075340271,
+      "pressure": 995.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.9906000137329105,
+      "pressure": 995.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.208846128903902,
+      "pressure": 995.2999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.6891250014305115,
+      "pressure": 995.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.994125008583069,
+      "pressure": 995.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.942000007629394,
+      "pressure": 995.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.929799938201905,
+      "pressure": 995.7000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.914599990844726,
+      "pressure": 995.7999877929688
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.880499958992004,
+      "pressure": 995.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.985200023651123,
+      "pressure": 996.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 6.037000060081482,
+      "pressure": 996.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.802000045776367,
+      "pressure": 996.2000122070312
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.863999843597412,
+      "pressure": 996.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.203000068664551,
+      "pressure": 1092.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.504000186920166,
+      "pressure": 1094.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.692999839782715,
+      "pressure": 1095.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.477000045776367,
+      "pressure": 1095.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.854199981689453,
+      "pressure": 1095.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.575181831013072,
+      "pressure": 1095.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.466571365083967,
+      "pressure": 1095.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.57289477398521,
+      "pressure": 1095.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.6336666742960615,
+      "pressure": 1095.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.49576473236084,
+      "pressure": 1095.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.557000160217285,
+      "pressure": 1095.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.374000072479248,
+      "pressure": 1095.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.579499959945679,
+      "pressure": 1096.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.457499980926514,
+      "pressure": 1096.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.504799938201904,
+      "pressure": 1096.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.446499824523926,
+      "pressure": 1096.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.47599983215332,
+      "pressure": 1096.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.882999897003174,
+      "pressure": 1193.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.28000020980835,
+      "pressure": 1194.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.260000228881836,
+      "pressure": 1194.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.002333323160808,
+      "pressure": 1194.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.234333276748657,
+      "pressure": 1195.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.215624988079071,
+      "pressure": 1195.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.20550000667572,
+      "pressure": 1195.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.0043000221252445,
+      "pressure": 1195.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.082499980926514,
+      "pressure": 1195.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.953363678672097,
+      "pressure": 1195.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.132000012831255,
+      "pressure": 1195.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.030857154301235,
+      "pressure": 1195.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.004714216504778,
+      "pressure": 1195.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.111500024795532,
+      "pressure": 1195.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.070666631062825,
+      "pressure": 1196.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.040000120798747,
+      "pressure": 1196.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.083000183105469,
+      "pressure": 1196.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.9710001945495605,
+      "pressure": 1196.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.383999824523926,
+      "pressure": 1293.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 5.01200008392334,
+      "pressure": 1294.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.746833244959514,
+      "pressure": 1295.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.55650011698405,
+      "pressure": 1295.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.711750090122223,
+      "pressure": 1295.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.515400028228759,
+      "pressure": 1295.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.626846130077656,
+      "pressure": 1295.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.659583409627278,
+      "pressure": 1295.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.584769212282621,
+      "pressure": 1295.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.65042849949428,
+      "pressure": 1295.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.583199977874756,
+      "pressure": 1295.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.712714263371059,
+      "pressure": 1296.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.605000138282776,
+      "pressure": 1296.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.58133331934611,
+      "pressure": 1296.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.508999824523926,
+      "pressure": 1296.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.170000076293945,
+      "pressure": 1394.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.247000217437744,
+      "pressure": 1394.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.140333334604899,
+      "pressure": 1394.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.34419994354248,
+      "pressure": 1395.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.338750004768372,
+      "pressure": 1395.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.1661538527562065,
+      "pressure": 1395.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.115714243480137,
+      "pressure": 1395.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.241235298268935,
+      "pressure": 1395.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.414666573206584,
+      "pressure": 1395.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.186263184798391,
+      "pressure": 1395.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.0954999923706055,
+      "pressure": 1395.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.128000020980835,
+      "pressure": 1395.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.408666769663493,
+      "pressure": 1395.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.214999993642171,
+      "pressure": 1396.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.290666580200195,
+      "pressure": 1396.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.1479997634887695,
+      "pressure": 1396.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.990999937057495,
+      "pressure": 1396.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.796999931335449,
+      "pressure": 1492.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.046000003814697,
+      "pressure": 1494.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.7070000171661377,
+      "pressure": 1494.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.9239999453226724,
+      "pressure": 1495.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.089749991893768,
+      "pressure": 1495.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.3940000534057617,
+      "pressure": 1495.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.8518999814987183,
+      "pressure": 1495.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.8387143271309987,
+      "pressure": 1495.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.928100037574768,
+      "pressure": 1495.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.766937479376793,
+      "pressure": 1495.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 4.004266675313314,
+      "pressure": 1495.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.780555566151937,
+      "pressure": 1495.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.794000029563904,
+      "pressure": 1495.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.8112500309944153,
+      "pressure": 1496.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.8730000257492065,
+      "pressure": 1496.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.8945000171661377,
+      "pressure": 1496.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.9294999837875366,
+      "pressure": 1496.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.744999885559082,
+      "pressure": 1496.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.3320000171661377,
+      "pressure": 1594.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.375999927520752,
+      "pressure": 1594.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.5605000257492065,
+      "pressure": 1594.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.64980001449585,
+      "pressure": 1595.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.6644999980926514,
+      "pressure": 1595.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.531571456364223,
+      "pressure": 1595.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.64383331934611,
+      "pressure": 1595.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.632000024502094,
+      "pressure": 1595.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.505600023269653,
+      "pressure": 1595.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.3986666599909463,
+      "pressure": 1595.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.5106666353013782,
+      "pressure": 1595.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.4957142898014615,
+      "pressure": 1595.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.56037500500679,
+      "pressure": 1595.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.4892000198364257,
+      "pressure": 1596.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.5269999504089355,
+      "pressure": 1596.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.4760000705718994,
+      "pressure": 1596.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.4570000171661377,
+      "pressure": 1596.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.072999954223633,
+      "pressure": 1693.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.178999900817871,
+      "pressure": 1694.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.263000011444092,
+      "pressure": 1695.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.3320000171661377,
+      "pressure": 1695.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.151999980211258,
+      "pressure": 1695.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.312600040435791,
+      "pressure": 1695.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.2279999937329973,
+      "pressure": 1695.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.256666660308838,
+      "pressure": 1695.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.241181807084517,
+      "pressure": 1695.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.1859374791383743,
+      "pressure": 1695.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.225874960422516,
+      "pressure": 1695.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.121000051498413,
+      "pressure": 1695.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.22599991162618,
+      "pressure": 1696.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.255500078201294,
+      "pressure": 1696.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.234999895095825,
+      "pressure": 1696.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.440999984741211,
+      "pressure": 1696.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.187000036239624,
+      "pressure": 1696.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.2760000228881836,
+      "pressure": 1696.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.696000099182129,
+      "pressure": 1792.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.753000020980835,
+      "pressure": 1794.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.0969998836517334,
+      "pressure": 1795.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.921999931335449,
+      "pressure": 1795.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.1108571461268832,
+      "pressure": 1795.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.037083327770233,
+      "pressure": 1795.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.982000008225441,
+      "pressure": 1795.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.9715000092983246,
+      "pressure": 1795.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.998199987411499,
+      "pressure": 1795.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.886937454342842,
+      "pressure": 1795.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.9478750228881836,
+      "pressure": 1795.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.9551428726741245,
+      "pressure": 1795.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.9989999532699585,
+      "pressure": 1796.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.0774999856948853,
+      "pressure": 1796.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.9260001182556152,
+      "pressure": 1796.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 3.0169999599456787,
+      "pressure": 1796.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7909998893737793,
+      "pressure": 1894.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.734500010808309,
+      "pressure": 1895.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.931000073750814,
+      "pressure": 1895.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.719285726547241,
+      "pressure": 1895.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.84512497484684,
+      "pressure": 1895.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7905789676465487,
+      "pressure": 1895.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.72400000360277,
+      "pressure": 1895.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.787000000476837,
+      "pressure": 1895.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.746250033378601,
+      "pressure": 1895.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7134000301361083,
+      "pressure": 1895.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.690333366394043,
+      "pressure": 1895.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7820000648498535,
+      "pressure": 1896.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7804999947547913,
+      "pressure": 1896.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.7809998989105225,
+      "pressure": 1995.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.6615555551317005,
+      "pressure": 1995.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.721999943256378,
+      "pressure": 1995.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5910000801086426,
+      "pressure": 1995.300048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.605899977684021,
+      "pressure": 1995.4000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.581428595951625,
+      "pressure": 1995.5
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.634714296885899,
+      "pressure": 1995.5999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5860000054041543,
+      "pressure": 1995.699951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5484286035810197,
+      "pressure": 1995.800048828125
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5283332665761313,
+      "pressure": 1995.9000244140625
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.586750030517578,
+      "pressure": 1996.0
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5739999612172446,
+      "pressure": 1996.0999755859375
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.4830000400543213,
+      "pressure": 1996.199951171875
+    },
+    {
+      "project_name": "Unknown",
+      "avg_temperature": 2.5510001182556152,
+      "pressure": 1996.5
+    }
+  ],
+  "result_count": 741,
+  "query": "Compare temperature profiles between different projects",
+  "processing_time": 5.069501,
+  "columns": [
+    "project_name",
+    "avg_temperature",
+    "pressure"
+  ],
+  "data_types": {
+    "project_name": "object",
+    "avg_temperature": "float64",
+    "pressure": "float64"
+  },
+  "timestamp": "2025-09-04T21:32:10.912838"
+}
