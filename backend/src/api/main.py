@@ -9,8 +9,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 services_dir = os.path.join(current_dir, '..', 'services')
 sys.path.insert(0, services_dir)
 
-from advanced_rag_llm_system import AdvancedRAGEnhancedLLM  # Ensure advanced_rag_llm_system.py exists in ../services/
-
+from src.services.advanced_rag_llm_system import AdvancedRAGEnhancedLLM
 app = FastAPI(title="ARGO FloatChat API")
 
 # CORS for Next.js development
