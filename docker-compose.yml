@@ -10,21 +10,8 @@ services:
       - ./backend/storage/postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - postgres
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    depends_on:
-      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U argo_user -d argo_data"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

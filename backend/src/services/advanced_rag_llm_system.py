@@ -5,7 +5,8 @@ import json
 import asyncio
 from typing import Dict, List, Optional, Tuple, Any
 from sqlalchemy import create_engine, text, MetaData, inspect
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 from langchain.memory import ConversationSummaryBufferMemory
@@ -516,6 +517,9 @@ Generate ONLY the SQL query that best answers this question using the ARGO datas
         query = re.sub(r'/\*.*?\*/', '', query, flags=re.DOTALL)
         query = ' '.join(query.split())
         
+        # Remove any existing semicolons first
+        query = query.rstrip(';')
+        
         # Ensure it's a SELECT query
         if not query.upper().startswith('SELECT'):
             select_match = re.search(r'(SELECT.*?)(?=;|$)', query, re.IGNORECASE | re.DOTALL)
@@ -531,10 +535,9 @@ Generate ONLY the SQL query that best answers this question using the ARGO datas
             else:
                 query += " LIMIT 1000"
         
-        # Ensure semicolon at the end
-        if not query.endswith(';'):
-            query += ';'
-        
+        # Now add semicolon at the very end
+        query += ";"
+    
         return query
     
     def execute_query_with_retry(self, sql_query: str, max_retries: int = 3) -> Optional[pd.DataFrame]:

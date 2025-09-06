@@ -273,7 +273,7 @@ def main():
             return
         
         # Find and process files
-        netcdf_files = glob.glob("backend/files/*.nc")
+        netcdf_files = glob.glob("../../data/*.nc")
         
         if not netcdf_files:
             print("❌ No NetCDF files found in data/ directory")
