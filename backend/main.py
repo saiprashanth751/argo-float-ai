@@ -42,7 +42,7 @@ app.add_middleware(
 )
 
 # Global instances
-rag_system = None
+rag_system = AdvancedRAGEnhancedLLM()
 engine = None
 
 @app.on_event("startup")
@@ -338,87 +338,111 @@ async def get_database_stats():
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
-
+    
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_connections.append(websocket)
-
+        logger.info(f"WebSocket connected. Total connections: {len(self.active_connections)}")
+    
     def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
-
-    async def send_personal_message(self, message: str, websocket: WebSocket):
-        await websocket.send_text(message)
+        if websocket in self.active_connections:
+            self.active_connections.remove(websocket)
+        logger.info(f"WebSocket disconnected. Total connections: {len(self.active_connections)}")
+    
+    async def send_message(self, websocket: WebSocket, message: dict):
+        try:
+            await websocket.send_text(json.dumps(message))
+        except Exception as e:
+            logger.error(f"Error sending WebSocket message: {e}")
+    
+    async def broadcast(self, message: dict):
+        """Send message to all connected clients"""
+        for connection in self.active_connections:
+            try:
+                await connection.send_text(json.dumps(message))
+            except:
+                self.disconnect(connection)
 
 manager = ConnectionManager()
 
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
-    """WebSocket endpoint for real-time chat interface"""
     await manager.connect(websocket)
     
     try:
-        await websocket.send_text(json.dumps({
-            "type": "connection",
-            "message": "Connected to FloatChat. Ask me anything about oceanographic data!",
-            "timestamp": datetime.now().isoformat()
-        }))
-        
         while True:
-            # Receive message from client
+            # Receive message from frontend
             data = await websocket.receive_text()
-            message_data = json.loads(data)
+            message = json.loads(data)
             
-            if message_data.get("type") == "query":
-                query = message_data.get("message", "")
-                
-                # Send processing status
-                await websocket.send_text(json.dumps({
-                    "type": "status",
-                    "message": "Processing your query...",
-                    "timestamp": datetime.now().isoformat()
-                }))
-                
-                # Process query
-                result = rag_system.process_advanced_query(query)
-                
-                # Format and send response
-                response = {
-                    "type": "response",
-                    "query": query,
-                    "success": result['success'],
-                    "timestamp": datetime.now().isoformat()
-                }
-                
-                if result['success']:
-                    results_df = result.get('results')
-                    if isinstance(results_df, pd.DataFrame) and not results_df.empty:
-                        # Send a summary for large datasets
-                        if len(results_df) > 10:
-                            response["message"] = f"Found {len(results_df)} results. Showing first 10 rows."
-                            response["data"] = results_df.head(10).to_dict('records')
-                        else:
-                            response["message"] = f"Found {len(results_df)} results."
-                            response["data"] = results_df.to_dict('records')
-                    else:
-                        response["message"] = "Query processed successfully but no results found."
-                    
-                    response["sql_query"] = result.get('sql_query')
-                    response["processing_time"] = result.get('processing_time', 0.0)
-                else:
-                    response["message"] = f"Error: {result.get('error', 'Unknown error')}"
-                
-                await websocket.send_text(json.dumps(response, default=str))
-                
+            query = message.get('query', '')
+            message_id = message.get('message_id', '')
+            
+            if not query:
+                await manager.send_message(websocket, {
+                    'type': 'error',
+                    'message': 'Empty query received',
+                    'message_id': message_id
+                })
+                continue
+            
+            # Send processing status updates
+            await manager.send_message(websocket, {
+                'type': 'status',
+                'message': 'Processing your query...',
+                'stage': 'starting',
+                'message_id': message_id
+            })
+            
+            # Simulate processing stages with real work
+            await asyncio.sleep(0.5)  # Small delay for UX
+            
+            await manager.send_message(websocket, {
+                'type': 'status',
+                'message': 'Analyzing query intent...',
+                'stage': 'intent_analysis',
+                'message_id': message_id
+            })
+            
+            # Classify query intent
+            intent = rag_system.classify_query_intent(query)
+            
+            await manager.send_message(websocket, {
+                'type': 'status',
+                'message': f'Detected {intent["type"]} query, generating SQL...',
+                'stage': 'sql_generation',
+                'message_id': message_id
+            })
+            
+            await asyncio.sleep(0.3)
+            
+            # Process the full query
+            result = rag_system.process_advanced_query(query)
+            
+            # Convert DataFrame to dict if present
+            if result.get('results') is not None and hasattr(result['results'], 'to_dict'):
+                result['results'] = result['results'].to_dict('records')
+            
+            # Send final result
+            await manager.send_message(websocket, {
+                'type': 'result',
+                'data': result,
+                'message_id': message_id
+            })
+            
     except WebSocketDisconnect:
         manager.disconnect(websocket)
-        logger.info("Client disconnected from WebSocket")
     except Exception as e:
         logger.error(f"WebSocket error: {e}")
-        await websocket.send_text(json.dumps({
-            "type": "error",
-            "message": f"Server error: {str(e)}",
-            "timestamp": datetime.now().isoformat()
-        }))
+        try:
+            await manager.send_message(websocket, {
+                'type': 'error',
+                'message': f'Server error: {str(e)}',
+                'message_id': message.get('message_id', '')
+            })
+        except:
+            pass
+        manager.disconnect(websocket)
 
 if __name__ == "__main__":
     import uvicorn

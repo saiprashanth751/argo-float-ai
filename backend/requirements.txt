@@ -40,3 +40,4 @@ fastapi
 uvicorn[standard]
 websockets
 pydantic
+python-multipart

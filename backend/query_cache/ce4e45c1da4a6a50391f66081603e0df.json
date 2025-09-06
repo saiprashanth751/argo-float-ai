@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "sql_query": "SELECT platform_number, latitude, longitude FROM floats_metadata LIMIT 10000;",
+  "results": [
+    {
+      "platform_number": "1900121",
+      "latitude": -9.857,
+      "longitude": 55.953
+    }
+  ],
+  "result_count": 1,
+  "query": "Map all floats",
+  "processing_time": 7.181315,
+  "columns": [
+    "platform_number",
+    "latitude",
+    "longitude"
+  ],
+  "data_types": {
+    "platform_number": "object",
+    "latitude": "float64",
+    "longitude": "float64"
+  },
+  "timestamp": "2025-09-07T00:21:57.668159"
+}

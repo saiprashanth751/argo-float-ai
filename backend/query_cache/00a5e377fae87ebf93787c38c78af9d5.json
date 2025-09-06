@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "sql_query": "SELECT m.temperature FROM measurements m JOIN floats_metadata fm ON m.metadata_id = fm.id WHERE m.pressure = (SELECT MIN(pressure) FROM measurements WHERE metadata_id = m.metadata_id) LIMIT 1000;",
+  "results": [
+    {
+      "temperature": 27.38800048828125
+    }
+  ],
+  "result_count": 1,
+  "query": "Show surface temperature measurements",
+  "processing_time": 10.014663,
+  "columns": [
+    "temperature"
+  ],
+  "data_types": {
+    "temperature": "float64"
+  },
+  "timestamp": "2025-09-06T23:38:53.390314"
+}
