@@ -218,7 +218,7 @@ export default function ChatInterface({ onQueryResult }: ChatInterfaceProps) {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Ask about ARGO data..."
-                        className="flex-1 px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="flex-1 px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
                         disabled={isLoading || !isConnected}
                     />
                     <button

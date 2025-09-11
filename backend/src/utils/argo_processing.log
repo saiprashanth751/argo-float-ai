@@ -1,0 +1,1999 @@
+2025-09-08 14:39:39,885 - INFO - ARGO Production NetCDF Processor Starting (FIXED VERSION)
+2025-09-08 14:39:39,886 - INFO - ============================================================
+2025-09-08 14:39:39,974 - INFO - Creating database schema...
+2025-09-08 14:39:40,154 - INFO - Production database schema created
+2025-09-08 14:39:40,251 - INFO - Found 980 unique NetCDF files
+2025-09-08 14:39:40,251 - INFO - Starting sequential processing of 980 files
+2025-09-08 14:39:40,251 - INFO - Previously processed: 0, failed: 0
+2025-09-08 14:39:40,253 - INFO - Remaining to process: 980 files
+2025-09-08 14:39:40,261 - INFO - Processing: 20230101_prof.nc
+2025-09-08 14:39:47,788 - INFO - Completed: 20230101_prof.nc (44843 measurements, 7.5s)
+2025-09-08 14:39:47,792 - INFO - Processing: 20230102_prof.nc
+2025-09-08 14:39:53,543 - INFO - Completed: 20230102_prof.nc (40091 measurements, 5.7s)
+2025-09-08 14:39:53,546 - INFO - Processing: 20230103_prof.nc
+2025-09-08 14:40:00,463 - INFO - Completed: 20230103_prof.nc (51144 measurements, 6.9s)
+2025-09-08 14:40:00,468 - INFO - Processing: 20230104_prof.nc
+2025-09-08 14:40:07,252 - INFO - Completed: 20230104_prof.nc (47921 measurements, 6.8s)
+2025-09-08 14:40:07,256 - INFO - Processing: 20230105_prof.nc
+2025-09-08 14:40:14,652 - INFO - Completed: 20230105_prof.nc (50685 measurements, 7.4s)
+2025-09-08 14:40:14,657 - INFO - Processing: 20230106_prof.nc
+2025-09-08 14:40:22,070 - INFO - Completed: 20230106_prof.nc (52204 measurements, 7.4s)
+2025-09-08 14:40:22,077 - INFO - Processing: 20230107_prof.nc
+2025-09-08 14:40:29,063 - INFO - Completed: 20230107_prof.nc (44407 measurements, 7.0s)
+2025-09-08 14:40:29,068 - INFO - Processing: 20230108_prof.nc
+2025-09-08 14:40:35,943 - INFO - Completed: 20230108_prof.nc (46639 measurements, 6.9s)
+2025-09-08 14:40:35,948 - INFO - Processing: 20230109_prof.nc
+2025-09-08 14:40:41,698 - INFO - Completed: 20230109_prof.nc (39027 measurements, 5.7s)
+2025-09-08 14:40:41,703 - INFO - Processing: 20230110_prof.nc
+2025-09-08 14:40:49,931 - INFO - Completed: 20230110_prof.nc (57105 measurements, 8.2s)
+2025-09-08 14:40:49,936 - INFO - Processing: 20230111_prof.nc
+2025-09-08 14:40:56,237 - INFO - Completed: 20230111_prof.nc (42436 measurements, 6.3s)
+2025-09-08 14:40:56,243 - INFO - Processing: 20230112_prof.nc
+2025-09-08 14:41:01,747 - INFO - Completed: 20230112_prof.nc (37911 measurements, 5.5s)
+2025-09-08 14:41:01,752 - INFO - Processing: 20230113_prof.nc
+2025-09-08 14:41:09,283 - INFO - Completed: 20230113_prof.nc (51381 measurements, 7.5s)
+2025-09-08 14:41:09,288 - INFO - Processing: 20230114_prof.nc
+2025-09-08 14:41:16,636 - INFO - Completed: 20230114_prof.nc (50507 measurements, 7.3s)
+2025-09-08 14:41:16,641 - INFO - Processing: 20230115_prof.nc
+2025-09-08 14:41:24,017 - INFO - Completed: 20230115_prof.nc (50558 measurements, 7.4s)
+2025-09-08 14:41:24,024 - INFO - Processing: 20230116_prof.nc
+2025-09-08 14:41:32,148 - INFO - Completed: 20230116_prof.nc (54862 measurements, 8.1s)
+2025-09-08 14:41:32,155 - INFO - Processing: 20230117_prof.nc
+2025-09-08 14:41:39,398 - INFO - Completed: 20230117_prof.nc (47026 measurements, 7.2s)
+2025-09-08 14:41:39,405 - INFO - Processing: 20230118_prof.nc
+2025-09-08 14:41:45,388 - INFO - Completed: 20230118_prof.nc (40861 measurements, 6.0s)
+2025-09-08 14:41:45,393 - INFO - Processing: 20230119_prof.nc
+2025-09-08 14:41:50,869 - INFO - Completed: 20230119_prof.nc (37847 measurements, 5.5s)
+2025-09-08 14:41:50,873 - INFO - Processing: 20230120_prof.nc
+2025-09-08 14:41:58,746 - INFO - Completed: 20230120_prof.nc (54347 measurements, 7.9s)
+2025-09-08 14:41:58,751 - INFO - Processing: 20230121_prof.nc
+2025-09-08 14:42:06,036 - INFO - Completed: 20230121_prof.nc (49670 measurements, 7.3s)
+2025-09-08 14:42:06,040 - INFO - Processing: 20230122_prof.nc
+2025-09-08 14:42:11,253 - INFO - Completed: 20230122_prof.nc (35862 measurements, 5.2s)
+2025-09-08 14:42:11,256 - INFO - Processing: 20230123_prof.nc
+2025-09-08 14:42:18,889 - INFO - Completed: 20230123_prof.nc (52382 measurements, 7.6s)
+2025-09-08 14:42:18,894 - INFO - Processing: 20230124_prof.nc
+2025-09-08 14:42:26,239 - INFO - Completed: 20230124_prof.nc (49779 measurements, 7.3s)
+2025-09-08 14:42:26,245 - INFO - Processing: 20230125_prof.nc
+2025-09-08 14:42:35,019 - INFO - Completed: 20230125_prof.nc (59919 measurements, 8.8s)
+2025-09-08 14:42:35,026 - INFO - Processing: 20230126_prof.nc
+2025-09-08 14:42:42,768 - INFO - Completed: 20230126_prof.nc (51501 measurements, 7.7s)
+2025-09-08 14:42:42,775 - INFO - Processing: 20230127_prof.nc
+2025-09-08 14:42:49,661 - INFO - Completed: 20230127_prof.nc (46222 measurements, 6.9s)
+2025-09-08 14:42:49,665 - INFO - Processing: 20230128_prof.nc
+2025-09-08 14:42:55,551 - INFO - Completed: 20230128_prof.nc (38760 measurements, 5.9s)
+2025-09-08 14:42:55,555 - INFO - Processing: 20230129_prof.nc
+2025-09-08 14:43:00,501 - INFO - Completed: 20230129_prof.nc (34910 measurements, 4.9s)
+2025-09-08 14:43:00,506 - INFO - Processing: 20230130_prof.nc
+2025-09-08 14:43:08,992 - INFO - Completed: 20230130_prof.nc (58170 measurements, 8.5s)
+2025-09-08 14:43:08,999 - INFO - Processing: 20230131_prof.nc
+2025-09-08 14:43:16,079 - INFO - Completed: 20230131_prof.nc (48522 measurements, 7.1s)
+2025-09-08 14:43:16,084 - INFO - Processing: 20230201_prof.nc
+2025-09-08 14:43:20,622 - INFO - Completed: 20230201_prof.nc (31726 measurements, 4.5s)
+2025-09-08 14:43:20,626 - INFO - Processing: 20230202_prof.nc
+2025-09-08 14:43:29,007 - INFO - Completed: 20230202_prof.nc (56291 measurements, 8.4s)
+2025-09-08 14:43:29,014 - INFO - Processing: 20230203_prof.nc
+2025-09-08 14:43:35,546 - INFO - Completed: 20230203_prof.nc (43333 measurements, 6.5s)
+2025-09-08 14:43:35,551 - INFO - Processing: 20230204_prof.nc
+2025-09-08 14:43:43,986 - INFO - Completed: 20230204_prof.nc (59378 measurements, 8.4s)
+2025-09-08 14:43:43,993 - INFO - Processing: 20230205_prof.nc
+2025-09-08 14:43:51,114 - INFO - Completed: 20230205_prof.nc (47397 measurements, 7.1s)
+2025-09-08 14:43:51,119 - INFO - Processing: 20230206_prof.nc
+2025-09-08 14:43:58,607 - INFO - Completed: 20230206_prof.nc (48788 measurements, 7.5s)
+2025-09-08 14:43:58,613 - INFO - Processing: 20230207_prof.nc
+2025-09-08 14:44:05,173 - INFO - Completed: 20230207_prof.nc (40227 measurements, 6.5s)
+2025-09-08 14:44:05,180 - INFO - Processing: 20230208_prof.nc
+2025-09-08 14:44:11,441 - INFO - Completed: 20230208_prof.nc (38014 measurements, 6.3s)
+2025-09-08 14:44:11,448 - INFO - Processing: 20230209_prof.nc
+2025-09-08 14:44:19,973 - INFO - Completed: 20230209_prof.nc (53239 measurements, 8.5s)
+2025-09-08 14:44:19,979 - INFO - Processing: 20230210_prof.nc
+2025-09-08 14:44:27,897 - INFO - Completed: 20230210_prof.nc (52701 measurements, 7.9s)
+2025-09-08 14:44:27,901 - INFO - Processing: 20230211_prof.nc
+2025-09-08 14:44:32,940 - INFO - Completed: 20230211_prof.nc (33875 measurements, 5.0s)
+2025-09-08 14:44:32,944 - INFO - Processing: 20230212_prof.nc
+2025-09-08 14:44:41,120 - INFO - Completed: 20230212_prof.nc (56372 measurements, 8.2s)
+2025-09-08 14:44:41,128 - INFO - Processing: 20230213_prof.nc
+2025-09-08 14:44:47,964 - INFO - Completed: 20230213_prof.nc (46839 measurements, 6.8s)
+2025-09-08 14:44:47,971 - INFO - Processing: 20230214_prof.nc
+2025-09-08 14:44:56,926 - INFO - Completed: 20230214_prof.nc (61232 measurements, 8.9s)
+2025-09-08 14:44:56,933 - INFO - Processing: 20230215_prof.nc
+2025-09-08 14:45:05,406 - INFO - Completed: 20230215_prof.nc (51109 measurements, 8.5s)
+2025-09-08 14:45:05,410 - INFO - Processing: 20230216_prof.nc
+2025-09-08 14:45:13,225 - INFO - Completed: 20230216_prof.nc (50403 measurements, 7.8s)
+2025-09-08 14:45:13,233 - INFO - Processing: 20230217_prof.nc
+2025-09-08 14:45:19,754 - INFO - Completed: 20230217_prof.nc (43092 measurements, 6.5s)
+2025-09-08 14:45:19,758 - INFO - Processing: 20230218_prof.nc
+2025-09-08 14:45:25,913 - INFO - Completed: 20230218_prof.nc (42401 measurements, 6.2s)
+2025-09-08 14:45:25,920 - INFO - Processing: 20230219_prof.nc
+2025-09-08 14:45:32,981 - INFO - Completed: 20230219_prof.nc (50045 measurements, 7.1s)
+2025-09-08 14:45:33,028 - WARNING - High memory usage: 95.9%. Pausing for cleanup.
+2025-09-08 14:45:35,051 - INFO - Processing: 20230220_prof.nc
+2025-09-08 14:45:42,421 - INFO - Completed: 20230220_prof.nc (51911 measurements, 7.4s)
+2025-09-08 14:45:42,425 - INFO - Processing: 20230221_prof.nc
+2025-09-08 14:45:47,503 - INFO - Completed: 20230221_prof.nc (35695 measurements, 5.1s)
+2025-09-08 14:45:47,509 - INFO - Processing: 20230222_prof.nc
+2025-09-08 14:45:55,110 - INFO - Completed: 20230222_prof.nc (54316 measurements, 7.6s)
+2025-09-08 14:45:55,118 - INFO - Processing: 20230223_prof.nc
+2025-09-08 14:46:02,088 - INFO - Completed: 20230223_prof.nc (48249 measurements, 7.0s)
+2025-09-08 14:46:02,093 - INFO - Processing: 20230224_prof.nc
+2025-09-08 14:46:11,767 - INFO - Completed: 20230224_prof.nc (62221 measurements, 9.7s)
+2025-09-08 14:46:11,774 - INFO - Processing: 20230225_prof.nc
+2025-09-08 14:46:19,095 - INFO - Completed: 20230225_prof.nc (50492 measurements, 7.3s)
+2025-09-08 14:46:19,100 - INFO - Processing: 20230226_prof.nc
+2025-09-08 14:46:26,110 - INFO - Completed: 20230226_prof.nc (48525 measurements, 7.0s)
+2025-09-08 14:46:26,115 - INFO - Processing: 20230227_prof.nc
+2025-09-08 14:46:31,949 - INFO - Completed: 20230227_prof.nc (39650 measurements, 5.8s)
+2025-09-08 14:46:31,955 - INFO - Processing: 20230228_prof.nc
+2025-09-08 14:46:38,320 - INFO - Completed: 20230228_prof.nc (43065 measurements, 6.4s)
+2025-09-08 14:46:38,325 - INFO - Processing: 20230301_prof.nc
+2025-09-08 14:46:44,793 - INFO - Completed: 20230301_prof.nc (44268 measurements, 6.5s)
+2025-09-08 14:46:44,798 - INFO - Processing: 20230302_prof.nc
+2025-09-08 14:46:52,485 - INFO - Completed: 20230302_prof.nc (51892 measurements, 7.7s)
+2025-09-08 14:46:52,493 - INFO - Processing: 20230303_prof.nc
+2025-09-08 14:46:57,490 - INFO - Completed: 20230303_prof.nc (31168 measurements, 5.0s)
+2025-09-08 14:46:57,493 - INFO - Processing: 20230304_prof.nc
+2025-09-08 14:47:06,234 - INFO - Completed: 20230304_prof.nc (55835 measurements, 8.7s)
+2025-09-08 14:47:06,242 - INFO - Processing: 20230305_prof.nc
+2025-09-08 14:47:13,917 - INFO - Completed: 20230305_prof.nc (50258 measurements, 7.7s)
+2025-09-08 14:47:13,923 - INFO - Processing: 20230306_prof.nc
+2025-09-08 14:47:22,735 - INFO - Completed: 20230306_prof.nc (56620 measurements, 8.8s)
+2025-09-08 14:47:22,741 - INFO - Processing: 20230307_prof.nc
+2025-09-08 14:47:30,854 - INFO - Completed: 20230307_prof.nc (53474 measurements, 8.1s)
+2025-09-08 14:47:30,860 - INFO - Processing: 20230308_prof.nc
+2025-09-08 14:47:37,863 - INFO - Completed: 20230308_prof.nc (44910 measurements, 7.0s)
+2025-09-08 14:47:37,869 - INFO - Processing: 20230309_prof.nc
+2025-09-08 14:47:44,088 - INFO - Completed: 20230309_prof.nc (41197 measurements, 6.2s)
+2025-09-08 14:47:44,092 - INFO - Processing: 20230310_prof.nc
+2025-09-08 14:47:50,385 - INFO - Completed: 20230310_prof.nc (44014 measurements, 6.3s)
+2025-09-08 14:47:50,390 - INFO - Processing: 20230311_prof.nc
+2025-09-08 14:47:56,971 - INFO - Completed: 20230311_prof.nc (44094 measurements, 6.6s)
+2025-09-08 14:47:56,976 - INFO - Processing: 20230312_prof.nc
+2025-09-08 14:48:04,037 - INFO - Completed: 20230312_prof.nc (46405 measurements, 7.1s)
+2025-09-08 14:48:04,044 - INFO - Processing: 20230313_prof.nc
+2025-09-08 14:48:08,943 - INFO - Completed: 20230313_prof.nc (32615 measurements, 4.9s)
+2025-09-08 14:48:08,947 - INFO - Processing: 20230314_prof.nc
+2025-09-08 14:48:17,119 - INFO - Completed: 20230314_prof.nc (53418 measurements, 8.2s)
+2025-09-08 14:48:17,124 - INFO - Processing: 20230315_prof.nc
+2025-09-08 14:48:25,302 - INFO - Completed: 20230315_prof.nc (49776 measurements, 8.2s)
+2025-09-08 14:48:25,309 - INFO - Processing: 20230316_prof.nc
+2025-09-08 14:48:34,354 - INFO - Completed: 20230316_prof.nc (55270 measurements, 9.0s)
+2025-09-08 14:48:34,361 - INFO - Processing: 20230317_prof.nc
+2025-09-08 14:48:43,333 - INFO - Completed: 20230317_prof.nc (54990 measurements, 9.0s)
+2025-09-08 14:48:43,340 - INFO - Processing: 20230318_prof.nc
+2025-09-08 14:48:51,188 - INFO - Completed: 20230318_prof.nc (45449 measurements, 7.8s)
+2025-09-08 14:48:51,194 - INFO - Processing: 20230319_prof.nc
+2025-09-08 14:48:58,077 - INFO - Completed: 20230319_prof.nc (42078 measurements, 6.9s)
+2025-09-08 14:48:58,083 - INFO - Processing: 20230320_prof.nc
+2025-09-08 14:49:04,527 - INFO - Completed: 20230320_prof.nc (42854 measurements, 6.4s)
+2025-09-08 14:49:04,533 - INFO - Processing: 20230321_prof.nc
+2025-09-08 14:49:11,779 - INFO - Completed: 20230321_prof.nc (49014 measurements, 7.2s)
+2025-09-08 14:49:11,784 - INFO - Processing: 20230322_prof.nc
+2025-09-08 14:49:18,010 - INFO - Completed: 20230322_prof.nc (41969 measurements, 6.2s)
+2025-09-08 14:49:18,014 - INFO - Processing: 20230323_prof.nc
+2025-09-08 14:49:23,419 - INFO - Completed: 20230323_prof.nc (36342 measurements, 5.4s)
+2025-09-08 14:49:23,423 - INFO - Processing: 20230324_prof.nc
+2025-09-08 14:49:30,364 - INFO - Completed: 20230324_prof.nc (45080 measurements, 6.9s)
+2025-09-08 14:49:30,369 - INFO - Processing: 20230325_prof.nc
+2025-09-08 14:49:38,223 - INFO - Completed: 20230325_prof.nc (49157 measurements, 7.8s)
+2025-09-08 14:49:38,228 - INFO - Processing: 20230326_prof.nc
+2025-09-08 14:49:47,124 - INFO - Completed: 20230326_prof.nc (60063 measurements, 8.9s)
+2025-09-08 14:49:47,131 - INFO - Processing: 20230327_prof.nc
+2025-09-08 14:49:55,382 - INFO - Completed: 20230327_prof.nc (56366 measurements, 8.2s)
+2025-09-08 14:49:55,388 - INFO - Processing: 20230328_prof.nc
+2025-09-08 14:50:00,628 - INFO - Completed: 20230328_prof.nc (34145 measurements, 5.2s)
+2025-09-08 14:50:00,633 - INFO - Processing: 20230329_prof.nc
+2025-09-08 14:50:07,145 - INFO - Completed: 20230329_prof.nc (42148 measurements, 6.5s)
+2025-09-08 14:50:07,150 - INFO - Processing: 20230330_prof.nc
+2025-09-08 14:50:13,612 - INFO - Completed: 20230330_prof.nc (42555 measurements, 6.5s)
+2025-09-08 14:50:13,617 - INFO - Processing: 20230331_prof.nc
+2025-09-08 14:50:19,626 - INFO - Completed: 20230331_prof.nc (37794 measurements, 6.0s)
+2025-09-08 14:50:19,630 - INFO - Processing: 20230401_prof.nc
+2025-09-08 14:50:27,042 - INFO - Completed: 20230401_prof.nc (48806 measurements, 7.4s)
+2025-09-08 14:50:27,049 - INFO - Processing: 20230402_prof.nc
+2025-09-08 14:50:31,440 - INFO - Completed: 20230402_prof.nc (28460 measurements, 4.4s)
+2025-09-08 14:50:31,444 - INFO - Processing: 20230403_prof.nc
+2025-09-08 14:50:39,932 - INFO - Completed: 20230403_prof.nc (55962 measurements, 8.5s)
+2025-09-08 14:50:39,939 - INFO - Processing: 20230404_prof.nc
+2025-09-08 14:50:46,343 - INFO - Completed: 20230404_prof.nc (41833 measurements, 6.4s)
+2025-09-08 14:50:46,348 - INFO - Processing: 20230405_prof.nc
+2025-09-08 14:50:55,953 - INFO - Completed: 20230405_prof.nc (66041 measurements, 9.6s)
+2025-09-08 14:50:55,960 - INFO - Processing: 20230406_prof.nc
+2025-09-08 14:51:03,721 - INFO - Completed: 20230406_prof.nc (50599 measurements, 7.8s)
+2025-09-08 14:51:03,727 - INFO - Processing: 20230407_prof.nc
+2025-09-08 14:51:09,427 - INFO - Completed: 20230407_prof.nc (37502 measurements, 5.7s)
+2025-09-08 14:51:09,432 - INFO - Processing: 20230408_prof.nc
+2025-09-08 14:51:15,325 - INFO - Completed: 20230408_prof.nc (39455 measurements, 5.9s)
+2025-09-08 14:51:15,331 - INFO - Processing: 20230409_prof.nc
+2025-09-08 14:51:21,620 - INFO - Completed: 20230409_prof.nc (43228 measurements, 6.3s)
+2025-09-08 14:51:21,626 - INFO - Processing: 20230410_prof.nc
+2025-09-08 14:51:27,264 - INFO - Completed: 20230410_prof.nc (37832 measurements, 5.6s)
+2025-09-08 14:51:27,314 - WARNING - High memory usage: 97.0%. Pausing for cleanup.
+2025-09-08 14:51:29,341 - INFO - Processing: 20230411_prof.nc
+2025-09-08 14:51:36,619 - INFO - Completed: 20230411_prof.nc (48028 measurements, 7.3s)
+2025-09-08 14:51:36,622 - INFO - Processing: 20230412_prof.nc
+2025-09-08 14:51:40,969 - INFO - Completed: 20230412_prof.nc (28649 measurements, 4.3s)
+2025-09-08 14:51:40,974 - INFO - Processing: 20230413_prof.nc
+2025-09-08 14:51:48,502 - INFO - Completed: 20230413_prof.nc (49215 measurements, 7.5s)
+2025-09-08 14:51:48,507 - INFO - Processing: 20230414_prof.nc
+2025-09-08 14:51:55,631 - INFO - Completed: 20230414_prof.nc (45680 measurements, 7.1s)
+2025-09-08 14:51:55,636 - INFO - Processing: 20230415_prof.nc
+2025-09-08 14:52:05,220 - INFO - Completed: 20230415_prof.nc (62956 measurements, 9.6s)
+2025-09-08 14:52:05,228 - INFO - Processing: 20230416_prof.nc
+2025-09-08 14:52:12,675 - INFO - Completed: 20230416_prof.nc (49875 measurements, 7.4s)
+2025-09-08 14:52:12,680 - INFO - Processing: 20230417_prof.nc
+2025-09-08 14:52:18,815 - INFO - Completed: 20230417_prof.nc (40436 measurements, 6.1s)
+2025-09-08 14:52:18,819 - INFO - Processing: 20230418_prof.nc
+2025-09-08 14:52:25,846 - INFO - Completed: 20230418_prof.nc (46762 measurements, 7.0s)
+2025-09-08 14:52:25,851 - INFO - Processing: 20230419_prof.nc
+2025-09-08 14:52:32,143 - INFO - Completed: 20230419_prof.nc (42676 measurements, 6.3s)
+2025-09-08 14:52:32,148 - INFO - Processing: 20230420_prof.nc
+2025-09-08 14:52:38,504 - INFO - Completed: 20230420_prof.nc (42644 measurements, 6.4s)
+2025-09-08 14:52:38,510 - INFO - Processing: 20230421_prof.nc
+2025-09-08 14:52:45,526 - INFO - Completed: 20230421_prof.nc (47947 measurements, 7.0s)
+2025-09-08 14:52:45,531 - INFO - Processing: 20230422_prof.nc
+2025-09-08 14:52:49,953 - INFO - Completed: 20230422_prof.nc (29847 measurements, 4.4s)
+2025-09-08 14:52:49,958 - INFO - Processing: 20230423_prof.nc
+2025-09-08 14:52:58,070 - INFO - Completed: 20230423_prof.nc (50578 measurements, 8.1s)
+2025-09-08 14:52:58,077 - INFO - Processing: 20230424_prof.nc
+2025-09-08 14:53:05,378 - INFO - Completed: 20230424_prof.nc (47192 measurements, 7.3s)
+2025-09-08 14:53:05,385 - INFO - Processing: 20230425_prof.nc
+2025-09-08 14:53:15,399 - INFO - Completed: 20230425_prof.nc (65319 measurements, 10.0s)
+2025-09-08 14:53:15,405 - INFO - Processing: 20230426_prof.nc
+2025-09-08 14:53:22,568 - INFO - Completed: 20230426_prof.nc (47937 measurements, 7.2s)
+2025-09-08 14:53:22,572 - INFO - Processing: 20230427_prof.nc
+2025-09-08 14:53:28,562 - INFO - Completed: 20230427_prof.nc (39234 measurements, 6.0s)
+2025-09-08 14:53:28,567 - INFO - Processing: 20230428_prof.nc
+2025-09-08 14:53:35,364 - INFO - Completed: 20230428_prof.nc (45265 measurements, 6.8s)
+2025-09-08 14:53:35,368 - INFO - Processing: 20230429_prof.nc
+2025-09-08 14:53:41,552 - INFO - Completed: 20230429_prof.nc (41283 measurements, 6.2s)
+2025-09-08 14:53:41,557 - INFO - Processing: 20230430_prof.nc
+2025-09-08 14:53:47,408 - INFO - Completed: 20230430_prof.nc (39382 measurements, 5.8s)
+2025-09-08 14:53:47,415 - INFO - Processing: 20230501_prof.nc
+2025-09-08 14:53:53,660 - INFO - Completed: 20230501_prof.nc (40633 measurements, 6.2s)
+2025-09-08 14:53:53,664 - INFO - Processing: 20230502_prof.nc
+2025-09-08 14:53:58,323 - INFO - Completed: 20230502_prof.nc (30355 measurements, 4.7s)
+2025-09-08 14:53:58,328 - INFO - Processing: 20230503_prof.nc
+2025-09-08 14:54:06,497 - INFO - Completed: 20230503_prof.nc (50593 measurements, 8.2s)
+2025-09-08 14:54:06,505 - INFO - Processing: 20230504_prof.nc
+2025-09-08 14:54:14,602 - INFO - Completed: 20230504_prof.nc (50948 measurements, 8.1s)
+2025-09-08 14:54:14,608 - INFO - Processing: 20230505_prof.nc
+2025-09-08 14:54:23,184 - INFO - Completed: 20230505_prof.nc (56204 measurements, 8.6s)
+2025-09-08 14:54:23,189 - INFO - Processing: 20230506_prof.nc
+2025-09-08 14:54:29,931 - INFO - Completed: 20230506_prof.nc (44269 measurements, 6.7s)
+2025-09-08 14:54:29,936 - INFO - Processing: 20230507_prof.nc
+2025-09-08 14:54:36,280 - INFO - Completed: 20230507_prof.nc (41407 measurements, 6.3s)
+2025-09-08 14:54:36,286 - INFO - Processing: 20230508_prof.nc
+2025-09-08 14:54:42,682 - INFO - Completed: 20230508_prof.nc (42890 measurements, 6.4s)
+2025-09-08 14:54:42,687 - INFO - Processing: 20230509_prof.nc
+2025-09-08 14:54:49,793 - INFO - Completed: 20230509_prof.nc (45957 measurements, 7.1s)
+2025-09-08 14:54:49,797 - INFO - Processing: 20230510_prof.nc
+2025-09-08 14:54:55,776 - INFO - Completed: 20230510_prof.nc (39044 measurements, 6.0s)
+2025-09-08 14:54:55,781 - INFO - Processing: 20230511_prof.nc
+2025-09-08 14:55:01,950 - INFO - Completed: 20230511_prof.nc (40138 measurements, 6.2s)
+2025-09-08 14:55:01,955 - INFO - Processing: 20230512_prof.nc
+2025-09-08 14:55:06,968 - INFO - Completed: 20230512_prof.nc (32129 measurements, 5.0s)
+2025-09-08 14:55:06,973 - INFO - Processing: 20230513_prof.nc
+2025-09-08 14:55:15,557 - INFO - Completed: 20230513_prof.nc (54047 measurements, 8.6s)
+2025-09-08 14:55:15,562 - INFO - Processing: 20230514_prof.nc
+2025-09-08 14:55:23,541 - INFO - Completed: 20230514_prof.nc (50142 measurements, 8.0s)
+2025-09-08 14:55:23,546 - INFO - Processing: 20230515_prof.nc
+2025-09-08 14:55:31,829 - INFO - Completed: 20230515_prof.nc (54615 measurements, 8.3s)
+2025-09-08 14:55:31,837 - INFO - Processing: 20230516_prof.nc
+2025-09-08 14:55:39,441 - INFO - Completed: 20230516_prof.nc (49334 measurements, 7.6s)
+2025-09-08 14:55:39,447 - INFO - Processing: 20230517_prof.nc
+2025-09-08 14:55:45,946 - INFO - Completed: 20230517_prof.nc (43318 measurements, 6.5s)
+2025-09-08 14:55:45,951 - INFO - Processing: 20230518_prof.nc
+2025-09-08 14:55:52,514 - INFO - Completed: 20230518_prof.nc (43470 measurements, 6.6s)
+2025-09-08 14:55:52,518 - INFO - Processing: 20230519_prof.nc
+2025-09-08 14:55:59,215 - INFO - Completed: 20230519_prof.nc (43647 measurements, 6.7s)
+2025-09-08 14:55:59,222 - INFO - Processing: 20230520_prof.nc
+2025-09-08 14:56:05,193 - INFO - Completed: 20230520_prof.nc (38716 measurements, 6.0s)
+2025-09-08 14:56:05,199 - INFO - Processing: 20230521_prof.nc
+2025-09-08 14:56:11,729 - INFO - Completed: 20230521_prof.nc (42638 measurements, 6.5s)
+2025-09-08 14:56:11,734 - INFO - Processing: 20230522_prof.nc
+2025-09-08 14:56:16,154 - INFO - Completed: 20230522_prof.nc (27931 measurements, 4.4s)
+2025-09-08 14:56:16,157 - INFO - Processing: 20230523_prof.nc
+2025-09-08 14:56:24,234 - INFO - Completed: 20230523_prof.nc (50637 measurements, 8.1s)
+2025-09-08 14:56:24,240 - INFO - Processing: 20230524_prof.nc
+2025-09-08 14:56:32,690 - INFO - Completed: 20230524_prof.nc (54643 measurements, 8.4s)
+2025-09-08 14:56:32,698 - INFO - Processing: 20230525_prof.nc
+2025-09-08 14:56:40,851 - INFO - Completed: 20230525_prof.nc (52788 measurements, 8.1s)
+2025-09-08 14:56:40,856 - INFO - Processing: 20230526_prof.nc
+2025-09-08 14:56:47,751 - INFO - Completed: 20230526_prof.nc (44828 measurements, 6.9s)
+2025-09-08 14:56:47,755 - INFO - Processing: 20230527_prof.nc
+2025-09-08 14:56:54,368 - INFO - Completed: 20230527_prof.nc (43907 measurements, 6.6s)
+2025-09-08 14:56:54,373 - INFO - Processing: 20230528_prof.nc
+2025-09-08 14:57:00,941 - INFO - Completed: 20230528_prof.nc (42519 measurements, 6.6s)
+2025-09-08 14:57:00,947 - INFO - Processing: 20230529_prof.nc
+2025-09-08 14:57:07,172 - INFO - Completed: 20230529_prof.nc (39642 measurements, 6.2s)
+2025-09-08 14:57:07,175 - INFO - Processing: 20230530_prof.nc
+2025-09-08 14:57:13,743 - INFO - Completed: 20230530_prof.nc (43078 measurements, 6.6s)
+2025-09-08 14:57:13,784 - WARNING - High memory usage: 97.3%. Pausing for cleanup.
+2025-09-08 14:57:15,809 - INFO - Processing: 20230531_prof.nc
+2025-09-08 14:57:21,890 - INFO - Completed: 20230531_prof.nc (39260 measurements, 6.1s)
+2025-09-08 14:57:21,895 - INFO - Processing: 20230601_prof.nc
+2025-09-08 14:57:26,875 - INFO - Completed: 20230601_prof.nc (30454 measurements, 5.0s)
+2025-09-08 14:57:26,879 - INFO - Processing: 20230602_prof.nc
+2025-09-08 14:57:34,165 - INFO - Completed: 20230602_prof.nc (45184 measurements, 7.3s)
+2025-09-08 14:57:34,171 - INFO - Processing: 20230603_prof.nc
+2025-09-08 14:57:43,036 - INFO - Completed: 20230603_prof.nc (57241 measurements, 8.9s)
+2025-09-08 14:57:43,044 - INFO - Processing: 20230604_prof.nc
+2025-09-08 14:57:51,261 - INFO - Completed: 20230604_prof.nc (54633 measurements, 8.2s)
+2025-09-08 14:57:51,269 - INFO - Processing: 20230605_prof.nc
+2025-09-08 14:57:57,760 - INFO - Completed: 20230605_prof.nc (41508 measurements, 6.5s)
+2025-09-08 14:57:57,765 - INFO - Processing: 20230606_prof.nc
+2025-09-08 14:58:05,196 - INFO - Completed: 20230606_prof.nc (46174 measurements, 7.4s)
+2025-09-08 14:58:05,202 - INFO - Processing: 20230607_prof.nc
+2025-09-08 14:58:11,698 - INFO - Completed: 20230607_prof.nc (42195 measurements, 6.5s)
+2025-09-08 14:58:11,701 - INFO - Processing: 20230608_prof.nc
+2025-09-08 14:58:18,223 - INFO - Completed: 20230608_prof.nc (40843 measurements, 6.5s)
+2025-09-08 14:58:18,228 - INFO - Processing: 20230609_prof.nc
+2025-09-08 14:58:25,028 - INFO - Completed: 20230609_prof.nc (44036 measurements, 6.8s)
+2025-09-08 14:58:25,035 - INFO - Processing: 20230610_prof.nc
+2025-09-08 14:58:30,968 - INFO - Completed: 20230610_prof.nc (38445 measurements, 5.9s)
+2025-09-08 14:58:30,972 - INFO - Processing: 20230611_prof.nc
+2025-09-08 14:58:36,179 - INFO - Completed: 20230611_prof.nc (32318 measurements, 5.2s)
+2025-09-08 14:58:36,184 - INFO - Processing: 20230612_prof.nc
+2025-09-08 14:58:43,575 - INFO - Completed: 20230612_prof.nc (46001 measurements, 7.4s)
+2025-09-08 14:58:43,582 - INFO - Processing: 20230613_prof.nc
+2025-09-08 14:58:51,628 - INFO - Completed: 20230613_prof.nc (52832 measurements, 8.0s)
+2025-09-08 14:58:51,633 - INFO - Processing: 20230614_prof.nc
+2025-09-08 14:58:59,852 - INFO - Completed: 20230614_prof.nc (53910 measurements, 8.2s)
+2025-09-08 14:58:59,856 - INFO - Processing: 20230615_prof.nc
+2025-09-08 14:59:06,895 - INFO - Completed: 20230615_prof.nc (43929 measurements, 7.0s)
+2025-09-08 14:59:06,900 - INFO - Processing: 20230616_prof.nc
+2025-09-08 14:59:14,754 - INFO - Completed: 20230616_prof.nc (47388 measurements, 7.8s)
+2025-09-08 14:59:14,760 - INFO - Processing: 20230617_prof.nc
+2025-09-08 14:59:21,880 - INFO - Completed: 20230617_prof.nc (45792 measurements, 7.1s)
+2025-09-08 14:59:21,885 - INFO - Processing: 20230618_prof.nc
+2025-09-08 14:59:28,388 - INFO - Completed: 20230618_prof.nc (42898 measurements, 6.5s)
+2025-09-08 14:59:28,392 - INFO - Processing: 20230619_prof.nc
+2025-09-08 14:59:35,111 - INFO - Completed: 20230619_prof.nc (44107 measurements, 6.7s)
+2025-09-08 14:59:35,115 - INFO - Processing: 20230620_prof.nc
+2025-09-08 14:59:41,216 - INFO - Completed: 20230620_prof.nc (39140 measurements, 6.1s)
+2025-09-08 14:59:41,220 - INFO - Processing: 20230621_prof.nc
+2025-09-08 14:59:47,045 - INFO - Completed: 20230621_prof.nc (34985 measurements, 5.8s)
+2025-09-08 14:59:47,051 - INFO - Processing: 20230622_prof.nc
+2025-09-08 14:59:53,847 - INFO - Completed: 20230622_prof.nc (43181 measurements, 6.8s)
+2025-09-08 14:59:53,851 - INFO - Processing: 20230623_prof.nc
+2025-09-08 15:00:03,020 - INFO - Completed: 20230623_prof.nc (58463 measurements, 9.2s)
+2025-09-08 15:00:03,026 - INFO - Processing: 20230624_prof.nc
+2025-09-08 15:00:10,930 - INFO - Completed: 20230624_prof.nc (51780 measurements, 7.9s)
+2025-09-08 15:00:10,936 - INFO - Processing: 20230625_prof.nc
+2025-09-08 15:00:18,092 - INFO - Completed: 20230625_prof.nc (44216 measurements, 7.2s)
+2025-09-08 15:00:18,098 - INFO - Processing: 20230626_prof.nc
+2025-09-08 15:00:25,479 - INFO - Completed: 20230626_prof.nc (47537 measurements, 7.4s)
+2025-09-08 15:00:25,486 - INFO - Processing: 20230627_prof.nc
+2025-09-08 15:00:32,643 - INFO - Completed: 20230627_prof.nc (46900 measurements, 7.2s)
+2025-09-08 15:00:32,648 - INFO - Processing: 20230628_prof.nc
+2025-09-08 15:00:39,688 - INFO - Completed: 20230628_prof.nc (44612 measurements, 7.0s)
+2025-09-08 15:00:39,692 - INFO - Processing: 20230629_prof.nc
+2025-09-08 15:00:45,231 - INFO - Completed: 20230629_prof.nc (35960 measurements, 5.5s)
+2025-09-08 15:00:45,236 - INFO - Processing: 20230630_prof.nc
+2025-09-08 15:00:51,902 - INFO - Completed: 20230630_prof.nc (42501 measurements, 6.7s)
+2025-09-08 15:00:51,907 - INFO - Processing: 20230701_prof.nc
+2025-09-08 15:00:57,582 - INFO - Completed: 20230701_prof.nc (34759 measurements, 5.7s)
+2025-09-08 15:00:57,587 - INFO - Processing: 20230702_prof.nc
+2025-09-08 15:01:04,061 - INFO - Completed: 20230702_prof.nc (40463 measurements, 6.5s)
+2025-09-08 15:01:04,066 - INFO - Processing: 20230703_prof.nc
+2025-09-08 15:01:12,465 - INFO - Completed: 20230703_prof.nc (54187 measurements, 8.4s)
+2025-09-08 15:01:12,470 - INFO - Processing: 20230704_prof.nc
+2025-09-08 15:01:20,409 - INFO - Completed: 20230704_prof.nc (51840 measurements, 7.9s)
+2025-09-08 15:01:20,416 - INFO - Processing: 20230705_prof.nc
+2025-09-08 15:01:27,217 - INFO - Completed: 20230705_prof.nc (44755 measurements, 6.8s)
+2025-09-08 15:01:27,221 - INFO - Processing: 20230706_prof.nc
+2025-09-08 15:01:34,754 - INFO - Completed: 20230706_prof.nc (47780 measurements, 7.5s)
+2025-09-08 15:01:34,762 - INFO - Processing: 20230707_prof.nc
+2025-09-08 15:01:41,993 - INFO - Completed: 20230707_prof.nc (47788 measurements, 7.2s)
+2025-09-08 15:01:41,999 - INFO - Processing: 20230708_prof.nc
+2025-09-08 15:01:49,290 - INFO - Completed: 20230708_prof.nc (46145 measurements, 7.3s)
+2025-09-08 15:01:49,294 - INFO - Processing: 20230709_prof.nc
+2025-09-08 15:01:55,165 - INFO - Completed: 20230709_prof.nc (38464 measurements, 5.9s)
+2025-09-08 15:01:55,169 - INFO - Processing: 20230710_prof.nc
+2025-09-08 15:02:02,507 - INFO - Completed: 20230710_prof.nc (43529 measurements, 7.3s)
+2025-09-08 15:02:02,517 - INFO - Processing: 20230711_prof.nc
+2025-09-08 15:02:08,521 - INFO - Completed: 20230711_prof.nc (32568 measurements, 6.0s)
+2025-09-08 15:02:08,525 - INFO - Processing: 20230712_prof.nc
+2025-09-08 15:02:15,648 - INFO - Completed: 20230712_prof.nc (45958 measurements, 7.1s)
+2025-09-08 15:02:15,652 - INFO - Processing: 20230713_prof.nc
+2025-09-08 15:02:23,669 - INFO - Completed: 20230713_prof.nc (51080 measurements, 8.0s)
+2025-09-08 15:02:23,673 - INFO - Processing: 20230714_prof.nc
+2025-09-08 15:02:31,517 - INFO - Completed: 20230714_prof.nc (50388 measurements, 7.8s)
+2025-09-08 15:02:31,522 - INFO - Processing: 20230715_prof.nc
+2025-09-08 15:02:37,776 - INFO - Completed: 20230715_prof.nc (39243 measurements, 6.2s)
+2025-09-08 15:02:37,781 - INFO - Processing: 20230716_prof.nc
+2025-09-08 15:02:45,585 - INFO - Completed: 20230716_prof.nc (49827 measurements, 7.8s)
+2025-09-08 15:02:45,590 - INFO - Processing: 20230717_prof.nc
+2025-09-08 15:02:53,266 - INFO - Completed: 20230717_prof.nc (49342 measurements, 7.7s)
+2025-09-08 15:02:53,270 - INFO - Processing: 20230718_prof.nc
+2025-09-08 15:03:01,347 - INFO - Completed: 20230718_prof.nc (50611 measurements, 8.1s)
+2025-09-08 15:03:01,352 - INFO - Processing: 20230719_prof.nc
+2025-09-08 15:03:07,178 - INFO - Completed: 20230719_prof.nc (35813 measurements, 5.8s)
+2025-09-08 15:03:07,224 - WARNING - High memory usage: 96.5%. Pausing for cleanup.
+2025-09-08 15:03:09,252 - INFO - Processing: 20230720_prof.nc
+2025-09-08 15:03:16,552 - INFO - Completed: 20230720_prof.nc (44358 measurements, 7.3s)
+2025-09-08 15:03:16,557 - INFO - Processing: 20230721_prof.nc
+2025-09-08 15:03:21,705 - INFO - Completed: 20230721_prof.nc (33227 measurements, 5.1s)
+2025-09-08 15:03:21,709 - INFO - Processing: 20230722_prof.nc
+2025-09-08 15:03:28,864 - INFO - Completed: 20230722_prof.nc (45839 measurements, 7.1s)
+2025-09-08 15:03:28,869 - INFO - Processing: 20230723_prof.nc
+2025-09-08 15:03:37,089 - INFO - Completed: 20230723_prof.nc (51888 measurements, 8.2s)
+2025-09-08 15:03:37,093 - INFO - Processing: 20230724_prof.nc
+2025-09-08 15:03:45,813 - INFO - Completed: 20230724_prof.nc (55976 measurements, 8.7s)
+2025-09-08 15:03:45,818 - INFO - Processing: 20230725_prof.nc
+2025-09-08 15:03:52,209 - INFO - Completed: 20230725_prof.nc (40704 measurements, 6.4s)
+2025-09-08 15:03:52,212 - INFO - Processing: 20230726_prof.nc
+2025-09-08 15:03:59,121 - INFO - Completed: 20230726_prof.nc (42761 measurements, 6.9s)
+2025-09-08 15:03:59,127 - INFO - Processing: 20230727_prof.nc
+2025-09-08 15:04:06,700 - INFO - Completed: 20230727_prof.nc (47918 measurements, 7.6s)
+2025-09-08 15:04:06,705 - INFO - Processing: 20230728_prof.nc
+2025-09-08 15:04:14,373 - INFO - Completed: 20230728_prof.nc (48630 measurements, 7.7s)
+2025-09-08 15:04:14,379 - INFO - Processing: 20230729_prof.nc
+2025-09-08 15:04:20,909 - INFO - Completed: 20230729_prof.nc (39560 measurements, 6.5s)
+2025-09-08 15:04:20,913 - INFO - Processing: 20230730_prof.nc
+2025-09-08 15:04:27,550 - INFO - Completed: 20230730_prof.nc (42551 measurements, 6.6s)
+2025-09-08 15:04:27,555 - INFO - Processing: 20230731_prof.nc
+2025-09-08 15:04:32,681 - INFO - Completed: 20230731_prof.nc (33069 measurements, 5.1s)
+2025-09-08 15:04:32,684 - INFO - Processing: 20230801_prof.nc
+2025-09-08 15:04:39,614 - INFO - Completed: 20230801_prof.nc (44523 measurements, 6.9s)
+2025-09-08 15:04:39,619 - INFO - Processing: 20230802_prof.nc
+2025-09-08 15:04:47,484 - INFO - Completed: 20230802_prof.nc (49315 measurements, 7.9s)
+2025-09-08 15:04:47,491 - INFO - Processing: 20230803_prof.nc
+2025-09-08 15:04:56,578 - INFO - Completed: 20230803_prof.nc (56563 measurements, 9.1s)
+2025-09-08 15:04:56,586 - INFO - Processing: 20230804_prof.nc
+2025-09-08 15:05:02,246 - INFO - Completed: 20230804_prof.nc (36072 measurements, 5.7s)
+2025-09-08 15:05:02,250 - INFO - Processing: 20230805_prof.nc
+2025-09-08 15:05:10,216 - INFO - Completed: 20230805_prof.nc (48337 measurements, 8.0s)
+2025-09-08 15:05:10,221 - INFO - Processing: 20230806_prof.nc
+2025-09-08 15:05:17,496 - INFO - Completed: 20230806_prof.nc (42459 measurements, 7.3s)
+2025-09-08 15:05:17,501 - INFO - Processing: 20230807_prof.nc
+2025-09-08 15:05:27,720 - INFO - Completed: 20230807_prof.nc (49824 measurements, 10.2s)
+2025-09-08 15:05:27,728 - INFO - Processing: 20230808_prof.nc
+2025-09-08 15:05:35,639 - INFO - Completed: 20230808_prof.nc (39924 measurements, 7.9s)
+2025-09-08 15:05:35,643 - INFO - Processing: 20230809_prof.nc
+2025-09-08 15:05:44,834 - INFO - Completed: 20230809_prof.nc (46156 measurements, 9.2s)
+2025-09-08 15:05:44,841 - INFO - Processing: 20230810_prof.nc
+2025-09-08 15:05:51,607 - INFO - Completed: 20230810_prof.nc (33617 measurements, 6.8s)
+2025-09-08 15:05:51,611 - INFO - Processing: 20230811_prof.nc
+2025-09-08 15:06:00,603 - INFO - Completed: 20230811_prof.nc (46472 measurements, 9.0s)
+2025-09-08 15:06:00,609 - INFO - Processing: 20230812_prof.nc
+2025-09-08 15:06:09,822 - INFO - Completed: 20230812_prof.nc (46953 measurements, 9.2s)
+2025-09-08 15:06:09,829 - INFO - Processing: 20230813_prof.nc
+2025-09-08 15:06:20,082 - INFO - Completed: 20230813_prof.nc (55927 measurements, 10.2s)
+2025-09-08 15:06:20,088 - INFO - Processing: 20230814_prof.nc
+2025-09-08 15:06:26,983 - INFO - Completed: 20230814_prof.nc (37206 measurements, 6.9s)
+2025-09-08 15:06:26,987 - INFO - Processing: 20230815_prof.nc
+2025-09-08 15:06:35,461 - INFO - Completed: 20230815_prof.nc (45575 measurements, 8.5s)
+2025-09-08 15:06:35,467 - INFO - Processing: 20230816_prof.nc
+2025-09-08 15:06:43,689 - INFO - Completed: 20230816_prof.nc (43695 measurements, 8.2s)
+2025-09-08 15:06:43,695 - INFO - Processing: 20230817_prof.nc
+2025-09-08 15:06:52,833 - INFO - Completed: 20230817_prof.nc (50693 measurements, 9.1s)
+2025-09-08 15:06:52,838 - INFO - Processing: 20230818_prof.nc
+2025-09-08 15:07:00,211 - INFO - Completed: 20230818_prof.nc (39232 measurements, 7.4s)
+2025-09-08 15:07:00,217 - INFO - Processing: 20230819_prof.nc
+2025-09-08 15:07:08,192 - INFO - Completed: 20230819_prof.nc (43471 measurements, 8.0s)
+2025-09-08 15:07:08,198 - INFO - Processing: 20230820_prof.nc
+2025-09-08 15:07:15,150 - INFO - Completed: 20230820_prof.nc (37928 measurements, 6.9s)
+2025-09-08 15:07:15,156 - INFO - Processing: 20230821_prof.nc
+2025-09-08 15:07:24,438 - INFO - Completed: 20230821_prof.nc (50701 measurements, 9.3s)
+2025-09-08 15:07:24,446 - INFO - Processing: 20230822_prof.nc
+2025-09-08 15:07:32,770 - INFO - Completed: 20230822_prof.nc (44358 measurements, 8.3s)
+2025-09-08 15:07:32,774 - INFO - Processing: 20230823_prof.nc
+2025-09-08 15:07:42,958 - INFO - Completed: 20230823_prof.nc (52066 measurements, 10.2s)
+2025-09-08 15:07:42,966 - INFO - Processing: 20230824_prof.nc
+2025-09-08 15:07:49,675 - INFO - Completed: 20230824_prof.nc (34937 measurements, 6.7s)
+2025-09-08 15:07:49,679 - INFO - Processing: 20230825_prof.nc
+2025-09-08 15:07:58,221 - INFO - Completed: 20230825_prof.nc (45484 measurements, 8.5s)
+2025-09-08 15:07:58,228 - INFO - Processing: 20230826_prof.nc
+2025-09-08 15:08:06,420 - INFO - Completed: 20230826_prof.nc (44694 measurements, 8.2s)
+2025-09-08 15:08:06,425 - INFO - Processing: 20230827_prof.nc
+2025-09-08 15:08:14,759 - INFO - Completed: 20230827_prof.nc (49336 measurements, 8.3s)
+2025-09-08 15:08:14,765 - INFO - Processing: 20230828_prof.nc
+2025-09-08 15:08:21,601 - INFO - Completed: 20230828_prof.nc (41046 measurements, 6.8s)
+2025-09-08 15:08:21,607 - INFO - Processing: 20230829_prof.nc
+2025-09-08 15:08:29,313 - INFO - Completed: 20230829_prof.nc (46151 measurements, 7.7s)
+2025-09-08 15:08:29,319 - INFO - Processing: 20230830_prof.nc
+2025-09-08 15:08:35,358 - INFO - Completed: 20230830_prof.nc (36561 measurements, 6.0s)
+2025-09-08 15:08:35,361 - INFO - Processing: 20230831_prof.nc
+2025-09-08 15:08:43,319 - INFO - Completed: 20230831_prof.nc (48219 measurements, 8.0s)
+2025-09-08 15:08:43,324 - INFO - Processing: 20230901_prof.nc
+2025-09-08 15:08:51,190 - INFO - Completed: 20230901_prof.nc (46333 measurements, 7.9s)
+2025-09-08 15:08:51,195 - INFO - Processing: 20230902_prof.nc
+2025-09-08 15:08:59,613 - INFO - Completed: 20230902_prof.nc (48722 measurements, 8.4s)
+2025-09-08 15:08:59,618 - INFO - Processing: 20230903_prof.nc
+2025-09-08 15:09:05,729 - INFO - Completed: 20230903_prof.nc (36264 measurements, 6.1s)
+2025-09-08 15:09:05,733 - INFO - Processing: 20230904_prof.nc
+2025-09-08 15:09:13,378 - INFO - Completed: 20230904_prof.nc (46713 measurements, 7.6s)
+2025-09-08 15:09:13,383 - INFO - Processing: 20230905_prof.nc
+2025-09-08 15:09:20,432 - INFO - Completed: 20230905_prof.nc (42034 measurements, 7.0s)
+2025-09-08 15:09:20,436 - INFO - Processing: 20230906_prof.nc
+2025-09-08 15:09:27,613 - INFO - Completed: 20230906_prof.nc (44505 measurements, 7.2s)
+2025-09-08 15:09:27,620 - INFO - Processing: 20230907_prof.nc
+2025-09-08 15:09:34,964 - INFO - Completed: 20230907_prof.nc (41446 measurements, 7.3s)
+2025-09-08 15:09:35,022 - WARNING - High memory usage: 97.2%. Pausing for cleanup.
+2025-09-08 15:09:37,055 - INFO - Processing: 20230908_prof.nc
+2025-09-08 15:09:45,127 - INFO - Completed: 20230908_prof.nc (46662 measurements, 8.1s)
+2025-09-08 15:09:45,133 - INFO - Processing: 20230909_prof.nc
+2025-09-08 15:09:51,536 - INFO - Completed: 20230909_prof.nc (36187 measurements, 6.4s)
+2025-09-08 15:09:51,540 - INFO - Processing: 20230910_prof.nc
+2025-09-08 15:10:00,401 - INFO - Completed: 20230910_prof.nc (51521 measurements, 8.9s)
+2025-09-08 15:10:00,406 - INFO - Processing: 20230911_prof.nc
+2025-09-08 15:10:09,083 - INFO - Completed: 20230911_prof.nc (47020 measurements, 8.7s)
+2025-09-08 15:10:09,090 - INFO - Processing: 20230912_prof.nc
+2025-09-08 15:10:17,125 - INFO - Completed: 20230912_prof.nc (47399 measurements, 8.0s)
+2025-09-08 15:10:17,130 - INFO - Processing: 20230913_prof.nc
+2025-09-08 15:10:23,176 - INFO - Completed: 20230913_prof.nc (36104 measurements, 6.0s)
+2025-09-08 15:10:23,180 - INFO - Processing: 20230914_prof.nc
+2025-09-08 15:10:30,721 - INFO - Completed: 20230914_prof.nc (46171 measurements, 7.5s)
+2025-09-08 15:10:30,728 - INFO - Processing: 20230915_prof.nc
+2025-09-08 15:10:37,311 - INFO - Completed: 20230915_prof.nc (40337 measurements, 6.6s)
+2025-09-08 15:10:37,317 - INFO - Processing: 20230916_prof.nc
+2025-09-08 15:10:45,011 - INFO - Completed: 20230916_prof.nc (46875 measurements, 7.7s)
+2025-09-08 15:10:45,018 - INFO - Processing: 20230917_prof.nc
+2025-09-08 15:10:51,641 - INFO - Completed: 20230917_prof.nc (40670 measurements, 6.6s)
+2025-09-08 15:10:51,646 - INFO - Processing: 20230918_prof.nc
+2025-09-08 15:10:59,735 - INFO - Completed: 20230918_prof.nc (48870 measurements, 8.1s)
+2025-09-08 15:10:59,741 - INFO - Processing: 20230919_prof.nc
+2025-09-08 15:11:06,917 - INFO - Completed: 20230919_prof.nc (41982 measurements, 7.2s)
+2025-09-08 15:11:06,924 - INFO - Processing: 20230920_prof.nc
+2025-09-08 15:11:15,239 - INFO - Completed: 20230920_prof.nc (48099 measurements, 8.3s)
+2025-09-08 15:11:15,244 - INFO - Processing: 20230921_prof.nc
+2025-09-08 15:11:24,002 - INFO - Completed: 20230921_prof.nc (48710 measurements, 8.8s)
+2025-09-08 15:11:24,009 - INFO - Processing: 20230922_prof.nc
+2025-09-08 15:11:31,753 - INFO - Completed: 20230922_prof.nc (44011 measurements, 7.7s)
+2025-09-08 15:11:31,759 - INFO - Processing: 20230923_prof.nc
+2025-09-08 15:11:39,196 - INFO - Completed: 20230923_prof.nc (41552 measurements, 7.4s)
+2025-09-08 15:11:39,202 - INFO - Processing: 20230924_prof.nc
+2025-09-08 15:11:46,167 - INFO - Completed: 20230924_prof.nc (41936 measurements, 6.9s)
+2025-09-08 15:11:46,172 - INFO - Processing: 20230925_prof.nc
+2025-09-08 15:11:51,801 - INFO - Completed: 20230925_prof.nc (37811 measurements, 5.6s)
+2025-09-08 15:11:51,807 - INFO - Processing: 20230926_prof.nc
+2025-09-08 15:11:58,386 - INFO - Completed: 20230926_prof.nc (45653 measurements, 6.6s)
+2025-09-08 15:11:58,391 - INFO - Processing: 20230927_prof.nc
+2025-09-08 15:12:03,975 - INFO - Completed: 20230927_prof.nc (37651 measurements, 5.6s)
+2025-09-08 15:12:03,980 - INFO - Processing: 20230928_prof.nc
+2025-09-08 15:12:11,784 - INFO - Completed: 20230928_prof.nc (53815 measurements, 7.8s)
+2025-09-08 15:12:11,790 - INFO - Processing: 20230929_prof.nc
+2025-09-08 15:12:17,431 - INFO - Completed: 20230929_prof.nc (38377 measurements, 5.6s)
+2025-09-08 15:12:17,436 - INFO - Processing: 20230930_prof.nc
+2025-09-08 15:12:25,236 - INFO - Completed: 20230930_prof.nc (51232 measurements, 7.8s)
+2025-09-08 15:12:25,241 - INFO - Processing: 20231001_prof.nc
+2025-09-08 15:12:31,888 - INFO - Completed: 20231001_prof.nc (44576 measurements, 6.6s)
+2025-09-08 15:12:31,893 - INFO - Processing: 20231002_prof.nc
+2025-09-08 15:12:38,600 - INFO - Completed: 20231002_prof.nc (46275 measurements, 6.7s)
+2025-09-08 15:12:38,608 - INFO - Processing: 20231003_prof.nc
+2025-09-08 15:12:44,287 - INFO - Completed: 20231003_prof.nc (40049 measurements, 5.7s)
+2025-09-08 15:12:44,291 - INFO - Processing: 20231004_prof.nc
+2025-09-08 15:12:50,467 - INFO - Completed: 20231004_prof.nc (42489 measurements, 6.2s)
+2025-09-08 15:12:50,471 - INFO - Processing: 20231005_prof.nc
+2025-09-08 15:12:56,581 - INFO - Completed: 20231005_prof.nc (41385 measurements, 6.1s)
+2025-09-08 15:12:56,585 - INFO - Processing: 20231006_prof.nc
+2025-09-08 15:13:02,769 - INFO - Completed: 20231006_prof.nc (42003 measurements, 6.2s)
+2025-09-08 15:13:02,773 - INFO - Processing: 20231007_prof.nc
+2025-09-08 15:13:08,525 - INFO - Completed: 20231007_prof.nc (39218 measurements, 5.7s)
+2025-09-08 15:13:08,530 - INFO - Processing: 20231008_prof.nc
+2025-09-08 15:13:15,944 - INFO - Completed: 20231008_prof.nc (51956 measurements, 7.4s)
+2025-09-08 15:13:15,949 - INFO - Processing: 20231009_prof.nc
+2025-09-08 15:13:21,835 - INFO - Completed: 20231009_prof.nc (40902 measurements, 5.9s)
+2025-09-08 15:13:21,840 - INFO - Processing: 20231010_prof.nc
+2025-09-08 15:13:30,145 - INFO - Completed: 20231010_prof.nc (52113 measurements, 8.3s)
+2025-09-08 15:13:30,151 - INFO - Processing: 20231011_prof.nc
+2025-09-08 15:13:36,346 - INFO - Completed: 20231011_prof.nc (39081 measurements, 6.2s)
+2025-09-08 15:13:36,351 - INFO - Processing: 20231012_prof.nc
+2025-09-08 15:13:44,203 - INFO - Completed: 20231012_prof.nc (49535 measurements, 7.8s)
+2025-09-08 15:13:44,210 - INFO - Processing: 20231013_prof.nc
+2025-09-08 15:13:49,989 - INFO - Completed: 20231013_prof.nc (37725 measurements, 5.8s)
+2025-09-08 15:13:49,995 - INFO - Processing: 20231014_prof.nc
+2025-09-08 15:13:57,136 - INFO - Completed: 20231014_prof.nc (48146 measurements, 7.1s)
+2025-09-08 15:13:57,140 - INFO - Processing: 20231015_prof.nc
+2025-09-08 15:14:02,711 - INFO - Completed: 20231015_prof.nc (37365 measurements, 5.6s)
+2025-09-08 15:14:02,716 - INFO - Processing: 20231016_prof.nc
+2025-09-08 15:14:09,331 - INFO - Completed: 20231016_prof.nc (43249 measurements, 6.6s)
+2025-09-08 15:14:09,337 - INFO - Processing: 20231017_prof.nc
+2025-09-08 15:14:15,690 - INFO - Completed: 20231017_prof.nc (42730 measurements, 6.3s)
+2025-09-08 15:14:15,695 - INFO - Processing: 20231018_prof.nc
+2025-09-08 15:14:22,802 - INFO - Completed: 20231018_prof.nc (46358 measurements, 7.1s)
+2025-09-08 15:14:22,808 - INFO - Processing: 20231019_prof.nc
+2025-09-08 15:14:29,646 - INFO - Completed: 20231019_prof.nc (45435 measurements, 6.8s)
+2025-09-08 15:14:29,652 - INFO - Processing: 20231020_prof.nc
+2025-09-08 15:14:37,867 - INFO - Completed: 20231020_prof.nc (52569 measurements, 8.2s)
+2025-09-08 15:14:37,873 - INFO - Processing: 20231021_prof.nc
+2025-09-08 15:14:45,062 - INFO - Completed: 20231021_prof.nc (47150 measurements, 7.2s)
+2025-09-08 15:14:45,069 - INFO - Processing: 20231022_prof.nc
+2025-09-08 15:14:51,381 - INFO - Completed: 20231022_prof.nc (42808 measurements, 6.3s)
+2025-09-08 15:14:51,385 - INFO - Processing: 20231023_prof.nc
+2025-09-08 15:14:57,765 - INFO - Completed: 20231023_prof.nc (44811 measurements, 6.4s)
+2025-09-08 15:14:57,770 - INFO - Processing: 20231024_prof.nc
+2025-09-08 15:15:04,040 - INFO - Completed: 20231024_prof.nc (41717 measurements, 6.3s)
+2025-09-08 15:15:04,044 - INFO - Processing: 20231025_prof.nc
+2025-09-08 15:15:10,214 - INFO - Completed: 20231025_prof.nc (40724 measurements, 6.2s)
+2025-09-08 15:15:10,220 - INFO - Processing: 20231026_prof.nc
+2025-09-08 15:15:16,212 - INFO - Completed: 20231026_prof.nc (38980 measurements, 6.0s)
+2025-09-08 15:15:16,215 - INFO - Processing: 20231027_prof.nc
+2025-09-08 15:15:22,701 - INFO - Completed: 20231027_prof.nc (41677 measurements, 6.5s)
+2025-09-08 15:15:22,756 - WARNING - High memory usage: 95.1%. Pausing for cleanup.
+2025-09-08 15:15:24,783 - INFO - Processing: 20231028_prof.nc
+2025-09-08 15:15:32,204 - INFO - Completed: 20231028_prof.nc (46723 measurements, 7.4s)
+2025-09-08 15:15:32,209 - INFO - Processing: 20231029_prof.nc
+2025-09-08 15:15:39,799 - INFO - Completed: 20231029_prof.nc (47441 measurements, 7.6s)
+2025-09-08 15:15:39,806 - INFO - Processing: 20231030_prof.nc
+2025-09-08 15:15:48,781 - INFO - Completed: 20231030_prof.nc (52775 measurements, 9.0s)
+2025-09-08 15:15:48,787 - INFO - Processing: 20231031_prof.nc
+2025-09-08 15:15:55,875 - INFO - Completed: 20231031_prof.nc (48607 measurements, 7.1s)
+2025-09-08 15:15:55,882 - INFO - Processing: 20231101_prof.nc
+2025-09-08 15:16:01,702 - INFO - Completed: 20231101_prof.nc (38657 measurements, 5.8s)
+2025-09-08 15:16:01,707 - INFO - Processing: 20231102_prof.nc
+2025-09-08 15:16:07,891 - INFO - Completed: 20231102_prof.nc (40443 measurements, 6.2s)
+2025-09-08 15:16:07,895 - INFO - Processing: 20231103_prof.nc
+2025-09-08 15:16:14,044 - INFO - Completed: 20231103_prof.nc (41843 measurements, 6.1s)
+2025-09-08 15:16:14,048 - INFO - Processing: 20231104_prof.nc
+2025-09-08 15:16:20,290 - INFO - Completed: 20231104_prof.nc (41589 measurements, 6.2s)
+2025-09-08 15:16:20,294 - INFO - Processing: 20231105_prof.nc
+2025-09-08 15:16:25,299 - INFO - Completed: 20231105_prof.nc (33387 measurements, 5.0s)
+2025-09-08 15:16:25,303 - INFO - Processing: 20231106_prof.nc
+2025-09-08 15:16:31,615 - INFO - Completed: 20231106_prof.nc (42840 measurements, 6.3s)
+2025-09-08 15:16:31,621 - INFO - Processing: 20231107_prof.nc
+2025-09-08 15:16:38,409 - INFO - Completed: 20231107_prof.nc (45709 measurements, 6.8s)
+2025-09-08 15:16:38,414 - INFO - Processing: 20231108_prof.nc
+2025-09-08 15:16:45,171 - INFO - Completed: 20231108_prof.nc (46291 measurements, 6.8s)
+2025-09-08 15:16:45,175 - INFO - Processing: 20231109_prof.nc
+2025-09-08 15:16:52,624 - INFO - Completed: 20231109_prof.nc (49312 measurements, 7.4s)
+2025-09-08 15:16:52,629 - INFO - Processing: 20231110_prof.nc
+2025-09-08 15:16:59,249 - INFO - Completed: 20231110_prof.nc (43553 measurements, 6.6s)
+2025-09-08 15:16:59,254 - INFO - Processing: 20231111_prof.nc
+2025-09-08 15:17:05,957 - INFO - Completed: 20231111_prof.nc (44586 measurements, 6.7s)
+2025-09-08 15:17:05,961 - INFO - Processing: 20231112_prof.nc
+2025-09-08 15:17:11,565 - INFO - Completed: 20231112_prof.nc (37337 measurements, 5.6s)
+2025-09-08 15:17:11,570 - INFO - Processing: 20231113_prof.nc
+2025-09-08 15:17:18,300 - INFO - Completed: 20231113_prof.nc (45312 measurements, 6.7s)
+2025-09-08 15:17:18,304 - INFO - Processing: 20231114_prof.nc
+2025-09-08 15:17:23,982 - INFO - Completed: 20231114_prof.nc (38138 measurements, 5.7s)
+2025-09-08 15:17:23,986 - INFO - Processing: 20231115_prof.nc
+2025-09-08 15:17:30,315 - INFO - Completed: 20231115_prof.nc (40395 measurements, 6.3s)
+2025-09-08 15:17:30,322 - INFO - Processing: 20231116_prof.nc
+2025-09-08 15:17:36,976 - INFO - Completed: 20231116_prof.nc (42079 measurements, 6.6s)
+2025-09-08 15:17:36,981 - INFO - Processing: 20231117_prof.nc
+2025-09-08 15:17:45,237 - INFO - Completed: 20231117_prof.nc (51620 measurements, 8.3s)
+2025-09-08 15:17:45,242 - INFO - Processing: 20231118_prof.nc
+2025-09-08 15:17:52,011 - INFO - Completed: 20231118_prof.nc (43123 measurements, 6.8s)
+2025-09-08 15:17:52,016 - INFO - Processing: 20231119_prof.nc
+2025-09-08 15:18:00,156 - INFO - Completed: 20231119_prof.nc (54193 measurements, 8.1s)
+2025-09-08 15:18:00,162 - INFO - Processing: 20231120_prof.nc
+2025-09-08 15:18:07,153 - INFO - Completed: 20231120_prof.nc (43203 measurements, 7.0s)
+2025-09-08 15:18:07,158 - INFO - Processing: 20231121_prof.nc
+2025-09-08 15:18:13,845 - INFO - Completed: 20231121_prof.nc (43988 measurements, 6.7s)
+2025-09-08 15:18:13,850 - INFO - Processing: 20231122_prof.nc
+2025-09-08 15:18:19,598 - INFO - Completed: 20231122_prof.nc (38867 measurements, 5.7s)
+2025-09-08 15:18:19,602 - INFO - Processing: 20231123_prof.nc
+2025-09-08 15:18:26,028 - INFO - Completed: 20231123_prof.nc (41971 measurements, 6.4s)
+2025-09-08 15:18:26,033 - INFO - Processing: 20231124_prof.nc
+2025-09-08 15:18:31,586 - INFO - Completed: 20231124_prof.nc (36729 measurements, 5.5s)
+2025-09-08 15:18:31,592 - INFO - Processing: 20231125_prof.nc
+2025-09-08 15:18:37,960 - INFO - Completed: 20231125_prof.nc (42813 measurements, 6.4s)
+2025-09-08 15:18:37,964 - INFO - Processing: 20231126_prof.nc
+2025-09-08 15:18:44,242 - INFO - Completed: 20231126_prof.nc (42243 measurements, 6.3s)
+2025-09-08 15:18:44,247 - INFO - Processing: 20231127_prof.nc
+2025-09-08 15:18:52,301 - INFO - Completed: 20231127_prof.nc (53951 measurements, 8.0s)
+2025-09-08 15:18:52,307 - INFO - Processing: 20231128_prof.nc
+2025-09-08 15:18:58,534 - INFO - Completed: 20231128_prof.nc (41858 measurements, 6.2s)
+2025-09-08 15:18:58,538 - INFO - Processing: 20231129_prof.nc
+2025-09-08 15:19:06,443 - INFO - Completed: 20231129_prof.nc (51367 measurements, 7.9s)
+2025-09-08 15:19:06,450 - INFO - Processing: 20231130_prof.nc
+2025-09-08 15:19:13,426 - INFO - Completed: 20231130_prof.nc (44261 measurements, 7.0s)
+2025-09-08 15:19:13,432 - INFO - Processing: 20231201_prof.nc
+2025-09-08 15:19:19,539 - INFO - Completed: 20231201_prof.nc (40191 measurements, 6.1s)
+2025-09-08 15:19:19,545 - INFO - Processing: 20231202_prof.nc
+2025-09-08 15:19:26,251 - INFO - Completed: 20231202_prof.nc (42789 measurements, 6.7s)
+2025-09-08 15:19:26,256 - INFO - Processing: 20231203_prof.nc
+2025-09-08 15:19:32,666 - INFO - Completed: 20231203_prof.nc (43879 measurements, 6.4s)
+2025-09-08 15:19:32,671 - INFO - Processing: 20231204_prof.nc
+2025-09-08 15:19:38,040 - INFO - Completed: 20231204_prof.nc (32784 measurements, 5.4s)
+2025-09-08 15:19:38,043 - INFO - Processing: 20231205_prof.nc
+2025-09-08 15:19:44,272 - INFO - Completed: 20231205_prof.nc (37720 measurements, 6.2s)
+2025-09-08 15:19:44,278 - INFO - Processing: 20231206_prof.nc
+2025-09-08 15:19:51,274 - INFO - Completed: 20231206_prof.nc (45206 measurements, 7.0s)
+2025-09-08 15:19:51,280 - INFO - Processing: 20231207_prof.nc
+2025-09-08 15:19:58,682 - INFO - Completed: 20231207_prof.nc (48359 measurements, 7.4s)
+2025-09-08 15:19:58,687 - INFO - Processing: 20231208_prof.nc
+2025-09-08 15:20:06,205 - INFO - Completed: 20231208_prof.nc (50585 measurements, 7.5s)
+2025-09-08 15:20:06,210 - INFO - Processing: 20231209_prof.nc
+2025-09-08 15:20:14,732 - INFO - Completed: 20231209_prof.nc (56619 measurements, 8.5s)
+2025-09-08 15:20:14,739 - INFO - Processing: 20231210_prof.nc
+2025-09-08 15:20:21,806 - INFO - Completed: 20231210_prof.nc (43428 measurements, 7.1s)
+2025-09-08 15:20:21,811 - INFO - Processing: 20231211_prof.nc
+2025-09-08 15:20:27,937 - INFO - Completed: 20231211_prof.nc (35484 measurements, 6.1s)
+2025-09-08 15:20:27,941 - INFO - Processing: 20231212_prof.nc
+2025-09-08 15:20:35,972 - INFO - Completed: 20231212_prof.nc (48121 measurements, 8.0s)
+2025-09-08 15:20:35,980 - INFO - Processing: 20231213_prof.nc
+2025-09-08 15:20:42,605 - INFO - Completed: 20231213_prof.nc (38794 measurements, 6.6s)
+2025-09-08 15:20:42,611 - INFO - Processing: 20231214_prof.nc
+2025-09-08 15:20:49,957 - INFO - Completed: 20231214_prof.nc (42279 measurements, 7.3s)
+2025-09-08 15:20:49,963 - INFO - Processing: 20231215_prof.nc
+2025-09-08 15:20:56,813 - INFO - Completed: 20231215_prof.nc (40332 measurements, 6.8s)
+2025-09-08 15:20:56,818 - INFO - Processing: 20231216_prof.nc
+2025-09-08 15:21:05,190 - INFO - Completed: 20231216_prof.nc (48286 measurements, 8.4s)
+2025-09-08 15:21:05,246 - WARNING - High memory usage: 97.1%. Pausing for cleanup.
+2025-09-08 15:21:07,275 - INFO - Processing: 20231217_prof.nc
+2025-09-08 15:21:16,240 - INFO - Completed: 20231217_prof.nc (50608 measurements, 9.0s)
+2025-09-08 15:21:16,247 - INFO - Processing: 20231218_prof.nc
+2025-09-08 15:21:25,729 - INFO - Completed: 20231218_prof.nc (53475 measurements, 9.5s)
+2025-09-08 15:21:25,735 - INFO - Processing: 20231219_prof.nc
+2025-09-08 15:21:33,808 - INFO - Completed: 20231219_prof.nc (46388 measurements, 8.1s)
+2025-09-08 15:21:33,815 - INFO - Processing: 20231220_prof.nc
+2025-09-08 15:21:42,470 - INFO - Completed: 20231220_prof.nc (50536 measurements, 8.6s)
+2025-09-08 15:21:42,475 - INFO - Processing: 20231221_prof.nc
+2025-09-08 15:21:48,171 - INFO - Completed: 20231221_prof.nc (32332 measurements, 5.7s)
+2025-09-08 15:21:48,177 - INFO - Processing: 20231222_prof.nc
+2025-09-08 15:21:56,764 - INFO - Completed: 20231222_prof.nc (49830 measurements, 8.6s)
+2025-09-08 15:21:56,769 - INFO - Processing: 20231223_prof.nc
+2025-09-08 15:22:03,326 - INFO - Completed: 20231223_prof.nc (38006 measurements, 6.6s)
+2025-09-08 15:22:03,332 - INFO - Processing: 20231224_prof.nc
+2025-09-08 15:22:11,079 - INFO - Completed: 20231224_prof.nc (44402 measurements, 7.7s)
+2025-09-08 15:22:11,085 - INFO - Processing: 20231225_prof.nc
+2025-09-08 15:22:17,887 - INFO - Completed: 20231225_prof.nc (38698 measurements, 6.8s)
+2025-09-08 15:22:17,893 - INFO - Processing: 20231226_prof.nc
+2025-09-08 15:22:25,489 - INFO - Completed: 20231226_prof.nc (42333 measurements, 7.6s)
+2025-09-08 15:22:25,496 - INFO - Processing: 20231227_prof.nc
+2025-09-08 15:22:34,334 - INFO - Completed: 20231227_prof.nc (50632 measurements, 8.8s)
+2025-09-08 15:22:34,341 - INFO - Processing: 20231228_prof.nc
+2025-09-08 15:22:43,042 - INFO - Completed: 20231228_prof.nc (52799 measurements, 8.7s)
+2025-09-08 15:22:43,048 - INFO - Processing: 20231229_prof.nc
+2025-09-08 15:22:49,826 - INFO - Completed: 20231229_prof.nc (41578 measurements, 6.8s)
+2025-09-08 15:22:49,830 - INFO - Processing: 20231230_prof.nc
+2025-09-08 15:22:57,249 - INFO - Completed: 20231230_prof.nc (44714 measurements, 7.4s)
+2025-09-08 15:22:57,255 - INFO - Processing: 20231231_prof.nc
+2025-09-08 15:23:03,286 - INFO - Completed: 20231231_prof.nc (35874 measurements, 6.0s)
+2025-09-08 15:23:03,290 - INFO - Processing: 20240101_prof.nc
+2025-09-08 15:23:10,296 - INFO - Completed: 20240101_prof.nc (42935 measurements, 7.0s)
+2025-09-08 15:23:10,301 - INFO - Processing: 20240102_prof.nc
+2025-09-08 15:23:16,966 - INFO - Completed: 20240102_prof.nc (40020 measurements, 6.7s)
+2025-09-08 15:23:16,970 - INFO - Processing: 20240103_prof.nc
+2025-09-08 15:23:23,789 - INFO - Completed: 20240103_prof.nc (41613 measurements, 6.8s)
+2025-09-08 15:23:23,794 - INFO - Processing: 20240104_prof.nc
+2025-09-08 15:23:30,803 - INFO - Completed: 20240104_prof.nc (42560 measurements, 7.0s)
+2025-09-08 15:23:30,810 - INFO - Processing: 20240105_prof.nc
+2025-09-08 15:23:36,891 - INFO - Completed: 20240105_prof.nc (38788 measurements, 6.1s)
+2025-09-08 15:23:36,896 - INFO - Processing: 20240106_prof.nc
+2025-09-08 15:23:44,669 - INFO - Completed: 20240106_prof.nc (49660 measurements, 7.8s)
+2025-09-08 15:23:44,674 - INFO - Processing: 20240107_prof.nc
+2025-09-08 15:23:52,574 - INFO - Completed: 20240107_prof.nc (52582 measurements, 7.9s)
+2025-09-08 15:23:52,579 - INFO - Processing: 20240108_prof.nc
+2025-09-08 15:23:59,585 - INFO - Completed: 20240108_prof.nc (47881 measurements, 7.0s)
+2025-09-08 15:23:59,592 - INFO - Processing: 20240109_prof.nc
+2025-09-08 15:24:05,794 - INFO - Completed: 20240109_prof.nc (39483 measurements, 6.2s)
+2025-09-08 15:24:05,799 - INFO - Processing: 20240110_prof.nc
+2025-09-08 15:24:11,763 - INFO - Completed: 20240110_prof.nc (39545 measurements, 6.0s)
+2025-09-08 15:24:11,767 - INFO - Processing: 20240111_prof.nc
+2025-09-08 15:24:17,671 - INFO - Completed: 20240111_prof.nc (39440 measurements, 5.9s)
+2025-09-08 15:24:17,675 - INFO - Processing: 20240112_prof.nc
+2025-09-08 15:24:24,767 - INFO - Completed: 20240112_prof.nc (46251 measurements, 7.1s)
+2025-09-08 15:24:24,771 - INFO - Processing: 20240113_prof.nc
+2025-09-08 15:24:31,186 - INFO - Completed: 20240113_prof.nc (40621 measurements, 6.4s)
+2025-09-08 15:24:31,192 - INFO - Processing: 20240114_prof.nc
+2025-09-08 15:24:38,603 - INFO - Completed: 20240114_prof.nc (45243 measurements, 7.4s)
+2025-09-08 15:24:38,608 - INFO - Processing: 20240115_prof.nc
+2025-09-08 15:24:45,031 - INFO - Completed: 20240115_prof.nc (38880 measurements, 6.4s)
+2025-09-08 15:24:45,035 - INFO - Processing: 20240116_prof.nc
+2025-09-08 15:24:53,657 - INFO - Completed: 20240116_prof.nc (52340 measurements, 8.6s)
+2025-09-08 15:24:53,664 - INFO - Processing: 20240117_prof.nc
+2025-09-08 15:25:01,990 - INFO - Completed: 20240117_prof.nc (50296 measurements, 8.3s)
+2025-09-08 15:25:01,997 - INFO - Processing: 20240118_prof.nc
+2025-09-08 15:25:09,967 - INFO - Completed: 20240118_prof.nc (48877 measurements, 8.0s)
+2025-09-08 15:25:09,975 - INFO - Processing: 20240119_prof.nc
+2025-09-08 15:25:17,475 - INFO - Completed: 20240119_prof.nc (45187 measurements, 7.5s)
+2025-09-08 15:25:17,480 - INFO - Processing: 20240120_prof.nc
+2025-09-08 15:25:23,704 - INFO - Completed: 20240120_prof.nc (39341 measurements, 6.2s)
+2025-09-08 15:25:23,708 - INFO - Processing: 20240121_prof.nc
+2025-09-08 15:25:29,343 - INFO - Completed: 20240121_prof.nc (34770 measurements, 5.6s)
+2025-09-08 15:25:29,348 - INFO - Processing: 20240122_prof.nc
+2025-09-08 15:25:37,400 - INFO - Completed: 20240122_prof.nc (49029 measurements, 8.0s)
+2025-09-08 15:25:37,405 - INFO - Processing: 20240123_prof.nc
+2025-09-08 15:25:43,968 - INFO - Completed: 20240123_prof.nc (40844 measurements, 6.6s)
+2025-09-08 15:25:43,973 - INFO - Processing: 20240124_prof.nc
+2025-09-08 15:25:50,268 - INFO - Completed: 20240124_prof.nc (38512 measurements, 6.3s)
+2025-09-08 15:25:50,274 - INFO - Processing: 20240125_prof.nc
+2025-09-08 15:25:57,011 - INFO - Completed: 20240125_prof.nc (42247 measurements, 6.7s)
+2025-09-08 15:25:57,016 - INFO - Processing: 20240126_prof.nc
+2025-09-08 15:26:05,518 - INFO - Completed: 20240126_prof.nc (48805 measurements, 8.5s)
+2025-09-08 15:26:05,526 - INFO - Processing: 20240127_prof.nc
+2025-09-08 15:26:14,015 - INFO - Completed: 20240127_prof.nc (54359 measurements, 8.5s)
+2025-09-08 15:26:14,019 - INFO - Processing: 20240128_prof.nc
+2025-09-08 15:26:21,588 - INFO - Completed: 20240128_prof.nc (46545 measurements, 7.6s)
+2025-09-08 15:26:21,593 - INFO - Processing: 20240129_prof.nc
+2025-09-08 15:26:29,027 - INFO - Completed: 20240129_prof.nc (48524 measurements, 7.4s)
+2025-09-08 15:26:29,032 - INFO - Processing: 20240130_prof.nc
+2025-09-08 15:26:34,456 - INFO - Completed: 20240130_prof.nc (36190 measurements, 5.4s)
+2025-09-08 15:26:34,461 - INFO - Processing: 20240131_prof.nc
+2025-09-08 15:26:41,477 - INFO - Completed: 20240131_prof.nc (44895 measurements, 7.0s)
+2025-09-08 15:26:41,482 - INFO - Processing: 20240201_prof.nc
+2025-09-08 15:26:47,966 - INFO - Completed: 20240201_prof.nc (43374 measurements, 6.5s)
+2025-09-08 15:26:47,970 - INFO - Processing: 20240202_prof.nc
+2025-09-08 15:26:54,764 - INFO - Completed: 20240202_prof.nc (45689 measurements, 6.8s)
+2025-09-08 15:26:54,769 - INFO - Processing: 20240203_prof.nc
+2025-09-08 15:27:00,935 - INFO - Completed: 20240203_prof.nc (41262 measurements, 6.2s)
+2025-09-08 15:27:00,940 - INFO - Processing: 20240204_prof.nc
+2025-09-08 15:27:07,713 - INFO - Completed: 20240204_prof.nc (42603 measurements, 6.8s)
+2025-09-08 15:27:07,763 - WARNING - High memory usage: 97.4%. Pausing for cleanup.
+2025-09-08 15:27:09,794 - INFO - Processing: 20240205_prof.nc
+2025-09-08 15:27:17,278 - INFO - Completed: 20240205_prof.nc (47900 measurements, 7.5s)
+2025-09-08 15:27:17,284 - INFO - Processing: 20240206_prof.nc
+2025-09-08 15:27:25,698 - INFO - Completed: 20240206_prof.nc (54491 measurements, 8.4s)
+2025-09-08 15:27:25,705 - INFO - Processing: 20240207_prof.nc
+2025-09-08 15:27:33,009 - INFO - Completed: 20240207_prof.nc (48766 measurements, 7.3s)
+2025-09-08 15:27:33,013 - INFO - Processing: 20240208_prof.nc
+2025-09-08 15:27:40,493 - INFO - Completed: 20240208_prof.nc (50721 measurements, 7.5s)
+2025-09-08 15:27:40,497 - INFO - Processing: 20240209_prof.nc
+2025-09-08 15:27:46,987 - INFO - Completed: 20240209_prof.nc (43995 measurements, 6.5s)
+2025-09-08 15:27:46,991 - INFO - Processing: 20240210_prof.nc
+2025-09-08 15:27:53,656 - INFO - Completed: 20240210_prof.nc (45586 measurements, 6.7s)
+2025-09-08 15:27:53,663 - INFO - Processing: 20240211_prof.nc
+2025-09-08 15:27:59,668 - INFO - Completed: 20240211_prof.nc (38140 measurements, 6.0s)
+2025-09-08 15:27:59,672 - INFO - Processing: 20240212_prof.nc
+2025-09-08 15:28:06,560 - INFO - Completed: 20240212_prof.nc (44518 measurements, 6.9s)
+2025-09-08 15:28:06,566 - INFO - Processing: 20240213_prof.nc
+2025-09-08 15:28:12,850 - INFO - Completed: 20240213_prof.nc (41765 measurements, 6.3s)
+2025-09-08 15:28:12,853 - INFO - Processing: 20240214_prof.nc
+2025-09-08 15:28:20,022 - INFO - Completed: 20240214_prof.nc (44711 measurements, 7.2s)
+2025-09-08 15:28:20,027 - INFO - Processing: 20240215_prof.nc
+2025-09-08 15:28:26,907 - INFO - Completed: 20240215_prof.nc (46277 measurements, 6.9s)
+2025-09-08 15:28:26,912 - INFO - Processing: 20240216_prof.nc
+2025-09-08 15:28:34,588 - INFO - Completed: 20240216_prof.nc (50157 measurements, 7.7s)
+2025-09-08 15:28:34,594 - INFO - Processing: 20240217_prof.nc
+2025-09-08 15:28:43,728 - INFO - Completed: 20240217_prof.nc (54404 measurements, 9.1s)
+2025-09-08 15:28:43,733 - INFO - Processing: 20240218_prof.nc
+2025-09-08 15:28:50,544 - INFO - Completed: 20240218_prof.nc (46820 measurements, 6.8s)
+2025-09-08 15:28:50,550 - INFO - Processing: 20240219_prof.nc
+2025-09-08 15:28:57,529 - INFO - Completed: 20240219_prof.nc (47124 measurements, 7.0s)
+2025-09-08 15:28:57,533 - INFO - Processing: 20240220_prof.nc
+2025-09-08 15:29:03,019 - INFO - Completed: 20240220_prof.nc (36700 measurements, 5.5s)
+2025-09-08 15:29:03,024 - INFO - Processing: 20240221_prof.nc
+2025-09-08 15:29:09,774 - INFO - Completed: 20240221_prof.nc (43956 measurements, 6.7s)
+2025-09-08 15:29:09,780 - INFO - Processing: 20240222_prof.nc
+2025-09-08 15:29:16,122 - INFO - Completed: 20240222_prof.nc (42865 measurements, 6.3s)
+2025-09-08 15:29:16,127 - INFO - Processing: 20240223_prof.nc
+2025-09-08 15:29:22,618 - INFO - Completed: 20240223_prof.nc (41469 measurements, 6.5s)
+2025-09-08 15:29:22,626 - INFO - Processing: 20240224_prof.nc
+2025-09-08 15:29:28,634 - INFO - Completed: 20240224_prof.nc (37665 measurements, 6.0s)
+2025-09-08 15:29:28,639 - INFO - Processing: 20240225_prof.nc
+2025-09-08 15:29:36,953 - INFO - Completed: 20240225_prof.nc (53027 measurements, 8.1s)
+2025-09-08 15:29:36,960 - INFO - Processing: 20240226_prof.nc
+2025-09-08 15:29:43,705 - INFO - Completed: 20240226_prof.nc (44043 measurements, 6.7s)
+2025-09-08 15:29:43,710 - INFO - Processing: 20240227_prof.nc
+2025-09-08 15:29:51,880 - INFO - Completed: 20240227_prof.nc (55356 measurements, 8.2s)
+2025-09-08 15:29:51,884 - INFO - Processing: 20240228_prof.nc
+2025-09-08 15:29:59,271 - INFO - Completed: 20240228_prof.nc (50609 measurements, 7.4s)
+2025-09-08 15:29:59,275 - INFO - Processing: 20240229_prof.nc
+2025-09-08 15:30:06,448 - INFO - Completed: 20240229_prof.nc (48383 measurements, 7.2s)
+2025-09-08 15:30:06,454 - INFO - Processing: 20240301_prof.nc
+2025-09-08 15:30:12,208 - INFO - Completed: 20240301_prof.nc (38588 measurements, 5.7s)
+2025-09-08 15:30:12,213 - INFO - Processing: 20240302_prof.nc
+2025-09-08 15:30:18,379 - INFO - Completed: 20240302_prof.nc (41638 measurements, 6.2s)
+2025-09-08 15:30:18,385 - INFO - Processing: 20240303_prof.nc
+2025-09-08 15:30:26,618 - INFO - Completed: 20240303_prof.nc (48223 measurements, 8.2s)
+2025-09-08 15:30:26,625 - INFO - Processing: 20240304_prof.nc
+2025-09-08 15:30:32,861 - INFO - Completed: 20240304_prof.nc (39277 measurements, 6.2s)
+2025-09-08 15:30:32,864 - INFO - Processing: 20240305_prof.nc
+2025-09-08 15:30:38,676 - INFO - Completed: 20240305_prof.nc (34980 measurements, 5.8s)
+2025-09-08 15:30:38,680 - INFO - Processing: 20240306_prof.nc
+2025-09-08 15:30:46,772 - INFO - Completed: 20240306_prof.nc (51422 measurements, 8.1s)
+2025-09-08 15:30:46,779 - INFO - Processing: 20240307_prof.nc
+2025-09-08 15:30:53,449 - INFO - Completed: 20240307_prof.nc (44177 measurements, 6.7s)
+2025-09-08 15:30:53,454 - INFO - Processing: 20240308_prof.nc
+2025-09-08 15:31:00,860 - INFO - Completed: 20240308_prof.nc (50417 measurements, 7.4s)
+2025-09-08 15:31:00,865 - INFO - Processing: 20240309_prof.nc
+2025-09-08 15:31:08,341 - INFO - Completed: 20240309_prof.nc (49255 measurements, 7.5s)
+2025-09-08 15:31:08,346 - INFO - Processing: 20240310_prof.nc
+2025-09-08 15:31:14,270 - INFO - Completed: 20240310_prof.nc (40856 measurements, 5.9s)
+2025-09-08 15:31:14,275 - INFO - Processing: 20240311_prof.nc
+2025-09-08 15:31:20,297 - INFO - Completed: 20240311_prof.nc (39990 measurements, 6.0s)
+2025-09-08 15:31:20,302 - INFO - Processing: 20240312_prof.nc
+2025-09-08 15:31:26,787 - INFO - Completed: 20240312_prof.nc (41008 measurements, 6.5s)
+2025-09-08 15:31:26,793 - INFO - Processing: 20240313_prof.nc
+2025-09-08 15:31:33,566 - INFO - Completed: 20240313_prof.nc (42359 measurements, 6.8s)
+2025-09-08 15:31:33,570 - INFO - Processing: 20240314_prof.nc
+2025-09-08 15:31:39,811 - INFO - Completed: 20240314_prof.nc (41576 measurements, 6.2s)
+2025-09-08 15:31:39,815 - INFO - Processing: 20240315_prof.nc
+2025-09-08 15:31:45,753 - INFO - Completed: 20240315_prof.nc (37417 measurements, 5.9s)
+2025-09-08 15:31:45,759 - INFO - Processing: 20240316_prof.nc
+2025-09-08 15:31:53,513 - INFO - Completed: 20240316_prof.nc (52325 measurements, 7.7s)
+2025-09-08 15:31:53,518 - INFO - Processing: 20240317_prof.nc
+2025-09-08 15:32:00,901 - INFO - Completed: 20240317_prof.nc (49435 measurements, 7.4s)
+2025-09-08 15:32:00,908 - INFO - Processing: 20240318_prof.nc
+2025-09-08 15:32:08,975 - INFO - Completed: 20240318_prof.nc (53841 measurements, 8.1s)
+2025-09-08 15:32:08,981 - INFO - Processing: 20240319_prof.nc
+2025-09-08 15:32:16,268 - INFO - Completed: 20240319_prof.nc (49355 measurements, 7.3s)
+2025-09-08 15:32:16,273 - INFO - Processing: 20240320_prof.nc
+2025-09-08 15:32:22,775 - INFO - Completed: 20240320_prof.nc (43576 measurements, 6.5s)
+2025-09-08 15:32:22,779 - INFO - Processing: 20240321_prof.nc
+2025-09-08 15:32:29,165 - INFO - Completed: 20240321_prof.nc (42820 measurements, 6.4s)
+2025-09-08 15:32:29,171 - INFO - Processing: 20240322_prof.nc
+2025-09-08 15:32:35,090 - INFO - Completed: 20240322_prof.nc (40836 measurements, 5.9s)
+2025-09-08 15:32:35,095 - INFO - Processing: 20240323_prof.nc
+2025-09-08 15:32:42,255 - INFO - Completed: 20240323_prof.nc (44942 measurements, 7.2s)
+2025-09-08 15:32:42,260 - INFO - Processing: 20240324_prof.nc
+2025-09-08 15:32:48,313 - INFO - Completed: 20240324_prof.nc (40395 measurements, 6.0s)
+2025-09-08 15:32:48,317 - INFO - Processing: 20240325_prof.nc
+2025-09-08 15:32:55,033 - INFO - Completed: 20240325_prof.nc (42620 measurements, 6.7s)
+2025-09-08 15:32:55,083 - WARNING - High memory usage: 97.1%. Pausing for cleanup.
+2025-09-08 15:32:57,109 - INFO - Processing: 20240326_prof.nc
+2025-09-08 15:33:04,439 - INFO - Completed: 20240326_prof.nc (48566 measurements, 7.3s)
+2025-09-08 15:33:04,443 - INFO - Processing: 20240327_prof.nc
+2025-09-08 15:33:11,697 - INFO - Completed: 20240327_prof.nc (49061 measurements, 7.2s)
+2025-09-08 15:33:11,700 - INFO - Processing: 20240328_prof.nc
+2025-09-08 15:33:18,662 - INFO - Completed: 20240328_prof.nc (46981 measurements, 7.0s)
+2025-09-08 15:33:18,668 - INFO - Processing: 20240329_prof.nc
+2025-09-08 15:33:26,070 - INFO - Completed: 20240329_prof.nc (50646 measurements, 7.4s)
+2025-09-08 15:33:26,075 - INFO - Processing: 20240330_prof.nc
+2025-09-08 15:33:32,421 - INFO - Completed: 20240330_prof.nc (42930 measurements, 6.3s)
+2025-09-08 15:33:32,427 - INFO - Processing: 20240331_prof.nc
+2025-09-08 15:33:38,859 - INFO - Completed: 20240331_prof.nc (43809 measurements, 6.4s)
+2025-09-08 15:33:38,863 - INFO - Processing: 20240401_prof.nc
+2025-09-08 15:33:45,136 - INFO - Completed: 20240401_prof.nc (42451 measurements, 6.3s)
+2025-09-08 15:33:45,141 - INFO - Processing: 20240402_prof.nc
+2025-09-08 15:33:51,109 - INFO - Completed: 20240402_prof.nc (40764 measurements, 6.0s)
+2025-09-08 15:33:51,114 - INFO - Processing: 20240403_prof.nc
+2025-09-08 15:33:57,272 - INFO - Completed: 20240403_prof.nc (39737 measurements, 6.2s)
+2025-09-08 15:33:57,276 - INFO - Processing: 20240404_prof.nc
+2025-09-08 15:34:04,576 - INFO - Completed: 20240404_prof.nc (46335 measurements, 7.3s)
+2025-09-08 15:34:04,581 - INFO - Processing: 20240405_prof.nc
+2025-09-08 15:34:11,215 - INFO - Completed: 20240405_prof.nc (45258 measurements, 6.6s)
+2025-09-08 15:34:11,218 - INFO - Processing: 20240406_prof.nc
+2025-09-08 15:34:19,161 - INFO - Completed: 20240406_prof.nc (51489 measurements, 7.9s)
+2025-09-08 15:34:19,168 - INFO - Processing: 20240407_prof.nc
+2025-09-08 15:34:26,076 - INFO - Completed: 20240407_prof.nc (45145 measurements, 6.9s)
+2025-09-08 15:34:26,080 - INFO - Processing: 20240408_prof.nc
+2025-09-08 15:34:33,223 - INFO - Completed: 20240408_prof.nc (47543 measurements, 7.1s)
+2025-09-08 15:34:33,228 - INFO - Processing: 20240409_prof.nc
+2025-09-08 15:34:40,255 - INFO - Completed: 20240409_prof.nc (44158 measurements, 7.0s)
+2025-09-08 15:34:40,261 - INFO - Processing: 20240410_prof.nc
+2025-09-08 15:34:46,701 - INFO - Completed: 20240410_prof.nc (41579 measurements, 6.4s)
+2025-09-08 15:34:46,706 - INFO - Processing: 20240411_prof.nc
+2025-09-08 15:34:53,618 - INFO - Completed: 20240411_prof.nc (45827 measurements, 6.9s)
+2025-09-08 15:34:53,624 - INFO - Processing: 20240412_prof.nc
+2025-09-08 15:34:58,529 - INFO - Completed: 20240412_prof.nc (32893 measurements, 4.9s)
+2025-09-08 15:34:58,533 - INFO - Processing: 20240413_prof.nc
+2025-09-08 15:35:05,182 - INFO - Completed: 20240413_prof.nc (42471 measurements, 6.6s)
+2025-09-08 15:35:05,187 - INFO - Processing: 20240414_prof.nc
+2025-09-08 15:35:12,735 - INFO - Completed: 20240414_prof.nc (47932 measurements, 7.5s)
+2025-09-08 15:35:12,740 - INFO - Processing: 20240415_prof.nc
+2025-09-08 15:35:19,134 - INFO - Completed: 20240415_prof.nc (42301 measurements, 6.4s)
+2025-09-08 15:35:19,138 - INFO - Processing: 20240416_prof.nc
+2025-09-08 15:35:27,754 - INFO - Completed: 20240416_prof.nc (52965 measurements, 8.6s)
+2025-09-08 15:35:27,763 - INFO - Processing: 20240417_prof.nc
+2025-09-08 15:35:35,863 - INFO - Completed: 20240417_prof.nc (47460 measurements, 8.1s)
+2025-09-08 15:35:35,869 - INFO - Processing: 20240418_prof.nc
+2025-09-08 15:35:44,033 - INFO - Completed: 20240418_prof.nc (48881 measurements, 8.2s)
+2025-09-08 15:35:44,039 - INFO - Processing: 20240419_prof.nc
+2025-09-08 15:35:52,177 - INFO - Completed: 20240419_prof.nc (47215 measurements, 8.1s)
+2025-09-08 15:35:52,184 - INFO - Processing: 20240420_prof.nc
+2025-09-08 15:35:59,624 - INFO - Completed: 20240420_prof.nc (43468 measurements, 7.4s)
+2025-09-08 15:35:59,629 - INFO - Processing: 20240421_prof.nc
+2025-09-08 15:36:08,094 - INFO - Completed: 20240421_prof.nc (47956 measurements, 8.5s)
+2025-09-08 15:36:08,098 - INFO - Processing: 20240422_prof.nc
+2025-09-08 15:36:14,553 - INFO - Completed: 20240422_prof.nc (35279 measurements, 6.4s)
+2025-09-08 15:36:14,559 - INFO - Processing: 20240423_prof.nc
+2025-09-08 15:36:21,609 - INFO - Completed: 20240423_prof.nc (38718 measurements, 7.0s)
+2025-09-08 15:36:21,615 - INFO - Processing: 20240424_prof.nc
+2025-09-08 15:36:30,010 - INFO - Completed: 20240424_prof.nc (49755 measurements, 8.4s)
+2025-09-08 15:36:30,016 - INFO - Processing: 20240425_prof.nc
+2025-09-08 15:36:37,878 - INFO - Completed: 20240425_prof.nc (46525 measurements, 7.9s)
+2025-09-08 15:36:37,884 - INFO - Processing: 20240426_prof.nc
+2025-09-08 15:36:45,806 - INFO - Completed: 20240426_prof.nc (46501 measurements, 7.9s)
+2025-09-08 15:36:45,813 - INFO - Processing: 20240427_prof.nc
+2025-09-08 15:36:54,040 - INFO - Completed: 20240427_prof.nc (46741 measurements, 8.2s)
+2025-09-08 15:36:54,047 - INFO - Processing: 20240428_prof.nc
+2025-09-08 15:37:01,854 - INFO - Completed: 20240428_prof.nc (45730 measurements, 7.8s)
+2025-09-08 15:37:01,861 - INFO - Processing: 20240429_prof.nc
+2025-09-08 15:37:09,926 - INFO - Completed: 20240429_prof.nc (44252 measurements, 8.1s)
+2025-09-08 15:37:09,933 - INFO - Processing: 20240430_prof.nc
+2025-09-08 15:37:17,875 - INFO - Completed: 20240430_prof.nc (46392 measurements, 7.9s)
+2025-09-08 15:37:17,880 - INFO - Processing: 20240501_prof.nc
+2025-09-08 15:37:25,209 - INFO - Completed: 20240501_prof.nc (41455 measurements, 7.3s)
+2025-09-08 15:37:25,216 - INFO - Processing: 20240502_prof.nc
+2025-09-08 15:37:31,350 - INFO - Completed: 20240502_prof.nc (34188 measurements, 6.1s)
+2025-09-08 15:37:31,354 - INFO - Processing: 20240503_prof.nc
+2025-09-08 15:37:37,478 - INFO - Completed: 20240503_prof.nc (36250 measurements, 6.1s)
+2025-09-08 15:37:37,481 - INFO - Processing: 20240504_prof.nc
+2025-09-08 15:37:46,481 - INFO - Completed: 20240504_prof.nc (56125 measurements, 9.0s)
+2025-09-08 15:37:46,486 - INFO - Processing: 20240505_prof.nc
+2025-09-08 15:37:53,337 - INFO - Completed: 20240505_prof.nc (41589 measurements, 6.8s)
+2025-09-08 15:37:53,342 - INFO - Processing: 20240506_prof.nc
+2025-09-08 15:38:02,617 - INFO - Completed: 20240506_prof.nc (55187 measurements, 9.3s)
+2025-09-08 15:38:02,623 - INFO - Processing: 20240507_prof.nc
+2025-09-08 15:38:09,304 - INFO - Completed: 20240507_prof.nc (39330 measurements, 6.7s)
+2025-09-08 15:38:09,310 - INFO - Processing: 20240508_prof.nc
+2025-09-08 15:38:18,019 - INFO - Completed: 20240508_prof.nc (52878 measurements, 8.7s)
+2025-09-08 15:38:18,025 - INFO - Processing: 20240509_prof.nc
+2025-09-08 15:38:24,305 - INFO - Completed: 20240509_prof.nc (38525 measurements, 6.3s)
+2025-09-08 15:38:24,308 - INFO - Processing: 20240510_prof.nc
+2025-09-08 15:38:33,007 - INFO - Completed: 20240510_prof.nc (51841 measurements, 8.7s)
+2025-09-08 15:38:33,015 - INFO - Processing: 20240511_prof.nc
+2025-09-08 15:38:39,410 - INFO - Completed: 20240511_prof.nc (39174 measurements, 6.4s)
+2025-09-08 15:38:39,416 - INFO - Processing: 20240512_prof.nc
+2025-09-08 15:38:44,513 - INFO - Completed: 20240512_prof.nc (35049 measurements, 5.1s)
+2025-09-08 15:38:44,518 - INFO - Processing: 20240513_prof.nc
+2025-09-08 15:38:50,230 - INFO - Completed: 20240513_prof.nc (38818 measurements, 5.7s)
+2025-09-08 15:38:50,234 - INFO - Processing: 20240514_prof.nc
+2025-09-08 15:38:58,763 - INFO - Completed: 20240514_prof.nc (57410 measurements, 8.5s)
+2025-09-08 15:38:58,810 - WARNING - High memory usage: 97.5%. Pausing for cleanup.
+2025-09-08 15:39:00,835 - INFO - Processing: 20240515_prof.nc
+2025-09-08 15:39:08,249 - INFO - Completed: 20240515_prof.nc (48401 measurements, 7.4s)
+2025-09-08 15:39:08,253 - INFO - Processing: 20240516_prof.nc
+2025-09-08 15:39:15,386 - INFO - Completed: 20240516_prof.nc (47617 measurements, 7.1s)
+2025-09-08 15:39:15,390 - INFO - Processing: 20240517_prof.nc
+2025-09-08 15:39:22,176 - INFO - Completed: 20240517_prof.nc (45295 measurements, 6.8s)
+2025-09-08 15:39:22,181 - INFO - Processing: 20240518_prof.nc
+2025-09-08 15:39:29,147 - INFO - Completed: 20240518_prof.nc (46315 measurements, 7.0s)
+2025-09-08 15:39:29,154 - INFO - Processing: 20240519_prof.nc
+2025-09-08 15:39:35,196 - INFO - Completed: 20240519_prof.nc (37929 measurements, 6.0s)
+2025-09-08 15:39:35,201 - INFO - Processing: 20240520_prof.nc
+2025-09-08 15:39:43,540 - INFO - Completed: 20240520_prof.nc (49483 measurements, 8.3s)
+2025-09-08 15:39:43,545 - INFO - Processing: 20240521_prof.nc
+2025-09-08 15:39:50,285 - INFO - Completed: 20240521_prof.nc (42684 measurements, 6.7s)
+2025-09-08 15:39:50,290 - INFO - Processing: 20240522_prof.nc
+2025-09-08 15:39:55,346 - INFO - Completed: 20240522_prof.nc (34579 measurements, 5.1s)
+2025-09-08 15:39:55,350 - INFO - Processing: 20240523_prof.nc
+2025-09-08 15:40:00,791 - INFO - Completed: 20240523_prof.nc (37926 measurements, 5.4s)
+2025-09-08 15:40:00,795 - INFO - Processing: 20240524_prof.nc
+2025-09-08 15:40:09,686 - INFO - Completed: 20240524_prof.nc (58763 measurements, 8.9s)
+2025-09-08 15:40:09,693 - INFO - Processing: 20240525_prof.nc
+2025-09-08 15:40:16,666 - INFO - Completed: 20240525_prof.nc (46901 measurements, 7.0s)
+2025-09-08 15:40:16,671 - INFO - Processing: 20240526_prof.nc
+2025-09-08 15:40:23,876 - INFO - Completed: 20240526_prof.nc (49263 measurements, 7.2s)
+2025-09-08 15:40:23,881 - INFO - Processing: 20240527_prof.nc
+2025-09-08 15:40:30,232 - INFO - Completed: 20240527_prof.nc (44020 measurements, 6.3s)
+2025-09-08 15:40:30,237 - INFO - Processing: 20240528_prof.nc
+2025-09-08 15:40:37,494 - INFO - Completed: 20240528_prof.nc (48777 measurements, 7.3s)
+2025-09-08 15:40:37,499 - INFO - Processing: 20240529_prof.nc
+2025-09-08 15:40:43,872 - INFO - Completed: 20240529_prof.nc (41595 measurements, 6.4s)
+2025-09-08 15:40:43,876 - INFO - Processing: 20240530_prof.nc
+2025-09-08 15:40:50,822 - INFO - Completed: 20240530_prof.nc (44786 measurements, 6.9s)
+2025-09-08 15:40:50,827 - INFO - Processing: 20240531_prof.nc
+2025-09-08 15:40:57,720 - INFO - Completed: 20240531_prof.nc (43254 measurements, 6.9s)
+2025-09-08 15:40:57,725 - INFO - Processing: 20240601_prof.nc
+2025-09-08 15:41:02,964 - INFO - Completed: 20240601_prof.nc (34937 measurements, 5.2s)
+2025-09-08 15:41:02,968 - INFO - Processing: 20240602_prof.nc
+2025-09-08 15:41:09,474 - INFO - Completed: 20240602_prof.nc (45271 measurements, 6.5s)
+2025-09-08 15:41:09,478 - INFO - Processing: 20240603_prof.nc
+2025-09-08 15:41:15,214 - INFO - Completed: 20240603_prof.nc (40000 measurements, 5.7s)
+2025-09-08 15:41:15,220 - INFO - Processing: 20240604_prof.nc
+2025-09-08 15:41:23,567 - INFO - Completed: 20240604_prof.nc (57420 measurements, 8.3s)
+2025-09-08 15:41:23,572 - INFO - Processing: 20240605_prof.nc
+2025-09-08 15:41:29,574 - INFO - Completed: 20240605_prof.nc (41766 measurements, 6.0s)
+2025-09-08 15:41:29,579 - INFO - Processing: 20240606_prof.nc
+2025-09-08 15:41:36,955 - INFO - Completed: 20240606_prof.nc (50939 measurements, 7.4s)
+2025-09-08 15:41:36,960 - INFO - Processing: 20240607_prof.nc
+2025-09-08 15:41:43,842 - INFO - Completed: 20240607_prof.nc (45606 measurements, 6.9s)
+2025-09-08 15:41:43,847 - INFO - Processing: 20240608_prof.nc
+2025-09-08 15:41:49,705 - INFO - Completed: 20240608_prof.nc (38361 measurements, 5.9s)
+2025-09-08 15:41:49,708 - INFO - Processing: 20240609_prof.nc
+2025-09-08 15:41:56,355 - INFO - Completed: 20240609_prof.nc (44420 measurements, 6.6s)
+2025-09-08 15:41:56,359 - INFO - Processing: 20240610_prof.nc
+2025-09-08 15:42:03,055 - INFO - Completed: 20240610_prof.nc (41323 measurements, 6.7s)
+2025-09-08 15:42:03,061 - INFO - Processing: 20240611_prof.nc
+2025-09-08 15:42:08,438 - INFO - Completed: 20240611_prof.nc (37331 measurements, 5.4s)
+2025-09-08 15:42:08,442 - INFO - Processing: 20240612_prof.nc
+2025-09-08 15:42:14,438 - INFO - Completed: 20240612_prof.nc (40783 measurements, 6.0s)
+2025-09-08 15:42:14,442 - INFO - Processing: 20240613_prof.nc
+2025-09-08 15:42:20,866 - INFO - Completed: 20240613_prof.nc (42766 measurements, 6.4s)
+2025-09-08 15:42:20,874 - INFO - Processing: 20240614_prof.nc
+2025-09-08 15:42:28,909 - INFO - Completed: 20240614_prof.nc (54179 measurements, 8.0s)
+2025-09-08 15:42:28,918 - INFO - Processing: 20240615_prof.nc
+2025-09-08 15:42:35,673 - INFO - Completed: 20240615_prof.nc (45343 measurements, 6.7s)
+2025-09-08 15:42:35,677 - INFO - Processing: 20240616_prof.nc
+2025-09-08 15:42:42,940 - INFO - Completed: 20240616_prof.nc (49699 measurements, 7.3s)
+2025-09-08 15:42:42,945 - INFO - Processing: 20240617_prof.nc
+2025-09-08 15:42:48,882 - INFO - Completed: 20240617_prof.nc (40406 measurements, 5.9s)
+2025-09-08 15:42:48,886 - INFO - Processing: 20240618_prof.nc
+2025-09-08 15:42:54,776 - INFO - Completed: 20240618_prof.nc (39119 measurements, 5.9s)
+2025-09-08 15:42:54,782 - INFO - Processing: 20240619_prof.nc
+2025-09-08 15:43:01,262 - INFO - Completed: 20240619_prof.nc (43165 measurements, 6.5s)
+2025-09-08 15:43:01,267 - INFO - Processing: 20240620_prof.nc
+2025-09-08 15:43:08,499 - INFO - Completed: 20240620_prof.nc (45045 measurements, 7.2s)
+2025-09-08 15:43:08,504 - INFO - Processing: 20240621_prof.nc
+2025-09-08 15:43:13,300 - INFO - Completed: 20240621_prof.nc (32579 measurements, 4.8s)
+2025-09-08 15:43:13,306 - INFO - Processing: 20240622_prof.nc
+2025-09-08 15:43:18,827 - INFO - Completed: 20240622_prof.nc (38297 measurements, 5.5s)
+2025-09-08 15:43:18,833 - INFO - Processing: 20240623_prof.nc
+2025-09-08 15:43:24,586 - INFO - Completed: 20240623_prof.nc (40015 measurements, 5.7s)
+2025-09-08 15:43:24,592 - INFO - Processing: 20240624_prof.nc
+2025-09-08 15:43:32,317 - INFO - Completed: 20240624_prof.nc (50297 measurements, 7.7s)
+2025-09-08 15:43:32,323 - INFO - Processing: 20240625_prof.nc
+2025-09-08 15:43:40,060 - INFO - Completed: 20240625_prof.nc (51010 measurements, 7.7s)
+2025-09-08 15:43:40,066 - INFO - Processing: 20240626_prof.nc
+2025-09-08 15:43:47,031 - INFO - Completed: 20240626_prof.nc (44924 measurements, 7.0s)
+2025-09-08 15:43:47,037 - INFO - Processing: 20240627_prof.nc
+2025-09-08 15:43:52,881 - INFO - Completed: 20240627_prof.nc (40369 measurements, 5.8s)
+2025-09-08 15:43:52,886 - INFO - Processing: 20240628_prof.nc
+2025-09-08 15:43:58,370 - INFO - Completed: 20240628_prof.nc (36181 measurements, 5.4s)
+2025-09-08 15:43:58,375 - INFO - Processing: 20240629_prof.nc
+2025-09-08 15:44:05,417 - INFO - Completed: 20240629_prof.nc (41360 measurements, 7.0s)
+2025-09-08 15:44:05,422 - INFO - Processing: 20240630_prof.nc
+2025-09-08 15:44:12,016 - INFO - Completed: 20240630_prof.nc (40417 measurements, 6.6s)
+2025-09-08 15:44:12,022 - INFO - Processing: 20240701_prof.nc
+2025-09-08 15:44:17,647 - INFO - Completed: 20240701_prof.nc (34087 measurements, 5.6s)
+2025-09-08 15:44:17,652 - INFO - Processing: 20240702_prof.nc
+2025-09-08 15:44:22,483 - INFO - Completed: 20240702_prof.nc (31830 measurements, 4.8s)
+2025-09-08 15:44:22,486 - INFO - Processing: 20240703_prof.nc
+2025-09-08 15:44:29,849 - INFO - Completed: 20240703_prof.nc (49223 measurements, 7.4s)
+2025-09-08 15:44:29,897 - WARNING - High memory usage: 97.2%. Pausing for cleanup.
+2025-09-08 15:44:31,923 - INFO - Processing: 20240704_prof.nc
+2025-09-08 15:44:37,932 - INFO - Completed: 20240704_prof.nc (39211 measurements, 6.0s)
+2025-09-08 15:44:37,937 - INFO - Processing: 20240705_prof.nc
+2025-09-08 15:44:45,611 - INFO - Completed: 20240705_prof.nc (52400 measurements, 7.7s)
+2025-09-08 15:44:45,616 - INFO - Processing: 20240706_prof.nc
+2025-09-08 15:44:51,597 - INFO - Completed: 20240706_prof.nc (41130 measurements, 6.0s)
+2025-09-08 15:44:51,602 - INFO - Processing: 20240707_prof.nc
+2025-09-08 15:44:57,526 - INFO - Completed: 20240707_prof.nc (40526 measurements, 5.9s)
+2025-09-08 15:44:57,532 - INFO - Processing: 20240708_prof.nc
+2025-09-08 15:45:02,377 - INFO - Completed: 20240708_prof.nc (34089 measurements, 4.8s)
+2025-09-08 15:45:02,381 - INFO - Processing: 20240709_prof.nc
+2025-09-08 15:45:09,924 - INFO - Completed: 20240709_prof.nc (48187 measurements, 7.5s)
+2025-09-08 15:45:09,929 - INFO - Processing: 20240710_prof.nc
+2025-09-08 15:45:14,544 - INFO - Completed: 20240710_prof.nc (30425 measurements, 4.6s)
+2025-09-08 15:45:14,548 - INFO - Processing: 20240711_prof.nc
+2025-09-08 15:45:19,926 - INFO - Completed: 20240711_prof.nc (34556 measurements, 5.4s)
+2025-09-08 15:45:19,930 - INFO - Processing: 20240712_prof.nc
+2025-09-08 15:45:25,525 - INFO - Completed: 20240712_prof.nc (34666 measurements, 5.6s)
+2025-09-08 15:45:25,529 - INFO - Processing: 20240713_prof.nc
+2025-09-08 15:45:33,356 - INFO - Completed: 20240713_prof.nc (49852 measurements, 7.8s)
+2025-09-08 15:45:33,364 - INFO - Processing: 20240714_prof.nc
+2025-09-08 15:45:38,865 - INFO - Completed: 20240714_prof.nc (36272 measurements, 5.5s)
+2025-09-08 15:45:38,869 - INFO - Processing: 20240715_prof.nc
+2025-09-08 15:45:46,996 - INFO - Completed: 20240715_prof.nc (53391 measurements, 8.1s)
+2025-09-08 15:45:47,003 - INFO - Processing: 20240716_prof.nc
+2025-09-08 15:45:53,192 - INFO - Completed: 20240716_prof.nc (41268 measurements, 6.2s)
+2025-09-08 15:45:53,196 - INFO - Processing: 20240717_prof.nc
+2025-09-08 15:45:58,842 - INFO - Completed: 20240717_prof.nc (38377 measurements, 5.6s)
+2025-09-08 15:45:58,847 - INFO - Processing: 20240718_prof.nc
+2025-09-08 15:46:04,333 - INFO - Completed: 20240718_prof.nc (36059 measurements, 5.5s)
+2025-09-08 15:46:04,339 - INFO - Processing: 20240719_prof.nc
+2025-09-08 15:46:10,317 - INFO - Completed: 20240719_prof.nc (39765 measurements, 6.0s)
+2025-09-08 15:46:10,321 - INFO - Processing: 20240720_prof.nc
+2025-09-08 15:46:15,171 - INFO - Completed: 20240720_prof.nc (32622 measurements, 4.8s)
+2025-09-08 15:46:15,175 - INFO - Processing: 20240721_prof.nc
+2025-09-08 15:46:21,014 - INFO - Completed: 20240721_prof.nc (39990 measurements, 5.8s)
+2025-09-08 15:46:21,018 - INFO - Processing: 20240722_prof.nc
+2025-09-08 15:46:26,945 - INFO - Completed: 20240722_prof.nc (40278 measurements, 5.9s)
+2025-09-08 15:46:26,950 - INFO - Processing: 20240723_prof.nc
+2025-09-08 15:46:34,245 - INFO - Completed: 20240723_prof.nc (45997 measurements, 7.3s)
+2025-09-08 15:46:34,251 - INFO - Processing: 20240724_prof.nc
+2025-09-08 15:46:40,262 - INFO - Completed: 20240724_prof.nc (38844 measurements, 6.0s)
+2025-09-08 15:46:40,266 - INFO - Processing: 20240725_prof.nc
+2025-09-08 15:46:46,084 - INFO - Completed: 20240725_prof.nc (40228 measurements, 5.8s)
+2025-09-08 15:46:46,090 - INFO - Processing: 20240726_prof.nc
+2025-09-08 15:46:53,417 - INFO - Completed: 20240726_prof.nc (48657 measurements, 7.3s)
+2025-09-08 15:46:53,423 - INFO - Processing: 20240727_prof.nc
+2025-09-08 15:46:59,023 - INFO - Completed: 20240727_prof.nc (37165 measurements, 5.6s)
+2025-09-08 15:46:59,028 - INFO - Processing: 20240728_prof.nc
+2025-09-08 15:47:05,028 - INFO - Completed: 20240728_prof.nc (39920 measurements, 6.0s)
+2025-09-08 15:47:05,034 - INFO - Processing: 20240729_prof.nc
+2025-09-08 15:47:11,263 - INFO - Completed: 20240729_prof.nc (38900 measurements, 6.2s)
+2025-09-08 15:47:11,269 - INFO - Processing: 20240730_prof.nc
+2025-09-08 15:47:16,047 - INFO - Completed: 20240730_prof.nc (29580 measurements, 4.8s)
+2025-09-08 15:47:16,051 - INFO - Processing: 20240731_prof.nc
+2025-09-08 15:47:22,583 - INFO - Completed: 20240731_prof.nc (41747 measurements, 6.5s)
+2025-09-08 15:47:22,589 - INFO - Processing: 20240801_prof.nc
+2025-09-08 15:47:28,833 - INFO - Completed: 20240801_prof.nc (39792 measurements, 6.2s)
+2025-09-08 15:47:28,838 - INFO - Processing: 20240802_prof.nc
+2025-09-08 15:47:35,540 - INFO - Completed: 20240802_prof.nc (42420 measurements, 6.7s)
+2025-09-08 15:47:35,545 - INFO - Processing: 20240803_prof.nc
+2025-09-08 15:47:42,169 - INFO - Completed: 20240803_prof.nc (41129 measurements, 6.6s)
+2025-09-08 15:47:42,176 - INFO - Processing: 20240804_prof.nc
+2025-09-08 15:47:48,603 - INFO - Completed: 20240804_prof.nc (40830 measurements, 6.4s)
+2025-09-08 15:47:48,608 - INFO - Processing: 20240805_prof.nc
+2025-09-08 15:47:56,966 - INFO - Completed: 20240805_prof.nc (51323 measurements, 8.4s)
+2025-09-08 15:47:56,972 - INFO - Processing: 20240806_prof.nc
+2025-09-08 15:48:02,543 - INFO - Completed: 20240806_prof.nc (36142 measurements, 5.6s)
+2025-09-08 15:48:02,547 - INFO - Processing: 20240807_prof.nc
+2025-09-08 15:48:09,653 - INFO - Completed: 20240807_prof.nc (43627 measurements, 7.1s)
+2025-09-08 15:48:09,658 - INFO - Processing: 20240808_prof.nc
+2025-09-08 15:48:15,074 - INFO - Completed: 20240808_prof.nc (36361 measurements, 5.4s)
+2025-09-08 15:48:15,080 - INFO - Processing: 20240809_prof.nc
+2025-09-08 15:48:20,331 - INFO - Completed: 20240809_prof.nc (35169 measurements, 5.2s)
+2025-09-08 15:48:20,336 - INFO - Processing: 20240810_prof.nc
+2025-09-08 15:48:26,453 - INFO - Completed: 20240810_prof.nc (41359 measurements, 6.1s)
+2025-09-08 15:48:26,459 - INFO - Processing: 20240811_prof.nc
+2025-09-08 15:48:32,045 - INFO - Completed: 20240811_prof.nc (38391 measurements, 5.6s)
+2025-09-08 15:48:32,049 - INFO - Processing: 20240812_prof.nc
+2025-09-08 15:48:38,762 - INFO - Completed: 20240812_prof.nc (44434 measurements, 6.7s)
+2025-09-08 15:48:38,766 - INFO - Processing: 20240813_prof.nc
+2025-09-08 15:48:44,922 - INFO - Completed: 20240813_prof.nc (40838 measurements, 6.2s)
+2025-09-08 15:48:44,927 - INFO - Processing: 20240814_prof.nc
+2025-09-08 15:48:51,567 - INFO - Completed: 20240814_prof.nc (42692 measurements, 6.6s)
+2025-09-08 15:48:51,571 - INFO - Processing: 20240815_prof.nc
+2025-09-08 15:48:57,811 - INFO - Completed: 20240815_prof.nc (42579 measurements, 6.2s)
+2025-09-08 15:48:57,816 - INFO - Processing: 20240816_prof.nc
+2025-09-08 15:49:04,240 - INFO - Completed: 20240816_prof.nc (42400 measurements, 6.4s)
+2025-09-08 15:49:04,244 - INFO - Processing: 20240817_prof.nc
+2025-09-08 15:49:10,236 - INFO - Completed: 20240817_prof.nc (39927 measurements, 6.0s)
+2025-09-08 15:49:10,240 - INFO - Processing: 20240818_prof.nc
+2025-09-08 15:49:15,948 - INFO - Completed: 20240818_prof.nc (39785 measurements, 5.7s)
+2025-09-08 15:49:15,954 - INFO - Processing: 20240819_prof.nc
+2025-09-08 15:49:21,631 - INFO - Completed: 20240819_prof.nc (36847 measurements, 5.7s)
+2025-09-08 15:49:21,636 - INFO - Processing: 20240820_prof.nc
+2025-09-08 15:49:27,814 - INFO - Completed: 20240820_prof.nc (42173 measurements, 6.2s)
+2025-09-08 15:49:27,818 - INFO - Processing: 20240821_prof.nc
+2025-09-08 15:49:33,826 - INFO - Completed: 20240821_prof.nc (40596 measurements, 6.0s)
+2025-09-08 15:49:33,831 - INFO - Processing: 20240822_prof.nc
+2025-09-08 15:49:39,788 - INFO - Completed: 20240822_prof.nc (39722 measurements, 6.0s)
+2025-09-08 15:49:39,837 - WARNING - High memory usage: 96.8%. Pausing for cleanup.
+2025-09-08 15:49:41,867 - INFO - Processing: 20240823_prof.nc
+2025-09-08 15:49:48,542 - INFO - Completed: 20240823_prof.nc (45712 measurements, 6.7s)
+2025-09-08 15:49:48,549 - INFO - Processing: 20240824_prof.nc
+2025-09-08 15:49:54,586 - INFO - Completed: 20240824_prof.nc (38575 measurements, 6.0s)
+2025-09-08 15:49:54,590 - INFO - Processing: 20240825_prof.nc
+2025-09-08 15:50:01,891 - INFO - Completed: 20240825_prof.nc (48603 measurements, 7.3s)
+2025-09-08 15:50:01,897 - INFO - Processing: 20240826_prof.nc
+2025-09-08 15:50:09,446 - INFO - Completed: 20240826_prof.nc (49995 measurements, 7.5s)
+2025-09-08 15:50:09,451 - INFO - Processing: 20240827_prof.nc
+2025-09-08 15:50:14,869 - INFO - Completed: 20240827_prof.nc (35813 measurements, 5.4s)
+2025-09-08 15:50:14,874 - INFO - Processing: 20240828_prof.nc
+2025-09-08 15:50:20,150 - INFO - Completed: 20240828_prof.nc (36339 measurements, 5.3s)
+2025-09-08 15:50:20,156 - INFO - Processing: 20240829_prof.nc
+2025-09-08 15:50:25,380 - INFO - Completed: 20240829_prof.nc (33389 measurements, 5.2s)
+2025-09-08 15:50:25,385 - INFO - Processing: 20240830_prof.nc
+2025-09-08 15:50:32,588 - INFO - Completed: 20240830_prof.nc (42584 measurements, 7.2s)
+2025-09-08 15:50:32,593 - INFO - Processing: 20240831_prof.nc
+2025-09-08 15:50:39,412 - INFO - Completed: 20240831_prof.nc (39799 measurements, 6.8s)
+2025-09-08 15:50:39,417 - INFO - Processing: 20240901_prof.nc
+2025-09-08 15:50:46,248 - INFO - Completed: 20240901_prof.nc (40746 measurements, 6.8s)
+2025-09-08 15:50:46,253 - INFO - Processing: 20240902_prof.nc
+2025-09-08 15:50:53,339 - INFO - Completed: 20240902_prof.nc (40929 measurements, 7.1s)
+2025-09-08 15:50:53,344 - INFO - Processing: 20240903_prof.nc
+2025-09-08 15:51:00,825 - INFO - Completed: 20240903_prof.nc (43939 measurements, 7.5s)
+2025-09-08 15:51:00,831 - INFO - Processing: 20240904_prof.nc
+2025-09-08 15:51:08,440 - INFO - Completed: 20240904_prof.nc (40567 measurements, 7.6s)
+2025-09-08 15:51:08,445 - INFO - Processing: 20240905_prof.nc
+2025-09-08 15:51:16,897 - INFO - Completed: 20240905_prof.nc (49286 measurements, 8.4s)
+2025-09-08 15:51:16,902 - INFO - Processing: 20240906_prof.nc
+2025-09-08 15:51:23,541 - INFO - Completed: 20240906_prof.nc (38914 measurements, 6.6s)
+2025-09-08 15:51:23,546 - INFO - Processing: 20240907_prof.nc
+2025-09-08 15:51:29,184 - INFO - Completed: 20240907_prof.nc (33402 measurements, 5.6s)
+2025-09-08 15:51:29,188 - INFO - Processing: 20240908_prof.nc
+2025-09-08 15:51:35,050 - INFO - Completed: 20240908_prof.nc (36254 measurements, 5.9s)
+2025-09-08 15:51:35,056 - INFO - Processing: 20240909_prof.nc
+2025-09-08 15:51:41,638 - INFO - Completed: 20240909_prof.nc (38696 measurements, 6.6s)
+2025-09-08 15:51:41,643 - INFO - Processing: 20240910_prof.nc
+2025-09-08 15:51:48,586 - INFO - Completed: 20240910_prof.nc (40995 measurements, 6.9s)
+2025-09-08 15:51:48,592 - INFO - Processing: 20240911_prof.nc
+2025-09-08 15:51:55,256 - INFO - Completed: 20240911_prof.nc (39371 measurements, 6.7s)
+2025-09-08 15:51:55,262 - INFO - Processing: 20240912_prof.nc
+2025-09-08 15:52:02,554 - INFO - Completed: 20240912_prof.nc (42254 measurements, 7.3s)
+2025-09-08 15:52:02,559 - INFO - Processing: 20240913_prof.nc
+2025-09-08 15:52:09,280 - INFO - Completed: 20240913_prof.nc (37638 measurements, 6.7s)
+2025-09-08 15:52:09,285 - INFO - Processing: 20240914_prof.nc
+2025-09-08 15:52:16,846 - INFO - Completed: 20240914_prof.nc (43055 measurements, 7.6s)
+2025-09-08 15:52:16,852 - INFO - Processing: 20240915_prof.nc
+2025-09-08 15:52:26,220 - INFO - Completed: 20240915_prof.nc (53010 measurements, 9.4s)
+2025-09-08 15:52:26,227 - INFO - Processing: 20240916_prof.nc
+2025-09-08 15:52:32,263 - INFO - Completed: 20240916_prof.nc (35641 measurements, 6.0s)
+2025-09-08 15:52:32,266 - INFO - Processing: 20240917_prof.nc
+2025-09-08 15:52:37,446 - INFO - Completed: 20240917_prof.nc (30953 measurements, 5.2s)
+2025-09-08 15:52:37,451 - INFO - Processing: 20240918_prof.nc
+2025-09-08 15:52:42,954 - INFO - Completed: 20240918_prof.nc (33630 measurements, 5.5s)
+2025-09-08 15:52:42,959 - INFO - Processing: 20240919_prof.nc
+2025-09-08 15:52:49,958 - INFO - Completed: 20240919_prof.nc (43053 measurements, 7.0s)
+2025-09-08 15:52:49,963 - INFO - Processing: 20240920_prof.nc
+2025-09-08 15:52:56,530 - INFO - Completed: 20240920_prof.nc (41120 measurements, 6.6s)
+2025-09-08 15:52:56,535 - INFO - Processing: 20240921_prof.nc
+2025-09-08 15:53:02,783 - INFO - Completed: 20240921_prof.nc (38817 measurements, 6.2s)
+2025-09-08 15:53:02,788 - INFO - Processing: 20240922_prof.nc
+2025-09-08 15:53:10,627 - INFO - Completed: 20240922_prof.nc (47392 measurements, 7.8s)
+2025-09-08 15:53:10,634 - INFO - Processing: 20240923_prof.nc
+2025-09-08 15:53:16,863 - INFO - Completed: 20240923_prof.nc (39025 measurements, 6.2s)
+2025-09-08 15:53:16,867 - INFO - Processing: 20240924_prof.nc
+2025-09-08 15:53:23,957 - INFO - Completed: 20240924_prof.nc (42038 measurements, 7.1s)
+2025-09-08 15:53:23,961 - INFO - Processing: 20240925_prof.nc
+2025-09-08 15:53:32,671 - INFO - Completed: 20240925_prof.nc (52789 measurements, 8.7s)
+2025-09-08 15:53:32,679 - INFO - Processing: 20240926_prof.nc
+2025-09-08 15:53:38,376 - INFO - Completed: 20240926_prof.nc (35582 measurements, 5.7s)
+2025-09-08 15:53:38,379 - INFO - Processing: 20240927_prof.nc
+2025-09-08 15:53:42,580 - INFO - Completed: 20240927_prof.nc (28366 measurements, 4.2s)
+2025-09-08 15:53:42,584 - INFO - Processing: 20240928_prof.nc
+2025-09-08 15:53:48,096 - INFO - Completed: 20240928_prof.nc (37574 measurements, 5.5s)
+2025-09-08 15:53:48,100 - INFO - Processing: 20240929_prof.nc
+2025-09-08 15:53:54,025 - INFO - Completed: 20240929_prof.nc (40873 measurements, 5.9s)
+2025-09-08 15:53:54,029 - INFO - Processing: 20240930_prof.nc
+2025-09-08 15:53:59,687 - INFO - Completed: 20240930_prof.nc (37961 measurements, 5.7s)
+2025-09-08 15:53:59,691 - INFO - Processing: 20241001_prof.nc
+2025-09-08 15:54:06,613 - INFO - Completed: 20241001_prof.nc (45663 measurements, 6.9s)
+2025-09-08 15:54:06,619 - INFO - Processing: 20241002_prof.nc
+2025-09-08 15:54:12,813 - INFO - Completed: 20241002_prof.nc (40707 measurements, 6.2s)
+2025-09-08 15:54:12,817 - INFO - Processing: 20241003_prof.nc
+2025-09-08 15:54:19,664 - INFO - Completed: 20241003_prof.nc (45500 measurements, 6.8s)
+2025-09-08 15:54:19,669 - INFO - Processing: 20241004_prof.nc
+2025-09-08 15:54:25,775 - INFO - Completed: 20241004_prof.nc (40527 measurements, 6.1s)
+2025-09-08 15:54:25,780 - INFO - Processing: 20241005_prof.nc
+2025-09-08 15:54:34,523 - INFO - Completed: 20241005_prof.nc (52463 measurements, 8.7s)
+2025-09-08 15:54:34,528 - INFO - Processing: 20241006_prof.nc
+2025-09-08 15:54:39,135 - INFO - Completed: 20241006_prof.nc (28419 measurements, 4.6s)
+2025-09-08 15:54:39,139 - INFO - Processing: 20241007_prof.nc
+2025-09-08 15:54:44,736 - INFO - Completed: 20241007_prof.nc (32320 measurements, 5.6s)
+2025-09-08 15:54:44,740 - INFO - Processing: 20241008_prof.nc
+2025-09-08 15:54:50,142 - INFO - Completed: 20241008_prof.nc (34961 measurements, 5.4s)
+2025-09-08 15:54:50,147 - INFO - Processing: 20241009_prof.nc
+2025-09-08 15:54:56,371 - INFO - Completed: 20241009_prof.nc (42830 measurements, 6.2s)
+2025-09-08 15:54:56,376 - INFO - Processing: 20241010_prof.nc
+2025-09-08 15:55:02,181 - INFO - Completed: 20241010_prof.nc (39382 measurements, 5.8s)
+2025-09-08 15:55:02,185 - INFO - Processing: 20241011_prof.nc
+2025-09-08 15:55:09,226 - INFO - Completed: 20241011_prof.nc (45657 measurements, 7.0s)
+2025-09-08 15:55:09,272 - WARNING - High memory usage: 97.2%. Pausing for cleanup.
+2025-09-08 15:55:11,301 - INFO - Processing: 20241012_prof.nc
+2025-09-08 15:55:18,147 - INFO - Completed: 20241012_prof.nc (44360 measurements, 6.8s)
+2025-09-08 15:55:18,154 - INFO - Processing: 20241013_prof.nc
+2025-09-08 15:55:25,176 - INFO - Completed: 20241013_prof.nc (45707 measurements, 7.0s)
+2025-09-08 15:55:25,180 - INFO - Processing: 20241014_prof.nc
+2025-09-08 15:55:31,132 - INFO - Completed: 20241014_prof.nc (38676 measurements, 5.9s)
+2025-09-08 15:55:31,136 - INFO - Processing: 20241015_prof.nc
+2025-09-08 15:55:39,197 - INFO - Completed: 20241015_prof.nc (52860 measurements, 8.1s)
+2025-09-08 15:55:39,204 - INFO - Processing: 20241016_prof.nc
+2025-09-08 15:55:43,708 - INFO - Completed: 20241016_prof.nc (28861 measurements, 4.5s)
+2025-09-08 15:55:43,711 - INFO - Processing: 20241017_prof.nc
+2025-09-08 15:55:48,332 - INFO - Completed: 20241017_prof.nc (30540 measurements, 4.6s)
+2025-09-08 15:55:48,336 - INFO - Processing: 20241018_prof.nc
+2025-09-08 15:55:53,457 - INFO - Completed: 20241018_prof.nc (33643 measurements, 5.1s)
+2025-09-08 15:55:53,461 - INFO - Processing: 20241019_prof.nc
+2025-09-08 15:55:59,561 - INFO - Completed: 20241019_prof.nc (42114 measurements, 6.1s)
+2025-09-08 15:55:59,565 - INFO - Processing: 20241020_prof.nc
+2025-09-08 15:56:05,705 - INFO - Completed: 20241020_prof.nc (41084 measurements, 6.1s)
+2025-09-08 15:56:05,709 - INFO - Processing: 20241021_prof.nc
+2025-09-08 15:56:12,725 - INFO - Completed: 20241021_prof.nc (47494 measurements, 7.0s)
+2025-09-08 15:56:12,729 - INFO - Processing: 20241022_prof.nc
+2025-09-08 15:56:19,512 - INFO - Completed: 20241022_prof.nc (45051 measurements, 6.8s)
+2025-09-08 15:56:19,517 - INFO - Processing: 20241023_prof.nc
+2025-09-08 15:56:26,567 - INFO - Completed: 20241023_prof.nc (47262 measurements, 7.0s)
+2025-09-08 15:56:26,572 - INFO - Processing: 20241024_prof.nc
+2025-09-08 15:56:31,643 - INFO - Completed: 20241024_prof.nc (33386 measurements, 5.1s)
+2025-09-08 15:56:31,648 - INFO - Processing: 20241025_prof.nc
+2025-09-08 15:56:39,355 - INFO - Completed: 20241025_prof.nc (51190 measurements, 7.7s)
+2025-09-08 15:56:39,363 - INFO - Processing: 20241026_prof.nc
+2025-09-08 15:56:44,069 - INFO - Completed: 20241026_prof.nc (30168 measurements, 4.7s)
+2025-09-08 15:56:44,074 - INFO - Processing: 20241027_prof.nc
+2025-09-08 15:56:49,089 - INFO - Completed: 20241027_prof.nc (30956 measurements, 5.0s)
+2025-09-08 15:56:49,092 - INFO - Processing: 20241028_prof.nc
+2025-09-08 15:56:54,439 - INFO - Completed: 20241028_prof.nc (35978 measurements, 5.3s)
+2025-09-08 15:56:54,442 - INFO - Processing: 20241029_prof.nc
+2025-09-08 15:57:00,379 - INFO - Completed: 20241029_prof.nc (40492 measurements, 5.9s)
+2025-09-08 15:57:00,382 - INFO - Processing: 20241030_prof.nc
+2025-09-08 15:57:07,064 - INFO - Completed: 20241030_prof.nc (45365 measurements, 6.7s)
+2025-09-08 15:57:07,070 - INFO - Processing: 20241031_prof.nc
+2025-09-08 15:57:13,462 - INFO - Completed: 20241031_prof.nc (42650 measurements, 6.4s)
+2025-09-08 15:57:13,465 - INFO - Processing: 20241101_prof.nc
+2025-09-08 15:57:20,280 - INFO - Completed: 20241101_prof.nc (45911 measurements, 6.8s)
+2025-09-08 15:57:20,284 - INFO - Processing: 20241102_prof.nc
+2025-09-08 15:57:26,706 - INFO - Completed: 20241102_prof.nc (43130 measurements, 6.4s)
+2025-09-08 15:57:26,711 - INFO - Processing: 20241103_prof.nc
+2025-09-08 15:57:32,494 - INFO - Completed: 20241103_prof.nc (38657 measurements, 5.8s)
+2025-09-08 15:57:32,498 - INFO - Processing: 20241104_prof.nc
+2025-09-08 15:57:39,669 - INFO - Completed: 20241104_prof.nc (47629 measurements, 7.2s)
+2025-09-08 15:57:39,673 - INFO - Processing: 20241105_prof.nc
+2025-09-08 15:57:44,222 - INFO - Completed: 20241105_prof.nc (30547 measurements, 4.5s)
+2025-09-08 15:57:44,225 - INFO - Processing: 20241106_prof.nc
+2025-09-08 15:57:48,505 - INFO - Completed: 20241106_prof.nc (29242 measurements, 4.3s)
+2025-09-08 15:57:48,510 - INFO - Processing: 20241107_prof.nc
+2025-09-08 15:57:54,069 - INFO - Completed: 20241107_prof.nc (36525 measurements, 5.6s)
+2025-09-08 15:57:54,075 - INFO - Processing: 20241108_prof.nc
+2025-09-08 15:58:00,577 - INFO - Completed: 20241108_prof.nc (41326 measurements, 6.5s)
+2025-09-08 15:58:00,581 - INFO - Processing: 20241109_prof.nc
+2025-09-08 15:58:07,135 - INFO - Completed: 20241109_prof.nc (43673 measurements, 6.5s)
+2025-09-08 15:58:07,140 - INFO - Processing: 20241110_prof.nc
+2025-09-08 15:58:14,209 - INFO - Completed: 20241110_prof.nc (45663 measurements, 7.1s)
+2025-09-08 15:58:14,216 - INFO - Processing: 20241111_prof.nc
+2025-09-08 15:58:21,324 - INFO - Completed: 20241111_prof.nc (46642 measurements, 7.1s)
+2025-09-08 15:58:21,330 - INFO - Processing: 20241112_prof.nc
+2025-09-08 15:58:27,353 - INFO - Completed: 20241112_prof.nc (40156 measurements, 6.0s)
+2025-09-08 15:58:27,357 - INFO - Processing: 20241113_prof.nc
+2025-09-08 15:58:33,976 - INFO - Completed: 20241113_prof.nc (44042 measurements, 6.6s)
+2025-09-08 15:58:33,981 - INFO - Processing: 20241114_prof.nc
+2025-09-08 15:58:40,079 - INFO - Completed: 20241114_prof.nc (40753 measurements, 6.1s)
+2025-09-08 15:58:40,084 - INFO - Processing: 20241115_prof.nc
+2025-09-08 15:58:45,093 - INFO - Completed: 20241115_prof.nc (33336 measurements, 5.0s)
+2025-09-08 15:58:45,099 - INFO - Processing: 20241116_prof.nc
+2025-09-08 15:58:49,936 - INFO - Completed: 20241116_prof.nc (30936 measurements, 4.8s)
+2025-09-08 15:58:49,940 - INFO - Processing: 20241117_prof.nc
+2025-09-08 15:58:54,851 - INFO - Completed: 20241117_prof.nc (33275 measurements, 4.9s)
+2025-09-08 15:58:54,855 - INFO - Processing: 20241118_prof.nc
+2025-09-08 15:59:01,113 - INFO - Completed: 20241118_prof.nc (39883 measurements, 6.3s)
+2025-09-08 15:59:01,117 - INFO - Processing: 20241119_prof.nc
+2025-09-08 15:59:09,021 - INFO - Completed: 20241119_prof.nc (45467 measurements, 7.9s)
+2025-09-08 15:59:09,026 - INFO - Processing: 20241120_prof.nc
+2025-09-08 15:59:15,991 - INFO - Completed: 20241120_prof.nc (47336 measurements, 7.0s)
+2025-09-08 15:59:15,996 - INFO - Processing: 20241121_prof.nc
+2025-09-08 15:59:21,895 - INFO - Completed: 20241121_prof.nc (39365 measurements, 5.9s)
+2025-09-08 15:59:21,901 - INFO - Processing: 20241122_prof.nc
+2025-09-08 15:59:28,921 - INFO - Completed: 20241122_prof.nc (45710 measurements, 7.0s)
+2025-09-08 15:59:28,927 - INFO - Processing: 20241123_prof.nc
+2025-09-08 15:59:35,698 - INFO - Completed: 20241123_prof.nc (40432 measurements, 6.8s)
+2025-09-08 15:59:35,703 - INFO - Processing: 20241124_prof.nc
+2025-09-08 15:59:42,869 - INFO - Completed: 20241124_prof.nc (42327 measurements, 7.2s)
+2025-09-08 15:59:42,875 - INFO - Processing: 20241125_prof.nc
+2025-09-08 15:59:48,725 - INFO - Completed: 20241125_prof.nc (34488 measurements, 5.8s)
+2025-09-08 15:59:48,728 - INFO - Processing: 20241126_prof.nc
+2025-09-08 15:59:54,329 - INFO - Completed: 20241126_prof.nc (38475 measurements, 5.6s)
+2025-09-08 15:59:54,335 - INFO - Processing: 20241127_prof.nc
+2025-09-08 15:59:59,154 - INFO - Completed: 20241127_prof.nc (31655 measurements, 4.8s)
+2025-09-08 15:59:59,158 - INFO - Processing: 20241128_prof.nc
+2025-09-08 16:00:05,426 - INFO - Completed: 20241128_prof.nc (42504 measurements, 6.3s)
+2025-09-08 16:00:05,432 - INFO - Processing: 20241129_prof.nc
+2025-09-08 16:00:13,072 - INFO - Completed: 20241129_prof.nc (46963 measurements, 7.6s)
+2025-09-08 16:00:13,079 - INFO - Processing: 20241130_prof.nc
+2025-09-08 16:00:20,410 - INFO - Completed: 20241130_prof.nc (46816 measurements, 7.3s)
+2025-09-08 16:00:20,453 - WARNING - High memory usage: 96.3%. Pausing for cleanup.
+2025-09-08 16:00:22,481 - INFO - Processing: 20241201_prof.nc
+2025-09-08 16:00:27,528 - INFO - Completed: 20241201_prof.nc (35537 measurements, 5.0s)
+2025-09-08 16:00:27,532 - INFO - Processing: 20241202_prof.nc
+2025-09-08 16:00:34,195 - INFO - Completed: 20241202_prof.nc (43732 measurements, 6.7s)
+2025-09-08 16:00:34,202 - INFO - Processing: 20241203_prof.nc
+2025-09-08 16:00:40,400 - INFO - Completed: 20241203_prof.nc (41331 measurements, 6.2s)
+2025-09-08 16:00:40,404 - INFO - Processing: 20241204_prof.nc
+2025-09-08 16:00:46,444 - INFO - Completed: 20241204_prof.nc (40906 measurements, 6.0s)
+2025-09-08 16:00:46,450 - INFO - Processing: 20241205_prof.nc
+2025-09-08 16:00:51,394 - INFO - Completed: 20241205_prof.nc (31330 measurements, 4.9s)
+2025-09-08 16:00:51,399 - INFO - Processing: 20241206_prof.nc
+2025-09-08 16:00:57,574 - INFO - Completed: 20241206_prof.nc (42675 measurements, 6.2s)
+2025-09-08 16:00:57,579 - INFO - Processing: 20241207_prof.nc
+2025-09-08 16:01:02,303 - INFO - Completed: 20241207_prof.nc (32809 measurements, 4.7s)
+2025-09-08 16:01:02,308 - INFO - Processing: 20241208_prof.nc
+2025-09-08 16:01:08,713 - INFO - Completed: 20241208_prof.nc (43810 measurements, 6.4s)
+2025-09-08 16:01:08,719 - INFO - Processing: 20241209_prof.nc
+2025-09-08 16:01:14,937 - INFO - Completed: 20241209_prof.nc (42496 measurements, 6.2s)
+2025-09-08 16:01:14,942 - INFO - Processing: 20241210_prof.nc
+2025-09-08 16:01:23,517 - INFO - Completed: 20241210_prof.nc (54556 measurements, 8.6s)
+2025-09-08 16:01:23,523 - INFO - Processing: 20241211_prof.nc
+2025-09-08 16:01:28,041 - INFO - Completed: 20241211_prof.nc (28889 measurements, 4.5s)
+2025-09-08 16:01:28,045 - INFO - Processing: 20241212_prof.nc
+2025-09-08 16:01:34,880 - INFO - Completed: 20241212_prof.nc (46321 measurements, 6.8s)
+2025-09-08 16:01:34,884 - INFO - Processing: 20241213_prof.nc
+2025-09-08 16:01:41,312 - INFO - Completed: 20241213_prof.nc (44420 measurements, 6.4s)
+2025-09-08 16:01:41,318 - INFO - Processing: 20241214_prof.nc
+2025-09-08 16:01:47,375 - INFO - Completed: 20241214_prof.nc (41655 measurements, 6.1s)
+2025-09-08 16:01:47,381 - INFO - Processing: 20241215_prof.nc
+2025-09-08 16:01:52,100 - INFO - Completed: 20241215_prof.nc (32431 measurements, 4.7s)
+2025-09-08 16:01:52,104 - INFO - Processing: 20241216_prof.nc
+2025-09-08 16:01:57,183 - INFO - Completed: 20241216_prof.nc (34772 measurements, 5.1s)
+2025-09-08 16:01:57,189 - INFO - Processing: 20241217_prof.nc
+2025-09-08 16:02:03,754 - INFO - Completed: 20241217_prof.nc (44856 measurements, 6.6s)
+2025-09-08 16:02:03,759 - INFO - Processing: 20241218_prof.nc
+2025-09-08 16:02:09,142 - INFO - Completed: 20241218_prof.nc (37359 measurements, 5.4s)
+2025-09-08 16:02:09,146 - INFO - Processing: 20241219_prof.nc
+2025-09-08 16:02:15,954 - INFO - Completed: 20241219_prof.nc (46221 measurements, 6.8s)
+2025-09-08 16:02:15,958 - INFO - Processing: 20241220_prof.nc
+2025-09-08 16:02:23,274 - INFO - Completed: 20241220_prof.nc (49004 measurements, 7.3s)
+2025-09-08 16:02:23,280 - INFO - Processing: 20241221_prof.nc
+2025-09-08 16:02:28,596 - INFO - Completed: 20241221_prof.nc (33981 measurements, 5.3s)
+2025-09-08 16:02:28,601 - INFO - Processing: 20241222_prof.nc
+2025-09-08 16:02:34,930 - INFO - Completed: 20241222_prof.nc (41618 measurements, 6.3s)
+2025-09-08 16:02:34,935 - INFO - Processing: 20241223_prof.nc
+2025-09-08 16:02:41,578 - INFO - Completed: 20241223_prof.nc (45322 measurements, 6.6s)
+2025-09-08 16:02:41,582 - INFO - Processing: 20241224_prof.nc
+2025-09-08 16:02:47,975 - INFO - Completed: 20241224_prof.nc (43153 measurements, 6.4s)
+2025-09-08 16:02:47,982 - INFO - Processing: 20241225_prof.nc
+2025-09-08 16:02:52,830 - INFO - Completed: 20241225_prof.nc (29822 measurements, 4.8s)
+2025-09-08 16:02:52,834 - INFO - Processing: 20241226_prof.nc
+2025-09-08 16:02:58,505 - INFO - Completed: 20241226_prof.nc (36017 measurements, 5.7s)
+2025-09-08 16:02:58,509 - INFO - Processing: 20241227_prof.nc
+2025-09-08 16:03:05,444 - INFO - Completed: 20241227_prof.nc (47125 measurements, 6.9s)
+2025-09-08 16:03:05,450 - INFO - Processing: 20241228_prof.nc
+2025-09-08 16:03:10,430 - INFO - Completed: 20241228_prof.nc (33423 measurements, 5.0s)
+2025-09-08 16:03:10,434 - INFO - Processing: 20241229_prof.nc
+2025-09-08 16:03:16,852 - INFO - Completed: 20241229_prof.nc (43843 measurements, 6.4s)
+2025-09-08 16:03:16,856 - INFO - Processing: 20241230_prof.nc
+2025-09-08 16:03:23,676 - INFO - Completed: 20241230_prof.nc (45644 measurements, 6.8s)
+2025-09-08 16:03:23,681 - INFO - Processing: 20241231_prof.nc
+2025-09-08 16:03:29,309 - INFO - Completed: 20241231_prof.nc (38559 measurements, 5.6s)
+2025-09-08 16:03:29,312 - INFO - Processing: 20250101_prof.nc
+2025-09-08 16:03:35,695 - INFO - Completed: 20250101_prof.nc (40739 measurements, 6.4s)
+2025-09-08 16:03:35,701 - INFO - Processing: 20250102_prof.nc
+2025-09-08 16:03:42,718 - INFO - Completed: 20250102_prof.nc (46955 measurements, 7.0s)
+2025-09-08 16:03:42,722 - INFO - Processing: 20250103_prof.nc
+2025-09-08 16:03:49,602 - INFO - Completed: 20250103_prof.nc (46388 measurements, 6.9s)
+2025-09-08 16:03:49,607 - INFO - Processing: 20250104_prof.nc
+2025-09-08 16:03:53,863 - INFO - Completed: 20250104_prof.nc (28635 measurements, 4.3s)
+2025-09-08 16:03:53,867 - INFO - Processing: 20250105_prof.nc
+2025-09-08 16:03:59,876 - INFO - Completed: 20250105_prof.nc (40128 measurements, 6.0s)
+2025-09-08 16:03:59,881 - INFO - Processing: 20250106_prof.nc
+2025-09-08 16:04:07,233 - INFO - Completed: 20250106_prof.nc (49792 measurements, 7.3s)
+2025-09-08 16:04:07,238 - INFO - Processing: 20250107_prof.nc
+2025-09-08 16:04:12,169 - INFO - Completed: 20250107_prof.nc (33544 measurements, 4.9s)
+2025-09-08 16:04:12,173 - INFO - Processing: 20250108_prof.nc
+2025-09-08 16:04:18,604 - INFO - Completed: 20250108_prof.nc (41660 measurements, 6.4s)
+2025-09-08 16:04:18,610 - INFO - Processing: 20250109_prof.nc
+2025-09-08 16:04:25,229 - INFO - Completed: 20250109_prof.nc (43956 measurements, 6.6s)
+2025-09-08 16:04:25,233 - INFO - Processing: 20250110_prof.nc
+2025-09-08 16:04:30,707 - INFO - Completed: 20250110_prof.nc (35805 measurements, 5.4s)
+2025-09-08 16:04:30,711 - INFO - Processing: 20250111_prof.nc
+2025-09-08 16:04:37,565 - INFO - Completed: 20250111_prof.nc (45908 measurements, 6.8s)
+2025-09-08 16:04:37,571 - INFO - Processing: 20250112_prof.nc
+2025-09-08 16:04:43,536 - INFO - Completed: 20250112_prof.nc (38994 measurements, 6.0s)
+2025-09-08 16:04:43,540 - INFO - Processing: 20250113_prof.nc
+2025-09-08 16:04:51,030 - INFO - Completed: 20250113_prof.nc (48597 measurements, 7.5s)
+2025-09-08 16:04:51,037 - INFO - Processing: 20250114_prof.nc
+2025-09-08 16:04:55,648 - INFO - Completed: 20250114_prof.nc (27980 measurements, 4.6s)
+2025-09-08 16:04:55,652 - INFO - Processing: 20250115_prof.nc
+2025-09-08 16:05:02,484 - INFO - Completed: 20250115_prof.nc (47559 measurements, 6.8s)
+2025-09-08 16:05:02,488 - INFO - Processing: 20250116_prof.nc
+2025-09-08 16:05:09,785 - INFO - Completed: 20250116_prof.nc (47392 measurements, 7.3s)
+2025-09-08 16:05:09,789 - INFO - Processing: 20250117_prof.nc
+2025-09-08 16:05:15,136 - INFO - Completed: 20250117_prof.nc (35815 measurements, 5.3s)
+2025-09-08 16:05:15,142 - INFO - Processing: 20250118_prof.nc
+2025-09-08 16:05:20,647 - INFO - Completed: 20250118_prof.nc (37121 measurements, 5.5s)
+2025-09-08 16:05:20,651 - INFO - Processing: 20250119_prof.nc
+2025-09-08 16:05:27,235 - INFO - Completed: 20250119_prof.nc (42689 measurements, 6.6s)
+2025-09-08 16:05:27,286 - WARNING - High memory usage: 97.4%. Pausing for cleanup.
+2025-09-08 16:05:29,318 - INFO - Processing: 20250120_prof.nc
+2025-09-08 16:05:35,941 - INFO - Completed: 20250120_prof.nc (39389 measurements, 6.6s)
+2025-09-08 16:05:35,946 - INFO - Processing: 20250121_prof.nc
+2025-09-08 16:05:42,869 - INFO - Completed: 20250121_prof.nc (40166 measurements, 6.9s)
+2025-09-08 16:05:42,875 - INFO - Processing: 20250122_prof.nc
+2025-09-08 16:05:50,190 - INFO - Completed: 20250122_prof.nc (41323 measurements, 7.3s)
+2025-09-08 16:05:50,198 - INFO - Processing: 20250123_prof.nc
+2025-09-08 16:06:00,222 - INFO - Completed: 20250123_prof.nc (52636 measurements, 10.0s)
+2025-09-08 16:06:00,230 - INFO - Processing: 20250124_prof.nc
+2025-09-08 16:06:05,722 - INFO - Completed: 20250124_prof.nc (29401 measurements, 5.5s)
+2025-09-08 16:06:05,726 - INFO - Processing: 20250125_prof.nc
+2025-09-08 16:06:13,814 - INFO - Completed: 20250125_prof.nc (45825 measurements, 8.1s)
+2025-09-08 16:06:13,818 - INFO - Processing: 20250126_prof.nc
+2025-09-08 16:06:21,499 - INFO - Completed: 20250126_prof.nc (43969 measurements, 7.7s)
+2025-09-08 16:06:21,504 - INFO - Processing: 20250127_prof.nc
+2025-09-08 16:06:28,280 - INFO - Completed: 20250127_prof.nc (38209 measurements, 6.8s)
+2025-09-08 16:06:28,286 - INFO - Processing: 20250128_prof.nc
+2025-09-08 16:06:35,563 - INFO - Completed: 20250128_prof.nc (42427 measurements, 7.3s)
+2025-09-08 16:06:35,566 - INFO - Processing: 20250129_prof.nc
+2025-09-08 16:06:42,493 - INFO - Completed: 20250129_prof.nc (41042 measurements, 6.9s)
+2025-09-08 16:06:42,500 - INFO - Processing: 20250130_prof.nc
+2025-09-08 16:06:49,201 - INFO - Completed: 20250130_prof.nc (38119 measurements, 6.7s)
+2025-09-08 16:06:49,206 - INFO - Processing: 20250131_prof.nc
+2025-09-08 16:06:56,622 - INFO - Completed: 20250131_prof.nc (42502 measurements, 7.4s)
+2025-09-08 16:06:56,627 - INFO - Processing: 20250201_prof.nc
+2025-09-08 16:07:04,157 - INFO - Completed: 20250201_prof.nc (41945 measurements, 7.5s)
+2025-09-08 16:07:04,165 - INFO - Processing: 20250202_prof.nc
+2025-09-08 16:07:13,095 - INFO - Completed: 20250202_prof.nc (50095 measurements, 8.9s)
+2025-09-08 16:07:13,101 - INFO - Processing: 20250203_prof.nc
+2025-09-08 16:07:19,768 - INFO - Completed: 20250203_prof.nc (36703 measurements, 6.7s)
+2025-09-08 16:07:19,773 - INFO - Processing: 20250204_prof.nc
+2025-09-08 16:07:27,003 - INFO - Completed: 20250204_prof.nc (41463 measurements, 7.2s)
+2025-09-08 16:07:27,008 - INFO - Processing: 20250205_prof.nc
+2025-09-08 16:07:34,261 - INFO - Completed: 20250205_prof.nc (42081 measurements, 7.2s)
+2025-09-08 16:07:34,267 - INFO - Processing: 20250206_prof.nc
+2025-09-08 16:07:40,277 - INFO - Completed: 20250206_prof.nc (36988 measurements, 6.0s)
+2025-09-08 16:07:40,282 - INFO - Processing: 20250207_prof.nc
+2025-09-08 16:07:47,146 - INFO - Completed: 20250207_prof.nc (43313 measurements, 6.9s)
+2025-09-08 16:07:47,152 - INFO - Processing: 20250208_prof.nc
+2025-09-08 16:07:53,458 - INFO - Completed: 20250208_prof.nc (37515 measurements, 6.3s)
+2025-09-08 16:07:53,464 - INFO - Processing: 20250209_prof.nc
+2025-09-08 16:08:00,631 - INFO - Completed: 20250209_prof.nc (44197 measurements, 7.2s)
+2025-09-08 16:08:00,638 - INFO - Processing: 20250210_prof.nc
+2025-09-08 16:08:06,649 - INFO - Completed: 20250210_prof.nc (35844 measurements, 6.0s)
+2025-09-08 16:08:06,653 - INFO - Processing: 20250211_prof.nc
+2025-09-08 16:08:14,511 - INFO - Completed: 20250211_prof.nc (46576 measurements, 7.9s)
+2025-09-08 16:08:14,519 - INFO - Processing: 20250212_prof.nc
+2025-09-08 16:08:22,066 - INFO - Completed: 20250212_prof.nc (45484 measurements, 7.5s)
+2025-09-08 16:08:22,072 - INFO - Processing: 20250213_prof.nc
+2025-09-08 16:08:29,134 - INFO - Completed: 20250213_prof.nc (42829 measurements, 7.1s)
+2025-09-08 16:08:29,139 - INFO - Processing: 20250214_prof.nc
+2025-09-08 16:08:35,019 - INFO - Completed: 20250214_prof.nc (36897 measurements, 5.9s)
+2025-09-08 16:08:35,023 - INFO - Processing: 20250215_prof.nc
+2025-09-08 16:08:42,112 - INFO - Completed: 20250215_prof.nc (43635 measurements, 7.1s)
+2025-09-08 16:08:42,117 - INFO - Processing: 20250216_prof.nc
+2025-09-08 16:08:47,645 - INFO - Completed: 20250216_prof.nc (37588 measurements, 5.5s)
+2025-09-08 16:08:47,651 - INFO - Processing: 20250217_prof.nc
+2025-09-08 16:08:53,707 - INFO - Completed: 20250217_prof.nc (41405 measurements, 6.0s)
+2025-09-08 16:08:53,712 - INFO - Processing: 20250218_prof.nc
+2025-09-08 16:08:58,727 - INFO - Completed: 20250218_prof.nc (32880 measurements, 5.0s)
+2025-09-08 16:08:58,732 - INFO - Processing: 20250219_prof.nc
+2025-09-08 16:09:05,998 - INFO - Completed: 20250219_prof.nc (47057 measurements, 7.3s)
+2025-09-08 16:09:06,006 - INFO - Processing: 20250220_prof.nc
+2025-09-08 16:09:12,093 - INFO - Completed: 20250220_prof.nc (39834 measurements, 6.1s)
+2025-09-08 16:09:12,098 - INFO - Processing: 20250221_prof.nc
+2025-09-08 16:09:19,904 - INFO - Completed: 20250221_prof.nc (50820 measurements, 7.8s)
+2025-09-08 16:09:19,910 - INFO - Processing: 20250222_prof.nc
+2025-09-08 16:09:25,898 - INFO - Completed: 20250222_prof.nc (39093 measurements, 6.0s)
+2025-09-08 16:09:25,902 - INFO - Processing: 20250223_prof.nc
+2025-09-08 16:09:32,834 - INFO - Completed: 20250223_prof.nc (44974 measurements, 6.9s)
+2025-09-08 16:09:32,839 - INFO - Processing: 20250224_prof.nc
+2025-09-08 16:09:39,069 - INFO - Completed: 20250224_prof.nc (37260 measurements, 6.2s)
+2025-09-08 16:09:39,074 - INFO - Processing: 20250225_prof.nc
+2025-09-08 16:09:46,103 - INFO - Completed: 20250225_prof.nc (42817 measurements, 7.0s)
+2025-09-08 16:09:46,109 - INFO - Processing: 20250226_prof.nc
+2025-09-08 16:09:52,038 - INFO - Completed: 20250226_prof.nc (38365 measurements, 5.9s)
+2025-09-08 16:09:52,044 - INFO - Processing: 20250227_prof.nc
+2025-09-08 16:09:58,163 - INFO - Completed: 20250227_prof.nc (41630 measurements, 6.1s)
+2025-09-08 16:09:58,168 - INFO - Processing: 20250228_prof.nc
+2025-09-08 16:10:03,706 - INFO - Completed: 20250228_prof.nc (35525 measurements, 5.5s)
+2025-09-08 16:10:03,710 - INFO - Processing: 20250301_prof.nc
+2025-09-08 16:10:09,703 - INFO - Completed: 20250301_prof.nc (39866 measurements, 6.0s)
+2025-09-08 16:10:09,708 - INFO - Processing: 20250302_prof.nc
+2025-09-08 16:10:16,394 - INFO - Completed: 20250302_prof.nc (43275 measurements, 6.7s)
+2025-09-08 16:10:16,398 - INFO - Processing: 20250303_prof.nc
+2025-09-08 16:10:23,794 - INFO - Completed: 20250303_prof.nc (50120 measurements, 7.4s)
+2025-09-08 16:10:23,799 - INFO - Processing: 20250304_prof.nc
+2025-09-08 16:10:30,049 - INFO - Completed: 20250304_prof.nc (39855 measurements, 6.2s)
+2025-09-08 16:10:30,053 - INFO - Processing: 20250305_prof.nc
+2025-09-08 16:10:36,559 - INFO - Completed: 20250305_prof.nc (43626 measurements, 6.5s)
+2025-09-08 16:10:36,565 - INFO - Processing: 20250306_prof.nc
+2025-09-08 16:10:42,829 - INFO - Completed: 20250306_prof.nc (40470 measurements, 6.3s)
+2025-09-08 16:10:42,835 - INFO - Processing: 20250307_prof.nc
+2025-09-08 16:10:48,738 - INFO - Completed: 20250307_prof.nc (39669 measurements, 5.9s)
+2025-09-08 16:10:48,742 - INFO - Processing: 20250308_prof.nc
+2025-09-08 16:10:54,684 - INFO - Completed: 20250308_prof.nc (40045 measurements, 5.9s)
+2025-09-08 16:10:54,689 - INFO - Processing: 20250309_prof.nc
+2025-09-08 16:11:00,544 - INFO - Completed: 20250309_prof.nc (39579 measurements, 5.8s)
+2025-09-08 16:11:00,550 - INFO - Processing: 20250310_prof.nc
+2025-09-08 16:11:06,826 - INFO - Completed: 20250310_prof.nc (42241 measurements, 6.3s)
+2025-09-08 16:11:06,870 - WARNING - High memory usage: 97.3%. Pausing for cleanup.
+2025-09-08 16:11:08,892 - INFO - Processing: 20250311_prof.nc
+2025-09-08 16:11:15,276 - INFO - Completed: 20250311_prof.nc (42084 measurements, 6.4s)
+2025-09-08 16:11:15,281 - INFO - Processing: 20250312_prof.nc
+2025-09-08 16:11:23,026 - INFO - Completed: 20250312_prof.nc (52749 measurements, 7.7s)
+2025-09-08 16:11:23,033 - INFO - Processing: 20250313_prof.nc
+2025-09-08 16:11:30,572 - INFO - Completed: 20250313_prof.nc (50888 measurements, 7.5s)
+2025-09-08 16:11:30,577 - INFO - Processing: 20250314_prof.nc
+2025-09-08 16:11:37,419 - INFO - Completed: 20250314_prof.nc (44247 measurements, 6.8s)
+2025-09-08 16:11:37,425 - INFO - Processing: 20250315_prof.nc
+2025-09-08 16:11:45,698 - INFO - Completed: 20250315_prof.nc (52562 measurements, 8.3s)
+2025-09-08 16:11:45,703 - INFO - Processing: 20250316_prof.nc
+2025-09-08 16:11:51,427 - INFO - Completed: 20250316_prof.nc (37943 measurements, 5.7s)
+2025-09-08 16:11:51,433 - INFO - Processing: 20250317_prof.nc
+2025-09-08 16:11:57,844 - INFO - Completed: 20250317_prof.nc (43663 measurements, 6.4s)
+2025-09-08 16:11:57,850 - INFO - Processing: 20250318_prof.nc
+2025-09-08 16:12:04,768 - INFO - Completed: 20250318_prof.nc (44479 measurements, 6.9s)
+2025-09-08 16:12:04,774 - INFO - Processing: 20250319_prof.nc
+2025-09-08 16:12:10,617 - INFO - Completed: 20250319_prof.nc (38559 measurements, 5.8s)
+2025-09-08 16:12:10,623 - INFO - Processing: 20250320_prof.nc
+2025-09-08 16:12:17,021 - INFO - Completed: 20250320_prof.nc (40518 measurements, 6.3s)
+2025-09-08 16:12:17,025 - INFO - Processing: 20250321_prof.nc
+2025-09-08 16:12:22,938 - INFO - Completed: 20250321_prof.nc (39955 measurements, 5.9s)
+2025-09-08 16:12:22,944 - INFO - Processing: 20250322_prof.nc
+2025-09-08 16:12:30,451 - INFO - Completed: 20250322_prof.nc (48931 measurements, 7.5s)
+2025-09-08 16:12:30,456 - INFO - Processing: 20250323_prof.nc
+2025-09-08 16:12:37,857 - INFO - Completed: 20250323_prof.nc (50154 measurements, 7.4s)
+2025-09-08 16:12:37,862 - INFO - Processing: 20250324_prof.nc
+2025-09-08 16:12:44,079 - INFO - Completed: 20250324_prof.nc (40913 measurements, 6.2s)
+2025-09-08 16:12:44,086 - INFO - Processing: 20250325_prof.nc
+2025-09-08 16:12:52,491 - INFO - Completed: 20250325_prof.nc (55238 measurements, 8.4s)
+2025-09-08 16:12:52,495 - INFO - Processing: 20250326_prof.nc
+2025-09-08 16:12:57,399 - INFO - Completed: 20250326_prof.nc (32424 measurements, 4.9s)
+2025-09-08 16:12:57,405 - INFO - Processing: 20250327_prof.nc
+2025-09-08 16:13:03,287 - INFO - Completed: 20250327_prof.nc (38258 measurements, 5.9s)
+2025-09-08 16:13:03,294 - INFO - Processing: 20250328_prof.nc
+2025-09-08 16:13:09,065 - INFO - Completed: 20250328_prof.nc (37791 measurements, 5.8s)
+2025-09-08 16:13:09,070 - INFO - Processing: 20250329_prof.nc
+2025-09-08 16:13:15,223 - INFO - Completed: 20250329_prof.nc (41948 measurements, 6.1s)
+2025-09-08 16:13:15,227 - INFO - Processing: 20250330_prof.nc
+2025-09-08 16:13:21,211 - INFO - Completed: 20250330_prof.nc (40142 measurements, 6.0s)
+2025-09-08 16:13:21,215 - INFO - Processing: 20250331_prof.nc
+2025-09-08 16:13:26,614 - INFO - Completed: 20250331_prof.nc (34516 measurements, 5.4s)
+2025-09-08 16:13:26,618 - INFO - Processing: 20250401_prof.nc
+2025-09-08 16:13:33,872 - INFO - Completed: 20250401_prof.nc (48636 measurements, 7.2s)
+2025-09-08 16:13:33,878 - INFO - Processing: 20250402_prof.nc
+2025-09-08 16:13:41,090 - INFO - Completed: 20250402_prof.nc (48528 measurements, 7.2s)
+2025-09-08 16:13:41,096 - INFO - Processing: 20250403_prof.nc
+2025-09-08 16:13:47,230 - INFO - Completed: 20250403_prof.nc (39144 measurements, 6.1s)
+2025-09-08 16:13:47,235 - INFO - Processing: 20250404_prof.nc
+2025-09-08 16:13:54,710 - INFO - Completed: 20250404_prof.nc (46804 measurements, 7.5s)
+2025-09-08 16:13:54,714 - INFO - Processing: 20250405_prof.nc
+2025-09-08 16:14:00,411 - INFO - Completed: 20250405_prof.nc (37834 measurements, 5.7s)
+2025-09-08 16:14:00,415 - INFO - Processing: 20250406_prof.nc
+2025-09-08 16:14:05,888 - INFO - Completed: 20250406_prof.nc (33700 measurements, 5.5s)
+2025-09-08 16:14:05,892 - INFO - Processing: 20250407_prof.nc
+2025-09-08 16:14:11,825 - INFO - Completed: 20250407_prof.nc (38936 measurements, 5.9s)
+2025-09-08 16:14:11,829 - INFO - Processing: 20250408_prof.nc
+2025-09-08 16:14:17,780 - INFO - Completed: 20250408_prof.nc (38223 measurements, 5.9s)
+2025-09-08 16:14:17,786 - INFO - Processing: 20250409_prof.nc
+2025-09-08 16:14:24,321 - INFO - Completed: 20250409_prof.nc (43378 measurements, 6.5s)
+2025-09-08 16:14:24,327 - INFO - Processing: 20250410_prof.nc
+2025-09-08 16:14:29,480 - INFO - Completed: 20250410_prof.nc (34259 measurements, 5.1s)
+2025-09-08 16:14:29,484 - INFO - Processing: 20250411_prof.nc
+2025-09-08 16:14:37,131 - INFO - Completed: 20250411_prof.nc (49953 measurements, 7.6s)
+2025-09-08 16:14:37,137 - INFO - Processing: 20250412_prof.nc
+2025-09-08 16:14:44,395 - INFO - Completed: 20250412_prof.nc (46967 measurements, 7.3s)
+2025-09-08 16:14:44,400 - INFO - Processing: 20250413_prof.nc
+2025-09-08 16:14:49,861 - INFO - Completed: 20250413_prof.nc (36766 measurements, 5.5s)
+2025-09-08 16:14:49,866 - INFO - Processing: 20250414_prof.nc
+2025-09-08 16:14:57,332 - INFO - Completed: 20250414_prof.nc (49201 measurements, 7.5s)
+2025-09-08 16:14:57,337 - INFO - Processing: 20250415_prof.nc
+2025-09-08 16:15:03,432 - INFO - Completed: 20250415_prof.nc (38326 measurements, 6.1s)
+2025-09-08 16:15:03,439 - INFO - Processing: 20250416_prof.nc
+2025-09-08 16:15:09,093 - INFO - Completed: 20250416_prof.nc (36812 measurements, 5.6s)
+2025-09-08 16:15:09,098 - INFO - Processing: 20250417_prof.nc
+2025-09-08 16:15:15,220 - INFO - Completed: 20250417_prof.nc (41244 measurements, 6.1s)
+2025-09-08 16:15:15,224 - INFO - Processing: 20250418_prof.nc
+2025-09-08 16:15:20,903 - INFO - Completed: 20250418_prof.nc (37801 measurements, 5.7s)
+2025-09-08 16:15:20,908 - INFO - Processing: 20250419_prof.nc
+2025-09-08 16:15:28,492 - INFO - Completed: 20250419_prof.nc (49515 measurements, 7.6s)
+2025-09-08 16:15:28,497 - INFO - Processing: 20250420_prof.nc
+2025-09-08 16:15:32,873 - INFO - Completed: 20250420_prof.nc (28747 measurements, 4.4s)
+2025-09-08 16:15:32,877 - INFO - Processing: 20250421_prof.nc
+2025-09-08 16:15:41,069 - INFO - Completed: 20250421_prof.nc (49455 measurements, 8.2s)
+2025-09-08 16:15:41,074 - INFO - Processing: 20250422_prof.nc
+2025-09-08 16:15:48,094 - INFO - Completed: 20250422_prof.nc (46554 measurements, 7.0s)
+2025-09-08 16:15:48,099 - INFO - Processing: 20250423_prof.nc
+2025-09-08 16:15:54,090 - INFO - Completed: 20250423_prof.nc (38448 measurements, 6.0s)
+2025-09-08 16:15:54,094 - INFO - Processing: 20250424_prof.nc
+2025-09-08 16:16:01,476 - INFO - Completed: 20250424_prof.nc (50041 measurements, 7.4s)
+2025-09-08 16:16:01,481 - INFO - Processing: 20250425_prof.nc
+2025-09-08 16:16:07,235 - INFO - Completed: 20250425_prof.nc (36292 measurements, 5.7s)
+2025-09-08 16:16:07,240 - INFO - Processing: 20250426_prof.nc
+2025-09-08 16:16:12,780 - INFO - Completed: 20250426_prof.nc (34426 measurements, 5.5s)
+2025-09-08 16:16:12,785 - INFO - Processing: 20250427_prof.nc
+2025-09-08 16:16:19,125 - INFO - Completed: 20250427_prof.nc (42770 measurements, 6.3s)
+2025-09-08 16:16:19,130 - INFO - Processing: 20250428_prof.nc
+2025-09-08 16:16:24,855 - INFO - Completed: 20250428_prof.nc (37992 measurements, 5.7s)
+2025-09-08 16:16:24,861 - INFO - Processing: 20250429_prof.nc
+2025-09-08 16:16:31,792 - INFO - Completed: 20250429_prof.nc (47240 measurements, 6.9s)
+2025-09-08 16:16:31,836 - WARNING - High memory usage: 96.5%. Pausing for cleanup.
+2025-09-08 16:16:33,861 - INFO - Processing: 20250430_prof.nc
+2025-09-08 16:16:38,699 - INFO - Completed: 20250430_prof.nc (32819 measurements, 4.8s)
+2025-09-08 16:16:38,703 - INFO - Processing: 20250501_prof.nc
+2025-09-08 16:16:45,829 - INFO - Completed: 20250501_prof.nc (46995 measurements, 7.1s)
+2025-09-08 16:16:45,833 - INFO - Processing: 20250502_prof.nc
+2025-09-08 16:16:52,752 - INFO - Completed: 20250502_prof.nc (46814 measurements, 6.9s)
+2025-09-08 16:16:52,756 - INFO - Processing: 20250503_prof.nc
+2025-09-08 16:16:58,525 - INFO - Completed: 20250503_prof.nc (38634 measurements, 5.8s)
+2025-09-08 16:16:58,529 - INFO - Processing: 20250504_prof.nc
+2025-09-08 16:17:05,043 - INFO - Completed: 20250504_prof.nc (42929 measurements, 6.5s)
+2025-09-08 16:17:05,049 - INFO - Processing: 20250505_prof.nc
+2025-09-08 16:17:10,872 - INFO - Completed: 20250505_prof.nc (39842 measurements, 5.8s)
+2025-09-08 16:17:10,878 - INFO - Processing: 20250506_prof.nc
+2025-09-08 16:17:17,197 - INFO - Completed: 20250506_prof.nc (39927 measurements, 6.3s)
+2025-09-08 16:17:17,203 - INFO - Processing: 20250507_prof.nc
+2025-09-08 16:17:23,646 - INFO - Completed: 20250507_prof.nc (40468 measurements, 6.4s)
+2025-09-08 16:17:23,652 - INFO - Processing: 20250508_prof.nc
+2025-09-08 16:17:29,226 - INFO - Completed: 20250508_prof.nc (36202 measurements, 5.6s)
+2025-09-08 16:17:29,231 - INFO - Processing: 20250509_prof.nc
+2025-09-08 16:17:36,430 - INFO - Completed: 20250509_prof.nc (48402 measurements, 7.2s)
+2025-09-08 16:17:36,437 - INFO - Processing: 20250510_prof.nc
+2025-09-08 16:17:40,945 - INFO - Completed: 20250510_prof.nc (29889 measurements, 4.5s)
+2025-09-08 16:17:40,949 - INFO - Processing: 20250511_prof.nc
+2025-09-08 16:17:48,666 - INFO - Completed: 20250511_prof.nc (46252 measurements, 7.7s)
+2025-09-08 16:17:48,670 - INFO - Processing: 20250512_prof.nc
+2025-09-08 16:17:56,412 - INFO - Completed: 20250512_prof.nc (47560 measurements, 7.7s)
+2025-09-08 16:17:56,418 - INFO - Processing: 20250513_prof.nc
+2025-09-08 16:18:02,548 - INFO - Completed: 20250513_prof.nc (38262 measurements, 6.1s)
+2025-09-08 16:18:02,553 - INFO - Processing: 20250514_prof.nc
+2025-09-08 16:18:09,724 - INFO - Completed: 20250514_prof.nc (43929 measurements, 7.2s)
+2025-09-08 16:18:09,730 - INFO - Processing: 20250515_prof.nc
+2025-09-08 16:18:15,437 - INFO - Completed: 20250515_prof.nc (37116 measurements, 5.7s)
+2025-09-08 16:18:15,441 - INFO - Processing: 20250516_prof.nc
+2025-09-08 16:18:21,542 - INFO - Completed: 20250516_prof.nc (39517 measurements, 6.1s)
+2025-09-08 16:18:21,549 - INFO - Processing: 20250517_prof.nc
+2025-09-08 16:18:27,751 - INFO - Completed: 20250517_prof.nc (39040 measurements, 6.2s)
+2025-09-08 16:18:27,755 - INFO - Processing: 20250518_prof.nc
+2025-09-08 16:18:33,836 - INFO - Completed: 20250518_prof.nc (40597 measurements, 6.1s)
+2025-09-08 16:18:33,841 - INFO - Processing: 20250519_prof.nc
+2025-09-08 16:18:40,784 - INFO - Completed: 20250519_prof.nc (45346 measurements, 6.9s)
+2025-09-08 16:18:40,788 - INFO - Processing: 20250520_prof.nc
+2025-09-08 16:18:46,086 - INFO - Completed: 20250520_prof.nc (34679 measurements, 5.3s)
+2025-09-08 16:18:46,092 - INFO - Processing: 20250521_prof.nc
+2025-09-08 16:18:53,030 - INFO - Completed: 20250521_prof.nc (44217 measurements, 6.9s)
+2025-09-08 16:18:53,035 - INFO - Processing: 20250522_prof.nc
+2025-09-08 16:18:59,773 - INFO - Completed: 20250522_prof.nc (44117 measurements, 6.7s)
+2025-09-08 16:18:59,779 - INFO - Processing: 20250523_prof.nc
+2025-09-08 16:19:05,505 - INFO - Completed: 20250523_prof.nc (37086 measurements, 5.7s)
+2025-09-08 16:19:05,510 - INFO - Processing: 20250524_prof.nc
+2025-09-08 16:19:12,159 - INFO - Completed: 20250524_prof.nc (43146 measurements, 6.6s)
+2025-09-08 16:19:12,165 - INFO - Processing: 20250525_prof.nc
+2025-09-08 16:19:18,176 - INFO - Completed: 20250525_prof.nc (39677 measurements, 6.0s)
+2025-09-08 16:19:18,180 - INFO - Processing: 20250526_prof.nc
+2025-09-08 16:19:22,849 - INFO - Completed: 20250526_prof.nc (29424 measurements, 4.7s)
+2025-09-08 16:19:22,853 - INFO - Processing: 20250527_prof.nc
+2025-09-08 16:19:29,803 - INFO - Completed: 20250527_prof.nc (44704 measurements, 6.9s)
+2025-09-08 16:19:29,809 - INFO - Processing: 20250528_prof.nc
+2025-09-08 16:19:36,080 - INFO - Completed: 20250528_prof.nc (39972 measurements, 6.3s)
+2025-09-08 16:19:36,086 - INFO - Processing: 20250529_prof.nc
+2025-09-08 16:19:41,883 - INFO - Completed: 20250529_prof.nc (38548 measurements, 5.8s)
+2025-09-08 16:19:41,890 - INFO - Processing: 20250530_prof.nc
+2025-09-08 16:19:46,743 - INFO - Completed: 20250530_prof.nc (32154 measurements, 4.8s)
+2025-09-08 16:19:46,747 - INFO - Processing: 20250531_prof.nc
+2025-09-08 16:19:53,880 - INFO - Completed: 20250531_prof.nc (44544 measurements, 7.1s)
+2025-09-08 16:19:53,887 - INFO - Processing: 20250601_prof.nc
+2025-09-08 16:20:00,712 - INFO - Completed: 20250601_prof.nc (42757 measurements, 6.8s)
+2025-09-08 16:20:00,717 - INFO - Processing: 20250602_prof.nc
+2025-09-08 16:20:06,070 - INFO - Completed: 20250602_prof.nc (32470 measurements, 5.3s)
+2025-09-08 16:20:06,075 - INFO - Processing: 20250603_prof.nc
+2025-09-08 16:20:12,805 - INFO - Completed: 20250603_prof.nc (43657 measurements, 6.7s)
+2025-09-08 16:20:12,812 - INFO - Processing: 20250604_prof.nc
+2025-09-08 16:20:18,126 - INFO - Completed: 20250604_prof.nc (35412 measurements, 5.3s)
+2025-09-08 16:20:18,131 - INFO - Processing: 20250605_prof.nc
+2025-09-08 16:20:23,646 - INFO - Completed: 20250605_prof.nc (35821 measurements, 5.5s)
+2025-09-08 16:20:23,651 - INFO - Processing: 20250606_prof.nc
+2025-09-08 16:20:30,028 - INFO - Completed: 20250606_prof.nc (39645 measurements, 6.4s)
+2025-09-08 16:20:30,033 - INFO - Processing: 20250607_prof.nc
+2025-09-08 16:20:36,563 - INFO - Completed: 20250607_prof.nc (37854 measurements, 6.5s)
+2025-09-08 16:20:36,569 - INFO - Processing: 20250608_prof.nc
+2025-09-08 16:20:42,706 - INFO - Completed: 20250608_prof.nc (33543 measurements, 6.1s)
+2025-09-08 16:20:42,711 - INFO - Processing: 20250609_prof.nc
+2025-09-08 16:20:49,358 - INFO - Completed: 20250609_prof.nc (34994 measurements, 6.6s)
+2025-09-08 16:20:49,363 - INFO - Processing: 20250610_prof.nc
+2025-09-08 16:20:56,203 - INFO - Completed: 20250610_prof.nc (37988 measurements, 6.8s)
+2025-09-08 16:20:56,208 - INFO - Processing: 20250611_prof.nc
+2025-09-08 16:21:04,328 - INFO - Completed: 20250611_prof.nc (44813 measurements, 8.1s)
+2025-09-08 16:21:04,333 - INFO - Processing: 20250612_prof.nc
+2025-09-08 16:21:10,675 - INFO - Completed: 20250612_prof.nc (34965 measurements, 6.3s)
+2025-09-08 16:21:10,679 - INFO - Processing: 20250613_prof.nc
+2025-09-08 16:21:17,642 - INFO - Completed: 20250613_prof.nc (37648 measurements, 7.0s)
+2025-09-08 16:21:17,647 - INFO - Processing: 20250614_prof.nc
+2025-09-08 16:21:24,191 - INFO - Completed: 20250614_prof.nc (35368 measurements, 6.5s)
+2025-09-08 16:21:24,197 - INFO - Processing: 20250615_prof.nc
+2025-09-08 16:21:31,648 - INFO - Completed: 20250615_prof.nc (40490 measurements, 7.4s)
+2025-09-08 16:21:31,653 - INFO - Processing: 20250616_prof.nc
+2025-09-08 16:21:38,653 - INFO - Completed: 20250616_prof.nc (39933 measurements, 7.0s)
+2025-09-08 16:21:38,659 - INFO - Processing: 20250617_prof.nc
+2025-09-08 16:21:44,981 - INFO - Completed: 20250617_prof.nc (36099 measurements, 6.3s)
+2025-09-08 16:21:44,985 - INFO - Processing: 20250618_prof.nc
+2025-09-08 16:21:50,899 - INFO - Completed: 20250618_prof.nc (31121 measurements, 5.9s)
+2025-09-08 16:21:50,956 - WARNING - High memory usage: 96.9%. Pausing for cleanup.
+2025-09-08 16:21:52,986 - INFO - Processing: 20250619_prof.nc
+2025-09-08 16:21:58,854 - INFO - Completed: 20250619_prof.nc (33312 measurements, 5.9s)
+2025-09-08 16:21:58,857 - INFO - Processing: 20250620_prof.nc
+2025-09-08 16:22:05,548 - INFO - Completed: 20250620_prof.nc (37851 measurements, 6.7s)
+2025-09-08 16:22:05,554 - INFO - Processing: 20250621_prof.nc
+2025-09-08 16:22:13,839 - INFO - Completed: 20250621_prof.nc (47577 measurements, 8.3s)
+2025-09-08 16:22:13,845 - INFO - Processing: 20250622_prof.nc
+2025-09-08 16:22:20,053 - INFO - Completed: 20250622_prof.nc (33663 measurements, 6.2s)
+2025-09-08 16:22:20,059 - INFO - Processing: 20250623_prof.nc
+2025-09-08 16:22:26,770 - INFO - Completed: 20250623_prof.nc (37621 measurements, 6.7s)
+2025-09-08 16:22:26,775 - INFO - Processing: 20250624_prof.nc
+2025-09-08 16:22:34,626 - INFO - Completed: 20250624_prof.nc (44382 measurements, 7.8s)
+2025-09-08 16:22:34,633 - INFO - Processing: 20250625_prof.nc
+2025-09-08 16:22:40,997 - INFO - Completed: 20250625_prof.nc (36266 measurements, 6.4s)
+2025-09-08 16:22:41,000 - INFO - Processing: 20250626_prof.nc
+2025-09-08 16:22:47,178 - INFO - Completed: 20250626_prof.nc (35274 measurements, 6.2s)
+2025-09-08 16:22:47,184 - INFO - Processing: 20250627_prof.nc
+2025-09-08 16:22:53,595 - INFO - Completed: 20250627_prof.nc (33219 measurements, 6.4s)
+2025-09-08 16:22:53,600 - INFO - Processing: 20250628_prof.nc
+2025-09-08 16:22:59,852 - INFO - Completed: 20250628_prof.nc (36589 measurements, 6.2s)
+2025-09-08 16:22:59,857 - INFO - Processing: 20250629_prof.nc
+2025-09-08 16:23:05,613 - INFO - Completed: 20250629_prof.nc (31918 measurements, 5.7s)
+2025-09-08 16:23:05,617 - INFO - Processing: 20250630_prof.nc
+2025-09-08 16:23:12,727 - INFO - Completed: 20250630_prof.nc (40849 measurements, 7.1s)
+2025-09-08 16:23:12,732 - INFO - Processing: 20250701_prof.nc
+2025-09-08 16:23:19,912 - INFO - Completed: 20250701_prof.nc (43166 measurements, 7.2s)
+2025-09-08 16:23:19,916 - INFO - Processing: 20250702_prof.nc
+2025-09-08 16:23:25,935 - INFO - Completed: 20250702_prof.nc (33049 measurements, 6.0s)
+2025-09-08 16:23:25,940 - INFO - Processing: 20250703_prof.nc
+2025-09-08 16:23:32,597 - INFO - Completed: 20250703_prof.nc (38491 measurements, 6.7s)
+2025-09-08 16:23:32,604 - INFO - Processing: 20250704_prof.nc
+2025-09-08 16:23:39,413 - INFO - Completed: 20250704_prof.nc (38368 measurements, 6.8s)
+2025-09-08 16:23:39,417 - INFO - Processing: 20250705_prof.nc
+2025-09-08 16:23:46,411 - INFO - Completed: 20250705_prof.nc (40597 measurements, 7.0s)
+2025-09-08 16:23:46,416 - INFO - Processing: 20250706_prof.nc
+2025-09-08 16:23:51,011 - INFO - Completed: 20250706_prof.nc (31152 measurements, 4.6s)
+2025-09-08 16:23:51,016 - INFO - Processing: 20250707_prof.nc
+2025-09-08 16:23:56,098 - INFO - Completed: 20250707_prof.nc (32855 measurements, 5.1s)
+2025-09-08 16:23:56,102 - INFO - Processing: 20250708_prof.nc
+2025-09-08 16:24:02,105 - INFO - Completed: 20250708_prof.nc (34425 measurements, 6.0s)
+2025-09-08 16:24:02,109 - INFO - Processing: 20250709_prof.nc
+2025-09-08 16:24:08,148 - INFO - Completed: 20250709_prof.nc (34271 measurements, 6.0s)
+2025-09-08 16:24:08,152 - INFO - Processing: 20250710_prof.nc
+2025-09-08 16:24:13,976 - INFO - Completed: 20250710_prof.nc (35718 measurements, 5.8s)
+2025-09-08 16:24:13,981 - INFO - Processing: 20250711_prof.nc
+2025-09-08 16:24:20,689 - INFO - Completed: 20250711_prof.nc (42466 measurements, 6.7s)
+2025-09-08 16:24:20,693 - INFO - Processing: 20250712_prof.nc
+2025-09-08 16:24:25,702 - INFO - Completed: 20250712_prof.nc (32197 measurements, 5.0s)
+2025-09-08 16:24:25,705 - INFO - Processing: 20250713_prof.nc
+2025-09-08 16:24:32,334 - INFO - Completed: 20250713_prof.nc (41183 measurements, 6.6s)
+2025-09-08 16:24:32,339 - INFO - Processing: 20250714_prof.nc
+2025-09-08 16:24:38,395 - INFO - Completed: 20250714_prof.nc (35969 measurements, 6.0s)
+2025-09-08 16:24:38,400 - INFO - Processing: 20250715_prof.nc
+2025-09-08 16:24:44,652 - INFO - Completed: 20250715_prof.nc (36164 measurements, 6.2s)
+2025-09-08 16:24:44,658 - INFO - Processing: 20250716_prof.nc
+2025-09-08 16:24:51,296 - INFO - Completed: 20250716_prof.nc (37278 measurements, 6.6s)
+2025-09-08 16:24:51,302 - INFO - Processing: 20250717_prof.nc
+2025-09-08 16:24:56,685 - INFO - Completed: 20250717_prof.nc (31261 measurements, 5.4s)
+2025-09-08 16:24:56,690 - INFO - Processing: 20250718_prof.nc
+2025-09-08 16:25:02,839 - INFO - Completed: 20250718_prof.nc (35865 measurements, 6.1s)
+2025-09-08 16:25:02,844 - INFO - Processing: 20250719_prof.nc
+2025-09-08 16:25:08,811 - INFO - Completed: 20250719_prof.nc (33144 measurements, 6.0s)
+2025-09-08 16:25:08,815 - INFO - Processing: 20250720_prof.nc
+2025-09-08 16:25:15,673 - INFO - Completed: 20250720_prof.nc (37829 measurements, 6.9s)
+2025-09-08 16:25:15,680 - INFO - Processing: 20250721_prof.nc
+2025-09-08 16:25:24,319 - INFO - Completed: 20250721_prof.nc (47370 measurements, 8.6s)
+2025-09-08 16:25:24,327 - INFO - Processing: 20250722_prof.nc
+2025-09-08 16:25:30,051 - INFO - Completed: 20250722_prof.nc (31045 measurements, 5.7s)
+2025-09-08 16:25:30,056 - INFO - Processing: 20250723_prof.nc
+2025-09-08 16:25:36,120 - INFO - Completed: 20250723_prof.nc (34581 measurements, 6.1s)
+2025-09-08 16:25:36,126 - INFO - Processing: 20250724_prof.nc
+2025-09-08 16:25:42,219 - INFO - Completed: 20250724_prof.nc (34127 measurements, 6.1s)
+2025-09-08 16:25:42,223 - INFO - Processing: 20250725_prof.nc
+2025-09-08 16:25:47,879 - INFO - Completed: 20250725_prof.nc (34000 measurements, 5.7s)
+2025-09-08 16:25:47,885 - INFO - Processing: 20250726_prof.nc
+2025-09-08 16:25:54,002 - INFO - Completed: 20250726_prof.nc (35788 measurements, 6.1s)
+2025-09-08 16:25:54,006 - INFO - Processing: 20250727_prof.nc
+2025-09-08 16:25:59,221 - INFO - Completed: 20250727_prof.nc (29920 measurements, 5.2s)
+2025-09-08 16:25:59,227 - INFO - Processing: 20250728_prof.nc
+2025-09-08 16:26:06,264 - INFO - Completed: 20250728_prof.nc (41450 measurements, 7.0s)
+2025-09-08 16:26:06,271 - INFO - Processing: 20250729_prof.nc
+2025-09-08 16:26:11,228 - INFO - Completed: 20250729_prof.nc (24633 measurements, 4.9s)
+2025-09-08 16:26:11,231 - INFO - Processing: 20250730_prof.nc
+2025-09-08 16:26:18,907 - INFO - Completed: 20250730_prof.nc (42223 measurements, 7.7s)
+2025-09-08 16:26:18,912 - INFO - Processing: 20250731_prof.nc
+2025-09-08 16:26:26,314 - INFO - Completed: 20250731_prof.nc (41125 measurements, 7.4s)
+2025-09-08 16:26:26,320 - INFO - Processing: 20250801_prof.nc
+2025-09-08 16:26:33,175 - INFO - Completed: 20250801_prof.nc (37393 measurements, 6.8s)
+2025-09-08 16:26:33,181 - INFO - Processing: 20250802_prof.nc
+2025-09-08 16:26:39,718 - INFO - Completed: 20250802_prof.nc (30377 measurements, 6.5s)
+2025-09-08 16:26:39,724 - INFO - Processing: 20250803_prof.nc
+2025-09-08 16:26:46,290 - INFO - Completed: 20250803_prof.nc (36171 measurements, 6.5s)
+2025-09-08 16:26:46,297 - INFO - Processing: 20250804_prof.nc
+2025-09-08 16:26:51,558 - INFO - Completed: 20250804_prof.nc (31652 measurements, 5.3s)
+2025-09-08 16:26:51,562 - INFO - Processing: 20250805_prof.nc
+2025-09-08 16:26:57,624 - INFO - Completed: 20250805_prof.nc (39073 measurements, 6.1s)
+2025-09-08 16:26:57,630 - INFO - Processing: 20250806_prof.nc
+2025-09-08 16:27:02,131 - INFO - Completed: 20250806_prof.nc (28580 measurements, 4.5s)
+2025-09-08 16:27:02,136 - INFO - Processing: 20250807_prof.nc
+2025-09-08 16:27:11,290 - INFO - Completed: 20250807_prof.nc (37701 measurements, 9.1s)
+2025-09-08 16:27:11,369 - WARNING - High memory usage: 98.0%. Pausing for cleanup.
+2025-09-08 16:27:13,404 - INFO - Processing: 20250808_prof.nc
+2025-09-08 16:27:18,212 - INFO - Completed: 20250808_prof.nc (28427 measurements, 4.8s)
+2025-09-08 16:27:18,217 - INFO - Processing: 20250809_prof.nc
+2025-09-08 16:27:25,518 - INFO - Completed: 20250809_prof.nc (41331 measurements, 7.3s)
+2025-09-08 16:27:25,522 - INFO - Processing: 20250810_prof.nc
+2025-09-08 16:27:32,723 - INFO - Completed: 20250810_prof.nc (37883 measurements, 7.2s)
+2025-09-08 16:27:32,728 - INFO - Processing: 20250811_prof.nc
+2025-09-08 16:27:40,478 - INFO - Completed: 20250811_prof.nc (39924 measurements, 7.7s)
+2025-09-08 16:27:40,484 - INFO - Processing: 20250812_prof.nc
+2025-09-08 16:27:46,586 - INFO - Completed: 20250812_prof.nc (33939 measurements, 6.1s)
+2025-09-08 16:27:46,591 - INFO - Processing: 20250813_prof.nc
+2025-09-08 16:27:53,370 - INFO - Completed: 20250813_prof.nc (34564 measurements, 6.7s)
+2025-09-08 16:27:53,377 - INFO - Processing: 20250814_prof.nc
+2025-09-08 16:27:58,442 - INFO - Completed: 20250814_prof.nc (31095 measurements, 5.1s)
+2025-09-08 16:27:58,447 - INFO - Processing: 20250815_prof.nc
+2025-09-08 16:28:05,251 - INFO - Completed: 20250815_prof.nc (40648 measurements, 6.8s)
+2025-09-08 16:28:05,256 - INFO - Processing: 20250816_prof.nc
+2025-09-08 16:28:11,548 - INFO - Completed: 20250816_prof.nc (34470 measurements, 6.3s)
+2025-09-08 16:28:11,552 - INFO - Processing: 20250817_prof.nc
+2025-09-08 16:28:17,653 - INFO - Completed: 20250817_prof.nc (36791 measurements, 6.1s)
+2025-09-08 16:28:17,658 - INFO - Processing: 20250818_prof.nc
+2025-09-08 16:28:22,004 - INFO - Completed: 20250818_prof.nc (27364 measurements, 4.3s)
+2025-09-08 16:28:22,007 - INFO - Processing: 20250819_prof.nc
+2025-09-08 16:28:28,504 - INFO - Completed: 20250819_prof.nc (38759 measurements, 6.5s)
+2025-09-08 16:28:28,507 - INFO - Processing: 20250820_prof.nc
+2025-09-08 16:28:33,813 - INFO - Completed: 20250820_prof.nc (33158 measurements, 5.3s)
+2025-09-08 16:28:33,816 - INFO - Processing: 20250821_prof.nc
+2025-09-08 16:28:41,406 - INFO - Completed: 20250821_prof.nc (43061 measurements, 7.6s)
+2025-09-08 16:28:41,411 - INFO - Processing: 20250822_prof.nc
+2025-09-08 16:28:45,395 - INFO - Completed: 20250822_prof.nc (24317 measurements, 4.0s)
+2025-09-08 16:28:45,398 - INFO - Processing: 20250823_prof.nc
+2025-09-08 16:28:50,480 - INFO - Completed: 20250823_prof.nc (30057 measurements, 5.1s)
+2025-09-08 16:28:50,484 - INFO - Processing: 20250824_prof.nc
+2025-09-08 16:28:55,588 - INFO - Completed: 20250824_prof.nc (32959 measurements, 5.1s)
+2025-09-08 16:28:55,592 - INFO - Processing: 20250825_prof.nc
+2025-09-08 16:29:01,883 - INFO - Completed: 20250825_prof.nc (37770 measurements, 6.3s)
+2025-09-08 16:29:01,889 - INFO - Processing: 20250826_prof.nc
+2025-09-08 16:29:07,451 - INFO - Completed: 20250826_prof.nc (35056 measurements, 5.6s)
+2025-09-08 16:29:07,456 - INFO - Processing: 20250827_prof.nc
+2025-09-08 16:29:12,224 - INFO - Completed: 20250827_prof.nc (31068 measurements, 4.8s)
+2025-09-08 16:29:12,228 - INFO - Processing: 20250828_prof.nc
+2025-09-08 16:29:16,263 - INFO - Completed: 20250828_prof.nc (27393 measurements, 4.0s)
+2025-09-08 16:29:16,265 - INFO - Processing: 20250829_prof.nc
+2025-09-08 16:29:22,536 - INFO - Completed: 20250829_prof.nc (34736 measurements, 6.3s)
+2025-09-08 16:29:22,540 - INFO - Processing: 20250830_prof.nc
+2025-09-08 16:29:27,905 - INFO - Completed: 20250830_prof.nc (32986 measurements, 5.4s)
+2025-09-08 16:29:27,909 - INFO - Processing: 20250831_prof.nc
+2025-09-08 16:29:34,193 - INFO - Completed: 20250831_prof.nc (37618 measurements, 6.3s)
+2025-09-08 16:29:34,197 - INFO - Processing: 20250901_prof.nc
+2025-09-08 16:29:38,659 - INFO - Completed: 20250901_prof.nc (28906 measurements, 4.5s)
+2025-09-08 16:29:38,664 - INFO - Processing: 20250902_prof.nc
+2025-09-08 16:29:43,161 - INFO - Completed: 20250902_prof.nc (29291 measurements, 4.5s)
+2025-09-08 16:29:43,164 - INFO - Processing: 20250903_prof.nc
+2025-09-08 16:29:48,329 - INFO - Completed: 20250903_prof.nc (33461 measurements, 5.2s)
+2025-09-08 16:29:48,334 - INFO - Processing: 20250904_prof.nc
+2025-09-08 16:29:53,309 - INFO - Completed: 20250904_prof.nc (31930 measurements, 5.0s)
+2025-09-08 16:29:53,314 - INFO - Processing: 20250905_prof.nc
+2025-09-08 16:29:58,458 - INFO - Completed: 20250905_prof.nc (33327 measurements, 5.1s)
+2025-09-08 16:29:58,462 - INFO - Processing: 20250906_prof.nc
+2025-09-08 16:30:01,348 - INFO - Completed: 20250906_prof.nc (19320 measurements, 2.9s)
+2025-09-08 16:30:01,353 - INFO - ============================================================
+2025-09-08 16:30:01,353 - INFO - FINAL PROCESSING REPORT
+2025-09-08 16:30:01,353 - INFO - ============================================================
+2025-09-08 16:30:01,353 - INFO - Total files found: 980
+2025-09-08 16:30:01,353 - INFO - Successfully processed: 980
+2025-09-08 16:30:01,353 - INFO - Failed: 0
+2025-09-08 16:30:01,353 - INFO - Skipped (already processed): 0
+2025-09-08 16:30:01,353 - INFO - Success rate: 100.0%
+2025-09-08 16:30:52,089 - INFO - Database summary:
+2025-09-08 16:30:52,089 - INFO -   - Float profiles: 980
+2025-09-08 16:30:52,089 - INFO -   - Measurements: 41,739,256
+2025-09-08 16:30:52,129 - INFO - Processing completed!

@@ -1,43 +1,73 @@
-# requirements.txt
-# xarray==2023.12.0
-# netCDF4==1.6.5
-# pandas==2.1.4
-# sqlalchemy==2.0.23
-# psycopg2-binary==2.9.9
-# plotly==5.18.0
-# requests==2.31.0
-# tqdm==4.66.1
-# python-dotenv==1.0.0
-# langchain==0.1.0
-# langchain-community==0.0.10
-# langchain-google-genai==0.0.2  # Use this specific version
-# chromadb==0.4.15
-# google-generativeai==0.3.2
-# numpy==1.24.3
-# fastapi
-# uvicorn[standard]
-# websockets
-# pydantic
+
+
+# # requirements.txt
+# # xarray==2023.12.0
+# # netCDF4==1.6.5
+# # pandas==2.1.4
+# # sqlalchemy==2.0.23
+# # psycopg2-binary==2.9.9
+# # plotly==5.18.0
+# # requests==2.31.0
+# # tqdm==4.66.1
+# # python-dotenv==1.0.0
+# # langchain==0.1.0
+# # langchain-community==0.0.10
+# # langchain-google-genai==0.0.2  # Use this specific version
+# # chromadb==0.4.15
+# # google-generativeai==0.3.2
+# # numpy==1.24.3
+# # fastapi
+# # uvicorn[standard]
+# # websockets
+# # pydantic
 
 
 # requirements.txt
-xarray
-netCDF4
-pandas
-sqlalchemy
-psycopg2-binary
+# requirements.txt for Enhanced ARGO Data Converter
+
+# Core scientific computing
+numpy>=1.21.0
+pandas>=1.5.0
+xarray>=2022.3.0
+netCDF4>=1.6.0
+
+# Database connectivity
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Oceanographic calculations (CRITICAL for derived parameters)
+gsw>=3.6.16
+
+# Progress bars and logging
+tqdm>=4.64.0
+
+# Geospatial support
+geoalchemy2>=0.14.0
+
+# Performance and parallel processing (built-in)
+# concurrent.futures - part of Python standard library
+# multiprocessing - part of Python standard library
+
+# Data quality and validation
+scipy>=1.9.0
+
+# Optional: For advanced BGC calculations
+# seawater>=3.3.4  # Alternative to GSW for some calculations
+
+# Development and debugging
+pytest>=7.0.0  # For testing
+ipython>=8.0.0  # For debugging
 plotly
 requests
-tqdm
 python-dotenv
 langchain
 langchain-community
 langchain-google-genai  # Use this specific version
 chromadb
 google-generativeai
-numpy
 fastapi
 uvicorn[standard]
 websockets
 pydantic
 python-multipart
+psutil

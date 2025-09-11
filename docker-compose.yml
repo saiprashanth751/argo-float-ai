@@ -1,17 +1,30 @@
+# Put this in: argo-float-ai/docker-compose.yml
 version: '3.8'
 services:
   postgres:
-    image: postgres:15
+    image: postgis/postgis:15-3.3
+    container_name: argo_postgres_clean
     environment:
       POSTGRES_DB: argo_data
       POSTGRES_USER: argo_user
       POSTGRES_PASSWORD: argo_password
-    volumes:
-      - ./backend/storage/postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U argo_user -d argo_data"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+    volumes:
+      - fresh_postgres_data:/var/lib/postgresql/data
+      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: argo_pgadmin_clean
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@floatchat.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+
+volumes:
+  fresh_postgres_data:

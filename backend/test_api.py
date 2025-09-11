@@ -1,4 +1,4 @@
-# test_api.py - Test script for FloatChat FastAPI backend
+# backend\test_api.py - Test script for FloatChat FastAPI backend
 import requests
 import json
 import time
