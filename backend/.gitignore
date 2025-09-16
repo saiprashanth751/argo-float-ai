@@ -1,0 +1,22 @@
+./data
+backend/data
+backend/src/utils/storage
+backend/storage
+backend/src/services/storage/
+
+# Ignore Python virtual environments
+venv/
+backend/venv/
+
+# Ignore cache
+__pycache__/
+*.pyc
+
+# Ignore binaries
+*.dll
+*.lib
+*.so
+*.pyd
+
+# Ignore environment configs
+.env

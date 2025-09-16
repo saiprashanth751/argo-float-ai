@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgis/postgis:15-3.3
+    container_name: argo_postgres_clean
+    environment:
+      POSTGRES_DB: argo_data
+      POSTGRES_USER: argo_user
+      POSTGRES_PASSWORD: argo_password
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - fresh_postgres_data:/var/lib/postgresql/data
+      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U argo_user -d argo_data"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: argo_pgadmin_clean
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@floatchat.com
+      PGLADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  fresh_postgres_data:

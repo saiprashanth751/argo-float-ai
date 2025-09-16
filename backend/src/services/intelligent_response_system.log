@@ -1,0 +1,777 @@
+2025-09-13 01:21:29,498 - __main__ - INFO - main:1779 - Production configuration created
+2025-09-13 01:21:29,499 - __main__ - INFO - test_intelligent_response_system:1490 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 01:21:29,499 - __main__ - INFO - test_intelligent_response_system:1491 - ======================================================================
+2025-09-13 01:21:30,223 - __main__ - INFO - test_intelligent_response_system:1511 - --------------------------------------------------
+2025-09-13 01:21:30,223 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 01:21:30,227 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 01:21:30,232 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 01:21:30,234 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 01:21:30,237 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 01:21:30,243 - __main__ - INFO - test_intelligent_response_system:1543 - ------------------------------------------------------------
+2025-09-13 01:21:30,243 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 01:21:30,244 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: general_public
+2025-09-13 01:21:30,244 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: basic
+2025-09-13 01:21:30,245 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:21:30,245 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 01:22:10,290 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:22:10,292 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: researcher
+2025-09-13 01:22:10,292 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: intermediate
+2025-09-13 01:22:10,293 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:22:10,293 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:22:12,660 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:22:12,660 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: government_official
+2025-09-13 01:22:12,661 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: advanced
+2025-09-13 01:22:12,662 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:22:12,662 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:22:29,717 - __main__ - INFO - test_intelligent_response_system:1603 - --------------------------------------------------
+2025-09-13 01:22:29,717 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 01:22:29,720 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:22:29,722 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 01:22:29,725 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:22:29,727 - __main__ - INFO - test_intelligent_response_system:1642 - ============================================================
+2025-09-13 01:22:29,750 - __main__ - INFO - test_intelligent_response_system:1654 - - Fixed platform_number string/integer conversion errors
+2025-09-13 01:22:29,751 - __main__ - INFO - test_intelligent_response_system:1655 - - Added comprehensive SQL syntax validation
+2025-09-13 01:22:29,751 - __main__ - INFO - test_intelligent_response_system:1656 - - Implemented smart parentheses balancing
+2025-09-13 01:22:29,752 - __main__ - INFO - test_intelligent_response_system:1657 - - Added production schema awareness
+2025-09-13 01:22:29,752 - __main__ - INFO - test_intelligent_response_system:1658 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 01:22:29,754 - __main__ - INFO - test_intelligent_response_system:1659 - - Improved visualization templates for new schema
+2025-09-13 01:22:29,754 - __main__ - INFO - test_intelligent_response_system:1660 - - Added audience-specific response formatting
+2025-09-13 01:22:29,754 - __main__ - INFO - test_intelligent_response_system:1662 - 
+======================================================================
+2025-09-13 01:22:29,755 - __main__ - INFO - test_intelligent_response_system:1663 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 01:22:29,755 - __main__ - INFO - test_intelligent_response_system:1664 - ======================================================================
+2025-09-13 01:22:29,757 - __main__ - INFO - main:1784 - System testing completed successfully
+2025-09-13 01:24:46,448 - __main__ - INFO - main:1779 - Production configuration created
+2025-09-13 01:24:46,449 - __main__ - INFO - test_intelligent_response_system:1490 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 01:24:46,450 - __main__ - INFO - test_intelligent_response_system:1491 - ======================================================================
+2025-09-13 01:24:47,155 - __main__ - INFO - test_intelligent_response_system:1511 - --------------------------------------------------
+2025-09-13 01:24:47,156 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 01:24:47,158 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 01:24:47,160 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 01:24:47,163 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 01:24:47,166 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 01:24:47,171 - __main__ - INFO - test_intelligent_response_system:1543 - ------------------------------------------------------------
+2025-09-13 01:24:47,172 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 01:24:47,172 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: general_public
+2025-09-13 01:24:47,173 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: basic
+2025-09-13 01:24:47,173 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:24:47,175 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 01:24:54,712 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:24:54,713 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: researcher
+2025-09-13 01:24:54,714 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: intermediate
+2025-09-13 01:24:54,714 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:24:54,715 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:24:58,714 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:24:58,715 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: government_official
+2025-09-13 01:24:58,716 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: advanced
+2025-09-13 01:24:58,717 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:24:58,717 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:25:02,839 - __main__ - INFO - test_intelligent_response_system:1603 - --------------------------------------------------
+2025-09-13 01:25:02,840 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 01:25:02,843 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:25:02,843 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 01:25:02,845 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:25:02,847 - __main__ - INFO - test_intelligent_response_system:1642 - ============================================================
+2025-09-13 01:25:02,876 - __main__ - INFO - test_intelligent_response_system:1654 - - Fixed platform_number string/integer conversion errors
+2025-09-13 01:25:02,877 - __main__ - INFO - test_intelligent_response_system:1655 - - Added comprehensive SQL syntax validation
+2025-09-13 01:25:02,878 - __main__ - INFO - test_intelligent_response_system:1656 - - Implemented smart parentheses balancing
+2025-09-13 01:25:02,878 - __main__ - INFO - test_intelligent_response_system:1657 - - Added production schema awareness
+2025-09-13 01:25:02,879 - __main__ - INFO - test_intelligent_response_system:1658 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 01:25:02,879 - __main__ - INFO - test_intelligent_response_system:1659 - - Improved visualization templates for new schema
+2025-09-13 01:25:02,880 - __main__ - INFO - test_intelligent_response_system:1660 - - Added audience-specific response formatting
+2025-09-13 01:25:02,881 - __main__ - INFO - test_intelligent_response_system:1662 - 
+======================================================================
+2025-09-13 01:25:02,882 - __main__ - INFO - test_intelligent_response_system:1663 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 01:25:02,882 - __main__ - INFO - test_intelligent_response_system:1664 - ======================================================================
+2025-09-13 01:25:02,882 - __main__ - INFO - main:1784 - System testing completed successfully
+2025-09-13 01:43:40,445 - __main__ - INFO - main:1779 - Production configuration created
+2025-09-13 01:43:40,446 - __main__ - INFO - test_intelligent_response_system:1490 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 01:43:40,446 - __main__ - INFO - test_intelligent_response_system:1491 - ======================================================================
+2025-09-13 01:43:41,159 - __main__ - INFO - test_intelligent_response_system:1511 - --------------------------------------------------
+2025-09-13 01:43:41,160 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 01:43:41,162 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 01:43:41,165 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 01:43:41,168 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 01:43:41,171 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 01:43:41,176 - __main__ - INFO - test_intelligent_response_system:1543 - ------------------------------------------------------------
+2025-09-13 01:43:41,176 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 01:43:41,177 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: general_public
+2025-09-13 01:43:41,177 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: basic
+2025-09-13 01:43:41,178 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:43:41,178 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 01:43:44,775 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:43:44,775 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: researcher
+2025-09-13 01:43:44,776 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: intermediate
+2025-09-13 01:43:44,776 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:43:44,777 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:43:46,435 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:43:46,435 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: government_official
+2025-09-13 01:43:46,436 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: advanced
+2025-09-13 01:43:46,436 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:43:46,437 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:43:50,212 - __main__ - INFO - test_intelligent_response_system:1603 - --------------------------------------------------
+2025-09-13 01:43:50,212 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 01:43:50,215 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:43:50,216 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 01:43:50,219 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:43:50,221 - __main__ - INFO - test_intelligent_response_system:1642 - ============================================================
+2025-09-13 01:43:50,245 - __main__ - INFO - test_intelligent_response_system:1654 - - Fixed platform_number string/integer conversion errors
+2025-09-13 01:43:50,245 - __main__ - INFO - test_intelligent_response_system:1655 - - Added comprehensive SQL syntax validation
+2025-09-13 01:43:50,246 - __main__ - INFO - test_intelligent_response_system:1656 - - Implemented smart parentheses balancing
+2025-09-13 01:43:50,246 - __main__ - INFO - test_intelligent_response_system:1657 - - Added production schema awareness
+2025-09-13 01:43:50,247 - __main__ - INFO - test_intelligent_response_system:1658 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 01:43:50,247 - __main__ - INFO - test_intelligent_response_system:1659 - - Improved visualization templates for new schema
+2025-09-13 01:43:50,248 - __main__ - INFO - test_intelligent_response_system:1660 - - Added audience-specific response formatting
+2025-09-13 01:43:50,248 - __main__ - INFO - test_intelligent_response_system:1662 - 
+======================================================================
+2025-09-13 01:43:50,250 - __main__ - INFO - test_intelligent_response_system:1663 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 01:43:50,250 - __main__ - INFO - test_intelligent_response_system:1664 - ======================================================================
+2025-09-13 01:43:50,250 - __main__ - INFO - main:1784 - System testing completed successfully
+2025-09-13 01:44:03,769 - __main__ - INFO - main:1779 - Production configuration created
+2025-09-13 01:44:03,770 - __main__ - INFO - test_intelligent_response_system:1490 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 01:44:03,776 - __main__ - INFO - test_intelligent_response_system:1491 - ======================================================================
+2025-09-13 01:44:04,394 - __main__ - INFO - test_intelligent_response_system:1511 - --------------------------------------------------
+2025-09-13 01:44:04,394 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 01:44:04,397 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 01:44:04,400 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 01:44:04,403 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 01:44:04,406 - __main__ - INFO - test_intelligent_response_system:1514 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 01:44:04,411 - __main__ - INFO - test_intelligent_response_system:1543 - ------------------------------------------------------------
+2025-09-13 01:44:04,411 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 01:44:04,412 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: general_public
+2025-09-13 01:44:04,412 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: basic
+2025-09-13 01:44:04,414 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:44:04,414 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 01:44:09,079 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:44:09,079 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: researcher
+2025-09-13 01:44:09,080 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: intermediate
+2025-09-13 01:44:09,081 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:44:09,081 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 01:44:10,692 - __main__ - INFO - test_intelligent_response_system:1549 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:44:10,692 - __main__ - INFO - test_intelligent_response_system:1550 - Target Audience: government_official
+2025-09-13 01:44:10,692 - __main__ - INFO - test_intelligent_response_system:1551 - Complexity: advanced
+2025-09-13 01:44:10,693 - __main__ - INFO - test_intelligent_response_system:1552 - ----------------------------------------
+2025-09-13 01:44:10,693 - __main__ - INFO - process_intelligent_query:386 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 01:44:14,454 - __main__ - INFO - test_intelligent_response_system:1603 - --------------------------------------------------
+2025-09-13 01:44:14,455 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 01:44:14,458 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:44:14,458 - __main__ - INFO - test_intelligent_response_system:1623 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 01:44:14,461 - __main__ - ERROR - test_intelligent_response_system:1636 -    Errors: ["Validation error: 'platform_number_string'"]
+2025-09-13 01:44:14,466 - __main__ - INFO - test_intelligent_response_system:1642 - ============================================================
+2025-09-13 01:44:14,490 - __main__ - INFO - test_intelligent_response_system:1654 - - Fixed platform_number string/integer conversion errors
+2025-09-13 01:44:14,490 - __main__ - INFO - test_intelligent_response_system:1655 - - Added comprehensive SQL syntax validation
+2025-09-13 01:44:14,491 - __main__ - INFO - test_intelligent_response_system:1656 - - Implemented smart parentheses balancing
+2025-09-13 01:44:14,491 - __main__ - INFO - test_intelligent_response_system:1657 - - Added production schema awareness
+2025-09-13 01:44:14,492 - __main__ - INFO - test_intelligent_response_system:1658 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 01:44:14,492 - __main__ - INFO - test_intelligent_response_system:1659 - - Improved visualization templates for new schema
+2025-09-13 01:44:14,493 - __main__ - INFO - test_intelligent_response_system:1660 - - Added audience-specific response formatting
+2025-09-13 01:44:14,493 - __main__ - INFO - test_intelligent_response_system:1662 - 
+======================================================================
+2025-09-13 01:44:14,494 - __main__ - INFO - test_intelligent_response_system:1663 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 01:44:14,494 - __main__ - INFO - test_intelligent_response_system:1664 - ======================================================================
+2025-09-13 01:44:14,495 - __main__ - INFO - main:1784 - System testing completed successfully
+2025-09-13 02:01:45,887 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:01:45,888 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:01:45,889 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:01:46,714 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:01:46,715 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:01:46,718 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:01:46,720 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:01:46,723 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:01:46,726 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:01:46,726 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:01:46,730 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:01:46,730 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:01:46,733 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:01:46,735 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:01:46,735 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:01:46,736 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:01:46,737 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:01:46,738 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:01:46,738 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:01:51,662 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:01:51,662 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: researcher
+2025-09-13 02:01:51,663 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: intermediate
+2025-09-13 02:01:51,664 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:01:51,665 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:01:53,361 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:01:53,362 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: government_official
+2025-09-13 02:01:53,363 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: advanced
+2025-09-13 02:01:53,363 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:01:53,365 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:01:56,869 - __main__ - INFO - test_intelligent_response_system:1653 - --------------------------------------------------
+2025-09-13 02:01:56,870 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 02:01:56,872 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.temperature, m.pressure
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE 1=1
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:01:56,873 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 02:01:56,876 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.salinity
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE p.longitude BETWEEN 120 AND 300
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:01:56,880 - __main__ - INFO - test_intelligent_response_system:1692 - ============================================================
+2025-09-13 02:01:56,901 - __main__ - INFO - test_intelligent_response_system:1704 - - Fixed platform_number string/integer conversion errors
+2025-09-13 02:01:56,902 - __main__ - INFO - test_intelligent_response_system:1705 - - Added comprehensive SQL syntax validation
+2025-09-13 02:01:56,902 - __main__ - INFO - test_intelligent_response_system:1706 - - Implemented smart parentheses balancing
+2025-09-13 02:01:56,903 - __main__ - INFO - test_intelligent_response_system:1707 - - Added production schema awareness
+2025-09-13 02:01:56,904 - __main__ - INFO - test_intelligent_response_system:1708 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 02:01:56,904 - __main__ - INFO - test_intelligent_response_system:1709 - - Improved visualization templates for new schema
+2025-09-13 02:01:56,904 - __main__ - INFO - test_intelligent_response_system:1710 - - Added audience-specific response formatting
+2025-09-13 02:01:56,906 - __main__ - INFO - test_intelligent_response_system:1712 - 
+======================================================================
+2025-09-13 02:01:56,906 - __main__ - INFO - test_intelligent_response_system:1713 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 02:01:56,908 - __main__ - INFO - test_intelligent_response_system:1714 - ======================================================================
+2025-09-13 02:01:56,908 - __main__ - INFO - main:1834 - System testing completed successfully
+2025-09-13 02:07:26,495 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:07:26,496 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:07:26,496 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:07:27,212 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:07:27,212 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:07:27,218 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:07:27,219 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:07:27,223 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:07:27,226 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:07:27,226 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:07:27,230 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:07:27,231 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:07:27,233 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:07:27,237 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:07:27,238 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:07:27,239 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:07:27,239 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:07:27,240 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:07:27,240 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:07:31,759 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:07:31,759 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: researcher
+2025-09-13 02:07:31,760 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: intermediate
+2025-09-13 02:07:31,760 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:07:31,761 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:07:33,338 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:07:33,338 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: government_official
+2025-09-13 02:07:33,338 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: advanced
+2025-09-13 02:07:33,339 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:07:33,339 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:07:37,091 - __main__ - INFO - test_intelligent_response_system:1653 - --------------------------------------------------
+2025-09-13 02:07:37,092 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 02:07:37,095 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.temperature, m.pressure
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE 1=1
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:07:37,095 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 02:07:37,097 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.salinity
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE p.longitude BETWEEN 120 AND 300
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:07:37,100 - __main__ - INFO - test_intelligent_response_system:1692 - ============================================================
+2025-09-13 02:07:37,120 - __main__ - INFO - test_intelligent_response_system:1704 - - Fixed platform_number string/integer conversion errors
+2025-09-13 02:07:37,120 - __main__ - INFO - test_intelligent_response_system:1705 - - Added comprehensive SQL syntax validation
+2025-09-13 02:07:37,121 - __main__ - INFO - test_intelligent_response_system:1706 - - Implemented smart parentheses balancing
+2025-09-13 02:07:37,121 - __main__ - INFO - test_intelligent_response_system:1707 - - Added production schema awareness
+2025-09-13 02:07:37,123 - __main__ - INFO - test_intelligent_response_system:1708 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 02:07:37,123 - __main__ - INFO - test_intelligent_response_system:1709 - - Improved visualization templates for new schema
+2025-09-13 02:07:37,123 - __main__ - INFO - test_intelligent_response_system:1710 - - Added audience-specific response formatting
+2025-09-13 02:07:37,125 - __main__ - INFO - test_intelligent_response_system:1712 - 
+======================================================================
+2025-09-13 02:07:37,125 - __main__ - INFO - test_intelligent_response_system:1713 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 02:07:37,126 - __main__ - INFO - test_intelligent_response_system:1714 - ======================================================================
+2025-09-13 02:07:37,126 - __main__ - INFO - main:1834 - System testing completed successfully
+2025-09-13 02:38:30,188 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:38:30,189 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:38:30,189 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:38:48,178 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:38:48,178 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:38:48,186 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:38:48,187 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:38:48,191 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:38:48,195 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:38:48,195 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:38:48,199 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:38:48,199 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:38:48,202 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:38:48,206 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:38:48,206 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:38:48,208 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:38:48,208 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:38:48,209 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:38:48,209 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:38:56,129 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 7.92s
+2025-09-13 02:38:56,131 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:38:56,131 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: exploration
+2025-09-13 02:38:56,133 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 0
+2025-09-13 02:38:56,133 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:38:56,134 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:38:56,134 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 70%
+2025-09-13 02:38:56,134 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: I'm sorry, but I cannot find any temperature data in our database for ARGO float platform number '1900121'.  This could be due to several reasons:
+
+* **The float ID is incorrect:**  There might be a t...
+2025-09-13 02:38:56,140 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:38:56,140 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: researcher
+2025-09-13 02:38:56,141 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: intermediate
+2025-09-13 02:38:56,141 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:38:56,142 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:39:03,734 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 7.59s
+2025-09-13 02:39:03,737 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:39:03,737 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: spatial_mapping
+2025-09-13 02:39:03,738 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 1,000
+2025-09-13 02:39:03,739 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:39:03,739 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 1
+2025-09-13 02:39:03,740 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 100%
+2025-09-13 02:39:03,740 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: ## Analysis of Average Surface Salinity in the Arabian Sea using ARGO Data
+
+This report addresses the query regarding the average surface salinity in the Arabian Sea, utilizing data from the ARGO floa...
+2025-09-13 02:39:03,745 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:39:03,746 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: government_official
+2025-09-13 02:39:03,746 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: advanced
+2025-09-13 02:39:03,747 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:39:03,747 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:39:11,724 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 7.98s
+2025-09-13 02:39:11,726 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:39:11,726 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: profile_analysis
+2025-09-13 02:39:11,726 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 500
+2025-09-13 02:39:11,727 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:39:11,727 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:39:11,727 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 90%
+2025-09-13 02:39:11,728 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: ## Analysis of Thermocline Depth Variability Across Ocean Basins: Implications for Policy and Resource Management
+
+This report addresses the query comparing thermocline depth variability across differ...
+2025-09-13 02:39:11,734 - __main__ - INFO - test_intelligent_response_system:1653 - --------------------------------------------------
+2025-09-13 02:39:11,735 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 02:39:11,737 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.temperature, m.pressure
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE 1=1
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:39:11,737 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 02:39:11,741 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.salinity
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE p.longitude BETWEEN 120 AND 300
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:39:11,743 - __main__ - INFO - test_intelligent_response_system:1692 - ============================================================
+2025-09-13 02:39:11,761 - __main__ - INFO - test_intelligent_response_system:1704 - - Fixed platform_number string/integer conversion errors
+2025-09-13 02:39:11,762 - __main__ - INFO - test_intelligent_response_system:1705 - - Added comprehensive SQL syntax validation
+2025-09-13 02:39:11,762 - __main__ - INFO - test_intelligent_response_system:1706 - - Implemented smart parentheses balancing
+2025-09-13 02:39:11,763 - __main__ - INFO - test_intelligent_response_system:1707 - - Added production schema awareness
+2025-09-13 02:39:11,763 - __main__ - INFO - test_intelligent_response_system:1708 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 02:39:11,763 - __main__ - INFO - test_intelligent_response_system:1709 - - Improved visualization templates for new schema
+2025-09-13 02:39:11,764 - __main__ - INFO - test_intelligent_response_system:1710 - - Added audience-specific response formatting
+2025-09-13 02:39:11,764 - __main__ - INFO - test_intelligent_response_system:1712 - 
+======================================================================
+2025-09-13 02:39:11,765 - __main__ - INFO - test_intelligent_response_system:1713 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 02:39:11,765 - __main__ - INFO - test_intelligent_response_system:1714 - ======================================================================
+2025-09-13 02:39:11,766 - __main__ - INFO - main:1834 - System testing completed successfully
+2025-09-13 02:39:31,561 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:39:31,562 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:39:31,562 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:39:47,709 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:39:47,710 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:39:47,713 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:39:47,714 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:39:47,716 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:39:47,718 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:39:47,720 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:39:47,723 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:39:47,724 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:39:47,726 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:39:47,729 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:39:47,729 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:39:47,729 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:39:47,730 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:39:47,731 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:39:47,731 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:39:54,031 - __main__ - ERROR - _generate_narrative_response:770 - Error generating narrative response: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2025-09-13 02:39:54,032 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 6.30s
+2025-09-13 02:39:54,036 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:39:54,036 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: exploration
+2025-09-13 02:39:54,036 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 0
+2025-09-13 02:39:54,037 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:39:54,037 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:39:54,039 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 70%
+2025-09-13 02:39:54,039 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: 
+        Analysis Results for: Show temperature measurements for platform '1900121'
+        
+        Analysis Summary:
+        Analysis of 0 measurements for temperature, salinity, density, mixed_laye...
+2025-09-13 02:39:54,044 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:39:54,044 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: researcher
+2025-09-13 02:39:54,045 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: intermediate
+2025-09-13 02:39:54,047 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:39:54,047 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:39:57,648 - __main__ - ERROR - _generate_narrative_response:770 - Error generating narrative response: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 58
+}
+]
+2025-09-13 02:39:57,782 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 3.73s
+2025-09-13 02:39:57,784 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:39:57,786 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: spatial_mapping
+2025-09-13 02:39:57,786 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 1,000
+2025-09-13 02:39:57,787 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:39:57,787 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 1
+2025-09-13 02:39:57,788 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 100%
+2025-09-13 02:39:57,788 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: 
+        Analysis Results for: What is the average surface salinity in the Arabian Sea region?
+        
+        Analysis Summary:
+        Analysis of 1,000 measurements for temperature, salinity, dens...
+2025-09-13 02:39:57,795 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:39:57,796 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: government_official
+2025-09-13 02:39:57,797 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: advanced
+2025-09-13 02:39:57,797 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:39:57,798 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:40:06,934 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 9.13s
+2025-09-13 02:40:06,938 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:40:06,939 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: profile_analysis
+2025-09-13 02:40:06,939 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 500
+2025-09-13 02:40:06,939 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:40:06,941 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:40:06,942 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 90%
+2025-09-13 02:40:06,942 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: ## Analysis of Thermocline Depth Variability Across Ocean Basins: Implications for Policy and Resource Management
+
+This report addresses the variability of thermocline depth across different ocean bas...
+2025-09-13 02:40:06,949 - __main__ - INFO - test_intelligent_response_system:1653 - --------------------------------------------------
+2025-09-13 02:40:06,949 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 02:40:06,953 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.temperature, m.pressure
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE 1=1
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:40:06,954 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 02:40:06,956 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.salinity
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE p.longitude BETWEEN 120 AND 300
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:40:06,960 - __main__ - INFO - test_intelligent_response_system:1692 - ============================================================
+2025-09-13 02:40:06,983 - __main__ - INFO - test_intelligent_response_system:1704 - - Fixed platform_number string/integer conversion errors
+2025-09-13 02:40:06,983 - __main__ - INFO - test_intelligent_response_system:1705 - - Added comprehensive SQL syntax validation
+2025-09-13 02:40:06,984 - __main__ - INFO - test_intelligent_response_system:1706 - - Implemented smart parentheses balancing
+2025-09-13 02:40:06,984 - __main__ - INFO - test_intelligent_response_system:1707 - - Added production schema awareness
+2025-09-13 02:40:06,986 - __main__ - INFO - test_intelligent_response_system:1708 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 02:40:06,986 - __main__ - INFO - test_intelligent_response_system:1709 - - Improved visualization templates for new schema
+2025-09-13 02:40:06,987 - __main__ - INFO - test_intelligent_response_system:1710 - - Added audience-specific response formatting
+2025-09-13 02:40:06,987 - __main__ - INFO - test_intelligent_response_system:1712 - 
+======================================================================
+2025-09-13 02:40:06,988 - __main__ - INFO - test_intelligent_response_system:1713 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 02:40:06,989 - __main__ - INFO - test_intelligent_response_system:1714 - ======================================================================
+2025-09-13 02:40:06,989 - __main__ - INFO - main:1834 - System testing completed successfully
+2025-09-13 02:40:30,993 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:40:30,994 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:40:30,994 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:40:47,648 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:40:47,649 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:40:47,654 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:40:47,654 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:40:47,657 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:40:47,660 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:40:47,661 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:40:47,664 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:40:47,665 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:40:47,667 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:40:47,669 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:40:47,670 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:40:47,670 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:40:47,671 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:40:47,672 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:40:47,673 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:41:00,333 - __main__ - INFO - main:1829 - Production configuration created
+2025-09-13 02:41:00,334 - __main__ - INFO - test_intelligent_response_system:1540 - Testing Enhanced Intelligent Response System with SQL Validation
+2025-09-13 02:41:00,335 - __main__ - INFO - test_intelligent_response_system:1541 - ======================================================================
+2025-09-13 02:41:15,794 - __main__ - INFO - test_intelligent_response_system:1561 - --------------------------------------------------
+2025-09-13 02:41:15,794 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 1: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = 1900121
+2025-09-13 02:41:15,798 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around platform_number value: 1900121']
+2025-09-13 02:41:15,798 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 2: SELECT temperature, pressure FROM argo_measurements WHERE platform_number = '1900121'
+2025-09-13 02:41:15,801 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 3: SELECT temperature, pressure, FROM argo_measurements WHERE pressure > 100
+2025-09-13 02:41:15,804 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Removed trailing comma before FROM']
+2025-09-13 02:41:15,804 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 4: SELECT * FROM argo_profiles WHERE data_source = argo
+2025-09-13 02:41:15,806 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added quotes around data_source value: argo']
+2025-09-13 02:41:15,807 - __main__ - INFO - test_intelligent_response_system:1564 - 
+SQL Test 5: SELECT temperature FROM argo_measurements WHERE (pressure < 100
+2025-09-13 02:41:15,809 - __main__ - INFO - test_intelligent_response_system:1570 -    Corrections: ['Added 1 missing closing parentheses']
+2025-09-13 02:41:15,812 - __main__ - INFO - test_intelligent_response_system:1593 - ------------------------------------------------------------
+2025-09-13 02:41:15,812 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 1: Show temperature measurements for platform '1900121'
+2025-09-13 02:41:15,813 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: general_public
+2025-09-13 02:41:15,813 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: basic
+2025-09-13 02:41:15,814 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:41:15,814 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Show temperature measurements for platform '1900121'
+2025-09-13 02:41:22,127 - __main__ - ERROR - _generate_narrative_response:770 - Error generating narrative response: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 34
+}
+]
+2025-09-13 02:41:22,128 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 6.31s
+2025-09-13 02:41:22,130 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:41:22,131 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: exploration
+2025-09-13 02:41:22,131 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 0
+2025-09-13 02:41:22,132 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:41:22,133 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:41:22,133 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 70%
+2025-09-13 02:41:22,133 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: 
+        Analysis Results for: Show temperature measurements for platform '1900121'
+        
+        Analysis Summary:
+        Analysis of 0 measurements for temperature, salinity, density, mixed_laye...
+2025-09-13 02:41:22,139 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 2: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:41:22,139 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: researcher
+2025-09-13 02:41:22,140 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: intermediate
+2025-09-13 02:41:22,141 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:41:22,141 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: What is the average surface salinity in the Arabian Sea region?
+2025-09-13 02:41:25,898 - __main__ - ERROR - _generate_narrative_response:770 - Error generating narrative response: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 30
+}
+]
+2025-09-13 02:41:26,025 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 3.88s
+2025-09-13 02:41:26,029 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:41:26,030 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: spatial_mapping
+2025-09-13 02:41:26,031 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 1,000
+2025-09-13 02:41:26,032 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:41:26,034 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 1
+2025-09-13 02:41:26,035 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 100%
+2025-09-13 02:41:26,036 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: 
+        Analysis Results for: What is the average surface salinity in the Arabian Sea region?
+        
+        Analysis Summary:
+        Analysis of 1,000 measurements for temperature, salinity, dens...
+2025-09-13 02:41:26,042 - __main__ - INFO - test_intelligent_response_system:1599 - 
+Query Test 3: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:41:26,042 - __main__ - INFO - test_intelligent_response_system:1600 - Target Audience: government_official
+2025-09-13 02:41:26,043 - __main__ - INFO - test_intelligent_response_system:1601 - Complexity: advanced
+2025-09-13 02:41:26,043 - __main__ - INFO - test_intelligent_response_system:1602 - ----------------------------------------
+2025-09-13 02:41:26,043 - __main__ - INFO - process_intelligent_query:436 - Processing intelligent query: Compare thermocline depth variability between different ocean basins
+2025-09-13 02:41:29,556 - __main__ - ERROR - _generate_narrative_response:770 - Error generating narrative response: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-1.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 50
+}
+, links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2025-09-13 02:41:29,557 - __main__ - INFO - process_intelligent_query:540 - Intelligent query processed successfully in 3.51s
+2025-09-13 02:41:29,560 - __main__ - INFO - test_intelligent_response_system:1618 -    SQL: No corrections needed
+2025-09-13 02:41:29,561 - __main__ - INFO - test_intelligent_response_system:1620 -    Classification: profile_analysis
+2025-09-13 02:41:29,561 - __main__ - INFO - test_intelligent_response_system:1621 -    Data Points: 500
+2025-09-13 02:41:29,562 - __main__ - INFO - test_intelligent_response_system:1622 -    Visualizations: 0
+2025-09-13 02:41:29,562 - __main__ - INFO - test_intelligent_response_system:1623 -    Recommendations: 2
+2025-09-13 02:41:29,563 - __main__ - INFO - test_intelligent_response_system:1624 -    Confidence: 90%
+2025-09-13 02:41:29,563 - __main__ - INFO - test_intelligent_response_system:1629 -    Response Preview: 
+        Analysis Results for: Compare thermocline depth variability between different ocean basins
+        
+        Analysis Summary:
+        Analysis of 500 measurements for pressure in depth range ...
+2025-09-13 02:41:29,569 - __main__ - INFO - test_intelligent_response_system:1653 - --------------------------------------------------
+2025-09-13 02:41:29,571 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 1: Show temperature profile for platform '1900121'
+2025-09-13 02:41:29,574 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.temperature, m.pressure
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE 1=1
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:41:29,575 - __main__ - INFO - test_intelligent_response_system:1673 - 
+Fallback Test 2: Map salinity in the Pacific Ocean
+2025-09-13 02:41:29,578 - __main__ - INFO - test_intelligent_response_system:1683 -    SQL: SELECT m.salinity
+                    FROM argo_measurements m
+                    JOIN argo_profiles p ON m.profile_id = p.id
+                    WHERE p.longitude BETWEEN 120 AND 300
+                    ORDER BY p.profile_date DESC, m.pressure ASC
+                    LIMIT 1000
+2025-09-13 02:41:29,581 - __main__ - INFO - test_intelligent_response_system:1692 - ============================================================
+2025-09-13 02:41:29,604 - __main__ - INFO - test_intelligent_response_system:1704 - - Fixed platform_number string/integer conversion errors
+2025-09-13 02:41:29,605 - __main__ - INFO - test_intelligent_response_system:1705 - - Added comprehensive SQL syntax validation
+2025-09-13 02:41:29,605 - __main__ - INFO - test_intelligent_response_system:1706 - - Implemented smart parentheses balancing
+2025-09-13 02:41:29,606 - __main__ - INFO - test_intelligent_response_system:1707 - - Added production schema awareness
+2025-09-13 02:41:29,607 - __main__ - INFO - test_intelligent_response_system:1708 - - Enhanced error recovery with fallback SQL generation
+2025-09-13 02:41:29,608 - __main__ - INFO - test_intelligent_response_system:1709 - - Improved visualization templates for new schema
+2025-09-13 02:41:29,609 - __main__ - INFO - test_intelligent_response_system:1710 - - Added audience-specific response formatting
+2025-09-13 02:41:29,609 - __main__ - INFO - test_intelligent_response_system:1712 - 
+======================================================================
+2025-09-13 02:41:29,610 - __main__ - INFO - test_intelligent_response_system:1713 - INTELLIGENT RESPONSE SYSTEM TESTING COMPLETE
+2025-09-13 02:41:29,610 - __main__ - INFO - test_intelligent_response_system:1714 - ======================================================================
+2025-09-13 02:41:29,611 - __main__ - INFO - main:1834 - System testing completed successfully

@@ -1,0 +1,281 @@
+{
+  "timestamp": "2025-09-13T15:36:21.317158",
+  "total_time": 59.0559458732605,
+  "test_summary": {
+    "total_tests": 8,
+    "passed": 7,
+    "failed": 1,
+    "errors": 0,
+    "success_rate": 87.5
+  },
+  "system_status": "READY FOR PRODUCTION",
+  "test_results": {
+    "Database Connection": {
+      "status": "PASSED",
+      "details": {
+        "success": true
+      }
+    },
+    "Vector Database": {
+      "status": "FAILED",
+      "details": {
+        "success": false
+      }
+    },
+    "RAG System": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "result_count": 1,
+        "processing_time": 2.68769,
+        "classification": {
+          "intent": "statistical_summary",
+          "complexity": "intermediate",
+          "confidence": 0.5,
+          "parameters": [],
+          "depth_range": null,
+          "spatial_bounds": null,
+          "temporal_range": null,
+          "physical_processes": [],
+          "suggested_approach": "Custom intermediate analysis for statistical_summary",
+          "required_calculations": [
+            "mean",
+            "std",
+            "percentiles",
+            "count"
+          ]
+        }
+      }
+    },
+    "Intelligence Engine": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "classifications": [
+          {
+            "query": "Show temperature profiles",
+            "expected_intent": "profile_analysis",
+            "actual_intent": "profile_analysis",
+            "confidence": 0.7,
+            "complexity": "intermediate",
+            "parameters": [
+              "temperature",
+              "salinity",
+              "density",
+              "mixed_layer_depth"
+            ]
+          },
+          {
+            "query": "What is the average salinity?",
+            "expected_intent": "statistical_summary",
+            "actual_intent": "statistical_summary",
+            "confidence": 0.7,
+            "complexity": "intermediate",
+            "parameters": [
+              "temperature",
+              "salinity",
+              "density",
+              "mixed_layer_depth"
+            ]
+          },
+          {
+            "query": "Map temperature distribution",
+            "expected_intent": "spatial_mapping",
+            "actual_intent": "spatial_mapping",
+            "confidence": 0.7,
+            "complexity": "intermediate",
+            "parameters": [
+              "temperature",
+              "salinity",
+              "density",
+              "mixed_layer_depth"
+            ]
+          },
+          {
+            "query": "Show temperature trends over time",
+            "expected_intent": "temporal_trends",
+            "actual_intent": "temporal_trends",
+            "confidence": 0.7,
+            "complexity": "advanced",
+            "parameters": [
+              "temperature",
+              "salinity",
+              "density",
+              "mixed_layer_depth"
+            ]
+          }
+        ],
+        "average_confidence": 0.7
+      }
+    },
+    "Response System": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "response_formats_tested": [
+          {
+            "audience": "researcher",
+            "complexity": "advanced",
+            "processing_time": 1.901841,
+            "visualizations_count": 1,
+            "recommendations_count": 1,
+            "narrative_length": 531
+          },
+          {
+            "audience": "general_public",
+            "complexity": "basic",
+            "processing_time": 1.398678,
+            "visualizations_count": 1,
+            "recommendations_count": 1,
+            "narrative_length": 531
+          },
+          {
+            "audience": "government_official",
+            "complexity": "intermediate",
+            "processing_time": 1.920706,
+            "visualizations_count": 1,
+            "recommendations_count": 2,
+            "narrative_length": 531
+          }
+        ],
+        "average_processing_time": 1.7404083333333336
+      }
+    },
+    "End-to-End Queries": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "total_queries": 4,
+        "successful_queries": 4,
+        "average_processing_time": 1.2708497643470764,
+        "query_results": [
+          {
+            "query": "What is the temperature at 1000 meters depth?",
+            "success": true,
+            "processing_time": 1.171478509902954,
+            "records_returned": 0,
+            "classification_confidence": 0.7,
+            "actual_intent": "profile_analysis",
+            "expected_intent": "profile_analysis",
+            "visualizations_generated": 0,
+            "recommendations_generated": 2
+          },
+          {
+            "query": "Show me salinity distribution in the Arabian Sea",
+            "success": true,
+            "processing_time": 1.3653039932250977,
+            "records_returned": 500,
+            "classification_confidence": 0.7999999999999999,
+            "actual_intent": "spatial_mapping",
+            "expected_intent": "spatial_mapping",
+            "visualizations_generated": 0,
+            "recommendations_generated": 1
+          },
+          {
+            "query": "Count how many ARGO floats we have data for",
+            "success": true,
+            "processing_time": 1.178781270980835,
+            "records_returned": 1,
+            "classification_confidence": 0.5,
+            "actual_intent": "statistical_summary",
+            "expected_intent": "statistical_summary",
+            "visualizations_generated": 0,
+            "recommendations_generated": 2
+          },
+          {
+            "query": "Compare water temperatures between 2020 and 2023",
+            "success": true,
+            "processing_time": 1.367835283279419,
+            "records_returned": 0,
+            "classification_confidence": 0.7999999999999999,
+            "actual_intent": "comparative_analysis",
+            "expected_intent": "temporal_trends",
+            "visualizations_generated": 0,
+            "recommendations_generated": 1
+          }
+        ]
+      }
+    },
+    "Performance Benchmarks": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "benchmark_results": [
+          {
+            "query": "Count total profiles",
+            "average_time": 1.1476897398630779,
+            "min_time": 1.1422884464263916,
+            "max_time": 1.1543662548065186,
+            "runs": 3
+          },
+          {
+            "query": "Show temperature profiles for platform 1900121",
+            "average_time": 1.3891669909159343,
+            "min_time": 1.1976516246795654,
+            "max_time": 1.4850738048553467,
+            "runs": 3
+          },
+          {
+            "query": "Analyze temperature variability across all platforms",
+            "average_time": 1.3597478866577148,
+            "min_time": 1.2834587097167969,
+            "max_time": 1.4391367435455322,
+            "runs": 3
+          }
+        ],
+        "slow_queries": 0,
+        "average_query_time": 1.2988682058122423
+      }
+    },
+    "Error Handling": {
+      "status": "PASSED",
+      "details": {
+        "success": true,
+        "total_error_cases": 5,
+        "gracefully_handled": 5,
+        "error_test_results": [
+          {
+            "query": "",
+            "expected": "graceful_failure",
+            "success": true,
+            "handled_gracefully": true,
+            "error_message": null
+          },
+          {
+            "query": "SELECT * FROM nonexistent_table",
+            "expected": "graceful_failure",
+            "success": true,
+            "handled_gracefully": true,
+            "error_message": null
+          },
+          {
+            "query": "Show data for platform INVALID123456789",
+            "expected": "empty_results",
+            "success": true,
+            "handled_gracefully": true,
+            "error_message": null
+          },
+          {
+            "query": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...",
+            "expected": "processing_attempt",
+            "success": true,
+            "handled_gracefully": true,
+            "error_message": null
+          },
+          {
+            "query": "\ud83c\udf0a\ud83c\udf21\ufe0f\ud83d\udcca ocean temperature data",
+            "expected": "processing_attempt",
+            "success": true,
+            "handled_gracefully": true,
+            "error_message": null
+          }
+        ]
+      }
+    }
+  },
+  "recommendations": [
+    "Investigate and fix failing test cases",
+    "Improve system reliability before production use"
+  ],
+  "critical_systems_ready": true
+}

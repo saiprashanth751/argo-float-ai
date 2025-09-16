@@ -1,0 +1,7 @@
+{
+  "created_at": "2025-09-14T21:13:13.754838",
+  "document_count": 5,
+  "content_hash": "9fa5f5b7136a00b00068ec015449ce09",
+  "embedding_provider": "huggingface_local",
+  "model_setup": "docker_desktop_llama"
+}
