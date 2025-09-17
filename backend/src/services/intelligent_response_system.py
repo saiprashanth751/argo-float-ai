@@ -19,6 +19,8 @@ from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from dotenv import load_dotenv
 import warnings
+import time
+
 
 # Fix import issues by using absolute imports
 import sys
@@ -167,18 +169,20 @@ class IntelligentResponseSystem:
         
         # Initialize response generation LLM
         # Initialize response generation LLM with DeepSeek
+        # IN IntelligentResponseSystem.__init__():
         try:
-    # Docker Desktop Model Runner LLM setup
-            self.response_llm = ChatOpenAI(
-                model="ai/llama3.2:latest",
-                openai_api_base="http://localhost:12434/engines/llama.cpp/v1",
-                openai_api_key="dummy",
-                temperature=0.3,  # Slightly higher for creative responses
-                max_tokens=2000
+            from langchain_openai import ChatOpenAI
+            self.response_llm = ChatOpenAI(  # MUST be self.response_llm
+                model="deepseek-chat",
+                openai_api_key=os.getenv('DEEPSEEK_API_KEY'), # USE YOUR KEY
+                openai_api_base="https://api.deepseek.com/v1",
+                temperature=0.3,
+                max_tokens=2000,
+                timeout=30
             )
-            logger.info("✅ Docker Desktop Model Runner response LLM initialized")
+            logger.info("✅ DeepSeek API response LLM initialized")
         except Exception as e:
-            logger.warning(f"Failed to initialize Docker Desktop response LLM: {e}")
+            logger.error(f"❌ Failed to initialize DeepSeek response LLM: {e}")
             self.response_llm = None
         
         # SQL validation patterns and rules
@@ -733,47 +737,39 @@ class IntelligentResponseSystem:
         }
         
         # Build system prompt based on audience and complexity
-        system_prompt = self._build_audience_specific_prompt(audience, complexity)
+        system_prompt = self._build_audience_specific_prompt(
+            response_format.target_audience, 
+            response_format.complexity_level
+        )
         
         # Build user prompt with results
         user_prompt = f"""
-        OCEANOGRAPHIC QUERY ANALYSIS REQUEST
-        
-        Original Query: {query}
-        
-        Analysis Classification:
-        - Intent: {context['classification']['intent']}
-        - Complexity: {context['classification']['complexity']}
-        - Parameters: {', '.join(context['classification']['parameters'])}
-        - Confidence: {context['classification']['confidence']:.2f}
-        
-        Results Summary:
-        - Total Records: {context['results_count']:,}
-        - Key Findings: {'; '.join(context['key_findings'][:3])}
-        - Physical Interpretation: {context['physical_interpretation']}
-        
-        Generate a comprehensive, intelligent response that:
-        1. Directly answers the user's question
-        2. Provides scientific context and interpretation
-        3. Explains the significance of findings
-        4. Connects results to broader oceanographic understanding
-        5. Maintains appropriate technical level for the audience
-        
-        Focus on clarity, accuracy, and actionable insights.
+        Query: {query}
+        Results: {context['results_count']} records analyzed
+        Key parameters: {', '.join(context['classification']['parameters'][:3])}
+        Please provide a concise oceanographic analysis.
         """
         
-        try:
-            messages = [
-                SystemMessage(content=system_prompt),
-                HumanMessage(content=user_prompt)
-            ]
-            
-            response = self.response_llm(messages)
-            return response.content.strip()
-            
-        except Exception as e:
-            logger.error(f"Error generating narrative response: {e}")
-            return self._generate_fallback_narrative(context)
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                messages = [
+                    SystemMessage(content=system_prompt),
+                    HumanMessage(content=user_prompt)
+                ]
+                
+                # Use streaming for better timeout handling
+                response = self.response_llm(messages, timeout=30)
+                return response.content.strip()
+                
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    logger.error(f"Final attempt failed to generate narrative: {e}")
+                    return self._generate_fallback_narrative(context)
+                else:
+                    wait_time = 2 ** attempt  # Exponential backoff
+                    logger.warning(f"Attempt {attempt + 1} failed, retrying in {wait_time}s: {e}")
+                    time.sleep(wait_time)
     
     def _build_audience_specific_prompt(self, audience: str, complexity: str) -> str:
         """Build audience-specific system prompts - UPDATED for new schema"""

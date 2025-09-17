@@ -6,13 +6,32 @@ services:
       POSTGRES_DB: argo_data
       POSTGRES_USER: argo_user
       POSTGRES_PASSWORD: argo_password
-      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5432:5432"
     volumes:
       - fresh_postgres_data:/var/lib/postgresql/data
       - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
+    command: |
+      postgres
+      -c shared_buffers=1GB
+      -c work_mem=128MB
+      -c maintenance_work_mem=1GB
+      -c effective_cache_size=3GB
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
+      -c max_connections=200
+      -c max_parallel_workers=4
+      -c max_parallel_workers_per_gather=2
+      -c max_wal_size=2GB
+      -c checkpoint_timeout=30min
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=64MB
+      -c default_statistics_target=100
+      -c log_min_duration_statement=1000
+      -c log_checkpoints=on
+      -c autovacuum_max_workers=3
+      -c autovacuum_naptime=30s
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U argo_user -d argo_data"]
       interval: 10s
@@ -24,7 +43,7 @@ services:
     container_name: argo_pgadmin_clean
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@floatchat.com
-      PGLADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "8080:80"
     depends_on:
