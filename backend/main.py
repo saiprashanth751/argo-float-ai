@@ -292,8 +292,8 @@ async def process_query(request: QueryRequest):
             try:
                 # Import response format if needed
                 try:
-                    from src.services.intelligent_response_system import ResponseFormat
-                    response_format = ResponseFormat()
+                    from src.services.response_intelligence_layer import ResponseConfig
+                    response_format = ResponseConfig()
                     
                     # Apply user preferences
                     if request.response_format:

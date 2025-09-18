@@ -8,8 +8,9 @@ This replaces your current process_oceanographic_query method with intelligent r
 
 import logging
 import time
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union, Literal
 from datetime import datetime
+from dataclasses import dataclass
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,7 +19,18 @@ logger = logging.getLogger(__name__)
 from .oceanographic_intelligence_engine import OceanographicIntelligenceEngine
 from .enhanced_rag_oceanographic import ProductionOceanographicRAG
 from .smart_query_router import SmartQueryRouter, ProcessingPath, RoutingDecision
-from .intelligent_response_system import IntelligentResponseSystem, ResponseFormat
+from langchain.chat_models.base import BaseChatModel
+from langchain_openai import ChatOpenAI
+from .response_intelligence_layer import DeepSeekResponseIntelligence, ResponseIntelligenceConfig
+
+@dataclass
+class ResponseFormat:
+    """Response format configuration"""
+    format_type: Literal["structured", "narrative", "dashboard"] = "structured"
+    target_audience: Literal["researcher", "government", "maritime", "public"] = "researcher"
+    complexity_level: Literal["basic", "intermediate", "advanced", "expert"] = "intermediate"
+    include_visualization: bool = True
+    include_metadata: bool = True
 
 try:
     from .agent_collaboration_system import ProductionAgentCollaborationSystem
@@ -53,8 +65,8 @@ class OrchestratedOceanographicRAG:
         )
         
         # Layer 4: Response system for formatting
-        self.response_system = IntelligentResponseSystem(self.rag_system)
-        
+        self.response_intelligence = DeepSeekResponseIntelligence()
+        logger.info("Orchestrated RAG with Response Intelligence initialized")
         # Semantic bridge (will implement next)
         from .semantic_intelligence_bridge import SemanticIntelligenceBridge
         self.semantic_bridge = SemanticIntelligenceBridge(self.rag_system)
@@ -79,15 +91,13 @@ class OrchestratedOceanographicRAG:
             'avg_response_times': {}
         }
         
-        logger.info("Orchestrated RAG System initialized")
+        logger.info("Orchestrated RAG with Response Intelligence initialized")
     
     def process_query(self, natural_language_query: str, 
-                     response_format: ResponseFormat = None) -> Dict[str, Any]:
+                 response_format=None,
+                 response_config: ResponseIntelligenceConfig = None) -> Dict[str, Any]:
         """
-        Main query processing with intelligent routing.
-        
-        This method replaces your existing process_oceanographic_query
-        with intelligent path selection.
+        Enhanced single-function version that handles both old and new interfaces
         """
         
         start_time = time.time()
@@ -95,37 +105,52 @@ class OrchestratedOceanographicRAG:
         
         logger.info(f"Processing query with orchestration: {natural_language_query}")
         
+        # Handle backward compatibility - convert old response_format to new config
+        if response_config is None:
+            response_config = ResponseIntelligenceConfig()
+            if response_format:
+                response_config.response_format = "structured"
+                if hasattr(response_format, 'target_audience'):
+                    response_config.target_audience = response_format.target_audience
+                if hasattr(response_format, 'complexity_level'):
+                    response_config.complexity_level = response_format.complexity_level
+        
         try:
-            # Step 1: Route the query intelligently
+            # Step 1: Routing logic
             routing_decision = self.router.route_query(natural_language_query)
             
             logger.info(f"Query routed to: {routing_decision.path.value} "
-                       f"(confidence: {routing_decision.confidence:.2f})")
+                    f"(confidence: {routing_decision.confidence:.2f})")
             
-            # Step 2: Process based on routing decision
+            # Step 2: Processing logic  
             result = self._execute_processing_path(
                 natural_language_query, 
                 routing_decision, 
-                response_format
+                None  # response_format handled by intelligence layer
             )
             
-            # Step 3: Record results for learning
+            # Step 3: Apply response intelligence enhancement
+            if result.get('success', False):
+                enhanced_result = self.response_intelligence.enhance_orchestrated_response(
+                    result, response_config
+                )
+            else:
+                enhanced_result = result
+            
+            # Step 4: Performance tracking
             processing_time = time.time() - start_time
-            success = result.get('success', False)
+            success = enhanced_result.get('success', False)
             
             self.router.record_query_result(
                 query=natural_language_query,
                 routing_decision=routing_decision,
                 execution_time=processing_time,
                 success=success,
-                error_type=result.get('error_type')
+                error_type=enhanced_result.get('error_type')
             )
             
-            # Step 4: Update performance statistics
-            self._update_processing_stats(routing_decision.path, processing_time, success)
-            
-            # Step 5: Add orchestration metadata to result
-            result.update({
+            # Step 5: Add metadata
+            enhanced_result.update({
                 'orchestration': {
                     'routing_path': routing_decision.path.value,
                     'routing_confidence': routing_decision.confidence,
@@ -133,28 +158,17 @@ class OrchestratedOceanographicRAG:
                     'performance_budget': routing_decision.performance_budget,
                     'unknown_terms': routing_decision.unknown_terms,
                     'enrichments_applied': routing_decision.enrichments_needed,
-                    'total_processing_time': processing_time
+                    'total_processing_time': processing_time,
+                    'intelligence_enhanced': True
                 }
             })
             
-            return result
+            return enhanced_result
             
         except Exception as e:
+            # Error handling
             processing_time = time.time() - start_time
             logger.error(f"Orchestrated query processing failed: {e}")
-            
-            # Record failure for learning
-            try:
-                routing_decision = self.router.route_query(natural_language_query)
-                self.router.record_query_result(
-                    query=natural_language_query,
-                    routing_decision=routing_decision,
-                    execution_time=processing_time,
-                    success=False,
-                    error_type=str(e)
-                )
-            except:
-                pass  # Don't let routing errors compound the original error
             
             return {
                 'success': False,

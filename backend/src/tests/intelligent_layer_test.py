@@ -1,7 +1,7 @@
 """
 Complete Integration Test Suite - Production Readiness Validation
 """
-
+import sys
 import asyncio
 import logging
 import time
@@ -9,11 +9,17 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any
 from dataclasses import dataclass
+import os
+from pathlib import Path
+
+current_dir = Path(__file__).parent
+parent_dir = current_dir.parent
+sys.path.insert(0, str(parent_dir))
 
 # Core system imports
 from services.orchestrated_rag_system import OrchestratedOceanographicRAG
 from services.smart_query_router import ProcessingPath, SmartQueryRouter
-from services.intelligent_response_system import ResponseFormat
+from services.response_intelligence_layer import ResponseConfig
 from services.agent_collaboration_system import ProductionAgentCollaborationSystem
 from services.oceanographic_intelligence_engine import (
     QueryClassification, 
@@ -92,7 +98,7 @@ class CompleteSystemTest:
                 response = self.rag_system._execute_lightning_rag(
                     query=query,
                     routing_decision=self._create_test_routing_decision(),  # This now returns TestRoutingDecision
-                    response_format=ResponseFormat()
+                    response_format=ResponseConfig()
                 )
                 execution_time = time.time() - start_time
                 
@@ -135,7 +141,7 @@ class CompleteSystemTest:
                 response = self.rag_system._execute_semantic_bridge(
                     query=case['query'],
                     routing_decision=self._create_test_routing_decision(),  # This now returns TestRoutingDecision
-                    response_format=ResponseFormat()
+                    response_format=ResponseConfig()
                 )
                 execution_time = time.time() - start_time
                 
@@ -183,7 +189,7 @@ class CompleteSystemTest:
                 response = await self.rag_system._execute_agentic_fallback(
                     query=scenario['query'],
                     routing_decision=self._create_test_routing_decision(),  # This now returns TestRoutingDecision
-                    response_format=ResponseFormat()
+                    response_format=ResponseConfig()
                 )
                 execution_time = time.time() - start_time
                 
