@@ -270,7 +270,7 @@ class OrchestratedOceanographicRAG:
         
         else:
             # TODO: Implement actual semantic bridge
-            return self.semantic_bridge.process(query, routing_decision)
+            return self.semantic_bridge.process_query(query, routing_decision)
     
     def _execute_agentic_fallback(self, query: str,
                              routing_decision: RoutingDecision,

@@ -402,7 +402,7 @@ class MockResultValidatorAgent:
 
 # Import the required classes to complete the implementation
 from .mcp_tools_core import DatabaseExplorerTool, SQLValidatorTool, MCPToolsManager
-from .knowledge_and_integration_tools import OceanographicKnowledgeTool, ExternalDataIntegrationTool
+from .mcp_tools_integration_complete import OceanographicKnowledgeTool, ExternalDataIntegrationTool
 
 # Set availability flags
 try:

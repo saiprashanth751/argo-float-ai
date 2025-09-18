@@ -30,15 +30,27 @@ import hashlib
 from pathlib import Path
 import warnings
 import time
+import logging
+
+logger = logging.getLogger(__name__)
+
+# Vector store imports
+try:
+    from langchain_community.embeddings import HuggingFaceEmbeddings
+    from langchain_community.vectorstores import Chroma
+    from langchain.schema import Document
+except ImportError:
+    logger.warning("Vector store dependencies not installed. Some features will be limited.")
+    HuggingFaceEmbeddings = None
+    Chroma = None
+    Document = None
 
 # Import all components of the intelligence system
 try:
-    from oceanographic_intelligence_engine import (
-        OceanographicIntelligenceEngine, 
-        QueryClassification, 
-        QueryIntent, 
-        ComplexityLevel,
-        OceanographicContext
+    from .oceanographic_intelligence_engine import OceanographicIntelligenceEngine
+    from .template_sql_generator import (
+        ProductionSQLGenerator, SQLTemplate, GeneratedSQL, 
+        QueryIntent, ComplexityLevel, QueryClassification, OceanographicContext
     )
 except ImportError:
     # Fallback for testing - create dummy classes
@@ -114,27 +126,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 load_dotenv()
-
-@dataclass
-class SQLTemplate:
-    """Template for intelligent SQL generation"""
-    template: str
-    parameters: List[str] 
-    performance_notes: str
-    expected_result_size: str
-    index_requirements: List[str]
-    adaptability_score: float
-
-@dataclass 
-class GeneratedSQL:
-    """Generated SQL with production metadata"""
-    sql: str
-    template_id: str
-    parameters_used: Dict[str, Any]
-    estimated_performance: str
-    recommended_timeout: int
-    index_requirements: List[str]
-    adaptations_made: List[str]
 
 class ProductionSQLGenerator:
     """
@@ -619,10 +610,6 @@ class ProductionOceanographicRAG:
     def _initialize_vector_store(self, persist_directory):
         """Initialize vector store with fallback"""
         try:
-            from langchain_community.embeddings import HuggingFaceEmbeddings
-            from langchain_community.vectorstores import Chroma
-            from langchain.schema import Document
-            
             self.embeddings = HuggingFaceEmbeddings(
                 model_name="sentence-transformers/all-MiniLM-L6-v2",
                 model_kwargs={'device': 'cpu'}
@@ -755,7 +742,11 @@ class ProductionOceanographicRAG:
         except Exception as e:
             total_time = time.time() - overall_start
             logger.error(f"Query processing failed: {e}")
-            return self
+            return self._build_error_response(
+                natural_language_query,
+                f"Processing failed: {str(e)}",
+                timings
+            )
 
     def _get_domain_context(self, query: str, k: int = 3) -> str:
         """Get domain context from vector store"""
