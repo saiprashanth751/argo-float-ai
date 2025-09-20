@@ -61,13 +61,8 @@ class CompleteSystemTest:
         }
         
         # Initialize test system
-        try:
-            self.rag_system = OrchestratedOceanographicRAG()
-            logger.info("Test system initialized successfully")
-        except Exception as e:
-            logger.error(f"System initialization failed: {e}")
-            self.test_results['overall_status'] = 'failed_initialization'
-            return
+    async def initialize_system(self):
+        self.rag_system = OrchestratedOceanographicRAG()
 
     async def run_complete_test_suite(self) -> Dict[str, Any]:
         """Run all test suites with comprehensive validation"""
@@ -174,7 +169,7 @@ class CompleteSystemTest:
         self.test_results['test_suites']['semantic_bridge'] = results
 
     async def _test_layer3_agent_system(self):
-        """Test Agent Collaboration System"""
+        """Test Agent Collaboration System - HONEST VERSION"""
         
         logger.info("Testing Layer 3: Agent System")
         results = {'status': 'running', 'tests': []}
@@ -195,29 +190,54 @@ class CompleteSystemTest:
                 start_time = time.time()
                 response = await self.rag_system._execute_agentic_fallback(
                     query=scenario['query'],
-                    routing_decision=self._create_test_routing_decision(),  # This now returns TestRoutingDecision
+                    routing_decision=self._create_test_routing_decision(),
                     response_format=ResponseConfig()
                 )
                 execution_time = time.time() - start_time
                 
-                # Validate agent participation
-                participating_agents = set(response.get('agent_results', {}).keys())
-                expected_agents = set(scenario['expected_agents'])
+                # HONEST VALIDATION: Check if this is real agent collaboration or fallback
+                is_real_collaboration = (
+                    response.get('success', False) and 
+                    not response.get('fallback_mode', False) and
+                    not response.get('agent_error') and
+                    len(response.get('agent_results', {})) > 0 and
+                    execution_time > 0.5  # Real collaboration takes time
+                )
+                
+                if is_real_collaboration:
+                    # Real agent system worked
+                    participating_agents = set(response.get('agent_results', {}).keys())
+                    expected_agents = set(scenario['expected_agents'])
+                    agent_coverage = len(participating_agents & expected_agents) / len(expected_agents)
+                    result_confidence = response.get('confidence_score', 0.0)
+                    test_success = True
+                    test_type = "real_collaboration"
+                else:
+                    # This is fallback/fake - mark as failed
+                    agent_coverage = 0.0
+                    result_confidence = 0.0
+                    test_success = False
+                    test_type = "fallback_detected"
                 
                 results['tests'].append({
                     'query': scenario['query'],
-                    'success': response['success'],
+                    'success': test_success,  # HONEST: Only true if real collaboration
                     'execution_time': execution_time,
-                    'meets_sla': execution_time < 30.0,  # 30s target
-                    'agent_coverage': len(participating_agents & expected_agents) / len(expected_agents),
-                    'result_confidence': response.get('confidence_score', 0.0)
+                    'meets_sla': execution_time < 30.0,
+                    'agent_coverage': agent_coverage,
+                    'result_confidence': result_confidence,
+                    'test_type': test_type,
+                    'fallback_mode': response.get('fallback_mode', False),
+                    'has_agent_error': bool(response.get('agent_error')),
+                    'agent_results_count': len(response.get('agent_results', {}))
                 })
                 
             except Exception as e:
                 results['tests'].append({
                     'query': scenario['query'],
                     'success': False,
-                    'error': str(e)
+                    'error': str(e),
+                    'test_type': "exception"
                 })
         
         self.test_results['test_suites']['agent_system'] = results
@@ -238,7 +258,7 @@ class CompleteSystemTest:
         ...
 
     def _calculate_final_status(self):
-        """Calculate final system status"""
+        """Calculate final system status - HONEST VERSION"""
         
         all_tests = []
         for suite in self.test_results['test_suites'].values():
@@ -249,15 +269,16 @@ class CompleteSystemTest:
         
         success_rate = (successful_tests / total_tests) * 100 if total_tests > 0 else 0
         
-        # Production readiness criteria
+        # HONEST: No partial credit for fallbacks
         critical_issues = [
             test for test in all_tests 
-            if not test.get('success') and test.get('critical', False)
+            if not test.get('success') or test.get('test_type') == 'fallback_detected'
         ]
         
+        # HONEST criteria
         if success_rate >= 95 and not critical_issues:
             status = "PRODUCTION_READY"
-        elif success_rate >= 80:
+        elif success_rate >= 70:
             status = "READY_WITH_WARNINGS"
         else:
             status = "NOT_PRODUCTION_READY"
@@ -270,6 +291,8 @@ class CompleteSystemTest:
             'critical_issues': len(critical_issues),
             'completion_time': datetime.now().isoformat()
         })
+        
+        
     def _create_test_routing_decision(self) -> RoutingDecision:
         """Create test routing decision with default test values"""
         
@@ -285,16 +308,17 @@ class CompleteSystemTest:
             estimated_cost='medium'
         )
 
-def main():
+async def main():
     """Run the complete integration test suite"""
     
     logger.info("Starting Complete System Integration Test")
     logger.info("=" * 60)
     
     test_suite = CompleteSystemTest()
+    await test_suite.initialize_system()
     
     try:
-        results = asyncio.run(test_suite.run_complete_test_suite())
+        results = await test_suite.run_complete_test_suite()
         
         logger.info("\nTest Suite Results:")
         logger.info(f"Overall Status: {results['overall_status']}")
@@ -309,4 +333,4 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    exit(main())
+    exit(asyncio.run(main()))

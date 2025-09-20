@@ -102,11 +102,9 @@ class OrchestratedOceanographicRAG:
         """
         Enhanced single-function version that handles both old and new interfaces
         """
-        
+        logger.info(f"DIAGNOSTIC: process_query ENTRY - Query: {natural_language_query}")
         start_time = time.time()
         self.processing_stats['total_queries'] += 1
-        
-        logger.info(f"Processing query with orchestration: {natural_language_query}")
         
         # Handle backward compatibility - convert old response_format to new config
         if response_config is None:
@@ -126,14 +124,17 @@ class OrchestratedOceanographicRAG:
                     f"(confidence: {routing_decision.confidence:.2f})")
             
             # Step 2: Processing logic  
+            logger.info(f"DIAGNOSTIC: About to call _execute_processing_path")
             result = self._execute_processing_path(
                 natural_language_query, 
                 routing_decision, 
                 None  # response_format handled by intelligence layer
             )
+            logger.info(f"DIAGNOSTIC: _execute_processing_path returned: {type(result)}")
             
             # Step 3: Apply response intelligence enhancement
             if result.get('success', False):
+                logger.info(f"DIAGNOSTIC: About to call enhance_orchestrated_response")
                 enhanced_result = self.response_intelligence.enhance_orchestrated_response(
                     result, response_config
                 )
@@ -184,24 +185,28 @@ class OrchestratedOceanographicRAG:
                 }
             }
     
-    def _execute_processing_path(self, query: str, 
+    async def _execute_processing_path(self, query: str, 
                                 routing_decision: RoutingDecision,
                                 response_format: ResponseFormat) -> Dict[str, Any]:
         """Execute the query based on routing decision"""
         
         path = routing_decision.path
+        logger.info(f"DIAGNOSTIC: _execute_processing_path - path: {path.value}")
         
         if path == ProcessingPath.LIGHTNING_RAG:
-            return self._execute_lightning_rag(query, routing_decision, response_format)
+            logger.info(f"DIAGNOSTIC: About to call _execute_lightning_rag")
+            return await self._execute_lightning_rag(query, routing_decision, response_format)
         
         elif path == ProcessingPath.SEMANTIC_BRIDGE:
-            return self._execute_semantic_bridge(query, routing_decision, response_format)
+            logger.info(f"DIAGNOSTIC: About to call _execute_semantic_bridge")
+            return await self._execute_semantic_bridge(query, routing_decision, response_format)
         
         elif path == ProcessingPath.AGENTIC_FALLBACK:
-            return self._execute_agentic_fallback(query, routing_decision, response_format)
+            logger.info(f"DIAGNOSTIC: About to call _execute_agentic_fallback")
+            return await self._execute_agentic_fallback(query, routing_decision, response_format)
         
         else:  # ERROR_RECOVERY
-            return self._execute_error_recovery(query, routing_decision, response_format)
+            return await self._execute_error_recovery(query, routing_decision, response_format)
     
     def _execute_lightning_rag(self, query: str, 
                               routing_decision: RoutingDecision,
@@ -289,23 +294,24 @@ class OrchestratedOceanographicRAG:
             # TODO: Implement actual semantic bridge
             return self.semantic_bridge.process_query(query, routing_decision)
     
-    def _execute_agentic_fallback(self, query: str,
-                             routing_decision: RoutingDecision,
-                             response_format: ResponseFormat) -> Dict[str, Any]:
-        """Execute agentic processing with MCP tools (IMPLEMENTED)"""
+    async def _execute_agentic_fallback(self, query: str,
+                         routing_decision: RoutingDecision,
+                         response_format: ResponseFormat) -> Dict[str, Any]:
+        """Execute agentic processing with MCP tools (FIXED)"""
+        
+        logger.info(f"DIAGNOSTIC: _execute_agentic_fallback called with query: {query}")
+        logger.info(f"DIAGNOSTIC: Agent collaboration system exists: {self.agent_system is not None}")
         
         logger.info("Executing Agentic Fallback path")
         self.processing_stats['agent_queries'] += 1
         
         if self.agent_system is None:
-            # Use intelligent response system as fallback
             logger.warning("Agent system not available, using intelligent response system")
             
             try:
                 result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
                 result['processing_path'] = 'agentic_fallback_irs'
                 result['agent_reasoning'] = "Used Intelligent Response System as agent fallback"
-                
                 return result
                 
             except Exception as e:
@@ -313,30 +319,18 @@ class OrchestratedOceanographicRAG:
                 return self._execute_error_recovery(query, routing_decision, response_format)
         
         else:
-            # Use actual agent collaboration system
+            # Use actual agent collaboration system - FIXED ASYNC HANDLING
             try:
-                import asyncio
+                logger.info("DIAGNOSTIC: About to call agent collaboration system")
                 
-                # Execute agent collaboration
-                if asyncio.iscoroutinefunction(self.agent_system.execute_agent_collaboration):
-                    loop = asyncio.get_event_loop()
-                    if loop.is_running():
-                        # Create new task if loop is already running
-                        import concurrent.futures
-                        with concurrent.futures.ThreadPoolExecutor() as executor:
-                            future = executor.submit(
-                                asyncio.run,
-                                self.agent_system.execute_agent_collaboration(query, routing_decision, user_context={})
-                            )
-                            result = future.result(timeout=routing_decision.performance_budget)
-                    else:
-                        result = asyncio.run(self.agent_system.execute_agent_collaboration(
-                            query, routing_decision, user_context={}
-                        ))
-                else:
-                    result = self.agent_system.execute_agent_collaboration(
-                        query, routing_decision, user_context={}
-                    )
+                # SIMPLE DIRECT CALL - no complex async handling
+                result = await self.agent_system.execute_agent_collaboration(
+                    query=query,
+                    routing_decision=routing_decision,
+                    user_context={}
+                )
+                
+                logger.info(f"DIAGNOSTIC: Agent collaboration returned: {result.get('success', 'unknown')}")
                 
                 # Add path-specific metadata
                 result['processing_path'] = 'agentic_collaboration'
@@ -345,10 +339,14 @@ class OrchestratedOceanographicRAG:
                 return result
                 
             except Exception as e:
-                logger.error(f"Agent collaboration failed: {e}")
+                logger.error(f"DIAGNOSTIC: Agent collaboration failed with exception: {e}")
+                logger.error(f"DIAGNOSTIC: Exception type: {type(e)}")
+                import traceback
+                logger.error(f"DIAGNOSTIC: Full traceback: {traceback.format_exc()}")
+                
                 # Fallback to intelligent response system
                 try:
-                    result = self.response_system.process_intelligent_query(query, response_format)
+                    result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
                     result['processing_path'] = 'agentic_fallback_after_error'
                     result['agent_error'] = str(e)
                     return result

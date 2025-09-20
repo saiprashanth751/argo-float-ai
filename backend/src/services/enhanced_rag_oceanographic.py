@@ -176,7 +176,7 @@ class ProductionOceanographicRAG:
         
         # Initialize intelligence layers
         logger.info("Initializing Production RAG System...")
-        
+         
         # Layer 1: Vector Store (Domain Knowledge)
         self.vector_store = self._initialize_vector_store(persist_directory)
         

@@ -3,6 +3,7 @@
 PRODUCTION-HARDENED Unified Agent Factory
 """
 
+import os
 import logging
 import threading
 import time
@@ -476,9 +477,9 @@ class UnifiedAgentFactory:
             return self._create_emergency_fallback_agent(f"Emergency {agent_type}")
 
     def _create_crewai_agent_robust(self, role: str, goal: str, backstory: str, 
-                              agent_type: str, max_iter: int) -> Any:
+                          agent_type: str, max_iter: int) -> Any:
         """Create CrewAI agent with proper BaseTool instances"""
-        from crewai import Agent
+        from crewai import Agent, LLM
         
         # Create proper CrewAI tools
         crewai_tools = self._create_crewai_tools(agent_type)
@@ -486,11 +487,19 @@ class UnifiedAgentFactory:
         if not crewai_tools:
             raise ValueError(f"No valid CrewAI tools available for {agent_type}")
         
+        # Configure DeepSeek LLM
+        deepseek_llm = LLM(
+            model="deepseek/deepseek-chat",
+            api_key=os.getenv("DEEPSEEK_API_KEY"),  # Make sure this env var is set
+            base_url="https://api.deepseek.com/v1"
+        )
+        
         return Agent(
             role=role,
             goal=goal,
             backstory=backstory,
             tools=crewai_tools,
+            llm=deepseek_llm,  # Add the DeepSeek LLM
             verbose=False,
             allow_delegation=False,
             max_iter=max_iter,
@@ -617,6 +626,13 @@ class UnifiedAgentFactory:
             
             def __getattr__(self, name):
                 return getattr(self.wrapped_agent, name)
+            
+            def get(self, key, default=None):
+                """Handle dictionary-like access for CrewAI compatibility"""
+                try:
+                    return getattr(self.wrapped_agent, key, default)
+                except AttributeError:
+                    return default
             
             def process(self, *args, **kwargs):
                 start_time = time.time()

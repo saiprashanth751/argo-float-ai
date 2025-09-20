@@ -64,7 +64,7 @@ class ProductionSQLGenerator:
         self.performance_thresholds = self._define_performance_thresholds()
         self.spatial_regions = self._define_spatial_regions()
         
-    def _build_production_templates(self) -> Dict[str, SQLTemplate]:
+    def     _build_production_templates(self) -> Dict[str, SQLTemplate]:
         """Build production templates with proper JOIN awareness"""
         
         return {
