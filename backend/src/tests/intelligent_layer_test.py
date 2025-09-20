@@ -1,3 +1,4 @@
+#backend\src\tests\intelligent_layer_test.py
 """
 Complete Integration Test Suite - Production Readiness Validation
 """
@@ -26,18 +27,24 @@ from services.oceanographic_intelligence_engine import (
     QueryIntent,
     ComplexityLevel
 )
+from services.types_core import RoutingDecision, ProcessingPath, ComplexityLevel, QueryIntent
 
 logger = logging.getLogger(__name__)
 
-@dataclass
-class TestRoutingDecision:
-    """Test routing decision class that mimics production RoutingDecision"""
-    processing_path: ProcessingPath
-    confidence: float
-    complexity_level: ComplexityLevel
-    query_intent: QueryIntent
-    fallback_paths: List[ProcessingPath]
-    metadata: Dict[str, Any]
+# @dataclass
+# class RoutingDecision:
+#     """Test routing decision class that mimics production RoutingDecision"""
+#     processing_path: ProcessingPath
+#     confidence: float
+#     complexity_level: ComplexityLevel
+#     query_intent: QueryIntent
+#     fallback_paths: List[ProcessingPath]
+#     metadata: Dict[str, Any]
+#     enrichments_needed: List[str]
+#     unknown_terms: List[str]
+#     performance_budget: int
+#     reasoning: List[str]
+#     estimated_cost: str
 
 class CompleteSystemTest:
     """
@@ -263,23 +270,19 @@ class CompleteSystemTest:
             'critical_issues': len(critical_issues),
             'completion_time': datetime.now().isoformat()
         })
-
-    def _create_test_routing_decision(self) -> TestRoutingDecision:
+    def _create_test_routing_decision(self) -> RoutingDecision:
         """Create test routing decision with default test values"""
-        return TestRoutingDecision(
-            processing_path=ProcessingPath.LIGHTNING_RAG,
+        
+        return RoutingDecision(
+            path=ProcessingPath.AGENTIC_FALLBACK,  # Changed from LIGHTNING_RAG
             confidence=0.95,
-            complexity_level=ComplexityLevel.INTERMEDIATE,
-            query_intent=QueryIntent.PROFILE_ANALYSIS,
-            fallback_paths=[
-                ProcessingPath.SEMANTIC_BRIDGE,
-                ProcessingPath.AGENTIC_FALLBACK
-            ],
-            metadata={
-                'test_mode': True,
-                'validation_required': True,
-                'performance_monitoring': True
-            }
+            reasoning=["Test routing decision"],
+            performance_budget=300,  # Increased timeout
+            fallback_path=ProcessingPath.SEMANTIC_BRIDGE,
+            enrichments_needed=[],
+            unknown_terms=[],
+            complexity_factors={'base_complexity': 'intermediate'},
+            estimated_cost='medium'
         )
 
 def main():

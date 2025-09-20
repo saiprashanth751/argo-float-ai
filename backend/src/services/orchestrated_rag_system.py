@@ -22,6 +22,7 @@ from .smart_query_router import SmartQueryRouter, ProcessingPath, RoutingDecisio
 from langchain.chat_models.base import BaseChatModel
 from langchain_openai import ChatOpenAI
 from .response_intelligence_layer import DeepSeekResponseIntelligence, ResponseIntelligenceConfig
+from utils.database_manager import get_db_engine, get_db_session
 
 @dataclass
 class ResponseFormat:
@@ -50,7 +51,7 @@ class OrchestratedOceanographicRAG:
     
     def __init__(self, persist_directory: str = None, db_engine=None):
         # Initialize core components
-        self.db_engine = db_engine or self._create_default_engine()
+        self.db_engine = db_engine or get_db_engine()
         
         # Layer 1: Your existing RAG system (Lightning path)
         self.rag_system = ProductionOceanographicRAG(persist_directory, db_engine)
@@ -66,6 +67,8 @@ class OrchestratedOceanographicRAG:
         
         # Layer 4: Response system for formatting
         self.response_intelligence = DeepSeekResponseIntelligence()
+        # self.response_system = self.response_intelligence   is this needed or not
+        
         logger.info("Orchestrated RAG with Response Intelligence initialized")
         # Semantic bridge (will implement next)
         from .semantic_intelligence_bridge import SemanticIntelligenceBridge
@@ -74,7 +77,7 @@ class OrchestratedOceanographicRAG:
         # Agent system (will implement after semantic bridge)
         if AGENT_SYSTEM_AVAILABLE:
             try:
-                self.agent_system = ProductionAgentCollaborationSystem(db_engine, max_agents=4)
+                self.agent_system = ProductionAgentCollaborationSystem(self.db_engine, max_agents=4)
                 logger.info("Production agent collaboration system initialized")
             except Exception as e:
                 logger.warning(f"Agent system initialization failed: {e}")
@@ -299,7 +302,7 @@ class OrchestratedOceanographicRAG:
             logger.warning("Agent system not available, using intelligent response system")
             
             try:
-                result = self.response_system.process_intelligent_query(query, response_format)
+                result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
                 result['processing_path'] = 'agentic_fallback_irs'
                 result['agent_reasoning'] = "Used Intelligent Response System as agent fallback"
                 

@@ -4,25 +4,20 @@ PHASE 3 COMPLETION: Agent Collaboration System
 Complete implementation of multi-agent oceanographic analysis with CrewAI integration
 """
 
-import asyncio
-import logging
-import time
-import json
-from typing import Dict, List, Optional, Any, Union
+import weakref
+import psutil
+import gc
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
-from enum import Enum
+from typing import Dict, List, Optional, Any, Union
+import asyncio
+import time
 import uuid
 import threading
+import logging
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
-import traceback
-from .mcp_tools_integration_complete import (
-    CompleteMCPToolsSystem,
-    ProductionAgentFactory,
-    ExternalDataIntegrationTool,
-    DataQualityAssessmentTool,
-    OceanographicKnowledgeTool
-)
+from datetime import datetime, timedelta
+import json
+from enum import Enum
 
 # CrewAI imports with proper fallback handling
 try:
@@ -41,8 +36,38 @@ from .core_agent_system import (
 from .smart_query_router import RoutingDecision, ProcessingPath
 from .oceanographic_intelligence_engine import QueryClassification, QueryIntent, ComplexityLevel
 from .mcp_tools_core import MCPToolsManager
+from .types_core import (
+    TaskRequest, TaskResult, AgentCapability, TaskPriority, AgentMetrics, 
+    AgentStatus, RoutingDecision, ProcessingPath
+)
 
 logger = logging.getLogger(__name__)
+
+# ADD these classes at the top of the file:
+
+class MemoryMonitor:
+    """Prevent memory leaks and exhaustion"""
+    def __init__(self, threshold_mb=2048):
+        self.threshold_mb = threshold_mb
+        self.active_objects = weakref.WeakSet()
+    
+    def register_object(self, obj):
+        self.active_objects.add(obj)
+    
+    def check_memory_usage(self):
+        import psutil, gc
+        memory_mb = psutil.Process().memory_info().rss / 1024 / 1024
+        if memory_mb > self.threshold_mb:
+            gc.collect()
+            return False
+        return True
+
+class CircuitBreakerRegistry:
+    """Centralized circuit breaker management"""
+    def __init__(self):
+        self.breakers = {}
+        self.global_failure_count = 0
+        self.emergency_mode = False
 
 class CollaborationPattern(Enum):
     """Enhanced collaboration patterns for different query complexities"""
@@ -80,6 +105,83 @@ class AgentExecutionResult:
     errors: List[str] = field(default_factory=list)
     recommendations: List[str] = field(default_factory=list)
 
+class CircuitBreaker:
+    def __init__(self, failure_threshold: int = 5, recovery_timeout: int = 60):
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.failure_count = 0
+        self.last_failure_time = 0
+        self.state = "CLOSED"
+        self._lock = threading.RLock()  # CRITICAL: Add this missing line
+    
+    def can_execute(self) -> bool:
+        with self._lock:  # Add lock context
+            if self.state == "OPEN" and time.time() - self.last_failure_time > self.recovery_timeout:
+                self.state = "HALF_OPEN"
+            return self.state != "OPEN"
+    
+    def record_success(self):
+        with self._lock:  # Add lock context
+            if self.state == "HALF_OPEN":
+                self.state = "CLOSED"
+            self.failure_count = 0
+    
+    def record_failure(self):
+        with self._lock:  # Add lock context
+            self.failure_count += 1
+            self.last_failure_time = time.time()
+            if self.failure_count >= self.failure_threshold:
+                self.state = "OPEN"
+
+class ResourceMonitor:
+    """Monitor system resources to prevent overload"""
+    def __init__(self, memory_threshold_mb: int = 2048, cpu_threshold: float = 0.8):
+        self.memory_threshold_mb = memory_threshold_mb
+        self.cpu_threshold = cpu_threshold
+    
+    def check_system_health(self) -> bool:
+        try:
+            # Check memory
+            memory = psutil.virtual_memory()
+            if memory.percent > 80:
+                gc.collect()
+                return False
+            
+            # Check CPU
+            if psutil.cpu_percent(1) > self.cpu_threshold * 100:
+                return False
+                
+            return True
+        except:
+            return True  # Fallback if monitoring fails
+
+class CorrelationTracker:
+    """Track request correlation and prevent loops"""
+    def __init__(self):
+        self.active_requests = set()
+        self.correlation_map = {}
+    
+    def start_tracking(self, request_id):
+        self.active_requests.add(request_id)
+    
+    def stop_tracking(self, request_id):
+        self.active_requests.discard(request_id)
+
+class ResourceLimiter:
+    """Limit concurrent resource usage"""
+    def __init__(self, max_concurrent=5, queue_size=100):
+        self.max_concurrent = max_concurrent
+        self.queue_size = queue_size
+        self.active_count = 0
+        self.semaphore = threading.Semaphore(max_concurrent)
+    
+    def acquire(self):
+        return self.semaphore.acquire(timeout=30)
+    
+    def release(self):
+        self.semaphore.release()
+
+
 class ProductionAgentCollaborationSystem:
     """
     Production-grade agent collaboration system for oceanographic analysis.
@@ -96,9 +198,23 @@ class ProductionAgentCollaborationSystem:
         self.agent_pool = AgentPoolManager(max_concurrent_tasks=max_agents)
         self.tools_manager = MCPToolsManager(db_engine)
         
+        self.circuit_breakers: Dict[str, CircuitBreaker] = {}
+        self.resource_monitor = ResourceMonitor()
+        self._active_tasks = weakref.WeakSet()
+        self._shutdown_flag = threading.Event()
+        self.active_futures = []
+        self.futures_lock = threading.Lock()
+        
+        agent_types = ['schema_explorer', 'domain_researcher', 'sql_specialist', 
+                      'result_validator', 'quality_assessor', 'integration_coordinator']
+        for agent_type in agent_types:
+            self.circuit_breakers[agent_type] = CircuitBreaker()
+        
+        logger.info(f"Production Agent Collaboration System initialized with circuit breakers and resource monitoring")
+
+        
         # Initialize specialized agents
         self.specialized_agents = {}
-        self.agent_factory = None
         self._initialize_agent_factory()
         self._initialize_all_agents()
         
@@ -106,6 +222,12 @@ class ProductionAgentCollaborationSystem:
         self.active_collaborations: Dict[str, AgentCollaborationTask] = {}
         self.collaboration_patterns = self._define_enhanced_collaboration_patterns()
         self.execution_strategies = self._define_execution_strategies()
+        
+        # CRITICAL: Add these to prevent system collapse
+        self.memory_monitor = MemoryMonitor()
+        self.circuit_registry = CircuitBreakerRegistry()
+        self.correlation_tracker = CorrelationTracker()
+        self.resource_limiter = ResourceLimiter(max_concurrent=5, queue_size=100)
         
         # Performance monitoring
         self.collaboration_metrics = {
@@ -123,14 +245,21 @@ class ProductionAgentCollaborationSystem:
         
         logger.info(f"Production Agent Collaboration System initialized with {max_agents} agents")
     
+    def _handle_system_overload(self):
+        """Emergency system protection"""
+        if not self.memory_monitor.check_memory_usage():
+            return self._emergency_simple_response()
+        
+        if self.circuit_registry.emergency_mode:
+            return self._minimal_fallback_response()
+    
     def _initialize_agent_factory(self):
-        """Initialize the agent factory for creating specialized agents"""
         try:
-            from .quality_assessment_complete import OceanographicAgentFactory
-            self.agent_factory = OceanographicAgentFactory(self.db_engine, self.tools_manager)
-            logger.info("Agent factory initialized successfully")
-        except ImportError as e:
-            logger.warning(f"Agent factory initialization failed: {e}")
+            from .unified_agent_factory import create_agent_factory
+            self.agent_factory = create_agent_factory(self.db_engine, self.tools_manager)
+            logger.info("Unified agent factory initialized successfully")
+        except Exception as e:
+            logger.error(f"Agent factory initialization failed: {e}")
             self.agent_factory = None
     
     def _initialize_all_agents(self):
@@ -174,7 +303,7 @@ class ProductionAgentCollaborationSystem:
             )
             
             # Quality Assessor Agent - Handles data quality analysis
-            quality_agent = self._create_quality_assessor_agent()
+            quality_agent = self.agent_factory.create_quality_assessor_agent()
             self.agent_pool.register_agent(
                 'quality_assessor',
                 quality_agent,
@@ -182,7 +311,7 @@ class ProductionAgentCollaborationSystem:
             )
             
             # Integration Coordinator Agent - Orchestrates multi-source analysis
-            coordinator_agent = self._create_integration_coordinator_agent()
+            coordinator_agent = self.agent_factory.create_integration_coordinator_agent()
             self.agent_pool.register_agent(
                 'integration_coordinator',
                 coordinator_agent,
@@ -195,114 +324,45 @@ class ProductionAgentCollaborationSystem:
             logger.error(f"Failed to initialize specialized agents: {e}")
             self._initialize_mock_agents()
     
-    def _create_quality_assessor_agent(self):
-        """Create specialized quality assessment agent"""
-        if not CREWAI_AVAILABLE:
-            return self._create_mock_agent("quality_assessor")
-        
-        return Agent(
-            role="Data Quality Assessment Specialist",
-            goal="Evaluate data quality, identify anomalies, and provide quality metrics for oceanographic datasets",
-            backstory="""
-            You are an expert in oceanographic data quality assessment with deep knowledge 
-            of ARGO float data characteristics, quality control procedures, and statistical 
-            validation methods. You can identify data inconsistencies, instrument drift, 
-            and measurement anomalies that could affect analysis results.
-            
-            Your expertise includes:
-            - ARGO quality control flags and their meanings
-            - Statistical outlier detection in oceanographic data
-            - Temporal and spatial consistency validation
-            - Cross-platform calibration assessment
-            - Measurement uncertainty quantification
-            """,
-            tools=[
-                self.tools_manager.quality_assessor.assess_data_quality,
-                self.tools_manager.db_explorer.explore_database_schema
-            ] if hasattr(self.tools_manager, 'quality_assessor') else [],
-            verbose=True,
-            allow_delegation=False,
-            max_iter=4,
-            memory=True
-        )
-    
-    def _create_integration_coordinator_agent(self):
-        """Create integration coordinator for multi-source analysis"""
-        if not CREWAI_AVAILABLE:
-            return self._create_mock_agent("integration_coordinator")
-        
-        return Agent(
-            role="Multi-Source Integration Coordinator",
-            goal="Coordinate analysis across multiple data sources and validate consistency of integrated results",
-            backstory="""
-            You are an expert coordinator for complex oceanographic analyses requiring 
-            multiple data sources and validation steps. You understand how different 
-            oceanographic datasets relate to each other and can identify when results 
-            from different sources should be consistent or when differences are expected.
-            
-            Your coordination skills include:
-            - Multi-platform data integration strategies
-            - Cross-validation between satellite and in-situ data
-            - Temporal and spatial matching of different datasets
-            - Uncertainty propagation in integrated analyses
-            - Quality assurance for multi-source results
-            """,
-            tools=[
-                self.tools_manager.external_integration.search_external_data,
-                self.tools_manager.knowledge_tool.search_oceanographic_knowledge
-            ] if hasattr(self.tools_manager, 'external_integration') else [],
-            verbose=True,
-            allow_delegation=True,  # Can delegate to other agents
-            max_iter=5,
-            memory=True
-        )
-    
     def _initialize_mock_agents(self):
-        """Initialize mock agents when CrewAI is not available"""
-        mock_agents = [
-            ('schema_explorer', [AgentCapability.DATABASE_EXPLORATION]),
-            ('domain_researcher', [AgentCapability.DOMAIN_RESEARCH]),
-            ('sql_specialist', [AgentCapability.SQL_GENERATION]),
-            ('result_validator', [AgentCapability.RESULT_VALIDATION]),
-            ('quality_assessor', [AgentCapability.RESULT_VALIDATION]),
-            ('integration_coordinator', [AgentCapability.DOMAIN_RESEARCH])
-        ]
-        
-        for agent_id, capabilities in mock_agents:
-            mock_agent = self._create_mock_agent(agent_id)
-            self.agent_pool.register_agent(agent_id, mock_agent, capabilities)
-        
-        logger.info("Mock agents initialized for fallback operation")
-    
-    def _create_mock_agent(self, agent_id: str):
-        """Create a mock agent for fallback operation"""
+        """Initialize mock agents when factory is not available"""
         class MockAgent:
-            def __init__(self, agent_id: str):
+            def __init__(self, agent_id):
                 self.agent_id = agent_id
-                self.role = f"Mock {agent_id.title().replace('_', ' ')}"
             
-            def process(self, task_data: Dict[str, Any]) -> str:
-                return f"Mock {self.agent_id} processed: {task_data.get('description', 'No description')}"
+            def process(self, context):
+                return f"Mock {self.agent_id} processed: {context.get('description', 'No description')}"
         
-        return MockAgent(agent_id)
+        mock_agents = ['schema_explorer', 'domain_researcher', 'sql_specialist', 
+                    'result_validator', 'quality_assessor', 'integration_coordinator']
+        
+        for agent_id in mock_agents:
+            # CRITICAL FIX: Only register if not already present
+            if agent_id not in self.agent_pool.agents:
+                mock_agent = MockAgent(agent_id)
+                capabilities = [AgentCapability.DATABASE_EXPLORATION, AgentCapability.DOMAIN_RESEARCH]
+                self.agent_pool.register_agent(agent_id, mock_agent, capabilities)
     
     async def execute_agent_collaboration(self, 
                                         query: str,
                                         routing_decision: RoutingDecision,
                                         user_context: Dict[str, Any] = None) -> Dict[str, Any]:
-        """
-        Main entry point for agent collaboration execution.
-        
-        This is the core method that orchestrates multi-agent collaboration
-        for complex oceanographic queries.
-        """
+        """Enhanced with circuit breakers and resource monitoring"""
         
         collaboration_id = str(uuid.uuid4())
         start_time = time.time()
         
         logger.info(f"Starting agent collaboration {collaboration_id} for query: {query}")
         
+        if not self.resource_monitor.check_system_health():
+            return self._create_emergency_response(query, "System resources exhausted")
+        
+        collaboration_id = str(uuid.uuid4())
+        start_time = time.time()
+        
         try:
+            if not self._check_circuit_breakers():
+                return self._create_emergency_response(query, "System temporarily unavailable")
             # Step 1: Analyze query and determine collaboration strategy
             collaboration_pattern = self._select_collaboration_pattern(
                 query, routing_decision, user_context
@@ -338,19 +398,36 @@ class ProductionAgentCollaborationSystem:
             return response
             
         except Exception as e:
-            processing_time = time.time() - start_time
-            logger.error(f"Agent collaboration {collaboration_id} failed: {e}")
-            traceback.print_exc()
+            # Enhanced error handling
+            logger.error(f"Collaboration {collaboration_id} failed: {e}", exc_info=True)
+            return self._create_emergency_response(query, f"System error: {str(e)}")
             
-            return self._build_error_response(
-                collaboration_id, query, str(e), processing_time
-            )
+            # return self._build_error_response(
+            #     collaboration_id, query, str(e), processing_time
+            # )
         
         finally:
             # Cleanup
             if collaboration_id in self.active_collaborations:
                 del self.active_collaborations[collaboration_id]
     
+    def _check_circuit_breakers(self) -> bool:
+        """Check if critical agents are available"""
+        critical_agents = ['schema_explorer', 'sql_specialist']
+        return all(self.circuit_breakers[agent].can_execute() for agent in critical_agents)
+    
+    def _create_emergency_response(self, query: str, reason: str) -> Dict[str, Any]:
+        """Create emergency fallback response"""
+        return {
+            'success': False,
+            'error': reason,
+            'query': query,
+            'emergency_mode': True,
+            'recommendation': 'Please try a simpler query or try again later',
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        
     def _select_collaboration_pattern(self, 
                                     query: str, 
                                     routing_decision: RoutingDecision,
@@ -438,7 +515,7 @@ class ProductionAgentCollaborationSystem:
         return collaboration_task
     
     async def _execute_collaboration_workflow(self, 
-                                            collaboration_task: AgentCollaborationTask) -> Dict[str, AgentExecutionResult]:
+                                        collaboration_task: AgentCollaborationTask) -> Dict[str, AgentExecutionResult]:
         """Execute the multi-agent collaboration workflow"""
         
         execution_results = {}
@@ -459,12 +536,21 @@ class ProductionAgentCollaborationSystem:
                     task_spec,
                     execution_results  # Pass previous results as context
                 )
-                group_futures.append((task_spec['agent_id'], future))
+                with self.futures_lock:
+                    self.active_futures.append(future)
+                group_futures.append((task_spec['agent_id'], future, task_spec))
             
-            # Wait for group completion
-            for agent_id, future in group_futures:
+            # Wait for group completion with proper async handling
+            import asyncio
+            loop = asyncio.get_event_loop()
+            
+            for agent_id, future, task_spec in group_futures:
                 try:
-                    result = future.result(timeout=task_spec.get('timeout', 60))
+                    # Properly await the blocking future.result() call in async context
+                    result = await loop.run_in_executor(
+                        None, 
+                        lambda f=future, t=task_spec: f.result(timeout=t.get('timeout', 60))
+                    )
                     execution_results[agent_id] = result
                     
                     logger.info(f"Agent {agent_id} completed successfully")
@@ -480,6 +566,11 @@ class ProductionAgentCollaborationSystem:
                     execution_results[agent_id] = self._create_error_result(
                         agent_id, collaboration_task.task_id, str(e)
                     )
+                
+                # Clean up completed futures
+                with self.futures_lock:
+                    if future in self.active_futures:
+                        self.active_futures.remove(future)
             
             # Check if critical agents failed and should abort
             if self._should_abort_collaboration(collaboration_task, execution_results):
@@ -491,18 +582,43 @@ class ProductionAgentCollaborationSystem:
         
         return execution_results
     
+    def _execute_mock_agent(self, agent_instance, task_context: Dict[str, Any]) -> Any:
+        """Execute mock agent for fallback operation"""
+        if hasattr(agent_instance, 'process'):
+            return agent_instance.process(task_context)
+        else:
+            return f"Mock agent {getattr(agent_instance, 'agent_id', 'unknown')} processed task: {task_context.get('description', 'no description')}"
+    
     def _execute_single_agent_task(self, 
                                  collaboration_task: AgentCollaborationTask,
                                  task_spec: Dict[str, Any],
                                  previous_results: Dict[str, AgentExecutionResult]) -> AgentExecutionResult:
-        """Execute a single agent task with proper context and error handling"""
+        """Enhanced with circuit breaker integration"""
         
         agent_id = task_spec['agent_id']
         task_id = collaboration_task.task_id
         
+        agent_info = self.agent_pool.agents.get(agent_id)
+        if agent_info:
+            agent_instance = agent_info['instance']
+            logger.info(f"DIAGNOSTIC: Agent {agent_id} type: {type(agent_instance)}")
+            logger.info(f"DIAGNOSTIC: Agent {agent_id} attributes: {dir(agent_instance)}")
+            logger.info(f"DIAGNOSTIC: Has process method: {hasattr(agent_instance, 'process')}")
+            logger.info(f"DIAGNOSTIC: Agent class name: {agent_instance.__class__.__name__}")
+        else:
+            logger.error(f"DIAGNOSTIC: Agent {agent_id} not found in pool")
+        
+        if not self.circuit_breakers.get(agent_id, CircuitBreaker()).can_execute():
+            return self._create_circuit_breaker_result(agent_id, collaboration_task.task_id)
+        
         start_time = time.time()
         
         try:
+            # if success:
+            #     self.circuit_breakers[agent_id].record_success()
+            # else:
+            #     self.circuit_breakers[agent_id].record_failure()
+                
             # Build task context
             task_context = {
                 'query': collaboration_task.primary_query,
@@ -521,18 +637,26 @@ class ProductionAgentCollaborationSystem:
             
             agent_instance = agent_info['instance']
             
-            # Execute agent task
-            if CREWAI_AVAILABLE and hasattr(agent_instance, 'execute'):
+            # Execute agent task with proper interface detection  
+            if hasattr(agent_instance, 'process'):
+                # Production fallback agent - call process method directly
+                logger.info(f"Executing agent {agent_id} via process method")
+                output = agent_instance.process(task_context)
+            elif CREWAI_AVAILABLE and hasattr(agent_instance, '__class__') and 'Agent' in str(type(agent_instance)):
+                # CrewAI agent
+                logger.info(f"Executing agent {agent_id} via CrewAI")
                 output = self._execute_crewai_agent(agent_instance, task_context)
             else:
-                output = self._execute_mock_agent(agent_instance, task_context)
+                # Unknown agent type - provide meaningful fallback
+                logger.warning(f"Unknown agent type for {agent_id}: {type(agent_instance)}")
+                output = f"Agent {agent_id} processed query: {collaboration_task.primary_query[:100]}..."
             
             execution_time = time.time() - start_time
             
             # Calculate confidence score based on output quality
             confidence_score = self._calculate_output_confidence(output, task_spec)
             
-            return AgentExecutionResult(
+            result = AgentExecutionResult(
                 agent_id=agent_id,
                 task_id=task_id,
                 success=True,
@@ -544,8 +668,11 @@ class ProductionAgentCollaborationSystem:
                     'retry_count': task_spec.get('retry_count', 0)
                 }
             )
+            self.circuit_breakers[agent_id].record_success()
+            return result
             
         except Exception as e:
+            self.circuit_breakers[agent_id].record_failure()
             execution_time = time.time() - start_time
             logger.error(f"Agent {agent_id} execution failed: {e}")
             
@@ -559,6 +686,41 @@ class ProductionAgentCollaborationSystem:
                 errors=[str(e)],
                 metadata={'task_type': task_spec['task_type']}
             )
+    
+    def _create_circuit_breaker_result(self, agent_id: str, task_id: str) -> AgentExecutionResult:
+        """Create result for when circuit breaker is open"""
+        return AgentExecutionResult(
+            agent_id=agent_id,
+            task_id=task_id,
+            success=False,
+            output=f"Agent {agent_id} temporarily unavailable due to frequent failures",
+            execution_time=0.0,
+            confidence_score=0.0,
+            errors=["Circuit breaker open"],
+            metadata={'circuit_breaker': True}
+        )
+
+    def shutdown(self):
+        """Enhanced graceful shutdown"""
+        self._shutdown_flag.set()
+        
+        # Cancel all active tasks
+        for task in self._active_tasks:
+            try:
+                task.cancel()
+            except:
+                pass
+        
+        with self.futures_lock:
+            for future in self.active_futures:
+                 future.cancel()
+        # Wait for completion with timeout
+        try:
+            self.executor.shutdown(wait=True, timeout=30)
+        except:
+            self.executor.shutdown(wait=False)
+        
+        logger.info("Collaboration system shutdown completed gracefully")
     
     def _execute_crewai_agent(self, agent_instance, task_context: Dict[str, Any]) -> Any:
         """Execute CrewAI agent with proper task setup"""

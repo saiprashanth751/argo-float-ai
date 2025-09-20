@@ -1,11 +1,7 @@
 # src/services/template_sql_generator.py
 """
-Production-grade template-based SQL generator for oceanographic queries.
-Uses intelligent classification to select and parameterize SQL templates.
-Designed for 30-40M record performance with proper indexing strategies.
-
-KEY INSIGHT: Templates are NOT fixed queries - they're intelligent SQL patterns
-that adapt to infinite user requirements through parameterization.
+FIXED PRODUCTION-GRADE TEMPLATE SQL GENERATOR
+Addresses the critical JOIN context awareness bug and production issues
 """
 
 import re
@@ -16,9 +12,15 @@ from enum import Enum
 import pandas as pd
 from datetime import datetime, timedelta
 
-from oceanographic_intelligence_engine import (
-    QueryIntent, ComplexityLevel, QueryClassification, OceanographicContext
-)
+try:
+    from .oceanographic_intelligence_engine import (
+        QueryIntent, ComplexityLevel, QueryClassification, OceanographicContext
+    )
+except ImportError:
+    # Fallback imports for testing
+    from oceanographic_intelligence_engine import (
+        QueryIntent, ComplexityLevel, QueryClassification, OceanographicContext
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +32,8 @@ class SQLTemplate:
     performance_notes: str
     expected_result_size: str
     index_requirements: List[str]
-    adaptability_score: float  # How flexible this template is (0-1)
+    adaptability_score: float
+    requires_measurements_join: bool = False  # CRITICAL: Track JOIN requirements
 
 @dataclass
 class GeneratedSQL:
@@ -41,576 +44,551 @@ class GeneratedSQL:
     estimated_performance: str
     recommended_timeout: int
     index_requirements: List[str]
-    adaptations_made: List[str]  # Track how template was adapted
+    adaptations_made: List[str]
+    validation_passed: bool = True
+    warnings: List[str] = None
 
 class ProductionSQLGenerator:
     """
-    Production-grade SQL generator using classification-driven templates.
+    FIXED PRODUCTION-GRADE SQL GENERATOR
     
-    CRITICAL INSIGHT: This is NOT about fixed queries - it's about intelligent
-    query construction patterns that adapt to infinite user requirements.
-    
-    Think of it like a compiler: User intent -> Classification -> Template Selection 
-    -> Parameter Extraction -> Dynamic SQL Generation
+    Key fixes:
+    1. JOIN context awareness in all filter methods
+    2. Template-aware component building
+    3. Proper parameter filter logic
+    4. Production validation and safety
     """
     
     def __init__(self):
-        self.templates = self._build_adaptive_templates()
+        self.templates = self._build_production_templates()
         self.performance_thresholds = self._define_performance_thresholds()
         self.spatial_regions = self._define_spatial_regions()
-        self.query_complexity_patterns = self._build_complexity_patterns()
         
-    def _build_complexity_patterns(self) -> Dict[str, Dict]:
-        """Build patterns for handling query complexity dynamically"""
-        return {
-            'simple_filters': {
-                'spatial': "AND p.{coord} BETWEEN {min_val} AND {max_val}",
-                'temporal': "AND p.profile_date BETWEEN '{start}' AND '{end}'",
-                'parameter': "AND {table}.{param} IS NOT NULL",
-                'range': "AND {table}.{param} BETWEEN {min_val} AND {max_val}"
-            },
-            'complex_filters': {
-                'multi_spatial': """
-                    AND ST_DWithin(
-                        ST_Point(p.longitude, p.latitude)::geography,
-                        ST_Point({center_lon}, {center_lat})::geography,
-                        {radius_m}
-                    )
-                """,
-                'seasonal': "AND EXTRACT(month FROM p.profile_date) IN ({months})",
-                'quality_based': "AND {qc_conditions}",
-                'depth_layered': """
-                    AND m.pressure {depth_operator} {depth_value}
-                    AND EXISTS (SELECT 1 FROM argo_measurements m2 
-                               WHERE m2.profile_id = m.profile_id 
-                               AND m2.pressure BETWEEN {layer_min} AND {layer_max})
-                """
-            },
-            'aggregation_patterns': {
-                'spatial_grid': """
-                    ROUND(p.{coord}::numeric, {resolution}) as {coord}_grid
-                """,
-                'temporal_group': "DATE_TRUNC('{period}', p.profile_date) as time_period",
-                'depth_binning': """
-                    CASE 
-                        {depth_cases}
-                    END as depth_layer
-                """,
-                'statistical': "{function}({column}) as {alias}"
-            }
-        }
-
-    def _build_adaptive_templates(self) -> Dict[str, Dict[str, SQLTemplate]]:
-        """Build adaptive templates that can handle infinite query variations"""
+    def _build_production_templates(self) -> Dict[str, SQLTemplate]:
+        """Build production templates with proper JOIN awareness"""
         
         return {
-            # SURFACE ANALYSIS - Handles any surface parameter combination
-            QueryIntent.SPATIAL_MAPPING: {
-                'adaptive_surface_analysis': SQLTemplate(
-                    template="""
-                    SELECT {select_columns}
-                    FROM argo_profiles p
-                    WHERE 1=1 
-                        {spatial_filters}
-                        {temporal_filters}
-                        {parameter_filters}
-                        {quality_filters}
-                    {grouping_clause}
-                    {ordering_clause}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'select_columns', 'spatial_filters', 'temporal_filters', 
-                        'parameter_filters', 'quality_filters', 'grouping_clause', 
-                        'ordering_clause', 'limit'
-                    ],
-                    performance_notes="Highly adaptive - performance depends on filter selectivity",
-                    expected_result_size="Variable: 1K-1M rows depending on filters",
-                    index_requirements=['idx_profiles_coords', 'idx_profiles_date'],
-                    adaptability_score=0.95
-                ),
-                
-                'adaptive_gridded_analysis': SQLTemplate(
-                    template="""
-                    WITH spatial_grid AS (
-                        SELECT {grid_columns},
-                               {aggregation_columns}
-                        FROM argo_profiles p
-                        WHERE 1=1 
-                            {spatial_filters}
-                            {temporal_filters}
-                            {parameter_filters}
-                        GROUP BY {grid_grouping}
-                        HAVING {having_conditions}
-                        
-                    )
-                    SELECT {final_select}
-                    FROM spatial_grid
-                    ORDER BY {grid_ordering}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'grid_columns', 'aggregation_columns', 'spatial_filters',
-                        'temporal_filters', 'parameter_filters', 'grid_grouping',
-                        'having_conditions', 'final_select', 'grid_ordering', 'limit'
-                    ],
-                    performance_notes="Grid aggregation - scales with resolution and region size",
-                    expected_result_size="100-10K grid cells depending on resolution",
-                    index_requirements=['idx_profiles_coords', 'idx_profiles_surface_temp'],
-                    adaptability_score=0.9
-                )
-            },
+            # SURFACE ANALYSIS - NO JOIN NEEDED
+            'surface_analysis': SQLTemplate(
+                template="""
+                SELECT {select_columns}
+                FROM argo_profiles p
+                WHERE 1=1 
+                    {spatial_filters}
+                    {temporal_filters}
+                    {parameter_filters}
+                    {quality_filters}
+                {grouping_clause}
+                ORDER BY {ordering}
+                LIMIT {limit}
+                """,
+                parameters=['select_columns', 'spatial_filters', 'temporal_filters', 
+                           'parameter_filters', 'quality_filters', 'grouping_clause', 'ordering', 'limit'],
+                performance_notes="Surface-only analysis - profiles table only",
+                expected_result_size="1K-100K profiles", 
+                index_requirements=['idx_profiles_coords', 'idx_profiles_date'],
+                adaptability_score=0.95,
+                requires_measurements_join=False  # CRITICAL: No JOIN
+            ),
             
-            # PROFILE ANALYSIS - Handles any depth/pressure analysis
-            QueryIntent.PROFILE_ANALYSIS: {
-                'adaptive_profile_query': SQLTemplate(
-                    template="""
-                    WITH profile_data AS (
-                        SELECT {profile_columns}
-                        FROM argo_profiles p
-                        JOIN argo_measurements m ON p.id = m.profile_id
-                        WHERE 1=1 
-                            {spatial_filters}
-                            {temporal_filters}
-                            {depth_filters}
-                            {parameter_filters}
-                            {profile_selection_filters}
-                    ),
-                    processed_profiles AS (
-                        SELECT {processing_columns}
-                        FROM profile_data
-                        {processing_logic}
-                    )
-                    SELECT {final_columns}
-                    FROM processed_profiles
-                    {final_grouping}
-                    ORDER BY {ordering}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'profile_columns', 'spatial_filters', 'temporal_filters',
-                        'depth_filters', 'parameter_filters', 'profile_selection_filters',
-                        'processing_columns', 'processing_logic', 'final_columns',
-                        'final_grouping', 'ordering', 'limit'
-                    ],
-                    performance_notes="Complex profile analysis - monitor JOIN performance",
-                    expected_result_size="1K-500K measurements depending on selection",
-                    index_requirements=['idx_measurements_profile', 'idx_measurements_pressure'],
-                    adaptability_score=0.85
-                ),
-                
-                'adaptive_depth_analysis': SQLTemplate(
-                    template="""
-                    SELECT {depth_columns},
-                           {measurement_columns},
-                           {calculated_columns}
-                    FROM argo_profiles p
-                    JOIN argo_measurements m ON p.id = m.profile_id
-                    WHERE 1=1 
-                        {spatial_filters}
-                        {temporal_filters}
-                        {depth_filters}
-                        {parameter_filters}
-                    {depth_grouping}
-                    {depth_ordering}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'depth_columns', 'measurement_columns', 'calculated_columns',
-                        'spatial_filters', 'temporal_filters', 'depth_filters',
-                        'parameter_filters', 'depth_grouping', 'depth_ordering', 'limit'
-                    ],
-                    performance_notes="Depth-focused analysis with measurement JOIN",
-                    expected_result_size="10K-1M measurements depending on depth range",
-                    index_requirements=['idx_profiles_coords', 'idx_measurements_pressure'],
-                    adaptability_score=0.8
-                )
-            },
+            # PROFILE ANALYSIS - REQUIRES JOIN
+            'profile_analysis': SQLTemplate(
+                template="""
+                SELECT {select_columns}
+                FROM argo_profiles p
+                INNER JOIN argo_measurements m ON p.id = m.profile_id  
+                WHERE 1=1
+                    {spatial_filters}
+                    {temporal_filters}
+                    {depth_filters}
+                    {parameter_filters}
+                ORDER BY {ordering}
+                LIMIT {limit}
+                """,
+                parameters=['select_columns', 'spatial_filters', 'temporal_filters',
+                           'depth_filters', 'parameter_filters', 'ordering', 'limit'],
+                performance_notes="Profile analysis with measurements JOIN",
+                expected_result_size="10K-500K measurements",
+                index_requirements=['idx_measurements_profile', 'idx_measurements_pressure'],
+                adaptability_score=0.85,
+                requires_measurements_join=True  # CRITICAL: Requires JOIN
+            ),
             
-            # STATISTICAL ANALYSIS - Handles any statistical computation
-            QueryIntent.STATISTICAL_SUMMARY: {
-                'adaptive_statistics': SQLTemplate(
-                    template="""
-                    WITH data_subset AS (
-                        SELECT {data_columns}
-                        FROM {primary_table} {table_alias}
-                        {join_clauses}
-                        WHERE 1=1 
-                            {spatial_filters}
-                            {temporal_filters}
-                            {parameter_filters}
-                            {quality_filters}
-                    )
-                    SELECT {statistical_columns}
-                    FROM data_subset
-                    {grouping_clause}
-                    {having_clause}
-                    ORDER BY {stats_ordering}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'data_columns', 'primary_table', 'table_alias', 'join_clauses',
-                        'spatial_filters', 'temporal_filters', 'parameter_filters',
-                        'quality_filters', 'statistical_columns', 'grouping_clause',
-                        'having_clause', 'stats_ordering', 'limit'
-                    ],
-                    performance_notes="Statistical aggregation - performance depends on grouping",
-                    expected_result_size="1-10K statistical summaries",
-                    index_requirements=['varies based on grouping columns'],
-                    adaptability_score=0.9
-                )
-            },
+            # STATISTICAL SUMMARY - CONDITIONAL JOIN
+            'statistical_summary': SQLTemplate(
+                template="""
+                SELECT {aggregation_columns}
+                FROM argo_profiles p
+                {join_clause}
+                WHERE 1=1
+                    {spatial_filters}
+                    {temporal_filters}
+                    {parameter_filters}
+                    {quality_filters}
+                {grouping_clause}
+                ORDER BY {ordering}
+                LIMIT {limit}
+                """,
+                parameters=['aggregation_columns', 'join_clause', 'spatial_filters',
+                           'temporal_filters', 'parameter_filters', 'quality_filters', 
+                           'grouping_clause', 'ordering', 'limit'],
+                performance_notes="Statistical analysis with conditional JOIN",
+                expected_result_size="1-1K summary rows",
+                index_requirements=['varies based on aggregation'],
+                adaptability_score=0.9,
+                requires_measurements_join=False  # Conditional based on aggregation
+            ),
             
-            # TEMPORAL ANALYSIS - Handles any time-based analysis
-            QueryIntent.TEMPORAL_TRENDS: {
-                'adaptive_temporal_analysis': SQLTemplate(
-                    template="""
-                    WITH temporal_data AS (
-                        SELECT {temporal_columns},
-                               {data_columns}
-                        FROM {primary_table} {table_alias}
-                        {join_clauses}
-                        WHERE 1=1 
-                            {spatial_filters}
-                            {temporal_filters}
-                            {parameter_filters}
-                    ),
-                    temporal_aggregated AS (
-                        SELECT {time_grouping},
-                               {aggregation_functions}
-                        FROM temporal_data
-                        GROUP BY {time_grouping}
-                    )
-                    SELECT {final_temporal_columns}
-                    FROM temporal_aggregated
-                    {temporal_ordering}
-                    LIMIT {limit}
-                    """,
-                    parameters=[
-                        'temporal_columns', 'data_columns', 'primary_table', 'table_alias',
-                        'join_clauses', 'spatial_filters', 'temporal_filters',
-                        'parameter_filters', 'time_grouping', 'aggregation_functions',
-                        'final_temporal_columns', 'temporal_ordering', 'limit'
-                    ],
-                    performance_notes="Time series analysis - efficient with date indexes",
-                    expected_result_size="12-1000 time periods depending on resolution",
-                    index_requirements=['idx_profiles_date'],
-                    adaptability_score=0.85
-                )
-            }
+            # COUNT QUERY - NO JOIN BY DEFAULT
+            'count_query': SQLTemplate(
+                template="""
+                SELECT COUNT(*) as total_profiles,
+                       COUNT(DISTINCT platform_number) as unique_platforms,
+                       {additional_counts}
+                FROM argo_profiles p
+                {join_clause}
+                WHERE 1=1
+                    {spatial_filters}
+                    {temporal_filters}
+                    {parameter_filters}
+                    {quality_filters}
+                """,
+                parameters=['additional_counts', 'join_clause', 'spatial_filters', 
+                           'temporal_filters', 'parameter_filters', 'quality_filters'],
+                performance_notes="Count operations with conditional JOIN",
+                expected_result_size="1 row",
+                index_requirements=['idx_profiles_platform', 'idx_profiles_date'],
+                adaptability_score=0.8,
+                requires_measurements_join=False  # Conditional
+            )
         }
-
-    def generate_sql(self, classification: QueryClassification, 
-                    query_text: str = "") -> GeneratedSQL:
+    
+    def generate_sql(self, classification: QueryClassification, query_text: str) -> GeneratedSQL:
         """
-        MAIN METHOD: Generate adaptive SQL based on user requirements.
-        
-        This is where the magic happens - we analyze the user's intent and 
-        dynamically construct a SQL query that can handle their specific needs.
+        MAIN SQL GENERATION - FIXED VERSION
         """
         
         try:
-            # Step 1: Select the most adaptive template
-            template_category = self._select_template_category(classification)
-            template_id, template = self._select_most_adaptive_template(
-                classification, template_category, query_text
+            # Step 1: Select appropriate template
+            template_id = self._select_template(classification, query_text)
+            template = self.templates[template_id]
+            
+            # Step 2: Determine if measurements JOIN is needed for this specific query
+            needs_measurements_join = self._determine_measurements_join_needed(
+                template, query_text, classification
             )
             
-            # Step 2: Dynamically build query components
-            query_components = self._build_dynamic_components(
-                classification, query_text, template
+            # Step 3: Build context-aware components
+            components = self._build_query_components_fixed(
+                classification, query_text, template_id, needs_measurements_join
             )
             
-            # Step 3: Render the adaptive template
-            sql = self._render_adaptive_template(template, query_components)
+            # Step 4: Render template with validated components
+            sql = self._render_template(template, components)
             
-            # Step 4: Apply intelligence optimizations
-            sql, optimizations = self._apply_intelligence_optimizations(
-                sql, classification, query_components
-            )
+            # Step 5: Apply production optimizations
+            sql, optimizations = self._optimize_for_production(sql, classification)
             
-            # Step 5: Validate for production readiness
-            sql = self._validate_production_sql(sql, classification)
+            # Step 6: Final validation
+            warnings = self._validate_sql_safety(sql, template_id)
             
             return GeneratedSQL(
                 sql=sql,
                 template_id=template_id,
-                parameters_used=query_components,
-                estimated_performance=self._estimate_performance(template, query_components),
-                recommended_timeout=self._calculate_dynamic_timeout(query_components),
-                index_requirements=self._determine_required_indexes(query_components),
-                adaptations_made=optimizations
+                parameters_used=components,
+                estimated_performance=self._estimate_performance(template, components),
+                recommended_timeout=self._calculate_timeout(template, components),
+                index_requirements=template.index_requirements,
+                adaptations_made=optimizations,
+                validation_passed=len(warnings) == 0,
+                warnings=warnings
             )
             
         except Exception as e:
-            logger.error(f"Adaptive SQL generation failed: {e}")
-            return self._generate_intelligent_fallback(classification, query_text)
-
-    def _build_dynamic_components(self, classification: QueryClassification, 
-                                 query_text: str, template: SQLTemplate) -> Dict[str, Any]:
+            logger.error(f"SQL generation failed: {e}")
+            return self._generate_safe_fallback(classification, query_text, str(e))
+    
+    def _determine_measurements_join_needed(self, template: SQLTemplate, 
+                                          query_text: str, 
+                                          classification: QueryClassification) -> bool:
         """
-        This is the CORE intelligence - dynamically building query components
-        based on what the user actually wants.
+        CRITICAL METHOD: Determine if measurements table JOIN is needed
+        """
+        
+        # Templates that always require JOIN
+        if template.requires_measurements_join:
+            return True
+        
+        query_lower = query_text.lower()
+        
+        # Explicit depth/pressure indicators
+        if any(term in query_lower for term in [
+            'depth', 'pressure', 'vertical', 'profile data',
+            'at 1000m', 'below', 'above', 'thermocline', 'halocline'
+        ]):
+            return True
+        
+        # Profile-specific analysis
+        if any(term in query_lower for term in [
+            'temperature profile', 'salinity profile', 
+            'mixed layer depth', 'deep water'
+        ]):
+            return True
+        
+        # Classification context indicators
+        if hasattr(classification.context, 'depth_range') and classification.context.depth_range:
+            return True
+        
+        # For statistical summaries, check if we need profile measurements
+        if 'aggregation_columns' in template.parameters:
+            if any(term in query_lower for term in [
+                'average temperature by depth', 'salinity statistics',
+                'profile statistics', 'vertical distribution'
+            ]):
+                return True
+        
+        return False
+    
+    def _build_query_components_fixed(self, classification: QueryClassification, 
+                                     query_text: str, template_id: str, 
+                                     needs_measurements_join: bool) -> Dict[str, str]:
+        """
+        FIXED: Build query components with proper JOIN context awareness
         """
         
         components = {}
+        query_lower = query_text.lower()
         context = classification.context
         
-        # === DYNAMIC SELECT COLUMNS ===
-        components['select_columns'] = self._build_select_columns(
-            context.parameters, classification.intent, query_text
-        )
-        
-        # === DYNAMIC SPATIAL FILTERS ===
-        components['spatial_filters'] = self._build_spatial_filters(
-            context.spatial_bounds, query_text
-        )
-        
-        # === DYNAMIC TEMPORAL FILTERS ===
-        components['temporal_filters'] = self._build_temporal_filters(
-            context.temporal_range, query_text
-        )
-        
-        # === DYNAMIC PARAMETER FILTERS ===
-        components['parameter_filters'] = self._build_parameter_filters(
-            context.parameters, query_text
-        )
-        
-        # === DYNAMIC AGGREGATION ===
-        if 'average' in query_text.lower() or 'mean' in query_text.lower():
-            components['aggregation_functions'] = self._build_aggregation_functions(
-                context.parameters, 'average'
+        # === BUILD SELECT COLUMNS ===
+        if template_id == 'statistical_summary':
+            components['aggregation_columns'] = self._build_aggregation_columns_fixed(
+                query_lower, context, needs_measurements_join
             )
-        elif 'distribution' in query_text.lower() or 'grid' in query_text.lower():
-            components['grid_columns'] = self._build_grid_columns(query_text)
-            
-        # === DYNAMIC DEPTH HANDLING ===
-        if context.depth_range or 'depth' in query_text.lower():
-            components['depth_filters'] = self._build_depth_filters(
-                context.depth_range, query_text
+            components['join_clause'] = self._build_join_clause_conditional(needs_measurements_join)
+        else:
+            components['select_columns'] = self._build_select_columns_fixed(
+                query_lower, context, template_id, needs_measurements_join
             )
-            
-        # === DYNAMIC ORDERING ===
-        components['ordering_clause'] = self._build_ordering_clause(
-            classification.intent, query_text
+        
+        # === BUILD SPATIAL FILTERS ===
+        components['spatial_filters'] = self._build_spatial_filters(query_lower, context)
+        
+        # === BUILD TEMPORAL FILTERS ===
+        components['temporal_filters'] = self._build_temporal_filters(query_lower, context)
+        
+        # === FIXED: BUILD PARAMETER FILTERS WITH JOIN AWARENESS ===
+        components['parameter_filters'] = self._build_parameter_filters_fixed(
+            query_lower, context, needs_measurements_join
         )
         
-        # === PERFORMANCE TUNING ===
-        components['limit'] = self._calculate_dynamic_limit(
-            classification.complexity, context.spatial_bounds
-        )
+        # === BUILD OTHER COMPONENTS ===
+        components['ordering'] = self._build_ordering(template_id, query_lower)
+        components['limit'] = self._build_limit(classification.complexity)
+        
+        # Template-specific components
+        if template_id == 'profile_analysis':
+            components['depth_filters'] = self._build_depth_filters(query_lower, context)
+        
+        if template_id in ['statistical_summary', 'surface_analysis']:
+            components['grouping_clause'] = self._build_grouping(query_lower)
+            
+        if template_id == 'count_query':
+            components['additional_counts'] = self._build_additional_counts_fixed(
+                query_lower, needs_measurements_join
+            )
+            components['join_clause'] = self._build_join_clause_conditional(needs_measurements_join)
+        
+        # Quality filters
+        components['quality_filters'] = self._build_quality_filters(query_lower)
         
         return components
-
-    def _build_select_columns(self, parameters: List[str], 
-                             intent: QueryIntent, query_text: str) -> str:
-        """Dynamically build SELECT columns based on user needs"""
+    
+    def _build_parameter_filters_fixed(self, query_lower: str, 
+                                     context: OceanographicContext, 
+                                     needs_measurements_join: bool) -> str:
+        """
+        CRITICAL FIX: Build parameter filters with proper JOIN context awareness
+        
+        This was the main bug - referencing m.temperature without JOIN
+        """
+        
+        filters = []
+        
+        if 'temperature' in query_lower or 'temperature' in context.parameters:
+            if 'surface' in query_lower or not needs_measurements_join:
+                # Surface-only or no JOIN available - use profiles table only
+                filters.append('AND p.surface_temp IS NOT NULL')
+            else:
+                # JOIN available - can reference both tables
+                filters.append('AND (p.surface_temp IS NOT NULL OR m.temperature IS NOT NULL)')
+        
+        if 'salinity' in query_lower or 'salinity' in context.parameters:
+            if 'surface' in query_lower or not needs_measurements_join:
+                # Surface-only or no JOIN available
+                filters.append('AND p.surface_salinity IS NOT NULL')
+            else:
+                # JOIN available
+                filters.append('AND (p.surface_salinity IS NOT NULL OR m.salinity IS NOT NULL)')
+        
+        return ' '.join(filters)
+    
+    def _build_join_clause_conditional(self, needs_join: bool) -> str:
+        """Build JOIN clause only when needed"""
+        
+        if needs_join:
+            return 'INNER JOIN argo_measurements m ON p.id = m.profile_id'
+        else:
+            return ''
+    
+    def _build_select_columns_fixed(self, query_lower: str, context: OceanographicContext, 
+                                   template_id: str, needs_measurements_join: bool) -> str:
+        """Build SELECT columns with JOIN awareness"""
         
         base_columns = ['p.platform_number', 'p.profile_date', 'p.latitude', 'p.longitude']
         
         # Add parameter-specific columns
-        if 'temperature' in parameters or 'temperature' in query_text.lower():
-            if intent == QueryIntent.SPATIAL_MAPPING:
-                base_columns.append('p.surface_temp')
-            else:
-                base_columns.extend(['p.surface_temp', 'm.temperature'])
-                
-        if 'salinity' in parameters or 'salinity' in query_text.lower():
-            if intent == QueryIntent.SPATIAL_MAPPING:
-                base_columns.append('p.surface_salinity')
-            else:
-                base_columns.extend(['p.surface_salinity', 'm.salinity'])
+        if 'temperature' in query_lower or 'temperature' in context.parameters:
+            base_columns.append('p.surface_temp')
+            if needs_measurements_join:
+                base_columns.append('m.temperature')
         
-        if 'pressure' in parameters or 'depth' in query_text.lower():
+        if 'salinity' in query_lower or 'salinity' in context.parameters:
+            base_columns.append('p.surface_salinity')
+            if needs_measurements_join:
+                base_columns.append('m.salinity')
+        
+        if needs_measurements_join:
             base_columns.extend(['m.pressure', 'm.depth'])
-            
-        if 'mixed layer' in query_text.lower() or 'mld' in query_text.lower():
+        
+        if 'mixed layer' in query_lower:
             base_columns.append('p.mixed_layer_depth')
-            
-        # Add calculated columns based on query
-        if 'statistics' in query_text.lower() or intent == QueryIntent.STATISTICAL_SUMMARY:
-            if 'temperature' in parameters:
-                base_columns.append('AVG(p.surface_temp) as avg_temperature')
-            if 'salinity' in parameters:
-                base_columns.append('AVG(p.surface_salinity) as avg_salinity')
         
-        return ',\n           '.join(base_columns)
-
-    def _build_spatial_filters(self, spatial_bounds: Optional[Dict[str, float]], 
-                              query_text: str) -> str:
-        """Build spatial filters dynamically"""
+        return ',\n       '.join(base_columns)
+    
+    def _build_aggregation_columns_fixed(self, query_lower: str, context: OceanographicContext, 
+                                        needs_measurements_join: bool) -> str:
+        """Build aggregation columns with JOIN awareness"""
         
-        if spatial_bounds:
-            return f"""AND p.latitude BETWEEN {spatial_bounds['lat_min']} AND {spatial_bounds['lat_max']}
-                      AND p.longitude BETWEEN {spatial_bounds['lon_min']} AND {spatial_bounds['lon_max']}"""
+        agg_columns = []
         
-        # Extract region from query text
+        if 'temperature' in query_lower:
+            if 'surface' in query_lower or not needs_measurements_join:
+                agg_columns.extend([
+                    'AVG(p.surface_temp) as avg_surface_temperature',
+                    'STDDEV(p.surface_temp) as std_surface_temperature', 
+                    'COUNT(p.surface_temp) as temperature_count'
+                ])
+            else:
+                # With measurements JOIN
+                agg_columns.extend([
+                    'AVG(p.surface_temp) as avg_surface_temperature',
+                    'AVG(m.temperature) as avg_profile_temperature',
+                    'COUNT(m.temperature) as temperature_measurements'
+                ])
+        
+        if 'salinity' in query_lower:
+            if 'surface' in query_lower or not needs_measurements_join:
+                agg_columns.append('AVG(p.surface_salinity) as avg_surface_salinity')
+            else:
+                agg_columns.extend([
+                    'AVG(p.surface_salinity) as avg_surface_salinity',
+                    'AVG(m.salinity) as avg_profile_salinity'
+                ])
+        
+        # Always include profile count
+        if not agg_columns:
+            agg_columns.append('COUNT(*) as profile_count')
+        elif 'COUNT' not in str(agg_columns):
+            agg_columns.append('COUNT(*) as profile_count')
+        
+        return ',\n       '.join(agg_columns)
+    
+    def _build_additional_counts_fixed(self, query_lower: str, needs_measurements_join: bool) -> str:
+        """Build additional count columns with JOIN awareness"""
+        
+        counts = []
+        
+        if 'temperature' in query_lower:
+            counts.append('COUNT(p.surface_temp) as profiles_with_temperature')
+            if needs_measurements_join:
+                counts.append('COUNT(m.temperature) as total_temperature_measurements')
+        
+        if 'salinity' in query_lower:
+            counts.append('COUNT(p.surface_salinity) as profiles_with_salinity')
+            if needs_measurements_join:
+                counts.append('COUNT(m.salinity) as total_salinity_measurements')
+        
+        if not counts:
+            counts.extend([
+                'MIN(p.profile_date) as earliest_date',
+                'MAX(p.profile_date) as latest_date'
+            ])
+        
+        return ',\n       '.join(counts)
+    
+    # === KEEP ALL EXISTING HELPER METHODS ===
+    
+    def _select_template(self, classification: QueryClassification, query_text: str) -> str:
+        """Select most appropriate template"""
+        
         query_lower = query_text.lower()
         
+        # COUNT queries
+        if any(word in query_lower for word in ['count', 'total', 'how many']):
+            return 'count_query'
+        
+        # STATISTICAL queries (average, mean, etc.)
+        elif any(word in query_lower for word in ['average', 'mean', 'statistics', 'summary']):
+            return 'statistical_summary'
+        
+        # PROFILE analysis (depth, pressure, vertical)
+        elif any(word in query_lower for word in ['profile', 'depth', 'pressure', 'vertical']) or \
+             classification.intent == QueryIntent.PROFILE_ANALYSIS:
+            return 'profile_analysis'
+        
+        # Default to SURFACE analysis
+        else:
+            return 'surface_analysis'
+    
+    def _build_spatial_filters(self, query_lower: str, context: OceanographicContext) -> str:
+        """Build spatial filters based on query"""
+        
+        # Use classification context if available
+        if hasattr(context, 'spatial_bounds') and context.spatial_bounds:
+            bounds = context.spatial_bounds
+            return f"""AND p.latitude BETWEEN {bounds['lat_min']} AND {bounds['lat_max']}
+                      AND p.longitude BETWEEN {bounds['lon_min']} AND {bounds['lon_max']}"""
+        
+        # Extract from query text
         if 'indian ocean' in query_lower:
-            return "AND p.latitude BETWEEN -60 AND 30 AND p.longitude BETWEEN 20 AND 120"
+            return 'AND p.latitude BETWEEN -60 AND 30 AND p.longitude BETWEEN 20 AND 120'
         elif 'arabian sea' in query_lower:
-            return "AND p.latitude BETWEEN 10 AND 25 AND p.longitude BETWEEN 50 AND 78"
+            return 'AND p.latitude BETWEEN 10 AND 25 AND p.longitude BETWEEN 50 AND 78'  
         elif 'bay of bengal' in query_lower:
-            return "AND p.latitude BETWEEN 5 AND 22 AND p.longitude BETWEEN 78 AND 100"
+            return 'AND p.latitude BETWEEN 5 AND 22 AND p.longitude BETWEEN 78 AND 100'
         
-        return ""  # No spatial filter
-
-    def _build_temporal_filters(self, temporal_range: Optional[Tuple[datetime, datetime]], 
-                               query_text: str) -> str:
-        """Build temporal filters dynamically"""
+        return ''  # No spatial filter
+    
+    def _build_temporal_filters(self, query_lower: str, context: OceanographicContext) -> str:
+        """Build temporal filters"""
         
-        if temporal_range:
-            start_date, end_date = temporal_range
+        # Use classification context if available
+        if hasattr(context, 'temporal_range') and context.temporal_range:
+            start_date, end_date = context.temporal_range
             return f"AND p.profile_date BETWEEN '{start_date.strftime('%Y-%m-%d')}' AND '{end_date.strftime('%Y-%m-%d')}'"
         
-        # Extract time references from query
-        query_lower = query_text.lower()
-        
+        # Extract from query
         if 'recent' in query_lower or 'latest' in query_lower:
-            return "AND p.profile_date >= NOW() - INTERVAL '1 year'"
+            return 'AND p.profile_date >= NOW() - INTERVAL \'1 year\''
         elif 'last year' in query_lower:
-            return "AND p.profile_date >= NOW() - INTERVAL '1 year'"
-        elif 'last 5 years' in query_lower:
-            return "AND p.profile_date >= NOW() - INTERVAL '5 years'"
+            return 'AND p.profile_date >= NOW() - INTERVAL \'1 year\''
         
-        # Default: reasonable time window to avoid scanning entire dataset
-        return "AND p.profile_date >= NOW() - INTERVAL '5 years'"
-
-    def _build_parameter_filters(self, parameters: List[str], query_text: str) -> str:
-        """Build parameter-specific filters"""
-        
-        filters = []
-        
-        if 'temperature' in parameters or 'temperature' in query_text.lower():
-            if 'surface' in query_text.lower():
-                filters.append("AND p.surface_temp IS NOT NULL")
-            else:
-                filters.append("AND (p.surface_temp IS NOT NULL OR m.temperature IS NOT NULL)")
-        
-        if 'salinity' in parameters or 'salinity' in query_text.lower():
-            if 'surface' in query_text.lower():
-                filters.append("AND p.surface_salinity IS NOT NULL")
-            else:
-                filters.append("AND (p.surface_salinity IS NOT NULL OR m.salinity IS NOT NULL)")
-        
-        return ' '.join(filters)
-
-    def _build_depth_filters(self, depth_range: Optional[Tuple[float, float]], 
-                            query_text: str) -> str:
+        # Default: avoid scanning entire historical dataset  
+        return 'AND p.profile_date >= NOW() - INTERVAL \'5 years\''
+    
+    def _build_depth_filters(self, query_lower: str, context: OceanographicContext) -> str:
         """Build depth/pressure filters"""
         
-        if depth_range:
-            depth_min, depth_max = depth_range
-            return f"AND m.pressure BETWEEN {depth_min} AND {depth_max}"
-        
-        # Extract depth references from query
-        query_lower = query_text.lower()
+        if hasattr(context, 'depth_range') and context.depth_range:
+            depth_min, depth_max = context.depth_range
+            return f'AND m.pressure BETWEEN {depth_min} AND {depth_max}'
         
         if 'surface' in query_lower:
-            return "AND m.pressure <= 50"
+            return 'AND m.pressure <= 50'
         elif 'deep' in query_lower:
-            return "AND m.pressure >= 1000"
-        elif 'shallow' in query_lower:
-            return "AND m.pressure <= 200"
-            
-        return ""  # No depth filter
-
-    def _build_aggregation_functions(self, parameters: List[str], 
-                                   agg_type: str) -> str:
-        """Build aggregation functions dynamically"""
+            return 'AND m.pressure >= 1000'
         
-        functions = []
+        return ''
+    
+    def _build_ordering(self, template_id: str, query_lower: str) -> str:
+        """Build ORDER BY clause"""
         
-        if agg_type == 'average':
-            if 'temperature' in parameters:
-                functions.append('AVG(p.surface_temp) as avg_temperature')
-            if 'salinity' in parameters:
-                functions.append('AVG(p.surface_salinity) as avg_salinity')
-            if 'pressure' in parameters:
-                functions.append('AVG(p.max_pressure) as avg_max_pressure')
-            
-            functions.append('COUNT(*) as profile_count')
-            
-        return ',\n               '.join(functions)
-
-    def _build_ordering_clause(self, intent: QueryIntent, query_text: str) -> str:
-        """Build dynamic ordering clause"""
+        if 'recent' in query_lower or 'latest' in query_lower:
+            return 'p.profile_date DESC'
+        elif template_id == 'profile_analysis':
+            return 'p.profile_date DESC, m.pressure ASC'
+        else:
+            return 'p.profile_date DESC'
+    
+    def _build_grouping(self, query_lower: str) -> str:
+        """Build GROUP BY clause when needed"""
         
-        if 'recent' in query_text.lower() or 'latest' in query_text.lower():
-            return "ORDER BY p.profile_date DESC"
-        elif intent == QueryIntent.PROFILE_ANALYSIS:
-            return "ORDER BY p.profile_date DESC, m.pressure ASC"
-        elif intent == QueryIntent.SPATIAL_MAPPING:
-            return "ORDER BY p.latitude, p.longitude"
-        elif intent == QueryIntent.TEMPORAL_TRENDS:
-            return "ORDER BY p.profile_date"
+        if any(word in query_lower for word in ['distribution', 'by region', 'spatial']):
+            return 'GROUP BY ROUND(p.latitude::numeric, 1), ROUND(p.longitude::numeric, 1)'
         
-        return "ORDER BY p.profile_date DESC"
-
-    def _calculate_dynamic_limit(self, complexity: ComplexityLevel, 
-                                spatial_bounds: Optional[Dict[str, float]]) -> int:
-        """Calculate dynamic limit based on query complexity and scope"""
+        return ''  # No grouping
+    
+    def _build_limit(self, complexity: ComplexityLevel) -> str:
+        """Build LIMIT based on complexity"""
         
-        base_limits = {
-            ComplexityLevel.BASIC: 1000,
-            ComplexityLevel.INTERMEDIATE: 5000,
-            ComplexityLevel.ADVANCED: 10000,
-            ComplexityLevel.EXPERT: 50000
+        limits = {
+            ComplexityLevel.BASIC: '1000',
+            ComplexityLevel.INTERMEDIATE: '5000', 
+            ComplexityLevel.ADVANCED: '10000',
+            ComplexityLevel.EXPERT: '50000'
         }
         
-        base_limit = base_limits.get(complexity, 5000)
-        
-        # Adjust based on spatial scope
-        if spatial_bounds:
-            lat_span = abs(spatial_bounds['lat_max'] - spatial_bounds['lat_min'])
-            lon_span = abs(spatial_bounds['lon_max'] - spatial_bounds['lon_min'])
-            spatial_extent = lat_span * lon_span
-            
-            if spatial_extent < 100:  # Small region
-                base_limit = int(base_limit * 0.5)
-            elif spatial_extent > 5000:  # Very large region
-                base_limit = int(base_limit * 2)
-                
-        return base_limit
-
-    def _render_adaptive_template(self, template: SQLTemplate, 
-                                 components: Dict[str, Any]) -> str:
-        """Render the adaptive template with dynamic components"""
+        return limits.get(complexity, '5000')
+    
+    def _build_quality_filters(self, query_lower: str) -> str:
+        """Build quality filters"""
+        return 'AND p.profile_date >= NOW() - INTERVAL \'5 years\''
+    
+    def _render_template(self, template: SQLTemplate, components: Dict[str, str]) -> str:
+        """Render template with components"""
         
         sql = template.template
         
-        # Replace all component placeholders
-        for param_name in template.parameters:
-            placeholder = f"{{{param_name}}}"
-            if param_name in components:
-                value = str(components[param_name])
-                sql = sql.replace(placeholder, value)
-            else:
-                # Provide intelligent defaults
-                defaults = self._get_component_defaults(param_name)
-                sql = sql.replace(placeholder, defaults.get(param_name, ''))
+        # Replace all placeholders
+        for param in template.parameters:
+            placeholder = '{' + param + '}'
+            value = components.get(param, '')
+            sql = sql.replace(placeholder, value)
         
         return sql
-
-    def _get_component_defaults(self, param_name: str) -> Dict[str, str]:
-        """Get intelligent defaults for missing components"""
+    
+    def _optimize_for_production(self, sql: str, classification: QueryClassification) -> Tuple[str, List[str]]:
+        """Apply production optimizations"""
         
-        return {
-            'spatial_filters': '',
-            'temporal_filters': '',
-            'parameter_filters': '',
-            'quality_filters': '',
-            'grouping_clause': '',
-            'ordering_clause': 'ORDER BY p.profile_date DESC',
-            'limit': '5000',
-            'join_clauses': '',
-            'having_conditions': 'COUNT(*) >= 1'
-        }
-
+        optimizations = []
+        
+        # Clean up WHERE clause
+        sql = re.sub(r'WHERE\s+1=1\s+AND', 'WHERE', sql)
+        sql = re.sub(r'WHERE\s+1=1\s*(?=ORDER|GROUP|LIMIT|;|$)', '', sql)
+        
+        # Remove empty filters
+        sql = re.sub(r'\s+AND\s+(?=ORDER|GROUP|LIMIT|;|$)', '', sql)
+        
+        optimizations.append('Cleaned WHERE clause structure')
+        
+        # Add semicolon
+        if not sql.rstrip().endswith(';'):
+            sql = sql.rstrip() + ';'
+        
+        return sql, optimizations
+    
+    def _validate_sql_safety(self, sql: str, template_id: str) -> List[str]:
+        """Validate SQL for production safety"""
+        
+        warnings = []
+        
+        # Check for dangerous patterns
+        if 'WHERE 1=1' in sql and 'AND' not in sql:
+            warnings.append('Query has no filters - may return too many results')
+        
+        # Check for table reference consistency
+        if 'm.' in sql and 'JOIN argo_measurements' not in sql:
+            warnings.append('CRITICAL: References measurements table without JOIN')
+        
+        if 'ORDER BY m.' in sql and 'JOIN argo_measurements' not in sql:
+            warnings.append('CRITICAL: Orders by measurements column without JOIN')
+        
+        return warnings
+    
     def _apply_intelligence_optimizations(self, sql: str, 
-                                        classification: QueryClassification,
-                                        components: Dict[str, Any]) -> Tuple[str, List[str]]:
+                                    classification: QueryClassification,
+                                    components: Dict[str, Any]) -> Tuple[str, List[str]]:
         """Apply intelligent optimizations based on classification"""
         
         optimizations = []
@@ -621,7 +599,7 @@ class ProductionSQLGenerator:
         sql = re.sub(r'AND\s+AND', 'AND', sql)
         
         # Add DISTINCT for certain query types
-        if classification.intent == QueryIntent.STATISTICAL_SUMMARY:
+        if hasattr(classification, 'intent') and classification.intent == QueryIntent.STATISTICAL_SUMMARY:
             if 'platform_number' in sql and 'DISTINCT' not in sql:
                 sql = sql.replace('SELECT ', 'SELECT DISTINCT ')
                 optimizations.append('Added DISTINCT for platform queries')
@@ -633,64 +611,56 @@ class ProductionSQLGenerator:
         
         return sql, optimizations
 
-    def _validate_production_sql(self, sql: str, 
-                                classification: QueryClassification) -> str:
-        """Final validation for production readiness"""
-        
-        # Clean up whitespace
-        lines = [line.strip() for line in sql.split('\n') if line.strip()]
-        sql = '\n'.join(lines)
-        
-        # Ensure semicolon
-        if not sql.rstrip().endswith(';'):
-            sql = sql.rstrip() + ';'
-        
-        # Validate basic SQL structure
-        if not sql.upper().strip().startswith('SELECT'):
-            raise ValueError(f"Generated SQL is not a SELECT statement: {sql[:100]}")
-            
-        return sql
-
-    def _estimate_performance(self, template: SQLTemplate, 
-                             components: Dict[str, Any]) -> str:
-        """Estimate query performance"""
+    # Also fix the _estimate_performance method:
+    def _estimate_performance(self, template: SQLTemplate, components: Dict[str, str]) -> str:
+        """Estimate performance based on template and components"""
         
         # Base performance from template
-        performance_score = template.adaptability_score
+        score = template.adaptability_score
         
         # Adjust based on components
         if 'spatial_filters' in components and components['spatial_filters']:
-            performance_score += 0.2  # Spatial filters help performance
-        
-        if 'argo_measurements' in template.template:
-            performance_score -= 0.3  # JOINs are expensive
+            score += 0.1
             
-        if int(str(components.get('limit', 5000))) > 10000:
-            performance_score -= 0.2  # Large result sets
+        # Check if template uses measurements table by looking at the template string
+        if 'argo_measurements' in template.template or 'JOIN argo_measurements' in template.template:
+            score -= 0.2
+            
+        if int(components.get('limit', '5000')) > 10000:
+            score -= 0.1
         
-        if performance_score > 0.8:
-            return "fast"
-        elif performance_score > 0.5:
-            return "medium"
+        if score > 0.8:
+            return 'fast'
+        elif score > 0.6:
+            return 'medium'
         else:
-            return "slow"
+            return 'slow'
 
-    def _generate_intelligent_fallback(self, classification: QueryClassification, 
-                                     query_text: str) -> GeneratedSQL:
-        """Generate intelligent fallback when template system fails"""
+    # And fix the _calculate_timeout method:
+    def _calculate_timeout(self, template: SQLTemplate, components: Dict[str, str]) -> int:
+        """Calculate recommended timeout"""
         
-        # Ultra-simple but safe SQL
+        base_timeout = 30
+        
+        # Check if template uses measurements table by looking at the template string
+        if 'argo_measurements' in template.template or 'JOIN argo_measurements' in template.template:
+            base_timeout += 30
+            
+        limit = int(components.get('limit', '5000'))
+        if limit > 10000:
+            base_timeout += 20
+            
+        return min(base_timeout, 120)
+    
+    def _generate_safe_fallback(self, classification: QueryClassification, 
+                               query_text: str, error: str) -> GeneratedSQL:
+        """Generate safe fallback SQL when generation fails"""
+        
+        logger.error(f"Generating fallback SQL due to error: {error}")
+        
+        # Ultra-safe fallback queries
         if 'count' in query_text.lower():
             sql = "SELECT COUNT(*) as total_profiles FROM argo_profiles WHERE profile_date >= NOW() - INTERVAL '1 year';"
-        elif 'temperature' in query_text.lower() and 'surface' in query_text.lower():
-            sql = """
-            SELECT platform_number, profile_date, latitude, longitude, surface_temp
-            FROM argo_profiles 
-            WHERE surface_temp IS NOT NULL 
-            AND profile_date >= NOW() - INTERVAL '1 year'
-            ORDER BY profile_date DESC 
-            LIMIT 1000;
-            """
         else:
             sql = """
             SELECT platform_number, profile_date, latitude, longitude, surface_temp, surface_salinity
@@ -702,91 +672,17 @@ class ProductionSQLGenerator:
             
         return GeneratedSQL(
             sql=sql,
-            template_id='fallback_safe',
-            parameters_used={'fallback': True},
+            template_id='safe_fallback',
+            parameters_used={'fallback_reason': error},
             estimated_performance='fast',
             recommended_timeout=30,
             index_requirements=['idx_profiles_date'],
-            adaptations_made=['Used safe fallback SQL']
+            adaptations_made=['Used safe fallback due to generation failure'],
+            validation_passed=True,
+            warnings=['Fallback SQL used - original generation failed']
         )
-
-    # Helper methods for template and category selection
-    def _select_template_category(self, classification: QueryClassification) -> QueryIntent:
-        """Select template category"""
-        if classification.intent in self.templates:
-            return classification.intent
-        
-        # Intelligent fallbacks
-        fallback_map = {
-            QueryIntent.ANOMALY_DETECTION: QueryIntent.STATISTICAL_SUMMARY,
-            QueryIntent.COMPARATIVE_ANALYSIS: QueryIntent.PROFILE_ANALYSIS,
-            QueryIntent.PHYSICAL_PROPERTIES: QueryIntent.PROFILE_ANALYSIS,
-            QueryIntent.QUALITY_ASSESSMENT: QueryIntent.STATISTICAL_SUMMARY,
-            QueryIntent.PREDICTIVE_ANALYSIS: QueryIntent.TEMPORAL_TRENDS,
-            QueryIntent.EXPLORATION: QueryIntent.SPATIAL_MAPPING
-        }
-        
-        return fallback_map.get(classification.intent, QueryIntent.STATISTICAL_SUMMARY)
-
-    def _select_most_adaptive_template(self, classification: QueryClassification, 
-                                     category: QueryIntent, query_text: str) -> Tuple[str, SQLTemplate]:
-        """Select the most adaptive template for the query"""
-        
-        available_templates = self.templates[category]
-        
-        # For now, select the first (most adaptive) template in each category
-        # In production, this could use ML to select optimal template
-        template_id = list(available_templates.keys())[0]
-        template = available_templates[template_id]
-        
-        return template_id, template
-
-    # Continuation of the ProductionSQLGenerator class - completing the methods
-
-    def _calculate_dynamic_timeout(self, components: Dict[str, Any]) -> int:
-        """Calculate dynamic timeout based on query complexity"""
-        
-        base_timeout = 30  # seconds
-        
-        # Adjust based on components
-        if 'argo_measurements' in str(components):
-            base_timeout += 30
-        
-        limit = int(str(components.get('limit', 5000)))
-        if limit > 10000:
-            base_timeout += 20
-        
-        # Spatial extent affects timeout
-        spatial_filters = components.get('spatial_filters', '')
-        if 'BETWEEN' in spatial_filters:
-            # Extract spatial bounds to estimate query scope
-            base_timeout += 10
-        
-        return min(base_timeout, 180)  # Cap at 3 minutes
-
-    def _determine_required_indexes(self, components: Dict[str, Any]) -> List[str]:
-        """Determine which indexes are required for optimal performance"""
-        
-        required_indexes = ['idx_profiles_date']  # Always needed
-        
-        if components.get('spatial_filters'):
-            required_indexes.append('idx_profiles_coords')
-        
-        if 'surface_temp' in str(components):
-            required_indexes.append('idx_profiles_surface_temp')
-            
-        if 'surface_salinity' in str(components):
-            required_indexes.append('idx_profiles_surface_sal')
-            
-        if 'argo_measurements' in str(components):
-            required_indexes.extend([
-                'idx_measurements_profile',
-                'idx_measurements_pressure',
-                'idx_measurements_temp_sal'
-            ])
-        
-        return list(set(required_indexes))  # Remove duplicates
-
+    
+    # Keep existing helper method definitions
     def _define_performance_thresholds(self) -> Dict[str, Dict]:
         """Define performance characteristics for different query types"""
         return {
@@ -802,17 +698,17 @@ class ProductionSQLGenerator:
                 'timeout_seconds': 60,
                 'memory_mb': 200
             },
-            'measurement_analysis': {
-                'typical_rows': 1000000,
-                'max_safe_rows': 5000000,
-                'timeout_seconds': 120,
-                'memory_mb': 500
-            },
             'statistical_summary': {
                 'typical_rows': 1,
                 'max_safe_rows': 100,
                 'timeout_seconds': 15,
                 'memory_mb': 10
+            },
+            'count_query': {
+                'typical_rows': 1,
+                'max_safe_rows': 1,
+                'timeout_seconds': 10,
+                'memory_mb': 5
             }
         }
 
@@ -833,12 +729,60 @@ class ProductionSQLGenerator:
                 'bounds': {'lat_min': 5, 'lat_max': 22, 'lon_min': 78, 'lon_max': 100},
                 'typical_profiles': 120000,
                 'data_density': 'high'
-            },
-            'global': {
-                'bounds': {'lat_min': -90, 'lat_max': 90, 'lon_min': -180, 'lon_max': 180},
-                'typical_profiles': 2000000,
-                'data_density': 'variable'
             }
         }
 
-# Now let's create the INTEGRATION MODULE that connects everything together
+# Test the fixes
+def test_fixed_sql_generator():
+    """Test the fixed SQL generator"""
+    
+    print("Testing Fixed SQL Generator")
+    print("=" * 50)
+    
+    # Create dummy classification for testing
+    from dataclasses import dataclass
+    
+    @dataclass
+    class MockContext:
+        parameters: list = None
+        spatial_bounds: dict = None
+        temporal_range: tuple = None
+        depth_range: tuple = None
+        
+        def __post_init__(self):
+            if self.parameters is None:
+                self.parameters = ['temperature']
+    
+    @dataclass 
+    class MockClassification:
+        intent = 'EXPLORATION'
+        complexity = 'BASIC' 
+        context = MockContext()
+    
+    generator = ProductionSQLGenerator()
+    
+    test_queries = [
+        "Count profiles in Arabian Sea",  # This was failing
+        "Show temperature at 1000m depth",  
+        "What is the average surface temperature?",
+        "List platforms with salinity data"
+    ]
+    
+    for query in test_queries:
+        print(f"\n🔍 Testing: {query}")
+        try:
+            result = generator.generate_sql(MockClassification(), query)
+            print(f"✅ Template: {result.template_id}")
+            print(f"✅ Performance: {result.estimated_performance}")
+            print(f"✅ Warnings: {len(result.warnings or [])}")
+            if result.warnings:
+                print(f"⚠️  Warnings: {result.warnings}")
+            print(f"✅ SQL Preview: {result.sql[:100]}...")
+        except Exception as e:
+            print(f"❌ Failed: {e}")
+    
+    print(f"\n{'='*50}")
+    print("Fixed SQL Generator Test Complete")
+
+if __name__ == "__main__":
+    test_fixed_sql_generator()
