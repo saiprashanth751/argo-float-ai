@@ -125,7 +125,7 @@ class ExternalDataIntegrationTool:
         sources = {
             'noaa_woa': ExternalDataSource(
                 name="NOAA World Ocean Atlas",
-                base_url="https://www.ncei.noaa.gov/data/oceans/woa",
+                base_url="https://www.ncei.noaa.gov/data/oceans/woa", #working
                 api_key=None,
                 rate_limit=10,
                 timeout=30,
@@ -133,7 +133,7 @@ class ExternalDataIntegrationTool:
             ),
             'copernicus_marine': ExternalDataSource(
                 name="Copernicus Marine Service",
-                base_url="https://marine.copernicus.eu/api",
+                base_url="https://marine.copernicus.eu/api",  #not_working
                 api_key=None,
                 rate_limit=5,
                 timeout=45,
@@ -141,7 +141,7 @@ class ExternalDataIntegrationTool:
             ),
             'argo_gdac': ExternalDataSource(
                 name="ARGO Global Data Assembly Centre",
-                base_url="https://data-argo.ifremer.fr",
+                base_url="https://data-argo.ifremer.fr", #working
                 api_key=None,
                 rate_limit=20,
                 timeout=30,
@@ -149,7 +149,7 @@ class ExternalDataIntegrationTool:
             ),
             'ncei_archive': ExternalDataSource(
                 name="NCEI Ocean Archive",
-                base_url="https://www.ncei.noaa.gov/data/oceans",
+                base_url="https://www.ncei.noaa.gov/data/oceans", #working
                 api_key=None,
                 rate_limit=15,
                 timeout=30,
@@ -157,7 +157,7 @@ class ExternalDataIntegrationTool:
             ),
             'pangaea': ExternalDataSource(
                 name="PANGAEA Data Publisher",
-                base_url="https://pangaea.de/api",
+                base_url="https://pangaea.de/api", #not_working
                 api_key=None,
                 rate_limit=10,
                 timeout=30,

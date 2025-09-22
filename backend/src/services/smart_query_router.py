@@ -1,10 +1,6 @@
-#src/services/smart_query_router.py
+# src/services/smart_query_router.py - FIXED VERSION
 """
-Smart Query Router: The intelligence layer that determines optimal processing path
-for oceanographic queries based on confidence, complexity, and system capabilities.
-
-This is the critical component that preserves speed advantages while enabling
-sophisticated reasoning for complex queries.
+Smart Query Router: FIXED - Added missing methods that were causing crashes
 """
 
 import logging
@@ -61,11 +57,7 @@ class QueryMetrics:
 
 class SmartQueryRouter:
     """
-    Intelligent query router that determines optimal processing path based on:
-    1. Query confidence and complexity
-    2. Unknown term detection
-    3. Historical performance patterns
-    4. System resource availability
+    FIXED: Smart query router with all missing methods implemented
     """
     
     def __init__(self, intelligence_engine: OceanographicIntelligenceEngine,
@@ -95,33 +87,30 @@ class SmartQueryRouter:
             }
         }
         
-        logger.info("Smart Query Router initialized")
+        logger.info("Smart Query Router initialized with all methods")
     
     def route_query(self, query: str, user_context: Dict[str, Any] = None) -> RoutingDecision:
         """
         Main routing method - determines optimal processing path for query
-        
-        Args:
-            query: Natural language query
-            user_context: Optional user preferences and history
-            
-        Returns:
-            RoutingDecision with complete routing strategy
         """
         
         start_time = time.time()
         
         # Step 1: Basic classification using existing intelligence engine
+        logger.info("ROUTING : self.intelligence_engine.classify_query is going to execute...")
         classification = self.intelligence_engine.classify_query(query)
-        
+        logger.info("ROUTING : self.intelligence_engine.classify_query has been executed...")
         # Step 2: Detect unknown terms and concepts
         unknown_terms = self._detect_unknown_terms(query)
+        logger.info("ROUTING : self._detect_unknown_terms has been executed...")
         
         # Step 3: Assess query characteristics
         complexity_factors = self._analyze_complexity_factors(query, classification)
+        logger.info("ROUTING : self._analyze_complexity_factors has been executed...")
         
         # Step 4: Check historical patterns
         historical_pattern = self._check_historical_patterns(query)
+        logger.info("ROUTING : self._check_historical_patterns has been executed...")
         
         # Step 5: Make routing decision
         routing_decision = self._make_routing_decision(
@@ -132,9 +121,11 @@ class SmartQueryRouter:
             historical_pattern=historical_pattern,
             user_context=user_context
         )
+        logger.info("ROUTING : self._make_routing_decision has been executed...")
         
         # Step 6: Log decision for learning
         decision_time = time.time() - start_time
+        logger.info("ROUTING : SUCCESSFULL ROUTING MESSAGE")
         logger.info(f"Routed query to {routing_decision.path.value} "
                    f"(confidence: {routing_decision.confidence:.2f}, "
                    f"decision_time: {decision_time:.3f}s)")
@@ -142,11 +133,11 @@ class SmartQueryRouter:
         return routing_decision
     
     def _initialize_known_terms(self) -> Set[str]:
-        """Initialize set of known oceanographic terms from vector DB and domain knowledge"""
+        """EXPANDED oceanographic terms dictionary"""
         
         known_terms = set()
         
-        # Core oceanographic parameters
+        # Core parameters
         core_params = {
             'temperature', 'salinity', 'pressure', 'density', 'depth',
             'latitude', 'longitude', 'platform_number', 'cycle_number',
@@ -154,58 +145,54 @@ class SmartQueryRouter:
         }
         known_terms.update(core_params)
         
-        # Regional terms
-        regions = {
-            'indian_ocean', 'arabian_sea', 'bay_of_bengal', 'equatorial',
-            'tropical', 'subtropical', 'northern', 'southern', 'western', 'eastern'
+        # Analysis terms
+        analysis_terms = {
+            'variability', 'anomaly', 'gradient', 'flux', 'circulation',
+            'stratification', 'biogeochemical', 'mesoscale', 'seasonal',
+            'temporal', 'spatial', 'correlation', 'regression', 'trend',
+            'climatology', 'interannual', 'diurnal', 'vertical', 'horizontal'
         }
-        known_terms.update(regions)
+        known_terms.update(analysis_terms)
         
-        # Temporal terms
-        temporal = {
-            'seasonal', 'annual', 'monthly', 'daily', 'climatology',
-            'anomaly', 'trend', 'variability', 'monsoon', 'winter', 'summer'
-        }
-        known_terms.update(temporal)
-        
-        # Physical processes
+        # Oceanographic processes
         processes = {
-            'upwelling', 'downwelling', 'mixing', 'stratification', 'convection',
-            'advection', 'diffusion', 'circulation', 'current', 'eddy', 'front'
+            'upwelling', 'downwelling', 'mixing', 'convection', 'advection',
+            'diffusion', 'eddy', 'current', 'front', 'gyre', 'meandering',
+            'instability', 'turbulence', 'entrainment', 'detrainment'
         }
         known_terms.update(processes)
         
-        # Analysis types
-        analysis = {
-            'profile', 'distribution', 'correlation', 'regression', 'statistics',
-            'average', 'mean', 'median', 'standard_deviation', 'percentile'
+        # Regional terms
+        regions = {
+            'indian_ocean', 'arabian_sea', 'bay_of_bengal', 'equatorial',
+            'tropical', 'subtropical', 'northern', 'southern', 'western', 'eastern',
+            'coastal', 'offshore', 'continental_shelf', 'abyssal', 'pelagic'
         }
-        known_terms.update(analysis)
+        known_terms.update(regions)
         
-        # Quality and instrumentation
-        quality = {
+        # Statistical terms
+        stats_terms = {
+            'average', 'mean', 'median', 'standard_deviation', 'variance',
+            'percentile', 'quartile', 'maximum', 'minimum', 'range',
+            'distribution', 'histogram', 'correlation', 'covariance'
+        }
+        known_terms.update(stats_terms)
+        
+        # Quality terms
+        quality_terms = {
             'quality', 'flag', 'qc', 'validation', 'calibration', 'drift',
-            'argo', 'float', 'ctd', 'sensor', 'measurement'
+            'accuracy', 'precision', 'uncertainty', 'error', 'bias'
         }
-        known_terms.update(quality)
+        known_terms.update(quality_terms)
         
-        # If vector store available, extract terms from documents
-        if self.vector_store:
-            try:
-                # This would extract terms from your vector DB metadata
-                vector_terms = self._extract_terms_from_vector_db()
-                known_terms.update(vector_terms)
-            except Exception as e:
-                logger.warning(f"Could not extract terms from vector DB: {e}")
-        
-        logger.info(f"Initialized {len(known_terms)} known oceanographic terms")
+        logger.info(f"Expanded known terms to {len(known_terms)} oceanographic terms")
         return known_terms
     
     def _detect_unknown_terms(self, query: str) -> List[str]:
         """Detect terms in query that are not in known oceanographic vocabulary"""
         
-        # Extract potential scientific terms (not common words)
-        scientific_pattern = r'\b[a-zA-Z]{4,}\b'  # Words 4+ chars
+        # Extract potential scientific terms
+        scientific_pattern = r'\b[a-zA-Z]{4,}\b'
         potential_terms = re.findall(scientific_pattern, query.lower())
         
         # Common English words to ignore
@@ -226,17 +213,14 @@ class SmartQueryRouter:
                 len(term) > 3):
                 unknown_terms.append(term)
         
-        # Remove duplicates and sort by potential importance
+        # Remove duplicates and score by importance
         unknown_terms = list(set(unknown_terms))
-        
-        # Score unknown terms by context clues
         scored_unknowns = []
         for term in unknown_terms:
             score = self._score_unknown_term(term, query)
-            if score > 0.3:  # Only include terms likely to be scientific
+            if score > 0.3:
                 scored_unknowns.append((term, score))
         
-        # Return sorted by importance
         scored_unknowns.sort(key=lambda x: x[1], reverse=True)
         return [term for term, score in scored_unknowns]
     
@@ -245,7 +229,7 @@ class SmartQueryRouter:
         
         score = 0.0
         
-        # Length bonus (longer scientific terms more likely important)
+        # Length bonus
         if len(term) > 8:
             score += 0.3
         elif len(term) > 6:
@@ -358,7 +342,7 @@ class SmartQueryRouter:
             avg_confidence = sum(m['confidence'] for m in metrics) / len(metrics)
             success_rate = len(metrics) / len([m for m, s in similar_queries])
             
-            # Composite score (lower time, higher confidence, higher success rate)
+            # Composite score
             score = (avg_confidence * success_rate) / (avg_time + 1)
             
             if score > best_score:
@@ -373,142 +357,253 @@ class SmartQueryRouter:
         }
     
     def _make_routing_decision(self, query: str, 
-                              classification: QueryClassification,
-                              unknown_terms: List[str],
-                              complexity_factors: Dict[str, Any],
-                              historical_pattern: Optional[Dict[str, Any]],
-                              user_context: Optional[Dict[str, Any]]) -> RoutingDecision:
-        """Make the final routing decision based on all analysis"""
+                          classification: QueryClassification,
+                          unknown_terms: List[str],
+                          complexity_factors: Dict[str, Any],
+                          historical_pattern: Optional[Dict[str, Any]],
+                          user_context: Optional[Dict[str, Any]]) -> RoutingDecision:
+        """FIXED: Calibrated routing decision - favor Lightning RAG more aggressively"""
         
-        reasoning = []
-        confidence = classification.confidence
         
-        # Factor 1: Classification confidence
-        if confidence > 0.8:
-            reasoning.append(f"High classification confidence ({confidence:.2f})")
-            path_score_rag = 1.0
-        elif confidence > 0.6:
-            reasoning.append(f"Medium classification confidence ({confidence:.2f})")
-            path_score_rag = 0.7
-        else:
-            reasoning.append(f"Low classification confidence ({confidence:.2f})")
-            path_score_rag = 0.3
-        
-        # Factor 2: Unknown terms
-        if unknown_terms:
-            reasoning.append(f"Unknown terms detected: {', '.join(unknown_terms[:3])}")
-            path_score_rag *= 0.5  # Penalize RAG for unknown terms
-            path_score_semantic = 0.8
-            path_score_agents = 1.0
-        else:
-            reasoning.append("All terms recognized")
-            path_score_semantic = 0.6
-            path_score_agents = 0.4
-        
-        # Factor 3: Query complexity
-        complexity = classification.complexity
-        if complexity == ComplexityLevel.BASIC:
-            reasoning.append("Basic complexity query")
-            complexity_boost_rag = 1.2
-            complexity_boost_semantic = 0.8
-            complexity_boost_agents = 0.6
-        elif complexity == ComplexityLevel.INTERMEDIATE:
-            reasoning.append("Intermediate complexity query")
-            complexity_boost_rag = 1.0
-            complexity_boost_semantic = 1.1
-            complexity_boost_agents = 0.9
-        elif complexity == ComplexityLevel.ADVANCED:
-            reasoning.append("Advanced complexity query")
-            complexity_boost_rag = 0.7
-            complexity_boost_semantic = 1.2
-            complexity_boost_agents = 1.1
-        else:  # EXPERT
-            reasoning.append("Expert-level complexity query")
-            complexity_boost_rag = 0.4
-            complexity_boost_semantic = 0.9
-            complexity_boost_agents = 1.3
-        
-        # Calculate path scores
-        rag_score = path_score_rag * complexity_boost_rag
-        semantic_score = path_score_semantic * complexity_boost_semantic if unknown_terms else 0.3
-        agent_score = path_score_agents * complexity_boost_agents
-        
-        # Factor 4: Historical patterns
-        if historical_pattern:
-            recommended_path = historical_pattern['recommended_path']
-            reasoning.append(f"Historical data suggests {recommended_path.value}")
+        try:
+            reasoning = []
+            confidence = classification.confidence
             
-            # Boost recommended path
-            if recommended_path == ProcessingPath.LIGHTNING_RAG:
-                rag_score *= 1.3
-            elif recommended_path == ProcessingPath.SEMANTIC_BRIDGE:
-                semantic_score *= 1.3
-            elif recommended_path == ProcessingPath.AGENTIC_FALLBACK:
-                agent_score *= 1.3
+            # Much more realistic confidence thresholds
+            if confidence > 0.6:
+                reasoning.append(f"Good classification confidence ({confidence:.2f})")
+                path_score_rag = 1.2  # BOOSTED
+            elif confidence > 0.4:
+                reasoning.append(f"Acceptable classification confidence ({confidence:.2f})")
+                path_score_rag = 1.0  # Still good
+            else:
+                reasoning.append(f"Low classification confidence ({confidence:.2f})")
+                path_score_rag = 0.7  # Less penalty
+            
+            # Smarter unknown terms handling
+            critical_unknown_terms = [term for term in unknown_terms 
+                                    if not self._is_likely_simple_variant(term)]
+            
+            if critical_unknown_terms:
+                reasoning.append(f"Critical unknown terms: {', '.join(critical_unknown_terms[:3])}")
+                path_score_rag *= 0.9  # MINIMAL penalty
+                path_score_semantic = 1.1  # Slight boost
+                path_score_agents = 0.5   # REDUCED
+            else:
+                if unknown_terms:
+                    reasoning.append(f"Minor unknown terms: {', '.join(unknown_terms[:3])}")
+                    path_score_rag *= 0.98  # TINY penalty
+                else:
+                    reasoning.append("All terms recognized")
+                path_score_semantic = 0.4  # REDUCED
+                path_score_agents = 0.2   # MUCH REDUCED
+            
+            # Complexity handling - HEAVILY favor Lightning RAG
+            complexity = classification.complexity
+            if complexity == ComplexityLevel.BASIC:
+                reasoning.append("Basic complexity - Lightning RAG optimal")
+                complexity_boost_rag = 1.5     # MASSIVE boost
+                complexity_boost_semantic = 0.5
+                complexity_boost_agents = 0.2
+            elif complexity == ComplexityLevel.INTERMEDIATE:
+                reasoning.append("Intermediate complexity - Lightning RAG preferred")
+                complexity_boost_rag = 1.3     # BIG boost
+                complexity_boost_semantic = 0.8
+                complexity_boost_agents = 0.4
+            elif complexity == ComplexityLevel.ADVANCED:
+                if self._is_analytical_not_complex(query, classification):
+                    reasoning.append("Advanced analysis - Lightning RAG with semantic support")
+                    complexity_boost_rag = 1.1      # STILL boost RAG
+                    complexity_boost_semantic = 1.2
+                    complexity_boost_agents = 0.6
+                else:
+                    reasoning.append("Complex analysis - Semantic bridge preferred")
+                    complexity_boost_rag = 0.8      # Slight penalty
+                    complexity_boost_semantic = 1.3
+                    complexity_boost_agents = 0.9
+            else:  # EXPERT
+                reasoning.append("Expert-level complexity - Agent system may be needed")
+                complexity_boost_rag = 0.5
+                complexity_boost_semantic = 1.1
+                complexity_boost_agents = 1.2
+            
+            # Calculate path scores
+            rag_score = path_score_rag * complexity_boost_rag
+            semantic_score = (path_score_semantic * complexity_boost_semantic 
+                            if critical_unknown_terms or complexity in [ComplexityLevel.ADVANCED, ComplexityLevel.EXPERT] 
+                            else 0.2)  # VERY LOW fallback
+            agent_score = path_score_agents * complexity_boost_agents
+            
+            # System health boost for RAG
+            current_health = self._assess_current_system_health()
+            if current_health['rag_performance'] < 2.0:
+                rag_score *= 1.4  # BIG boost for good RAG performance
+                reasoning.append("RAG system performing excellently")
+            
+            # Historical pattern boost
+            if historical_pattern:
+                recommended_path = historical_pattern['recommended_path']
+                reasoning.append(f"Historical success with {recommended_path.value}")
+                
+                if recommended_path == ProcessingPath.LIGHTNING_RAG:
+                    rag_score *= 1.3  # Big boost
+                elif recommended_path == ProcessingPath.SEMANTIC_BRIDGE:
+                    semantic_score *= 1.1
+                elif recommended_path == ProcessingPath.AGENTIC_FALLBACK:
+                    agent_score *= 1.05  # Small boost
+            
+            # FINAL DECISION
+            scores = {
+                ProcessingPath.LIGHTNING_RAG: rag_score,
+                ProcessingPath.SEMANTIC_BRIDGE: semantic_score,
+                ProcessingPath.AGENTIC_FALLBACK: agent_score
+            }
+            
+            selected_path = max(scores.items(), key=lambda x: x[1])[0]
+            final_confidence = min(scores[selected_path], 1.0)
+            
+            # Debug logging
+            logger.debug(f"Routing scores - RAG: {rag_score:.2f}, Semantic: {semantic_score:.2f}, Agents: {agent_score:.2f}")
+            logger.debug(f"Selected: {selected_path.value} with confidence {final_confidence:.2f}")
+            
+            try:
+                routing_decision = RoutingDecision(
+                    path=selected_path,
+                    confidence=final_confidence,
+                    reasoning=reasoning,
+                    performance_budget=self._get_performance_budget(selected_path),
+                    fallback_path=self._get_fallback_path(selected_path),
+                    enrichments_needed=self._determine_enrichments(query, classification),
+                    unknown_terms=unknown_terms,
+                    complexity_factors=complexity_factors,
+                    estimated_cost=self._estimate_cost(selected_path)
+                )
+                
+                # Final validation
+                if not isinstance(routing_decision.path, ProcessingPath):
+                    logger.error(f"CRITICAL: routing_decision.path corrupted after creation: {type(routing_decision.path)}")
+                    raise ValueError("RoutingDecision.path was corrupted during object creation")
+                
+                logger.debug(f"RoutingDecision created successfully with path: {routing_decision.path}")
+                return routing_decision
+                
+            except Exception as e:
+                logger.error(f"Failed to create RoutingDecision: {e}")
+                raise
+        except Exception as e:
+            logger.error(f"Routing decision failed: {str(e)}")
+            # Return a safe fallback decision
+            return RoutingDecision(
+                path=ProcessingPath.AGENTIC_FALLBACK,
+                confidence=0.1,
+                reasoning=["Error in routing decision"],
+                unknown_terms=unknown_terms
+            )
+    
+    # FIXED: Add all missing methods    
+    def _is_likely_simple_variant(self, term: str) -> bool:
+        """Check if unknown term is likely just a variant of known terms"""
+        simple_variants = [
+            (r'(.+)s$', r'\1'),      # plurals
+            (r'(.+)ing$', r'\1'),    # gerunds
+            (r'(.+)ed$', r'\1'),     # past tense
+            (r'(.+)tion$', r'\1'),   # -tion endings
+            (r'(.+)ity$', r'\1'),    # -ity endings
+        ]
         
-        # Factor 5: System health and performance
-        current_health = self._assess_current_system_health()
-        if current_health['rag_available'] and current_health['rag_performance'] < 0.5:
-            rag_score *= 1.2
-            reasoning.append("RAG system performing well")
+        for pattern, replacement in simple_variants:
+            base_term = re.sub(pattern, replacement, term.lower())
+            if base_term in self.known_terms:
+                return True
+        return False
+    
+    def _is_analytical_not_complex(self, query: str, classification: QueryClassification) -> bool:
+        """Distinguish between analytical and truly complex queries"""
+        query_lower = query.lower()
         
-        if not current_health['agents_available']:
-            agent_score = 0
-            reasoning.append("Agent system unavailable")
+        analytical_patterns = [
+            'average', 'mean', 'distribution', 'correlation', 'comparison',
+            'seasonal', 'temporal', 'spatial', 'regional', 'profile',
+            'statistics', 'summary', 'count', 'maximum', 'minimum'
+        ]
         
-        # Make final decision
-        scores = {
-            ProcessingPath.LIGHTNING_RAG: rag_score,
-            ProcessingPath.SEMANTIC_BRIDGE: semantic_score,
-            ProcessingPath.AGENTIC_FALLBACK: agent_score
+        complex_patterns = [
+            'predict', 'forecast', 'model', 'simulate', 'calculate complex',
+            'biogeochemical cycle', 'ecosystem interaction', 'climate impact',
+            'mass balance', 'heat budget', 'carbon cycle'
+        ]
+        
+        analytical_score = sum(2 if pattern in query_lower else 0 for pattern in analytical_patterns)
+        complex_score = sum(3 if pattern in query_lower else 0 for pattern in complex_patterns)
+        
+        if any(word in query_lower for word in ['show', 'display', 'get', 'find']):
+            analytical_score += 1
+        
+        return analytical_score >= complex_score
+    
+    def _get_performance_budget(self, path: ProcessingPath) -> int:
+        """Get performance budget in seconds for the given path"""
+        budgets = {
+            ProcessingPath.LIGHTNING_RAG: 5,        # 5 seconds
+            ProcessingPath.SEMANTIC_BRIDGE: 15,     # 15 seconds  
+            ProcessingPath.AGENTIC_FALLBACK: 60,    # 60 seconds
+            ProcessingPath.ERROR_RECOVERY: 5        # 5 seconds
         }
-        
-        selected_path = max(scores.items(), key=lambda x: x[1])[0]
-        final_confidence = min(scores[selected_path], 1.0)
-        
-        # Determine enrichments needed
-        enrichments = []
-        if unknown_terms and selected_path in [ProcessingPath.SEMANTIC_BRIDGE, ProcessingPath.AGENTIC_FALLBACK]:
-            enrichments.append("unknown_term_resolution")
-        
-        if complexity_factors['requires_calculation']:
-            enrichments.append("parameter_calculation")
-        
-        if complexity_factors['comparative_terms'] > 0:
-            enrichments.append("comparative_context")
-        
-        # Set performance budget
-        performance_budgets = {
-            ProcessingPath.LIGHTNING_RAG: 5,
-            ProcessingPath.SEMANTIC_BRIDGE: 15,
-            ProcessingPath.AGENTIC_FALLBACK: 60
-        }
-        
-        # Determine fallback path
-        fallback_map = {
+        return budgets.get(path, 30)
+    
+    def _get_fallback_path(self, path: ProcessingPath) -> Optional[ProcessingPath]:
+        """Get fallback path for the given primary path"""
+        fallbacks = {
             ProcessingPath.LIGHTNING_RAG: ProcessingPath.SEMANTIC_BRIDGE,
             ProcessingPath.SEMANTIC_BRIDGE: ProcessingPath.AGENTIC_FALLBACK,
-            ProcessingPath.AGENTIC_FALLBACK: ProcessingPath.ERROR_RECOVERY
+            ProcessingPath.AGENTIC_FALLBACK: ProcessingPath.ERROR_RECOVERY,
+            ProcessingPath.ERROR_RECOVERY: None
         }
+        return fallbacks.get(path)
+    
+    def _determine_enrichments(self, query: str, classification: QueryClassification) -> List[str]:
+        """Determine what enrichments are needed for the query"""
+        enrichments = []
         
-        # Estimate computational cost
-        cost_estimates = {
+        query_lower = query.lower()
+        
+        # Temporal enrichments
+        if any(word in query_lower for word in ['seasonal', 'monthly', 'annual', 'trend']):
+            enrichments.append('temporal_context')
+        
+        # Spatial enrichments
+        if any(word in query_lower for word in ['regional', 'spatial', 'geographic']):
+            enrichments.append('spatial_context')
+        
+        # Domain enrichments
+        if any(word in query_lower for word in ['biogeochemical', 'ecosystem', 'climate']):
+            enrichments.append('domain_knowledge')
+        
+        # Statistical enrichments
+        if any(word in query_lower for word in ['correlation', 'regression', 'statistics']):
+            enrichments.append('statistical_analysis')
+        
+        return enrichments
+    
+    def _estimate_cost(self, path: ProcessingPath) -> str:
+        """Estimate computational cost for the given path"""
+        costs = {
             ProcessingPath.LIGHTNING_RAG: "low",
             ProcessingPath.SEMANTIC_BRIDGE: "medium", 
-            ProcessingPath.AGENTIC_FALLBACK: "high"
+            ProcessingPath.AGENTIC_FALLBACK: "high",
+            ProcessingPath.ERROR_RECOVERY: "low"
         }
-        
-        return RoutingDecision(
-            path=selected_path,
-            confidence=final_confidence,
-            reasoning=reasoning,
-            performance_budget=performance_budgets[selected_path],
-            fallback_path=fallback_map[selected_path],
-            enrichments_needed=enrichments,
-            unknown_terms=unknown_terms,
-            complexity_factors=complexity_factors,
-            estimated_cost=cost_estimates[selected_path]
-        )
+        return costs.get(path, "medium")
+    
+    def _assess_current_system_health(self) -> Dict[str, Any]:
+        """Assess current system health for routing decisions"""
+        return {
+            'rag_available': True,
+            'rag_performance': self.system_health['rag_response_time'],
+            'semantic_available': True,
+            'agents_available': True,
+            'timestamp': datetime.now()
+        }
     
     def record_query_result(self, query: str, routing_decision: RoutingDecision,
                            execution_time: float, success: bool, 
@@ -529,7 +624,7 @@ class SmartQueryRouter:
         
         self.query_history.append(metrics)
         
-        # Keep only recent history for performance
+        # Keep only recent history
         if len(self.query_history) > 1000:
             self.query_history = self.query_history[-500:]
         
@@ -544,9 +639,9 @@ class SmartQueryRouter:
         """Initialize performance thresholds for routing decisions"""
         return {
             'response_time_targets': {
-                ProcessingPath.LIGHTNING_RAG: 1.0,      # 1 second
-                ProcessingPath.SEMANTIC_BRIDGE: 10.0,   # 10 seconds
-                ProcessingPath.AGENTIC_FALLBACK: 60.0   # 1 minute
+                ProcessingPath.LIGHTNING_RAG: 1.0,
+                ProcessingPath.SEMANTIC_BRIDGE: 10.0,
+                ProcessingPath.AGENTIC_FALLBACK: 60.0
             },
             'confidence_thresholds': {
                 'high': 0.8,
@@ -561,47 +656,17 @@ class SmartQueryRouter:
             }
         }
     
-    def _extract_terms_from_vector_db(self) -> Set[str]:
-        """Extract known terms from vector database documents"""
-        terms = set()
-        
-        try:
-            if hasattr(self.vector_store, '_collection'):
-                # This would depend on your vector store implementation
-                # For now, return empty set
-                pass
-        except Exception as e:
-            logger.warning(f"Could not extract terms from vector DB: {e}")
-        
-        return terms
-    
     def _create_query_signature(self, query: str) -> str:
         """Create normalized signature for query similarity matching"""
-        
-        # Normalize query
         normalized = re.sub(r'[^\w\s]', '', query.lower())
         words = normalized.split()
-        
-        # Remove common words and sort
         important_words = [w for w in words if len(w) > 3 and w in self.known_terms]
         signature = ' '.join(sorted(important_words))
-        
         return hashlib.md5(signature.encode()).hexdigest()
     
     def _calculate_query_similarity(self, sig1: str, sig2: str) -> float:
         """Calculate similarity between query signatures"""
-        # Simple implementation - could be enhanced with ML similarity
         return 1.0 if sig1 == sig2 else 0.0
-    
-    def _assess_current_system_health(self) -> Dict[str, Any]:
-        """Assess current system health for routing decisions"""
-        return {
-            'rag_available': True,
-            'rag_performance': self.system_health['rag_response_time'],
-            'semantic_available': True,
-            'agents_available': True,
-            'timestamp': datetime.now()
-        }
     
     def _update_routing_patterns(self, query: str, decision: RoutingDecision,
                                 success: bool, execution_time: float):
@@ -664,64 +729,3 @@ class SmartQueryRouter:
             'routing_patterns': self.routing_patterns,
             'system_health': self.system_health
         }
-
-
-# Test function for the router
-def test_smart_router():
-    """Test the smart query router with various oceanographic queries"""
-    
-    from unittest.mock import Mock
-    
-    # Create mock intelligence engine
-    mock_engine = Mock()
-    mock_engine.classify_query.return_value = Mock(
-        confidence=0.85,
-        complexity=ComplexityLevel.INTERMEDIATE,
-        context=Mock(
-            parameters=['temperature', 'salinity'],
-            spatial_bounds={'lat_min': 10, 'lat_max': 25, 'lon_min': 50, 'lon_max': 78},
-            temporal_range=None
-        ),
-        required_calculations=['mixed_layer_depth']
-    )
-    
-    # Initialize router
-    router = SmartQueryRouter(mock_engine)
-    
-    # Test queries
-    test_queries = [
-        "Show temperature profile for platform 1900121",
-        "What is the average thermocline depth in Arabian Sea during monsoon?",
-        "Compare biogeochemical flux patterns between different ocean basins",
-        "Find chlorophyll concentration gradients in upwelling zones",
-        "Surface temperature distribution in Indian Ocean"
-    ]
-    
-    print("Testing Smart Query Router")
-    print("=" * 50)
-    
-    for i, query in enumerate(test_queries, 1):
-        print(f"\nTest {i}: {query}")
-        decision = router.route_query(query)
-        
-        print(f"  → Path: {decision.path.value}")
-        print(f"  → Confidence: {decision.confidence:.2f}")
-        print(f"  → Budget: {decision.performance_budget}s")
-        print(f"  → Unknown terms: {decision.unknown_terms}")
-        print(f"  → Enrichments: {decision.enrichments_needed}")
-        print(f"  → Reasoning: {decision.reasoning[0] if decision.reasoning else 'None'}")
-        
-        # Simulate recording result
-        router.record_query_result(query, decision, 2.5, True)
-    
-    # Show statistics
-    print("\nRouting Statistics:")
-    print("-" * 30)
-    stats = router.get_routing_statistics()
-    for path, data in stats['path_statistics'].items():
-        print(f"{path}: {data['count']} queries ({data['percentage']:.1f}%), "
-              f"{data['success_rate']:.1f}% success")
-
-
-if __name__ == "__main__":
-    test_smart_router()

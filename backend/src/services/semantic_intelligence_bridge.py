@@ -121,6 +121,9 @@ class SemanticIntelligenceBridge:
             processing_time = time.time() - start_time
             self._update_performance_stats(enrichment, processing_time)
             
+            if hasattr(self, 'rag_system'):
+                self.rag_system._last_semantic_result = enhanced_result
+                
             return enhanced_result
             
         except Exception as e:

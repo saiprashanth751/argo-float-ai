@@ -32,10 +32,11 @@ class AgentStatus(Enum):
     UNAVAILABLE = "unavailable"
 
 class ProcessingPath(Enum):
-    LIGHTNING_RAG = "lightning_rag"
-    SEMANTIC_BRIDGE = "semantic_bridge"
-    AGENTIC_FALLBACK = "agentic_fallback"
-    ERROR_RECOVERY = "error_recovery"
+    """Processing paths for different query types"""
+    LIGHTNING_RAG = "lightning_rag"        # Fast vector search + template SQL
+    SEMANTIC_BRIDGE = "semantic_bridge"    # Query enrichment + enhanced context
+    AGENTIC_FALLBACK = "agentic_fallback"  # Full agent reasoning with MCP tools
+    ERROR_RECOVERY = "error_recovery"      # Fallback when other paths fail
 
 class ComplexityLevel(Enum):
     BASIC = "basic"
@@ -91,15 +92,16 @@ class AgentMetrics:
 
 @dataclass
 class RoutingDecision:
+    """Complete routing decision with reasoning and metadata"""
     path: ProcessingPath
     confidence: float
     reasoning: List[str]
-    performance_budget: int
-    fallback_path: ProcessingPath
+    performance_budget: int  # seconds
+    fallback_path: Optional[ProcessingPath]
     enrichments_needed: List[str]
     unknown_terms: List[str]
     complexity_factors: Dict[str, Any]
-    estimated_cost: str
+    estimated_cost: str  # computational cost estimate
 
 @dataclass
 class ResponseIntelligenceConfig:

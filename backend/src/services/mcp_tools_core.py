@@ -387,7 +387,94 @@ class DatabaseExplorerTool:
         except Exception as e:
             logger.error(f"Table schema query failed for {table_name}: {e}")
             return f"Schema query failed for table '{table_name}': {str(e)}"
+    
+    def _get_all_tables_robust(self, conn) -> str:
+        """Get all tables with robust error handling"""
+        try:
+            # Try PostgreSQL/SQLAlchemy approach first
+            query = """
+            SELECT table_name, table_type
+            FROM information_schema.tables 
+            WHERE table_schema = 'public'
+            ORDER BY table_name
+            """
+            
+            result = conn.execute(text(query))
+            tables = result.fetchall()
+            
+            if not tables:
+                # Fallback: try direct table introspection
+                from sqlalchemy import inspect
+                inspector = inspect(conn)
+                table_names = inspector.get_table_names()
+                
+                if table_names:
+                    tables_info = []
+                    for table_name in table_names[:10]:  # Limit to first 10 tables
+                        try:
+                            columns = inspector.get_columns(table_name)
+                            column_count = len(columns)
+                            tables_info.append(f"  {table_name} ({column_count} columns)")
+                        except Exception as e:
+                            tables_info.append(f"  {table_name} (structure unavailable)")
+                    
+                    return f"Database tables found via introspection:\n" + "\n".join(tables_info)
+                else:
+                    return "No tables found in database"
+            
+            # Format results
+            table_info = []
+            for row in tables:
+                table_name = row[0]
+                table_type = row[1] if len(row) > 1 else 'TABLE'
+                table_info.append(f"  {table_name} ({table_type})")
+            
+            return f"Database schema overview:\n" + "\n".join(table_info)
+            
+        except Exception as e:
+            logger.error(f"All tables query failed: {e}")
+            
+            # Final fallback - try basic table listing
+            try:
+                # Try SQLite approach
+                fallback_query = "SELECT name FROM sqlite_master WHERE type='table'"
+                result = conn.execute(text(fallback_query))
+                tables = result.fetchall()
+                
+                if tables:
+                    table_names = [row[0] for row in tables]
+                    return f"Database tables (SQLite): {', '.join(table_names)}"
+                else:
+                    return "Database schema exploration failed - no tables accessible"
+                    
+            except Exception as fallback_error:
+                logger.error(f"Fallback table query also failed: {fallback_error}")
+                return f"Schema exploration failed: {str(e)}"
 
+    def _format_table_schema(self, table_name: str, columns) -> str:
+        """Format table schema information"""
+        if not columns:
+            return f"Table '{table_name}': No column information available"
+        
+        schema_lines = [f"Table: {table_name}"]
+        schema_lines.append("-" * (len(table_name) + 7))
+        
+        for column in columns:
+            col_name = column[0] if len(column) > 0 else 'unknown'
+            col_type = column[1] if len(column) > 1 else 'unknown'
+            nullable = column[2] if len(column) > 2 else 'unknown'
+            default = column[3] if len(column) > 3 else None
+            
+            col_info = f"  {col_name}: {col_type}"
+            if nullable == 'NO':
+                col_info += " (NOT NULL)"
+            if default:
+                col_info += f" DEFAULT {default}"
+            
+            schema_lines.append(col_info)
+        
+        return "\n".join(schema_lines)
+    
     def _is_valid_table_name(self, table_name: str) -> bool:
         """Validate table name to prevent SQL injection"""
         import re

@@ -5,7 +5,7 @@ to coordinate between Lightning RAG, Semantic Bridge, and Agentic processing.
 
 This replaces your current process_oceanographic_query method with intelligent routing.
 """
-
+import asyncio
 import logging
 import time
 from typing import Dict, List, Optional, Any, Union, Literal
@@ -50,6 +50,7 @@ class OrchestratedOceanographicRAG:
     """
     
     def __init__(self, persist_directory: str = None, db_engine=None):
+        """Initialize orchestrated system with WORKING agent system"""
         # Initialize core components
         self.db_engine = db_engine or get_db_engine()
         
@@ -59,26 +60,29 @@ class OrchestratedOceanographicRAG:
         # Layer 2: Intelligence engine for classification
         self.intelligence_engine = OceanographicIntelligenceEngine(self.db_engine)
         
-        # Layer 3: Smart router (the new orchestration layer)
+        # Layer 3: Smart router (the orchestration layer)
         self.router = SmartQueryRouter(
             intelligence_engine=self.intelligence_engine,
             vector_store=self.rag_system.vector_store
         )
         
-        # Layer 4: Response system for formatting
-        self.response_intelligence = DeepSeekResponseIntelligence()
-        # self.response_system = self.response_intelligence   is this needed or not
-        
-        logger.info("Orchestrated RAG with Response Intelligence initialized")
-        # Semantic bridge (will implement next)
+        # Layer 4: Semantic bridge 
         from .semantic_intelligence_bridge import SemanticIntelligenceBridge
         self.semantic_bridge = SemanticIntelligenceBridge(self.rag_system)
         
-        # Agent system (will implement after semantic bridge)
+        # REMOVED: Broken IntelligentAgentCoordinator
+        # Layer 5: Intelligent Agent Coordinator (NEW) - REMOVED
+        # from .intelligent_agent_coordinator import IntelligentAgentCoordinator
+        # self.agent_coordinator = IntelligentAgentCoordinator()
+        
+        # Layer 5: Response system for formatting
+        self.response_intelligence = DeepSeekResponseIntelligence()
+        
+        # Layer 6: PRODUCTION Agent System (now PRIMARY, not "legacy")
         if AGENT_SYSTEM_AVAILABLE:
             try:
                 self.agent_system = ProductionAgentCollaborationSystem(self.db_engine, max_agents=4)
-                logger.info("Production agent collaboration system initialized")
+                logger.info("Production agent collaboration system initialized as PRIMARY")
             except Exception as e:
                 logger.warning(f"Agent system initialization failed: {e}")
                 self.agent_system = None
@@ -91,10 +95,15 @@ class OrchestratedOceanographicRAG:
             'lightning_queries': 0,
             'semantic_queries': 0,
             'agent_queries': 0,
+            'agent_success_rate': 0.0,  # Added
             'avg_response_times': {}
         }
         
-        logger.info("Orchestrated RAG with Response Intelligence initialized")
+        # Storage for inter-layer communication
+        self._last_rag_result = {}
+        self._last_semantic_result = {}
+        
+        logger.info("Orchestrated RAG with WORKING Agent System initialized")
     
     def process_query(self, natural_language_query: str, 
                  response_format=None,
@@ -185,33 +194,42 @@ class OrchestratedOceanographicRAG:
                 }
             }
     
-    async def _execute_processing_path(self, query: str, 
-                                routing_decision: RoutingDecision,
-                                response_format: ResponseFormat) -> Dict[str, Any]:
-        """Execute the query based on routing decision"""
+    def _execute_processing_path(self, query: str, 
+                            routing_decision: RoutingDecision,
+                            response_format: ResponseFormat) -> Dict[str, Any]:
+        """Execute the query based on routing decision - UPDATED for result storage"""
         
         path = routing_decision.path
-        logger.info(f"DIAGNOSTIC: _execute_processing_path - path: {path.value}")
+        logger.info(f"Executing processing path: {path.value}")
         
-        if path == ProcessingPath.LIGHTNING_RAG:
-            logger.info(f"DIAGNOSTIC: About to call _execute_lightning_rag")
-            return await self._execute_lightning_rag(query, routing_decision, response_format)
-        
-        elif path == ProcessingPath.SEMANTIC_BRIDGE:
-            logger.info(f"DIAGNOSTIC: About to call _execute_semantic_bridge")
-            return await self._execute_semantic_bridge(query, routing_decision, response_format)
-        
-        elif path == ProcessingPath.AGENTIC_FALLBACK:
-            logger.info(f"DIAGNOSTIC: About to call _execute_agentic_fallback")
-            return await self._execute_agentic_fallback(query, routing_decision, response_format)
-        
-        else:  # ERROR_RECOVERY
-            return await self._execute_error_recovery(query, routing_decision, response_format)
+        try:
+            if path == ProcessingPath.LIGHTNING_RAG:
+                result = self._execute_lightning_rag(query, routing_decision, response_format)
+                # Store for potential agent use
+                self._store_processing_result('rag', result)
+                return result
+            
+            elif path == ProcessingPath.SEMANTIC_BRIDGE:
+                result = self._execute_semantic_bridge(query, routing_decision, response_format)
+                # Store for potential agent use
+                self._store_processing_result('semantic', result)
+                return result
+            
+            elif path == ProcessingPath.AGENTIC_FALLBACK:
+                # Agent coordinator will access stored results from previous attempts
+                return self._execute_agentic_fallback(query, routing_decision, response_format)
+            
+            else:  # ERROR_RECOVERY
+                return self._execute_error_recovery(query, routing_decision, response_format)
+            
+        except Exception as e:
+            logger.error(f"Processing path execution failed: {e}")
+            return self._create_error_result(query, str(e))
     
     def _execute_lightning_rag(self, query: str, 
-                              routing_decision: RoutingDecision,
-                              response_format: ResponseFormat) -> Dict[str, Any]:
-        """Execute lightning-fast RAG processing (your existing system)"""
+                          routing_decision: RoutingDecision,
+                          response_format: ResponseFormat) -> Dict[str, Any]:
+        """Execute lightning-fast RAG processing - UPDATED"""
         
         logger.info("Executing Lightning RAG path")
         self.processing_stats['lightning_queries'] += 1
@@ -224,10 +242,22 @@ class OrchestratedOceanographicRAG:
             result['processing_path'] = 'lightning_rag'
             result['speed_optimized'] = True
             
+            # Store result immediately for potential agent coordinator use
+            self._store_processing_result('rag', result)
+            
             return result
             
         except Exception as e:
             logger.warning(f"Lightning RAG failed: {e}")
+            
+            # Store failed result
+            failed_result = {
+                'success': False,
+                'error': str(e),
+                'query': query,
+                'processing_path': 'lightning_rag_failed'
+            }
+            self._store_processing_result('rag', failed_result)
             
             # Fallback to semantic bridge if available
             if routing_decision.fallback_path == ProcessingPath.SEMANTIC_BRIDGE:
@@ -248,111 +278,377 @@ class OrchestratedOceanographicRAG:
             raise e
     
     def _execute_semantic_bridge(self, query: str,
-                                routing_decision: RoutingDecision,
-                                response_format: ResponseFormat) -> Dict[str, Any]:
-        """Execute semantic bridge processing (to be implemented)"""
+                            routing_decision: RoutingDecision,
+                            response_format: ResponseFormat) -> Dict[str, Any]:
+        """Execute semantic bridge processing - UPDATED"""
         
         logger.info("Executing Semantic Bridge path")
         self.processing_stats['semantic_queries'] += 1
         
-        if self.semantic_bridge is None:
-            # For now, fallback to enhanced RAG with enrichments
-            logger.warning("Semantic Bridge not implemented, using enhanced RAG")
+        try:
+            # Use semantic bridge
+            result = self.semantic_bridge.process_query(query, routing_decision)
             
-            # Apply query enrichments manually
-            enriched_query = self._apply_basic_enrichments(query, routing_decision)
+            # Add path-specific metadata
+            result['processing_path'] = 'semantic_bridge'
+            result['enrichment_applied'] = True
             
-            try:
-                result = self.rag_system.process_oceanographic_query(enriched_query)
-                result['processing_path'] = 'semantic_bridge_fallback'
-                result['enrichments_applied'] = routing_decision.enrichments_needed
-                result['original_query'] = query
-                result['enriched_query'] = enriched_query
-                
-                return result
-                
-            except Exception as e:
-                # Fallback to agents if available
-                if routing_decision.fallback_path == ProcessingPath.AGENTIC_FALLBACK:
-                    logger.info("Falling back to Agentic processing")
-                    fallback_decision = RoutingDecision(
-                        path=ProcessingPath.AGENTIC_FALLBACK,
-                        confidence=routing_decision.confidence * 0.7,
-                        reasoning=routing_decision.reasoning + ["Fallback from Semantic Bridge"],
-                        performance_budget=60,
-                        fallback_path=ProcessingPath.ERROR_RECOVERY,
-                        enrichments_needed=routing_decision.enrichments_needed,
-                        unknown_terms=routing_decision.unknown_terms,
-                        complexity_factors=routing_decision.complexity_factors,
-                        estimated_cost="high"
-                    )
-                    return self._execute_agentic_fallback(query, fallback_decision, response_format)
-                
-                raise e
-        
-        else:
-            # TODO: Implement actual semantic bridge
-            return self.semantic_bridge.process_query(query, routing_decision)
+            # Store result immediately for potential agent coordinator use
+            self._store_processing_result('semantic', result)
+            
+            return result
+            
+        except Exception as e:
+            logger.warning(f"Semantic Bridge failed: {e}")
+            
+            # Store failed result
+            failed_result = {
+                'success': False,
+                'error': str(e),
+                'query': query,
+                'processing_path': 'semantic_bridge_failed'
+            }
+            self._store_processing_result('semantic', failed_result)
+            
+            # Fallback to agents if available
+            if routing_decision.fallback_path == ProcessingPath.AGENTIC_FALLBACK:
+                logger.info("Falling back to Agentic processing")
+                fallback_decision = RoutingDecision(
+                    path=ProcessingPath.AGENTIC_FALLBACK,
+                    confidence=routing_decision.confidence * 0.7,
+                    reasoning=routing_decision.reasoning + ["Fallback from Semantic Bridge"],
+                    performance_budget=60,
+                    fallback_path=ProcessingPath.ERROR_RECOVERY,
+                    enrichments_needed=routing_decision.enrichments_needed,
+                    unknown_terms=routing_decision.unknown_terms,
+                    complexity_factors=routing_decision.complexity_factors,
+                    estimated_cost="high"
+                )
+                return self._execute_agentic_fallback(query, fallback_decision, response_format)
+            
+            raise e
     
     async def _execute_agentic_fallback(self, query: str,
-                         routing_decision: RoutingDecision,
-                         response_format: ResponseFormat) -> Dict[str, Any]:
-        """Execute agentic processing with MCP tools (FIXED)"""
-        
-        logger.info(f"DIAGNOSTIC: _execute_agentic_fallback called with query: {query}")
-        logger.info(f"DIAGNOSTIC: Agent collaboration system exists: {self.agent_system is not None}")
+                     routing_decision: RoutingDecision,
+                     response_format: ResponseFormat) -> Dict[str, Any]:
+        """Execute agentic processing - FIXED to use working agent system"""
         
         logger.info("Executing Agentic Fallback path")
         self.processing_stats['agent_queries'] += 1
         
+        # Check if agent system is available
         if self.agent_system is None:
-            logger.warning("Agent system not available, using intelligent response system")
-            
-            try:
-                result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
-                result['processing_path'] = 'agentic_fallback_irs'
-                result['agent_reasoning'] = "Used Intelligent Response System as agent fallback"
-                return result
-                
-            except Exception as e:
-                logger.error(f"Agentic fallback failed: {e}")
-                return self._execute_error_recovery(query, routing_decision, response_format)
+            logger.warning("Agent system not available, using intelligent fallback")
+            return await self._execute_intelligent_fallback_without_agents(
+                query, routing_decision, response_format
+            )
         
+        try:
+            logger.info("Using ProductionAgentCollaborationSystem")
+            
+            result = await self.agent_system.execute_agent_collaboration(
+                query=query,
+                routing_decision=routing_decision,
+                user_context={}
+            )
+            
+            # Add orchestration metadata
+            result['processing_path'] = 'production_agentic'
+            result['agent_system_used'] = 'ProductionAgentCollaborationSystem'
+            
+            # Update success tracking
+            if result.get('success'):
+                self._update_agent_success_metrics(True)
+                logger.info(f"Agent collaboration succeeded in {result.get('processing_time', 0):.2f}s")
+            else:
+                self._update_agent_success_metrics(False)
+                logger.warning("Agent collaboration failed")
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Agent collaboration failed with exception: {e}")
+            self._update_agent_success_metrics(False)
+            
+            # Fallback to enhanced existing results
+            return await self._execute_intelligent_fallback_without_agents(
+                query, routing_decision, response_format
+            )
+    
+    def _select_best_previous_result(self, previous_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Select the best result from previous processing layers"""
+        
+        rag_result = previous_results.get('rag_result', {})
+        semantic_result = previous_results.get('semantic_result', {})
+        
+        # Priority: successful results with good data
+        if semantic_result.get('success') and semantic_result.get('result_count', 0) > 0:
+            return semantic_result
+        elif rag_result.get('success') and rag_result.get('result_count', 0) > 0:
+            return rag_result
+        elif semantic_result.get('success'):
+            return semantic_result
+        elif rag_result.get('success'):
+            return rag_result
         else:
-            # Use actual agent collaboration system - FIXED ASYNC HANDLING
+            # Neither successful - return None to trigger response intelligence
+            return None
+    
+    def _calculate_confidence_boost(self, result: Dict[str, Any], routing_decision: RoutingDecision) -> float:
+        """Calculate confidence boost for enhanced results"""
+        
+        base_confidence = result.get('classification', {}).get('confidence', 0.5)
+        
+        # Boost based on routing confidence
+        routing_boost = routing_decision.confidence * 0.1
+        
+        # Boost based on result quality
+        result_count = result.get('result_count', 0)
+        data_boost = min(result_count / 1000.0, 0.2)  # Up to 0.2 boost for good data
+        
+        total_boost = routing_boost + data_boost
+        return min(total_boost, 0.3)
+    
+    def _execute_emergency_response(self, query: str, routing_decision: RoutingDecision, 
+                              response_format: ResponseFormat) -> Dict[str, Any]:
+        """Emergency response when all systems fail"""
+        
+        return {
+            'success': False,
+            'error': 'All processing systems unavailable',
+            'query': query,
+            'processing_path': 'emergency_response',
+            'system_status': {
+                'agent_system': self.agent_system is not None,
+                'rag_system': self.rag_system is not None,
+                'semantic_system': self.semantic_bridge is not None
+            },
+            'recommendations': [
+                'Try simplifying your query',
+                'Check system status and try again later',
+                'Contact system administrator if problem persists'
+            ],
+            'emergency_message': f"System temporarily unable to process: '{query[:100]}...'"
+        }
+    
+    async def _execute_intelligent_fallback_without_agents(self, 
+                                       query: str, 
+                                       routing_decision: RoutingDecision,
+                                       response_format: ResponseFormat) -> Dict[str, Any]:
+        """Intelligent fallback when agents are unavailable or fail"""
+        
+        logger.info("Executing intelligent fallback without agents")
+        
+        # Step 1: Try to enhance existing results from previous layers
+        previous_results = {
+            'rag_result': getattr(self, '_last_rag_result', {}),
+            'semantic_result': getattr(self, '_last_semantic_result', {})
+        }
+        
+        # Step 2: Select best existing result
+        best_result = self._select_best_previous_result(previous_results)
+        
+        if best_result and best_result.get('success'):
+            # Enhance the existing result
+            enhanced_result = best_result.copy()
+            enhanced_result.update({
+                'processing_path': 'enhanced_existing_no_agents',
+                'enhancement_applied': True,
+                'fallback_reason': 'Agent system unavailable',
+                'intelligence_note': 'Enhanced existing results with additional context',
+                'confidence_boost': self._calculate_confidence_boost(best_result, routing_decision)
+            })
+            
+            return enhanced_result
+        
+        # Step 3: If no good previous results, use response intelligence
+        try:
+            result = self.response_intelligence.enhance_response_with_intelligence(
+                query, response_format
+            )
+            result.update({
+                'processing_path': 'response_intelligence_fallback',
+                'fallback_reason': 'No previous results available',
+                'agent_system_status': 'unavailable'
+            })
+            return result
+            
+        except Exception as e:
+            logger.error(f"Response intelligence fallback failed: {e}")
+            
+            # Final emergency fallback
+            return self._execute_emergency_response(query, routing_decision, response_format)
+    
+    def _ensure_excellent_agent_ux(self, query: str, agent_result: Dict[str, Any], 
+                               agent_decision: Dict[str, Any]) -> Dict[str, Any]:
+        """Ensure excellent user experience for agent-processed queries"""
+        
+        enhanced_result = agent_result.copy()
+        
+        # Add user-friendly explanations
+        enhanced_result['user_experience'] = {
+            'processing_explanation': self._explain_agent_processing(agent_decision),
+            'why_agents_used': agent_decision.get('reasoning', ['Advanced analysis required']),
+            'confidence_level': self._assess_agent_result_confidence(agent_result),
+            'transparency': 'high'
+        }
+        
+        # Add metadata for monitoring
+        enhanced_result['intelligent_agent_metadata'] = {
+            'agent_type': agent_decision.get('agent_type', 'general'),
+            'capabilities_used': agent_decision.get('expected_capabilities', []),
+            'decision_confidence': agent_decision.get('confidence', 0.5),
+            'fallback_available': agent_decision.get('fallback_strategy') is not None
+        }
+        
+        return enhanced_result
+    
+    def _assess_agent_result_confidence(self, agent_result: Dict[str, Any]) -> str:
+        """Assess and communicate confidence in agent results"""
+        
+        # Look for confidence indicators in result
+        if 'confidence' in agent_result:
+            confidence = agent_result['confidence']
+            if confidence > 0.8:
+                return "high"
+            elif confidence > 0.6:
+                return "medium"
+            else:
+                return "moderate"
+        
+        # Assess based on result structure
+        if agent_result.get('success') and agent_result.get('results') is not None:
+            return "high"
+        elif agent_result.get('success'):
+            return "medium"
+        else:
+            return "moderate"
+    
+    def _store_processing_result(self, layer: str, result: Dict[str, Any]):
+        """Store processing results with enhanced metadata"""
+        
+        if layer == 'rag':
+            self._last_rag_result = result
+            # Add timestamp for freshness tracking
+            self._last_rag_result['timestamp'] = time.time()
+        elif layer == 'semantic':
+            self._last_semantic_result = result
+            self._last_semantic_result['timestamp'] = time.time()
+    
+    def _explain_agent_processing(self, agent_decision: Dict[str, Any]) -> str:
+        """Generate user-friendly explanation of agent processing"""
+        
+        explanations = {
+            'knowledge_synthesis': "I analyzed multiple expert sources and synthesized complex oceanographic information to provide a comprehensive answer.",
+            'data_gap_handler': "I searched alternative data sources and related information since the specific data requested wasn't directly available in our primary database.",
+            'calculation_specialist': "I performed advanced calculations and modeling to provide precise quantitative results for your complex query."
+        }
+        
+        agent_type = agent_decision.get('agent_type', 'general')
+        return explanations.get(agent_type, 
+            "I used advanced reasoning and multiple information sources to provide the most accurate response possible.")
+        
+    
+    
+    async def _execute_intelligent_fallback(self, query: str, routing_decision: RoutingDecision,
+                         response_format: ResponseFormat, error: str) -> Dict[str, Any]:
+        """Execute intelligent fallback when agent coordination fails"""
+        
+        logger.warning(f"Executing intelligent fallback due to: {error}")
+        
+        # Try legacy agent system if available
+        if self.agent_system is not None:
             try:
-                logger.info("DIAGNOSTIC: About to call agent collaboration system")
-                
-                # SIMPLE DIRECT CALL - no complex async handling
+                logger.info("Attempting legacy agent system fallback")
                 result = await self.agent_system.execute_agent_collaboration(
                     query=query,
                     routing_decision=routing_decision,
                     user_context={}
                 )
-                
-                logger.info(f"DIAGNOSTIC: Agent collaboration returned: {result.get('success', 'unknown')}")
-                
-                # Add path-specific metadata
-                result['processing_path'] = 'agentic_collaboration'
-                result['agent_system_used'] = True
-                
+                result['processing_path'] = 'legacy_agent_fallback'
+                result['fallback_reason'] = error
                 return result
-                
             except Exception as e:
-                logger.error(f"DIAGNOSTIC: Agent collaboration failed with exception: {e}")
-                logger.error(f"DIAGNOSTIC: Exception type: {type(e)}")
-                import traceback
-                logger.error(f"DIAGNOSTIC: Full traceback: {traceback.format_exc()}")
-                
-                # Fallback to intelligent response system
-                try:
-                    result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
-                    result['processing_path'] = 'agentic_fallback_after_error'
-                    result['agent_error'] = str(e)
-                    return result
-                except Exception as e2:
-                    logger.error(f"Complete agentic fallback failed: {e2}")
-                    return self._execute_error_recovery(query, routing_decision, response_format)
+                logger.error(f"Legacy agent fallback also failed: {e}")
+        
+        # Final fallback to response intelligence
+        try:
+            result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
+            result['processing_path'] = 'final_intelligence_fallback'
+            result['original_error'] = error
+            result['fallback_explanation'] = "Used response intelligence after agent system difficulties"
+            return result
+        except Exception as e:
+            logger.error(f"All fallbacks failed: {e}")
+            return self._execute_error_recovery(query, routing_decision, response_format)
+
+
+    
+    async def _enhance_existing_results(self, query: str, previous_results: Dict[str, Any], 
+                     routing_decision: RoutingDecision, 
+                     response_format: ResponseFormat) -> Dict[str, Any]:
+        """Enhance existing results when agents aren't needed"""
+        
+        logger.info("Enhancing existing results instead of using agents")
+        
+        # Select the best result from previous layers
+        best_result = self._select_best_previous_result(previous_results)
+        
+        if not best_result or not best_result.get('success'):
+            # If no good previous results, try response intelligence fallback
+            try:
+                result = self.response_intelligence.enhance_response_with_intelligence(query, response_format)
+                result['processing_path'] = 'enhanced_existing_fallback'
+                result['enhancement_type'] = 'response_intelligence'
+                return result
+            except Exception as e:
+                logger.error(f"Response intelligence fallback failed: {e}")
+                return self._execute_error_recovery(query, routing_decision, response_format)
+        
+        # Enhance the best result
+        enhanced_result = best_result.copy()
+        enhanced_result.update({
+            'processing_path': 'enhanced_existing',
+            'enhancement_applied': True,
+            'agent_decision': 'avoided_unnecessary_processing',
+            'intelligence_boost': {
+                'routing_confidence': routing_decision.confidence,
+                'processing_efficiency': 'high',
+                'user_experience': 'optimized'
+            },
+            'performance_benefit': 'Avoided unnecessary agent processing while maintaining quality'
+        })
+        
+        # Add any final response intelligence enhancements
+        try:
+            if hasattr(self.response_intelligence, 'enhance_orchestrated_response'):
+                from .response_intelligence_layer import ResponseIntelligenceConfig
+                config = ResponseIntelligenceConfig()
+                enhanced_result = self.response_intelligence.enhance_orchestrated_response(enhanced_result, config)
+        except Exception as e:
+            logger.warning(f"Final response enhancement failed: {e}")
+        
+        return enhanced_result
+    
+    def _select_best_previous_result(self, previous_results: Dict[str, Any]) -> Dict[str, Any]:
+        """Select the best result from previous processing layers"""
+        
+        rag_result = previous_results.get('rag_result', {})
+        semantic_result = previous_results.get('semantic_result', {})
+        
+        # Priority: successful results first
+        if semantic_result.get('success') and rag_result.get('success'):
+            # Both successful - choose semantic (more enriched)
+            return semantic_result
+        elif semantic_result.get('success'):
+            return semantic_result
+        elif rag_result.get('success'):
+            return rag_result
+        else:
+            # Neither successful - return the one with more information
+            if len(str(semantic_result)) > len(str(rag_result)):
+                return semantic_result
+            return rag_result
     
     def _execute_error_recovery(self, query: str,
                                routing_decision: RoutingDecision,
@@ -417,7 +713,7 @@ class OrchestratedOceanographicRAG:
                 self.processing_stats['avg_response_times'][path_key][-50:]
     
     def get_system_performance(self) -> Dict[str, Any]:
-        """Get comprehensive system performance metrics"""
+        """Get comprehensive system performance including agent metrics"""
         
         # Calculate average response times
         avg_times = {}
@@ -430,6 +726,14 @@ class OrchestratedOceanographicRAG:
                     'recent_queries': len(times)
                 }
         
+        # Get agent system metrics if available
+        agent_metrics = {}
+        if self.agent_system:
+            try:
+                agent_metrics = self.agent_system.get_collaboration_metrics()
+            except Exception as e:
+                logger.warning(f"Could not get agent metrics: {e}")
+        
         return {
             'query_distribution': {
                 'total_queries': self.processing_stats['total_queries'],
@@ -437,8 +741,12 @@ class OrchestratedOceanographicRAG:
                 'semantic_bridge': self.processing_stats['semantic_queries'],
                 'agentic_fallback': self.processing_stats['agent_queries']
             },
+            'success_rates': {
+                'agent_success_rate': self.processing_stats['agent_success_rate']
+            },
             'performance_metrics': avg_times,
             'routing_statistics': self.router.get_routing_statistics(),
+            'agent_system_metrics': agent_metrics,
             'system_health': {
                 'rag_system_ready': self.rag_system is not None,
                 'semantic_bridge_ready': self.semantic_bridge is not None,

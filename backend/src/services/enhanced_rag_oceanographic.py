@@ -321,6 +321,7 @@ class ProductionOceanographicRAG:
             }
             
             logger.info(f"Query completed successfully in {total_time:.2f}s")
+            self._last_rag_result = response
             return response
             
         except Exception as e:
