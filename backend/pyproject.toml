@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "argo-float-ai-backend"
+version = "0.1.0"
+description = "Argo Float AI Backend"
+
+[tool.setuptools.packages.find]
+where = ["src"]
