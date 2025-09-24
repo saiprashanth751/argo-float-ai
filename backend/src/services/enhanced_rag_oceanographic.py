@@ -46,14 +46,16 @@ except ImportError:
 
 # Import all components of the intelligence system
 try:
-    from .oceanographic_intelligence_engine import (
+    from services.oceanographic_intelligence_engine import (
         OceanographicIntelligenceEngine, QueryIntent, ComplexityLevel, 
         QueryClassification, OceanographicContext
     )
-    from .template_sql_generator import (
+    from services.template_sql_generator import (
         ProductionSQLGenerator, SQLTemplate, GeneratedSQL
     )
-    from .llm_enhanced_sql_generator import LLMEnhancedSQLGenerator
+    from services.llm_enhanced_sql_generator import LLMEnhancedSQLGenerator
+    from config.vector_store_config import get_vector_store_path
+
 except ImportError:
     # Fallback for testing - create dummy classes
     from enum import Enum
@@ -152,7 +154,7 @@ class ProductionOceanographicRAG:
     """
     COMPLETE PRODUCTION RAG SYSTEM
     
-     Now integrates LLM-enhanced SQL generation while maintaining:
+    Now integrates LLM-enhanced SQL generation while maintaining:
     1. Vector store domain knowledge
     2. Intelligence engine classification
     3. Robust fallback mechanisms
@@ -178,6 +180,9 @@ class ProductionOceanographicRAG:
         logger.info("Initializing Production RAG System...")
          
         # Layer 1: Vector Store (Domain Knowledge)
+        if persist_directory is None:
+            persist_directory = str(get_vector_store_path())
+            
         self.vector_store = self._initialize_vector_store(persist_directory)
         
         # Layer 2: Intelligence Engine (Query Classification)  
@@ -186,12 +191,8 @@ class ProductionOceanographicRAG:
         # Layer 3: SQL Generator (Template-based SQL)
         self.sql_generator = ProductionSQLGenerator()
         
-        # Layer 4: Standard SQL Generator (Fallback)
-        self.sql_generator = ProductionSQLGenerator()
-        
-        # Layer 5: LLM-Enhanced SQL Generator (Primary)
+        # Layer 4: LLM-Enhanced SQL Generator (Primary)
         self._initialize_llm_enhancement()
-        
         
         # Performance monitoring
         self.query_metrics = []
@@ -200,17 +201,18 @@ class ProductionOceanographicRAG:
         logger.info(f"LLM Enhancement Status: {'ENABLED' if self.llm_enhancement_enabled else 'DISABLED'}")
         
     def _initialize_llm_enhancement(self):
-        """Initialize LLM enhancement with robust fallback"""
+        """Simplified LLM enhancement initialization"""
         
         deepseek_api_key = os.getenv('DEEPSEEK_API_KEY')
         
         if not deepseek_api_key:
-            logger.warning("DEEPSEEK_API_KEY not found in environment - LLM enhancement disabled")
+            logger.warning("DEEPSEEK_API_KEY not found - LLM enhancement disabled")
             self.enhanced_sql_generator = None
             self.llm_enhancement_enabled = False
             return
         
         try:
+            from services.llm_enhanced_sql_generator import LLMEnhancedSQLGenerator
             self.enhanced_sql_generator = LLMEnhancedSQLGenerator(deepseek_api_key)
             self.llm_enhancement_enabled = True
             logger.info("LLM-Enhanced SQL generation initialized successfully")
@@ -218,28 +220,29 @@ class ProductionOceanographicRAG:
             logger.error(f"LLM enhancement initialization failed: {e}")
             self.enhanced_sql_generator = None
             self.llm_enhancement_enabled = False
-            logger.warning("Falling back to standard SQL generation")
     
     def _initialize_vector_store(self, persist_directory):
-        """Initialize vector store with fallback"""
+        """
+        FIXED version of vector store initialization
+        Replace your existing _initialize_vector_store method with this exact code
+        """
         try:
             self.embeddings = HuggingFaceEmbeddings(
                 model_name="sentence-transformers/all-MiniLM-L6-v2",
                 model_kwargs={'device': 'cpu'}
             )
             
-            if persist_directory is None:
-                persist_directory = os.path.join("storage", "chroma_db_oceanographic")
-            
             if os.path.exists(persist_directory):
                 vector_store = Chroma(
                     persist_directory=persist_directory,
-                    embedding_function=self.embeddings
+                    embedding_function=self.embeddings,
+                    # CRITICAL FIX: Add proper relevance score function
+                    relevance_score_fn=self._convert_distance_to_relevance_score
                 )
                 logger.info(f"Loaded existing vector store from {persist_directory}")
                 return vector_store
             else:
-                # Create minimal vector store
+                # Create minimal vector store (keeping your existing logic)
                 minimal_docs = [
                     Document(
                         page_content="""
@@ -259,16 +262,27 @@ class ProductionOceanographicRAG:
                 vector_store = Chroma.from_documents(
                     documents=minimal_docs,
                     embedding=self.embeddings,
-                    persist_directory=persist_directory
+                    persist_directory=persist_directory,
+                    # CRITICAL FIX: Add proper relevance score function
+                    relevance_score_fn=self._convert_distance_to_relevance_score
                 )
                 vector_store.persist()
-                logger.info("Created minimal vector store")
+                logger.info(f"Created minimal vector store at {persist_directory}")
                 return vector_store
                 
         except Exception as e:
             logger.warning(f"Vector store initialization failed: {e}")
             return None
     
+    def _convert_distance_to_relevance_score(self, distance: float) -> float:
+        """
+        ADD this new method to your ProductionOceanographicRAG class
+        Convert cosine distance to relevance score properly
+        """
+        # For cosine distance: relevance = 1 - (distance / 2)
+        relevance = 1.0 - (distance / 2.0)
+        return max(0.0, min(1.0, relevance))
+        
     def process_oceanographic_query(self, natural_language_query: str) -> Dict[str, Any]:
         """
         MAIN PROCESSING METHOD - Handle any oceanographic query
@@ -367,20 +381,31 @@ class ProductionOceanographicRAG:
                 f"Processing failed: {str(e)}",
                 timings
             )
+    
     def _generate_sql_with_intelligence(self, classification: QueryClassification, 
-                                      query_text: str, domain_context: str) -> GeneratedSQL:
-        """
-        CRITICAL METHOD: Generate SQL with LLM intelligence and robust fallback
-        """
+                                  query_text: str, domain_context: str) -> GeneratedSQL:
+        """Clean SQL generation with proper async handling"""
         
-        # Strategy: Try LLM enhancement first, fallback to standard generation
         if self.llm_enhancement_enabled and self.enhanced_sql_generator:
             try:
                 logger.info("Attempting LLM-enhanced SQL generation...")
                 
-                # Handle async LLM calls in sync context
-                if asyncio.get_event_loop().is_running():
-                    # Already in async context - create new loop in thread
+                # Proper async execution
+                loop = None
+                try:
+                    loop = asyncio.get_running_loop()
+                except RuntimeError:
+                    pass
+                
+                if loop is None:
+                    # No running loop, create new one
+                    generated_sql = asyncio.run(
+                        self.enhanced_sql_generator.generate_sql_enhanced(
+                            classification, query_text, domain_context
+                        )
+                    )
+                else:
+                    # Running in async context, need to run in thread
                     import concurrent.futures
                     with concurrent.futures.ThreadPoolExecutor() as executor:
                         future = executor.submit(
@@ -390,13 +415,6 @@ class ProductionOceanographicRAG:
                             )
                         )
                         generated_sql = future.result(timeout=30)
-                else:
-                    # No event loop running - safe to use asyncio.run
-                    generated_sql = asyncio.run(
-                        self.enhanced_sql_generator.generate_sql_enhanced(
-                            classification, query_text, domain_context
-                        )
-                    )
                 
                 logger.info("LLM-enhanced SQL generation successful")
                 return generated_sql
@@ -404,41 +422,87 @@ class ProductionOceanographicRAG:
             except Exception as e:
                 logger.warning(f"LLM enhancement failed: {e}")
                 logger.info("Falling back to standard SQL generation")
-                # Intentionally fall through to fallback
         
-        # Fallback to standard generation
+        # Standard fallback
         logger.info("Using standard template-based SQL generation")
         generated_sql = self.sql_generator.generate_sql(classification, query_text)
-        
-        # Mark as fallback in adaptations
-        generated_sql.adaptations_made.append("Standard generation used (LLM not available)")
-        
-        return generated_sql   
-    
+        generated_sql.adaptations_made.append("Standard generation used")
+        return generated_sql
         
     def _get_domain_context(self, query: str, k: int = 3) -> str:
-        """Get domain context from vector store"""
+        """
+        FIXED: Intelligent context retrieval with query-type awareness
+        Basic database queries get schema docs, scientific queries get theory docs
+        """
         
         if self.vector_store is None:
             return "Basic oceanographic domain knowledge available"
         
         try:
-            results = self.vector_store.similarity_search_with_score(query, k=k)
+            query_lower = query.lower()
             
+            # Detect if this is a basic database operation query
+            basic_db_indicators = [
+                'show', 'get', 'find', 'list', 'display', 'count', 'total',
+                'what is', 'give me', 'select', 'retrieve', 'fetch'
+            ]
+            
+            is_basic_query = any(indicator in query_lower for indicator in basic_db_indicators)
+            
+            # Get initial results
+            results = self.vector_store.similarity_search_with_relevance_scores(query, k=k*2)
+            
+            if not results:
+                return "Standard oceanographic context available"
+            
+            # For basic queries, prioritize schema and query pattern documents
+            if is_basic_query:
+                # Separate results by document type
+                schema_docs = []
+                query_pattern_docs = []
+                other_docs = []
+                
+                for doc, score in results:
+                    doc_type = doc.metadata.get('type', 'unknown')
+                    if doc_type == 'schema':
+                        schema_docs.append((doc, score))
+                    elif doc_type == 'query_patterns':
+                        query_pattern_docs.append((doc, score))
+                    else:
+                        other_docs.append((doc, score))
+                
+                # Prioritize schema and query patterns for basic queries
+                prioritized_results = []
+                
+                # Add best schema docs first
+                prioritized_results.extend(schema_docs[:2])
+                # Add best query pattern docs
+                prioritized_results.extend(query_pattern_docs[:1])
+                # Fill remaining with other docs if needed
+                remaining_slots = k - len(prioritized_results)
+                if remaining_slots > 0:
+                    prioritized_results.extend(other_docs[:remaining_slots])
+                
+                final_results = prioritized_results[:k]
+                
+            else:
+                # For complex/scientific queries, use normal retrieval
+                final_results = results[:k]
+            
+            # Extract content from prioritized results
             context_parts = []
-            for doc, score in results:
-                relevance = max(0, (1 - score) * 100)
-                if relevance > 30:  # Only include relevant context
+            for doc, relevance_score in final_results:
+                if relevance_score >= 0.1:  # 10% relevance threshold
                     context_parts.append(doc.page_content.strip())
             
-            return "\n\n".join(context_parts) if context_parts else "Standard oceanographic context"
+            return "\n\n".join(context_parts) if context_parts else "Standard oceanographic context available"
             
         except Exception as e:
             logger.warning(f"Vector context retrieval failed: {e}")
             return "Fallback oceanographic context available"
     
     def _execute_sql_safely(self, generated_sql: GeneratedSQL, max_retries: int = 2) -> Optional[pd.DataFrame]:
-        """Execute SQL with proper error handling and optimization"""
+        """Simplified SQL execution with essential error handling"""
         
         sql = generated_sql.sql
         
@@ -447,107 +511,63 @@ class ProductionOceanographicRAG:
                 start_time = time.time()
                 
                 with self.engine.connect() as conn:
-                    # Set query timeout
-                    timeout_sql = f"SET statement_timeout = '{generated_sql.recommended_timeout}s'"
-                    conn.execute(text(timeout_sql))
+                    # Set reasonable timeout
+                    conn.execute(text(f"SET statement_timeout = '30s'"))
                     
-                    # Execute main query
+                    # Execute query
                     result = conn.execute(text(sql))
                     df = pd.DataFrame(result.fetchall(), columns=result.keys())
                 
                 execution_time = time.time() - start_time
                 logger.info(f"SQL executed successfully: {len(df)} rows in {execution_time:.2f}s")
-                
                 return df
                 
             except Exception as e:
                 logger.warning(f"SQL execution attempt {attempt + 1} failed: {e}")
                 
                 if attempt < max_retries - 1:
-                    # Try to fix common issues
-                    sql = self._repair_sql(sql, str(e))
+                    # Simple fixes for common issues
+                    sql = self._fix_common_sql_issues(sql, str(e))
                     continue
                 else:
-                    logger.error(f"Final SQL execution failed: {e}")
-                    # Try ultra-safe fallback
-                    return self._execute_fallback_sql(generated_sql.template_id)
+                    logger.error(f"SQL execution failed: {e}")
+                    return self._execute_emergency_fallback()
         
         return None
-    
-    def _repair_sql(self, sql: str, error_msg: str) -> str:
-        """Repair common SQL issues"""
+
+    def _fix_common_sql_issues(self, sql: str, error_msg: str) -> str:
+        """Fix only the most common SQL issues"""
         
-        error_lower = error_msg.lower()
+        if "operator does not exist" in error_msg.lower():
+            # Fix platform_number quoting
+            sql = re.sub(r"platform_number\s*=\s*(\d+)", r"platform_number = '\1'", sql)
         
-        # Fix platform number quoting (most common issue)
-        if "operator does not exist" in error_lower and "character varying" in error_lower:
-            import re
-            # Find platform_number = numeric_value patterns and quote them
-            pattern = r"platform_number\s*=\s*(\d+)"
-            matches = re.findall(pattern, sql)
-            
-            for match in matches:
-                old_pattern = f"platform_number = {match}"
-                new_pattern = f"platform_number = '{match}'"
-                sql = sql.replace(old_pattern, new_pattern)
-            
-            logger.info("Applied platform_number quoting fix")
-        
-        # Fix table name issues  
-        if "relation" in error_lower and "does not exist" in error_lower:
+        if "does not exist" in error_msg.lower():
+            # Fix common table/column name issues
             sql = sql.replace("enhanced_floats_metadata", "argo_profiles")
-            sql = sql.replace("enhanced_measurements", "argo_measurements")
-            sql = sql.replace("floats_metadata", "argo_profiles")
-            logger.info("Applied table name corrections")
-        
-        # Fix column name issues
-        if "column" in error_lower and "does not exist" in error_lower:
             sql = sql.replace("surface_temperature", "surface_temp")
-            sql = sql.replace(".date", ".profile_date")
-            sql = sql.replace("metadata_id", "profile_id")
-            logger.info("Applied column name corrections")
         
         return sql
-    
-    def _execute_fallback_sql(self, template_id: str) -> Optional[pd.DataFrame]:
-        """Execute ultra-safe fallback SQL when all else fails"""
+
+    def _execute_emergency_fallback(self) -> Optional[pd.DataFrame]:
+        """Simple emergency fallback"""
         
-        fallback_queries = {
-            'count_query': "SELECT COUNT(*) as total_profiles FROM argo_profiles WHERE profile_date >= NOW() - INTERVAL '1 year';",
-            'statistical_summary': """
-                SELECT AVG(surface_temp) as avg_surface_temperature,
-                       COUNT(*) as profile_count
-                FROM argo_profiles 
-                WHERE surface_temp IS NOT NULL 
-                AND profile_date >= NOW() - INTERVAL '1 year';
-            """,
-            'surface_analysis': """
-                SELECT platform_number, profile_date, latitude, longitude, surface_temp
-                FROM argo_profiles 
-                WHERE surface_temp IS NOT NULL 
-                ORDER BY profile_date DESC 
-                LIMIT 500;
-            """,
-            'profile_analysis': """
-                SELECT platform_number, profile_date, latitude, longitude, surface_temp, surface_salinity
-                FROM argo_profiles
-                ORDER BY profile_date DESC
-                LIMIT 500;
-            """
-        }
-        
-        fallback_sql = fallback_queries.get(template_id, fallback_queries['surface_analysis'])
+        fallback_sql = """
+        SELECT platform_number, profile_date, latitude, longitude, surface_temp
+        FROM argo_profiles 
+        WHERE surface_temp IS NOT NULL
+        ORDER BY profile_date DESC 
+        LIMIT 100;
+        """
         
         try:
             with self.engine.connect() as conn:
                 result = conn.execute(text(fallback_sql))
                 df = pd.DataFrame(result.fetchall(), columns=result.keys())
-            
-            logger.info(f"Fallback SQL successful: {len(df)} rows")
+            logger.info(f"Emergency fallback successful: {len(df)} rows")
             return df
-            
         except Exception as e:
-            logger.error(f"Even fallback SQL failed: {e}")
+            logger.error(f"Even emergency fallback failed: {e}")
             return None
     
     def _log_query_metrics(self, query: str, generated_sql: GeneratedSQL, 
@@ -650,7 +670,7 @@ class ProductionOceanographicRAG:
         }
     
     def validate_system_health(self) -> Dict[str, Any]:
-        """Enhanced system health check including LLM status"""
+        """Simplified system health check"""
         
         health = {
             'overall_status': 'healthy',
@@ -658,7 +678,7 @@ class ProductionOceanographicRAG:
             'components': {}
         }
         
-        # Database connectivity (existing check)
+        # Database check
         try:
             with self.engine.connect() as conn:
                 result = conn.execute(text("SELECT COUNT(*) FROM argo_profiles LIMIT 1"))
@@ -666,65 +686,26 @@ class ProductionOceanographicRAG:
             
             health['components']['database'] = {
                 'status': 'healthy',
-                'profile_count': profile_count,
-                'connection_pool_size': self.engine.pool.size()
+                'profile_count': profile_count
             }
         except Exception as e:
-            health['components']['database'] = {
-                'status': 'unhealthy',
-                'error': str(e)
-            }
+            health['components']['database'] = {'status': 'unhealthy', 'error': str(e)}
             health['overall_status'] = 'degraded'
         
-        # Intelligence Engine (existing check)
-        try:
-            test_classification = self.intelligence_engine.classify_query("test temperature query")
-            health['components']['intelligence_engine'] = {
-                'status': 'healthy',
-                'test_confidence': test_classification.confidence
-            }
-        except Exception as e:
-            health['components']['intelligence_engine'] = {
-                'status': 'unhealthy',
-                'error': str(e)
-            }
-            health['overall_status'] = 'degraded'
-        
-        # Standard SQL Generator (existing check)
-        try:
-            # Simple test of standard generator
-            health['components']['sql_generator'] = {
-                'status': 'healthy',
-                'type': 'production_template_based'
-            }
-        except Exception as e:
-            health['components']['sql_generator'] = {
-                'status': 'unhealthy',
-                'error': str(e)
-            }
-            health['overall_status'] = 'degraded'
-        
-        # NEW: LLM Enhancement Status
-        health['components']['llm_enhancement'] = {
-            'status': 'enabled' if self.llm_enhancement_enabled else 'disabled',
-            'api_configured': os.getenv('DEEPSEEK_API_KEY') is not None,
-            'fallback_available': True
+        # Intelligence Engine check
+        health['components']['intelligence_engine'] = {
+            'status': 'healthy' if self.ocean_intelligence else 'missing'
         }
         
-        if self.llm_enhancement_enabled:
-            try:
-                # Test LLM connectivity (simple call)
-                # Note: This is just status check, not full generation test
-                health['components']['llm_enhancement']['connectivity'] = 'available'
-            except Exception as e:
-                health['components']['llm_enhancement']['connectivity'] = f'error: {str(e)}'
-                if health['overall_status'] == 'healthy':
-                    health['overall_status'] = 'degraded'  # LLM issues shouldn't make system unhealthy
+        # LLM Enhancement check
+        health['components']['llm_enhancement'] = {
+            'status': 'enabled' if self.llm_enhancement_enabled else 'disabled',
+            'available': self.llm_enhancement_enabled
+        }
         
-        # Vector Store (existing check)
+        # Vector Store check
         health['components']['vector_store'] = {
-            'status': 'available' if self.vector_store else 'missing',
-            'available': self.vector_store is not None
+            'status': 'available' if self.vector_store else 'missing'
         }
         
         return health
@@ -738,12 +719,16 @@ def test_complete_production_system():
     # Initialize system
     rag_system = ProductionOceanographicRAG()
     
-    # System health check
+    # System health check - FIXED: Use correct health check structure
     health = rag_system.validate_system_health()
     logger.info(f"System Health: {health['overall_status']}")
-    logger.info(f"Components: {health['system_readiness']['component_health_ratio']}")
     
-    if health['overall_status'] not in ['excellent', 'good']:
+    # FIXED: Log actual components instead of non-existent 'system_readiness'
+    logger.info("Component Status:")
+    for component, status_info in health['components'].items():
+        logger.info(f"  {component}: {status_info['status']}")
+    
+    if health['overall_status'] not in ['healthy', 'degraded']:
         logger.warning("System not fully healthy - some tests may fail")
     
     # Test diverse query types

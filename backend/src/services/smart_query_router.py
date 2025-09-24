@@ -13,7 +13,7 @@ import hashlib
 from datetime import datetime
 import json
 
-from .oceanographic_intelligence_engine import (
+from services.oceanographic_intelligence_engine import (
     OceanographicIntelligenceEngine,
     QueryClassification,
     QueryIntent,

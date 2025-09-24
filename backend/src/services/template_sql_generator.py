@@ -13,7 +13,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 try:
-    from .oceanographic_intelligence_engine import (
+    from services.oceanographic_intelligence_engine import (
         QueryIntent, ComplexityLevel, QueryClassification, OceanographicContext
     )
 except ImportError:
@@ -126,12 +126,12 @@ class ProductionSQLGenerator:
                     {parameter_filters}
                     {quality_filters}
                 {grouping_clause}
-                ORDER BY {ordering}
+                {ordering}
                 LIMIT {limit}
                 """,
                 parameters=['aggregation_columns', 'join_clause', 'spatial_filters',
-                           'temporal_filters', 'parameter_filters', 'quality_filters', 
-                           'grouping_clause', 'ordering', 'limit'],
+                        'temporal_filters', 'parameter_filters', 'quality_filters', 
+                        'grouping_clause', 'ordering', 'limit'],
                 performance_notes="Statistical analysis with conditional JOIN",
                 expected_result_size="1-1K summary rows",
                 index_requirements=['varies based on aggregation'],
@@ -350,15 +350,18 @@ class ProductionSQLGenerator:
         # Add parameter-specific columns
         if 'temperature' in query_lower or 'temperature' in context.parameters:
             base_columns.append('p.surface_temp')
-            if needs_measurements_join:
+            # CRITICAL FIX: Only add m.temperature if JOIN is actually needed
+            if needs_measurements_join and template_id != 'surface_analysis':
                 base_columns.append('m.temperature')
         
         if 'salinity' in query_lower or 'salinity' in context.parameters:
             base_columns.append('p.surface_salinity')
-            if needs_measurements_join:
+            # CRITICAL FIX: Only add m.salinity if JOIN is actually needed
+            if needs_measurements_join and template_id != 'surface_analysis':
                 base_columns.append('m.salinity')
         
-        if needs_measurements_join:
+        # CRITICAL FIX: Only add measurement columns if JOIN is actually needed
+        if needs_measurements_join and template_id != 'surface_analysis':
             base_columns.extend(['m.pressure', 'm.depth'])
         
         if 'mixed layer' in query_lower:
@@ -502,22 +505,28 @@ class ProductionSQLGenerator:
         return ''
     
     def _build_ordering(self, template_id: str, query_lower: str) -> str:
-        """Build ORDER BY clause"""
+        """FIXED: Build ORDER BY clause - returns ONLY column names"""
         
-        if 'recent' in query_lower or 'latest' in query_lower:
-            return 'p.profile_date DESC'
+        if template_id == 'statistical_summary':
+            return ''  # No ordering for aggregation queries
+        elif 'recent' in query_lower or 'latest' in query_lower:
+            return 'p.profile_date DESC'  # ONLY columns
         elif template_id == 'profile_analysis':
-            return 'p.profile_date DESC, m.pressure ASC'
+            return 'p.profile_date DESC, m.pressure ASC'  # ONLY columns
         else:
-            return 'p.profile_date DESC'
+            return 'p.profile_date DESC'  # ONLY columns
     
     def _build_grouping(self, query_lower: str) -> str:
-        """Build GROUP BY clause when needed"""
+        """Build GROUP BY clause when needed - ENHANCED"""
         
         if any(word in query_lower for word in ['distribution', 'by region', 'spatial']):
             return 'GROUP BY ROUND(p.latitude::numeric, 1), ROUND(p.longitude::numeric, 1)'
+        elif any(word in query_lower for word in ['monthly', 'by month']):
+            return 'GROUP BY DATE_TRUNC(\'month\', p.profile_date)'
+        elif any(word in query_lower for word in ['yearly', 'by year']):
+            return 'GROUP BY DATE_TRUNC(\'year\', p.profile_date)'
         
-        return ''  # No grouping
+        return ''  # No grouping - this allows ORDER BY to work
     
     def _build_limit(self, complexity: ComplexityLevel) -> str:
         """Build LIMIT based on complexity"""

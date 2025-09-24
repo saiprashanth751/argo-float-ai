@@ -16,13 +16,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Your existing imports
-from .oceanographic_intelligence_engine import OceanographicIntelligenceEngine
-from .enhanced_rag_oceanographic import ProductionOceanographicRAG
-from .smart_query_router import SmartQueryRouter, ProcessingPath, RoutingDecision
+from services.oceanographic_intelligence_engine import OceanographicIntelligenceEngine
+from services.enhanced_rag_oceanographic import ProductionOceanographicRAG
+from services.smart_query_router import SmartQueryRouter, ProcessingPath, RoutingDecision
 from langchain.chat_models.base import BaseChatModel
 from langchain_openai import ChatOpenAI
-from .response_intelligence_layer import DeepSeekResponseIntelligence, ResponseIntelligenceConfig
+from services.response_intelligence_layer import DeepSeekResponseIntelligence, ResponseIntelligenceConfig
 from utils.database_manager import get_db_engine, get_db_session
+from config.vector_store_config import get_vector_store_path
 
 @dataclass
 class ResponseFormat:
@@ -52,6 +53,9 @@ class OrchestratedOceanographicRAG:
     def __init__(self, persist_directory: str = None, db_engine=None):
         """Initialize orchestrated system with WORKING agent system"""
         # Initialize core components
+        if persist_directory is None:
+            persist_directory = str(get_vector_store_path())
+        
         self.db_engine = db_engine or get_db_engine()
         
         # Layer 1: Your existing RAG system (Lightning path)

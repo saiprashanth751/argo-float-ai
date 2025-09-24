@@ -1,4 +1,9 @@
 # src/services/oceanographic_intelligence_engine.py
+"""
+CLEANED OCEANOGRAPHIC INTELLIGENCE ENGINE
+Removed all dummy classes, hardcoded fallbacks, and inconsistent imports
+"""
+
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Optional, Tuple, Any, Union
@@ -9,10 +14,7 @@ import logging
 from datetime import datetime, timedelta
 import json
 from sqlalchemy import create_engine, text
-# import warningsSTDEV
-# warnings.filterwarnings('ignore')
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -31,10 +33,10 @@ class QueryIntent(Enum):
 
 class ComplexityLevel(Enum):
     """Query complexity levels for intelligent routing"""
-    BASIC = "basic"          # Simple data retrieval
-    INTERMEDIATE = "intermediate"  # Calculations and aggregations
-    ADVANCED = "advanced"    # Complex analytics and insights
-    EXPERT = "expert"        # Research-level analysis
+    BASIC = "basic"
+    INTERMEDIATE = "intermediate"
+    ADVANCED = "advanced"
+    EXPERT = "expert"
 
 @dataclass
 class OceanographicContext:
@@ -59,8 +61,7 @@ class QueryClassification:
 
 class OceanographicIntelligenceEngine:
     """
-    Advanced oceanographic intelligence system that understands
-    the scientific context behind queries and provides intelligent responses
+    Clean oceanographic intelligence system
     """
     
     def __init__(self, db_engine=None):
@@ -68,45 +69,39 @@ class OceanographicIntelligenceEngine:
         self.parameter_relationships = self._build_parameter_relationships()
         self.physical_process_keywords = self._build_physical_process_keywords()
         self.regional_boundaries = self._build_regional_boundaries()
-        
-        # Cache for calculated properties
         self.calculation_cache = {}
         
-        # Initialize oceanographic constants
         self.SEAWATER_CONSTANTS = {
-            'reference_pressure': 0.0,  # dbar
-            'reference_temperature': 15.0,  # Celsius
-            'reference_salinity': 35.0,  # PSU
-            'gravity': 9.80665,  # m/s^2
-            'earth_rotation': 7.2921e-5  # rad/s
+            'reference_pressure': 0.0,
+            'reference_temperature': 15.0,
+            'reference_salinity': 35.0,
+            'gravity': 9.80665,
+            'earth_rotation': 7.2921e-5
         }
     
     def _build_parameter_relationships(self) -> Dict[str, Dict]:
-        """Build parameter relationships - UPDATED with new schema properties"""
+        """Build parameter relationships"""
         return {
             'temperature': {
                 'related_params': ['salinity', 'pressure', 'density'],
-                'derived_properties': ['potential_temperature', 'conservative_temperature', 'surface_temp', 'max_temp', 'min_temp'],
+                'derived_properties': ['potential_temperature', 'conservative_temperature', 'surface_temp'],
                 'physical_processes': ['mixing', 'advection', 'convection', 'upwelling'],
                 'typical_ranges': {'surface': (20, 30), 'deep': (1, 4)},
-                'units': 'degrees_celsius',
-                'quality_flags': ['temperature_qc', 'profile_temp_qc']
+                'units': 'degrees_celsius'
             },
             'salinity': {
                 'related_params': ['temperature', 'density'],
                 'derived_properties': ['absolute_salinity', 'surface_salinity'],
                 'physical_processes': ['evaporation', 'precipitation', 'mixing', 'river_input'],
                 'typical_ranges': {'surface': (34, 37), 'deep': (34.6, 34.8)},
-                'units': 'psu',
-                'quality_flags': ['profile_psal_qc']
+                'units': 'psu'
             },
             'pressure': {
                 'related_params': ['depth', 'density'],
                 'derived_properties': ['depth', 'potential_density', 'max_pressure'],
                 'physical_processes': ['hydrostatic_balance'],
-                'conversion_factor': 1.0194,  # dbar to meters (approximate)
-                'units': 'dbar',
-                'quality_flags': ['pressure_qc', 'position_qc']
+                'conversion_factor': 1.0194,
+                'units': 'dbar'
             },
             'density': {
                 'related_params': ['temperature', 'salinity', 'pressure'],
@@ -125,78 +120,51 @@ class OceanographicIntelligenceEngine:
         }
     
     def _build_physical_process_keywords(self) -> Dict[str, List[str]]:
-        """Build keywords for physical process identification - UPDATED"""
+        """Build keywords for physical process identification"""
         return {
             'mixing': ['mix', 'turbul', 'vertical', 'convection', 'stirring', 'mixed_layer'],
-            'stratification': ['stratif', 'layer', 'thermocline', 'pycnocline', 'halocline', 'density_gradient'],
+            'stratification': ['stratif', 'layer', 'thermocline', 'pycnocline', 'halocline'],
             'upwelling': ['upwell', 'divergence', 'coastal', 'equatorial', 'vertical_velocity'],
             'currents': ['current', 'flow', 'circulation', 'transport', 'advection', 'geostrophic'],
             'fronts': ['front', 'boundary', 'transition', 'gradient', 'convergence'],
-            'eddies': ['eddy', 'vortex', 'mesoscale', 'swirl', 'circulation', 'anticyclonic', 'cyclonic'],
+            'eddies': ['eddy', 'vortex', 'mesoscale', 'swirl', 'circulation'],
             'waves': ['wave', 'internal', 'tidal', 'oscillation', 'kelvin', 'rossby'],
             'air_sea': ['surface', 'atmosphere', 'heat flux', 'gas exchange', 'wind_stress'],
-            'water_masses': ['water_mass', 'water_type', 'intermediate', 'deep_water', 'surface_water'],
+            'water_masses': ['water_mass', 'water_type', 'intermediate', 'deep_water'],
             'seasonal_variability': ['seasonal', 'monsoon', 'annual', 'interannual', 'climate'],
             'quality_control': ['qc', 'flag', 'quality', 'validation', 'error', 'accuracy']
         }
     
     def _build_regional_boundaries(self) -> Dict[str, Dict]:
-        """Define regional boundaries - UPDATED with comprehensive coverage"""
+        """Define regional boundaries"""
         return {
             'arabian_sea': {
                 'lat_range': (10, 25), 'lon_range': (50, 78),
-                'characteristics': ['low_oxygen', 'monsoon_influence', 'upwelling', 'high_salinity'],
-                'typical_depths': (0, 4000),
-                'water_masses': ['Arabian Sea High Salinity Water', 'Indian Deep Water']
+                'characteristics': ['low_oxygen', 'monsoon_influence', 'upwelling', 'high_salinity']
             },
             'bay_of_bengal': {
                 'lat_range': (5, 22), 'lon_range': (78, 100),
-                'characteristics': ['freshwater_influence', 'cyclones', 'river_discharge', 'low_salinity'],
-                'typical_depths': (0, 4000),
-                'water_masses': ['Bay of Bengal Water', 'Indian Deep Water']
+                'characteristics': ['freshwater_influence', 'cyclones', 'river_discharge']
             },
             'indian_ocean_central': {
                 'lat_range': (-20, 10), 'lon_range': (60, 100),
-                'characteristics': ['deep_water', 'equatorial_currents', 'dipole', 'thermocline_dome'],
-                'typical_depths': (0, 6000),
-                'water_masses': ['Indian Central Water', 'Intermediate Water', 'Deep Water']
+                'characteristics': ['deep_water', 'equatorial_currents', 'dipole']
             },
             'southern_ocean': {
                 'lat_range': (-60, -30), 'lon_range': (20, 150),
-                'characteristics': ['circumpolar_current', 'deep_water_formation', 'stormy', 'upwelling'],
-                'typical_depths': (0, 5000),
-                'water_masses': ['Antarctic Intermediate Water', 'Circumpolar Deep Water']
-            },
-            'equatorial_indian_ocean': {
-                'lat_range': (-10, 10), 'lon_range': (40, 100),
-                'characteristics': ['equatorial_currents', 'upwelling', 'monsoon_influence', 'dipole'],
-                'typical_depths': (0, 4000),
-                'water_masses': ['Equatorial Surface Water', 'Equatorial Undercurrent Water']
-            },
-            'western_indian_ocean': {
-                'lat_range': (-30, 30), 'lon_range': (40, 70),
-                'characteristics': ['boundary_currents', 'eddy_activity', 'upwelling_zones'],
-                'typical_depths': (0, 5000),
-                'water_masses': ['Red Sea Water', 'Persian Gulf Water', 'Arabian Sea Water']
+                'characteristics': ['circumpolar_current', 'deep_water_formation', 'stormy']
             }
         }
     
     def classify_query(self, query: str) -> QueryClassification:
-        """
-        Perform sophisticated classification of oceanographic queries
-        """
+        """Perform sophisticated classification of oceanographic queries"""
         query_lower = query.lower()
         
-        # Initialize classification components
         intent = self._determine_intent(query_lower)
         complexity = self._assess_complexity(query_lower, intent)
         context = self._extract_oceanographic_context(query_lower)
         confidence = self._calculate_confidence(query_lower, intent, context)
-        
-        # Determine suggested approach
         suggested_approach = self._suggest_analysis_approach(intent, complexity, context)
-        
-        # Identify required calculations
         required_calculations = self._identify_required_calculations(query_lower, intent, context)
         
         return QueryClassification(
@@ -239,14 +207,6 @@ class OceanographicIntelligenceEngine:
             QueryIntent.PHYSICAL_PROPERTIES: [
                 'density', 'buoyancy', 'stability', 'mixing', 'stratification',
                 'potential', 'conservative', 'derived', 'calculated'
-            ],
-            QueryIntent.QUALITY_ASSESSMENT: [
-                'quality', 'valid', 'missing', 'error', 'flag',
-                'reliable', 'accurate', 'precision', 'uncertainty'
-            ],
-            QueryIntent.PREDICTIVE_ANALYSIS: [
-                'predict', 'forecast', 'future', 'projection', 'model',
-                'estimate', 'expect', 'anticipate'
             ]
         }
         
@@ -271,7 +231,6 @@ class OceanographicIntelligenceEngine:
             ComplexityLevel.EXPERT: ['predict', 'model', 'complex', 'research', 'investigate']
         }
         
-        # Base complexity from intent
         intent_complexity = {
             QueryIntent.EXPLORATION: ComplexityLevel.BASIC,
             QueryIntent.STATISTICAL_SUMMARY: ComplexityLevel.INTERMEDIATE,
@@ -281,13 +240,11 @@ class OceanographicIntelligenceEngine:
             QueryIntent.COMPARATIVE_ANALYSIS: ComplexityLevel.ADVANCED,
             QueryIntent.ANOMALY_DETECTION: ComplexityLevel.ADVANCED,
             QueryIntent.PHYSICAL_PROPERTIES: ComplexityLevel.ADVANCED,
-            QueryIntent.QUALITY_ASSESSMENT: ComplexityLevel.INTERMEDIATE,
             QueryIntent.PREDICTIVE_ANALYSIS: ComplexityLevel.EXPERT
         }
         
         base_complexity = intent_complexity.get(intent, ComplexityLevel.BASIC)
         
-        # Adjust based on keywords
         keyword_scores = {}
         for complexity, keywords in complexity_indicators.items():
             score = sum(1 for keyword in keywords if keyword in query_lower)
@@ -296,7 +253,6 @@ class OceanographicIntelligenceEngine:
         
         if keyword_scores:
             keyword_complexity = max(keyword_scores.items(), key=lambda x: x[1])[0]
-            # Take the higher complexity level
             complexity_order = [ComplexityLevel.BASIC, ComplexityLevel.INTERMEDIATE, 
                               ComplexityLevel.ADVANCED, ComplexityLevel.EXPERT]
             base_idx = complexity_order.index(base_complexity)
@@ -308,31 +264,21 @@ class OceanographicIntelligenceEngine:
     def _extract_oceanographic_context(self, query_lower: str) -> OceanographicContext:
         """Extract rich oceanographic context from the query"""
         
-        # Extract parameters
         parameters = []
         for param, info in self.parameter_relationships.items():
             if any(keyword in query_lower for keyword in [param] + info.get('related_params', [])):
                 parameters.append(param)
         
-        # Extract depth range
         depth_range = self._extract_depth_range(query_lower)
-        
-        # Extract spatial bounds
         spatial_bounds = self._extract_spatial_bounds(query_lower)
-        
-        # Extract temporal range
         temporal_range = self._extract_temporal_range(query_lower)
-        
-        # Determine analysis type
         analysis_type = self._determine_analysis_type(query_lower)
         
-        # Identify physical processes
         physical_processes = []
         for process, keywords in self.physical_process_keywords.items():
             if any(keyword in query_lower for keyword in keywords):
                 physical_processes.append(process)
         
-        # Assess data quality requirements
         quality_requirements = self._assess_quality_requirements(query_lower)
         
         return OceanographicContext(
@@ -346,43 +292,20 @@ class OceanographicIntelligenceEngine:
         )
     
     def _extract_depth_range(self, query_lower: str) -> Optional[Tuple[float, float]]:
-        """Extract depth/pressure range - UPDATED with comprehensive depth zones"""
+        """Extract depth/pressure range"""
         
-        # Enhanced depth references matching new schema capabilities
         depth_patterns = {
-            'surface': (0, 10),
-            'near_surface': (0, 50),
-            'shallow': (0, 100),
-            'subsurface': (50, 200),
-            'intermediate': (100, 1000),
-            'deep': (1000, 4000),
-            'abyssal': (4000, 6000),
-            'mixed layer': (0, 100),
-            'thermocline': (50, 500),
-            'upper_thermocline': (50, 200),
-            'lower_thermocline': (200, 500),
-            'mesopelagic': (200, 1000),
-            'bathypelagic': (1000, 4000),
-            'abyssopelagic': (4000, 6000),
-            'epipelagic': (0, 200),
-            'main_thermocline': (100, 800),
-            'permanent_thermocline': (200, 1000),
-            'upper_ocean': (0, 500),
-            'deep_ocean': (500, 6000),
-            'full_depth': (0, 6000),
-            'water_column': (0, 6000)
+            'surface': (0, 10), 'shallow': (0, 100), 'intermediate': (100, 1000),
+            'deep': (1000, 4000), 'abyssal': (4000, 6000), 'mixed layer': (0, 100),
+            'thermocline': (50, 500), 'upper_ocean': (0, 500), 'deep_ocean': (500, 6000)
         }
         
         for term, depth_range in depth_patterns.items():
             if term.replace('_', ' ') in query_lower:
                 return depth_range
         
-        # Extract specific depth values with more patterns
         depth_patterns_regex = [
             r'(\d+)\s*(?:m|meter|dbar|depth)',
-            r'at\s+(\d+)\s*(?:m|dbar)',
-            r'above\s+(\d+)\s*(?:m|dbar)',
-            r'below\s+(\d+)\s*(?:m|dbar)',
             r'(\d+)\s*to\s*(\d+)\s*(?:m|dbar)',
             r'between\s+(\d+)\s*and\s*(\d+)\s*(?:m|dbar)'
         ]
@@ -390,10 +313,10 @@ class OceanographicIntelligenceEngine:
         for pattern in depth_patterns_regex:
             matches = re.findall(pattern, query_lower)
             if matches:
-                if len(matches[0]) == 1:  # Single depth
+                if len(matches[0]) == 1:
                     depth = float(matches[0])
                     return (0, depth) if 'above' in query_lower else (depth, depth + 500)
-                elif len(matches[0]) == 2:  # Range
+                elif len(matches[0]) == 2:
                     return (float(matches[0][0]), float(matches[0][1]))
         
         return None
@@ -401,7 +324,6 @@ class OceanographicIntelligenceEngine:
     def _extract_spatial_bounds(self, query_lower: str) -> Optional[Dict[str, float]]:
         """Extract spatial boundaries from query"""
         
-        # Check for regional references
         for region, bounds in self.regional_boundaries.items():
             if region.replace('_', ' ') in query_lower:
                 lat_min, lat_max = bounds['lat_range']
@@ -411,15 +333,12 @@ class OceanographicIntelligenceEngine:
                     'lon_min': lon_min, 'lon_max': lon_max
                 }
         
-        # Extract specific coordinates
         coord_pattern = r'(-?\d+(?:\.\d+)?)\s*[°,]\s*(-?\d+(?:\.\d+)?)'
         coord_matches = re.findall(coord_pattern, query_lower)
         
         if coord_matches:
-            # Simple bounding box from coordinates
             lats = [float(match[0]) for match in coord_matches]
             lons = [float(match[1]) for match in coord_matches]
-            
             return {
                 'lat_min': min(lats), 'lat_max': max(lats),
                 'lon_min': min(lons), 'lon_max': max(lons)
@@ -430,7 +349,6 @@ class OceanographicIntelligenceEngine:
     def _extract_temporal_range(self, query_lower: str) -> Optional[Tuple[datetime, datetime]]:
         """Extract temporal range from query"""
         
-        # Year extraction
         year_matches = re.findall(r'\b(20\d{2})\b', query_lower)
         if year_matches:
             years = [int(y) for y in year_matches]
@@ -441,7 +359,6 @@ class OceanographicIntelligenceEngine:
                 start_year, end_year = min(years), max(years)
                 return (datetime(start_year, 1, 1), datetime(end_year, 12, 31))
         
-        # Relative time references
         now = datetime.now()
         if 'last year' in query_lower:
             return (datetime(now.year - 1, 1, 1), datetime(now.year - 1, 12, 31))
@@ -457,21 +374,19 @@ class OceanographicIntelligenceEngine:
         return None
     
     def _determine_analysis_type(self, query_lower: str) -> str:
-        """Determine analysis type - UPDATED with new analysis categories"""
+        """Determine analysis type"""
         
         analysis_types = {
-            'climatology': ['climate', 'climatology', 'long-term', 'average', 'mean_temperature', 'mean_salinity'],
-            'variability': ['variability', 'variation', 'fluctuation', 'change', 'std', 'deviation'],
-            'correlation': ['correlation', 'relationship', 'connection', 'association', 'compare'],
-            'time_series': ['time series', 'temporal', 'evolution', 'progression', 'trend'],
-            'spatial_analysis': ['spatial', 'geographic', 'distribution', 'pattern', 'gridded'],
-            'extreme_events': ['extreme', 'maximum', 'minimum', 'peak', 'anomaly', 'unusual'],
-            'profile_analysis': ['profile', 'vertical', 'depth', 'cast', 'sounding'],
-            'water_mass_analysis': ['water_mass', 'T-S', 'temperature_salinity', 'properties'],
-            'mixed_layer_analysis': ['mixed_layer', 'mld', 'stratification', 'thermocline'],
-            'quality_analysis': ['quality', 'qc', 'flag', 'validation', 'error'],
-            'statistical_summary': ['statistics', 'summary', 'count', 'total', 'n_observations'],
-            'gridded_analysis': ['gridded', 'grid', 'interpolated', 'spatial_average']
+            'climatology': ['climate', 'climatology', 'long-term', 'average'],
+            'variability': ['variability', 'variation', 'fluctuation', 'change', 'std'],
+            'correlation': ['correlation', 'relationship', 'connection', 'association'],
+            'time_series': ['time series', 'temporal', 'evolution', 'progression'],
+            'spatial_analysis': ['spatial', 'geographic', 'distribution', 'pattern'],
+            'extreme_events': ['extreme', 'maximum', 'minimum', 'peak', 'anomaly'],
+            'profile_analysis': ['profile', 'vertical', 'depth', 'cast'],
+            'water_mass_analysis': ['water_mass', 'T-S', 'temperature_salinity'],
+            'mixed_layer_analysis': ['mixed_layer', 'mld', 'stratification'],
+            'statistical_summary': ['statistics', 'summary', 'count', 'total']
         }
         
         for analysis_type, keywords in analysis_types.items():
@@ -494,13 +409,11 @@ class OceanographicIntelligenceEngine:
                             context: OceanographicContext) -> float:
         """Calculate confidence in query classification"""
         
-        confidence = 0.5  # Base confidence
+        confidence = 0.5
         
-        # Increase confidence based on specific parameters
         if context.parameters:
             confidence += 0.2
         
-        # Increase confidence based on specific depth/spatial/temporal context
         if context.depth_range:
             confidence += 0.1
         if context.spatial_bounds:
@@ -508,7 +421,6 @@ class OceanographicIntelligenceEngine:
         if context.temporal_range:
             confidence += 0.1
         
-        # Increase confidence based on physical processes identified
         if context.physical_processes:
             confidence += 0.1
         
@@ -521,30 +433,22 @@ class OceanographicIntelligenceEngine:
         approach_map = {
             (QueryIntent.PROFILE_ANALYSIS, ComplexityLevel.BASIC): "Direct profile retrieval with visualization",
             (QueryIntent.PROFILE_ANALYSIS, ComplexityLevel.INTERMEDIATE): "Statistical profile analysis with derived properties",
-            (QueryIntent.PROFILE_ANALYSIS, ComplexityLevel.ADVANCED): "Comparative profile analysis with physical interpretation",
-            
             (QueryIntent.SPATIAL_MAPPING, ComplexityLevel.BASIC): "Simple spatial distribution mapping",
             (QueryIntent.SPATIAL_MAPPING, ComplexityLevel.INTERMEDIATE): "Spatial statistics with interpolation",
-            (QueryIntent.SPATIAL_MAPPING, ComplexityLevel.ADVANCED): "Advanced spatial analysis with regional comparisons",
-            
             (QueryIntent.TEMPORAL_TRENDS, ComplexityLevel.INTERMEDIATE): "Time series analysis with trend detection",
-            (QueryIntent.TEMPORAL_TRENDS, ComplexityLevel.ADVANCED): "Advanced temporal analysis with statistical modeling",
-            (QueryIntent.TEMPORAL_TRENDS, ComplexityLevel.EXPERT): "Predictive temporal modeling with uncertainty",
-            
-            (QueryIntent.ANOMALY_DETECTION, ComplexityLevel.ADVANCED): "Statistical anomaly detection with contextual analysis",
-            (QueryIntent.ANOMALY_DETECTION, ComplexityLevel.EXPERT): "Machine learning-based anomaly detection with physical validation"
+            (QueryIntent.STATISTICAL_SUMMARY, ComplexityLevel.BASIC): "Basic statistical aggregation",
+            (QueryIntent.ANOMALY_DETECTION, ComplexityLevel.ADVANCED): "Statistical anomaly detection with contextual analysis"
         }
         
         key = (intent, complexity)
         return approach_map.get(key, f"Custom {complexity.value} analysis for {intent.value}")
     
     def _identify_required_calculations(self, query_lower: str, intent: QueryIntent,
-                                  context: OceanographicContext) -> List[str]:
-        """Identify calculations - UPDATED with new schema calculations"""
+                                      context: OceanographicContext) -> List[str]:
+        """Identify required calculations"""
         
         calculations = []
         
-        # Parameter-specific calculations
         if 'temperature' in context.parameters:
             if any(word in query_lower for word in ['potential', 'theta']):
                 calculations.append('potential_temperature')
@@ -564,7 +468,6 @@ class OceanographicIntelligenceEngine:
             if any(word in query_lower for word in ['anomaly']):
                 calculations.append('density_anomaly')
         
-        # Analysis-specific calculations
         if intent == QueryIntent.PHYSICAL_PROPERTIES:
             calculations.extend(['buoyancy_frequency', 'mixed_layer_depth', 'stratification_index'])
         
@@ -576,16 +479,6 @@ class OceanographicIntelligenceEngine:
         
         if intent == QueryIntent.STATISTICAL_SUMMARY:
             calculations.extend(['mean', 'std', 'percentiles', 'count'])
-        
-        # New schema-specific calculations
-        if any(word in query_lower for word in ['gridded', 'spatial_average']):
-            calculations.extend(['spatial_mean', 'spatial_std'])
-        
-        if any(word in query_lower for word in ['quality', 'qc']):
-            calculations.extend(['quality_statistics', 'data_coverage'])
-        
-        if any(word in query_lower for word in ['seasonal', 'monthly', 'annual']):
-            calculations.extend(['seasonal_cycle', 'anomaly_calculation'])
         
         return calculations
     
@@ -607,12 +500,6 @@ class OceanographicIntelligenceEngine:
                         df['temperature'], df['salinity'], df.get('pressure', 0)
                     )
                 
-                elif prop == 'buoyancy_frequency':
-                    result_df['buoyancy_frequency'] = self._calculate_buoyancy_frequency(
-                        result_df.get('potential_density', df.get('density')), 
-                        df.get('pressure', df.get('depth', 0))
-                    )
-                
                 elif prop == 'mixed_layer_depth':
                     result_df['mixed_layer_depth'] = self._calculate_mixed_layer_depth(df)
                 
@@ -624,14 +511,12 @@ class OceanographicIntelligenceEngine:
     def _calculate_potential_temperature(self, temperature: pd.Series, 
                                        salinity: pd.Series, pressure: pd.Series) -> pd.Series:
         """Calculate potential temperature (simplified)"""
-        # Simplified calculation - in practice would use GSW library
-        alpha = 2e-4  # Thermal expansion coefficient
+        alpha = 2e-4
         return temperature - alpha * pressure * temperature
     
     def _calculate_potential_density(self, temperature: pd.Series, 
                                    salinity: pd.Series, pressure: pd.Series) -> pd.Series:
         """Calculate potential density (simplified)"""
-        # Simplified UNESCO equation of state
         density = (999.842594 + 
                   6.793952e-2 * temperature - 
                   9.095290e-3 * temperature**2 +
@@ -641,38 +526,20 @@ class OceanographicIntelligenceEngine:
         
         return density
     
-    def _calculate_buoyancy_frequency(self, density: pd.Series, pressure: pd.Series) -> pd.Series:
-        """Calculate buoyancy frequency (N^2)"""
-        if len(density) < 2:
-            return pd.Series([np.nan] * len(density))
-        
-        # Calculate density gradient
-        rho_grad = density.diff() / pressure.diff()
-        
-        # Buoyancy frequency squared
-        g = self.SEAWATER_CONSTANTS['gravity']
-        n_squared = (-g / density) * rho_grad
-        
-        return np.sqrt(np.abs(n_squared))
-    
     def _calculate_mixed_layer_depth(self, df: pd.DataFrame) -> pd.Series:
-        """Calculate mixed layer depth - UPDATED with improved algorithm"""
+        """Calculate mixed layer depth"""
         
         if not all(col in df.columns for col in ['temperature', 'pressure']):
             return pd.Series([np.nan] * len(df))
         
-        # Sort by pressure to ensure proper depth order
         df_sorted = df.sort_values('pressure')
         
         if len(df_sorted) < 3:
             return pd.Series([np.nan] * len(df))
         
         try:
-            # Reference temperature (typically surface or first valid measurement)
             surface_temp = df_sorted['temperature'].dropna().iloc[0]
-            
-            # Find depth where temperature differs by threshold from surface
-            temp_criteria = [0.2, 0.5, 1.0]  # Multiple criteria
+            temp_criteria = [0.2, 0.5, 1.0]
             mld_estimates = []
             
             for threshold in temp_criteria:
@@ -683,29 +550,7 @@ class OceanographicIntelligenceEngine:
                     mld = df_sorted.loc[mld_idx[0], 'pressure']
                     mld_estimates.append(mld)
             
-            # Use most restrictive (shallowest) estimate
             final_mld = min(mld_estimates) if mld_estimates else np.nan
-            
-            # Additional validation using density if available
-            if 'density' in df.columns or 'salinity' in df.columns:
-                if 'density' not in df.columns:
-                    # Calculate approximate density
-                    df_sorted['density_approx'] = (1000 + 
-                        0.8 * df_sorted['salinity'].fillna(35) - 
-                        0.2 * df_sorted['temperature'].fillna(15))
-                
-                density_col = 'density' if 'density' in df.columns else 'density_approx'
-                surface_density = df_sorted[density_col].dropna().iloc[0]
-                density_diff = np.abs(df_sorted[density_col] - surface_density)
-                
-                # Density criterion (0.03 kg/m³ difference)
-                density_mld_idx = density_diff[density_diff > 0.03].index
-                if len(density_mld_idx) > 0:
-                    density_mld = df_sorted.loc[density_mld_idx[0], 'pressure']
-                    if not np.isnan(final_mld):
-                        final_mld = min(final_mld, density_mld)  # Take shallowest
-                    else:
-                        final_mld = density_mld
             
         except (IndexError, KeyError, ValueError):
             final_mld = np.nan
@@ -752,7 +597,6 @@ class OceanographicIntelligenceEngine:
         
         findings = []
         
-        # Statistical findings
         for param in classification.context.parameters:
             if param in df.columns:
                 valid_data = df[param].dropna()
@@ -761,7 +605,6 @@ class OceanographicIntelligenceEngine:
                     std_val = valid_data.std()
                     findings.append(f"{param.title()}: mean = {mean_val:.2f}, std = {std_val:.2f}")
         
-        # Range findings
         if 'pressure' in df.columns:
             max_depth = df['pressure'].max()
             findings.append(f"Maximum depth surveyed: {max_depth:.1f} dbar")
@@ -774,19 +617,16 @@ class OceanographicIntelligenceEngine:
         
         interpretations = []
         
-        # Temperature-specific interpretations
         if 'temperature' in df.columns:
             temp_range = df['temperature'].max() - df['temperature'].min()
             if temp_range > 10:
                 interpretations.append("Large temperature range suggests significant vertical stratification")
         
-        # Salinity interpretations
         if 'salinity' in df.columns:
             sal_std = df['salinity'].std()
             if sal_std > 0.5:
                 interpretations.append("High salinity variability indicates strong mixing or freshwater influence")
         
-        # Physical process interpretations
         processes = classification.context.physical_processes
         if 'mixing' in processes:
             interpretations.append("Analysis relevant to ocean mixing processes")
@@ -796,12 +636,11 @@ class OceanographicIntelligenceEngine:
         return "; ".join(interpretations) if interpretations else "No specific physical interpretation available"
     
     def _assess_data_quality(self, df: pd.DataFrame) -> str:
-        """Enhanced data quality assessment - UPDATED for new schema"""
+        """Data quality assessment"""
         
         total_records = len(df)
         quality_notes = []
         
-        # Missing data assessment
         critical_params = ['temperature', 'salinity', 'pressure', 'latitude', 'longitude']
         for col in critical_params:
             if col in df.columns:
@@ -811,20 +650,10 @@ class OceanographicIntelligenceEngine:
                 elif missing_pct > 20:
                     quality_notes.append(f"Warning: Moderate missing data in {col} ({missing_pct:.1f}%)")
         
-        # Quality flag assessment (if available)
-        qc_columns = [col for col in df.columns if 'qc' in col.lower() or 'flag' in col.lower()]
-        for qc_col in qc_columns:
-            if qc_col in df.columns:
-                # Assume QC flags: 1=good, 2=probably good, 3=probably bad, 4=bad
-                bad_data_pct = (df[qc_col].isin([3, 4, '3', '4'])).sum() / total_records * 100
-                if bad_data_pct > 20:
-                    quality_notes.append(f"Quality concern: {bad_data_pct:.1f}% flagged data in {qc_col}")
-        
-        # Data range validation with updated ranges
         range_checks = {
-            'temperature': (-2, 40),     # Extended range for all ocean conditions
-            'salinity': (30, 42),        # Extended for extreme conditions
-            'pressure': (0, 6500),       # Deep ocean capability
+            'temperature': (-2, 40),
+            'salinity': (30, 42),
+            'pressure': (0, 6500),
             'latitude': (-90, 90),
             'longitude': (-180, 180)
         }
@@ -839,33 +668,29 @@ class OceanographicIntelligenceEngine:
                         if out_of_range_pct > 5:
                             quality_notes.append(f"Range warning: {out_of_range_pct:.1f}% of {param} values outside expected range")
         
-        # Spatial coherence check
         if all(col in df.columns for col in ['latitude', 'longitude']):
             lat_range = df['latitude'].max() - df['latitude'].min()
             lon_range = df['longitude'].max() - df['longitude'].min()
             if lat_range > 90 or lon_range > 180:
                 quality_notes.append("Spatial concern: Unusually large geographic extent")
         
-        # Temporal coherence check
         date_columns = [col for col in df.columns if 'date' in col.lower() or 'time' in col.lower()]
         for date_col in date_columns:
             if date_col in df.columns:
                 try:
                     date_series = pd.to_datetime(df[date_col], errors='coerce')
                     date_range = date_series.max() - date_series.min()
-                    if date_range.days > 10*365:  # More than 10 years
+                    if date_range.days > 10*365:
                         quality_notes.append("Temporal note: Data spans more than 10 years")
                 except:
                     pass
         
-        # Data density assessment
         if 'platform_number' in df.columns:
             unique_floats = df['platform_number'].nunique()
             measurements_per_float = total_records / unique_floats if unique_floats > 0 else 0
             if measurements_per_float < 10:
                 quality_notes.append(f"Density concern: Low measurement density ({measurements_per_float:.1f} per float)")
         
-        # Final assessment
         if not quality_notes:
             return "Data quality appears excellent with good coverage, valid ranges, and no significant issues detected"
         elif len(quality_notes) <= 2:
@@ -878,7 +703,6 @@ class OceanographicIntelligenceEngine:
         
         recommendations = []
         
-        # Intent-based recommendations
         if classification.intent == QueryIntent.PROFILE_ANALYSIS:
             recommendations.append("Consider calculating derived properties (potential temperature, density)")
             recommendations.append("Visualize profiles with depth on y-axis, parameters on x-axis")
@@ -895,12 +719,10 @@ class OceanographicIntelligenceEngine:
             recommendations.append("Apply outlier detection methods")
             recommendations.append("Validate anomalies against physical oceanography principles")
         
-        # Complexity-based recommendations
         if classification.complexity == ComplexityLevel.EXPERT:
             recommendations.append("Consider advanced statistical methods")
             recommendations.append("Validate results against published literature")
         
-        # Parameter-specific recommendations
         if 'temperature' in classification.context.parameters and 'salinity' in classification.context.parameters:
             recommendations.append("Generate T-S diagrams for water mass analysis")
         
@@ -911,7 +733,6 @@ class OceanographicIntelligenceEngine:
         
         viz_suggestions = []
         
-        # Intent-based visualizations
         viz_map = {
             QueryIntent.PROFILE_ANALYSIS: ["Line plots (depth vs parameter)", "Scatter plots with depth coloring"],
             QueryIntent.SPATIAL_MAPPING: ["Geographic scatter plots", "Contour maps", "Heatmaps"],
@@ -924,7 +745,6 @@ class OceanographicIntelligenceEngine:
         base_suggestions = viz_map.get(classification.intent, ["Standard line plots"])
         viz_suggestions.extend(base_suggestions)
         
-        # Parameter-specific visualizations
         params = classification.context.parameters
         if 'temperature' in params and 'salinity' in params:
             viz_suggestions.append("Temperature-Salinity (T-S) diagrams")
@@ -934,16 +754,15 @@ class OceanographicIntelligenceEngine:
         
         return viz_suggestions
 
-# Example usage and testing functions
+
 def test_oceanographic_intelligence():
     """Test the oceanographic intelligence engine"""
     
-    print("🧠 Testing Oceanographic Intelligence Engine")
+    print("Testing Oceanographic Intelligence Engine")
     print("=" * 50)
     
     engine = OceanographicIntelligenceEngine()
     
-    # Test queries with different complexity levels
     test_queries = [
         "Show temperature profile for float 1900121",
         "What is the average surface temperature in the Arabian Sea?",
@@ -956,7 +775,7 @@ def test_oceanographic_intelligence():
     ]
     
     for i, query in enumerate(test_queries, 1):
-        print(f"\n🔍 Query {i}: {query}")
+        print(f"\nQuery {i}: {query}")
         print("-" * 40)
         
         classification = engine.classify_query(query)
@@ -970,7 +789,6 @@ def test_oceanographic_intelligence():
         print(f"Approach: {classification.suggested_approach}")
         print(f"Required Calculations: {classification.required_calculations}")
         
-        # Test insight generation with sample data
         sample_df = pd.DataFrame({
             'temperature': np.random.normal(15, 5, 100),
             'salinity': np.random.normal(35, 0.5, 100),
@@ -979,8 +797,8 @@ def test_oceanographic_intelligence():
         
         insights = engine.generate_insights(query, sample_df, classification)
         print(f"Summary: {insights['summary']}")
-        print(f"Key Findings: {insights['key_findings'][:2]}")  # Show first 2 findings
-        print(f"Visualizations: {insights['visualization_suggestions'][:2]}")  # Show first 2 suggestions
+        print(f"Key Findings: {insights['key_findings'][:2]}")
+        print(f"Visualizations: {insights['visualization_suggestions'][:2]}")
 
 if __name__ == "__main__":
     test_oceanographic_intelligence()

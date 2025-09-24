@@ -1,0 +1,569 @@
+{
+  "timestamp": "2025-09-24T19:40:15.466889",
+  "total_queries": 5,
+  "results": [
+    {
+      "test_case": "Simple Surface Query",
+      "query": "Show temperature in Arabian Sea",
+      "category": "basic",
+      "retrieval_time": 0.02404618263244629,
+      "context_length": 3075,
+      "context_content": "ARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geographic bounds to improve performance\n- Include date filters for temporal analysis\n- JOIN operations require proper WHERE clauses\n\nARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geograph... [truncated]",
+      "quality_assessment": {
+        "overall": "excellent",
+        "strengths": [
+          "Contains argo_profiles table info",
+          "Contains argo_measurements table info",
+          "Contains JOIN relationship information",
+          "Contains column info: ['platform_number', 'latitude', 'longitude', 'temperature', 'salinity']"
+        ],
+        "issues": [],
+        "detailed_analysis": "4 strengths, 0 issues"
+      },
+      "schema_coverage": {
+        "overall_coverage_percent": 66.66666666666666,
+        "by_category": {
+          "tables": {
+            "found": [
+              "argo_profiles",
+              "argo_measurements"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "key_columns": {
+            "found": [
+              "platform_number",
+              "profile_date",
+              "latitude",
+              "longitude",
+              "surface_temp",
+              "surface_salinity",
+              "temperature",
+              "salinity",
+              "pressure"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "relationships": {
+            "found": [
+              "join"
+            ],
+            "missing": [
+              "foreign key",
+              "profile_id"
+            ],
+            "coverage_percent": 33.33333333333333
+          },
+          "data_types": {
+            "found": [],
+            "missing": [
+              "varchar",
+              "integer",
+              "timestamp",
+              "double precision"
+            ],
+            "coverage_percent": 0.0
+          },
+          "constraints": {
+            "found": [
+              "not null",
+              "index"
+            ],
+            "missing": [
+              "primary key"
+            ],
+            "coverage_percent": 66.66666666666666
+          }
+        },
+        "assessment": "good"
+      },
+      "sql_example_coverage": {
+        "sql_patterns_found": [
+          "select",
+          "from",
+          "where",
+          "join",
+          "order by"
+        ],
+        "apparent_query_count": 2,
+        "query_types_covered": {
+          "basic_select": false,
+          "join_query": false,
+          "aggregation": true,
+          "spatial_filter": true,
+          "temporal_filter": true
+        },
+        "examples_quality": "good",
+        "has_working_examples": true
+      },
+      "expected_needs_met": {
+        "needs_coverage": {
+          "argo_profiles table": true,
+          "surface_temp column": true,
+          "spatial filtering": true
+        },
+        "coverage_percent": 100.0,
+        "met_count": 3,
+        "total_needs": 3,
+        "assessment": "excellent"
+      },
+      "llm_usability_score": 85.0,
+      "recommendations": []
+    },
+    {
+      "test_case": "Statistical Aggregation",
+      "query": "What is the average surface temperature in Indian Ocean during 2023?",
+      "category": "statistical",
+      "retrieval_time": 0.027446269989013672,
+      "context_length": 3075,
+      "context_content": "ARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geographic bounds to improve performance\n- Include date filters for temporal analysis\n- JOIN operations require proper WHERE clauses\n\nARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geograph... [truncated]",
+      "quality_assessment": {
+        "overall": "excellent",
+        "strengths": [
+          "Contains argo_profiles table info",
+          "Contains argo_measurements table info",
+          "Contains JOIN relationship information",
+          "Contains column info: ['platform_number', 'latitude', 'longitude', 'temperature', 'salinity']"
+        ],
+        "issues": [],
+        "detailed_analysis": "4 strengths, 0 issues"
+      },
+      "schema_coverage": {
+        "overall_coverage_percent": 66.66666666666666,
+        "by_category": {
+          "tables": {
+            "found": [
+              "argo_profiles",
+              "argo_measurements"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "key_columns": {
+            "found": [
+              "platform_number",
+              "profile_date",
+              "latitude",
+              "longitude",
+              "surface_temp",
+              "surface_salinity",
+              "temperature",
+              "salinity",
+              "pressure"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "relationships": {
+            "found": [
+              "join"
+            ],
+            "missing": [
+              "foreign key",
+              "profile_id"
+            ],
+            "coverage_percent": 33.33333333333333
+          },
+          "data_types": {
+            "found": [],
+            "missing": [
+              "varchar",
+              "integer",
+              "timestamp",
+              "double precision"
+            ],
+            "coverage_percent": 0.0
+          },
+          "constraints": {
+            "found": [
+              "not null",
+              "index"
+            ],
+            "missing": [
+              "primary key"
+            ],
+            "coverage_percent": 66.66666666666666
+          }
+        },
+        "assessment": "good"
+      },
+      "sql_example_coverage": {
+        "sql_patterns_found": [
+          "select",
+          "from",
+          "where",
+          "join",
+          "order by"
+        ],
+        "apparent_query_count": 2,
+        "query_types_covered": {
+          "basic_select": false,
+          "join_query": false,
+          "aggregation": true,
+          "spatial_filter": true,
+          "temporal_filter": true
+        },
+        "examples_quality": "good",
+        "has_working_examples": true
+      },
+      "expected_needs_met": {
+        "needs_coverage": {
+          "argo_profiles table": true,
+          "AVG function": true,
+          "temporal filtering": true,
+          "spatial filtering": true
+        },
+        "coverage_percent": 100.0,
+        "met_count": 4,
+        "total_needs": 4,
+        "assessment": "excellent"
+      },
+      "llm_usability_score": 85.0,
+      "recommendations": []
+    },
+    {
+      "test_case": "Profile Analysis",
+      "query": "Show temperature profiles at different depths for platform 1900121",
+      "category": "profile",
+      "retrieval_time": 0.03044724464416504,
+      "context_length": 2987,
+      "context_content": "QUERY PATTERN: Profile Depth Analysis\n========================================\n\nDescription: Full depth profile analysis with measurements\n\nUse Cases: temperature profiles, salinity profiles, thermocline analysis\n\nPerformance: Medium - requires JOIN\n\nSQL Template:\nSELECT p.platform_number, p.profile_date, p.latitude, p.longitude,\n       m.pressure, m.depth, m.temperature, m.salinity\nFROM argo_profiles p\nINNER JOIN argo_measurements m ON p.id = m.profile_id\nWHERE p.platform_number = '{platform_number}'\n  AND m.temperature IS NOT NULL\nORDER BY m.pressure ASC\nLIMIT {limit}\n\nParameters:\n  - platform_number\n  - limit\n\nQUERY PATTERN: Profile Depth Analysis\n========================================\n\nDescription: Full depth profile analysis with measurements\n\nUse Cases: temperature profiles, salinity profiles, thermocline analysis\n\nPerformance: Medium - requires JOIN\n\nSQL Template:\nSELECT p.platform_number, p.profile_date, p.latitude, p.longitude,\n       m.pressure, m.depth, m.temperature, m.sa... [truncated]",
+      "quality_assessment": {
+        "overall": "excellent",
+        "strengths": [
+          "Contains argo_profiles table info",
+          "Contains argo_measurements table info",
+          "Contains JOIN relationship information",
+          "Contains column info: ['platform_number', 'latitude', 'longitude', 'temperature', 'salinity']"
+        ],
+        "issues": [],
+        "detailed_analysis": "4 strengths, 0 issues"
+      },
+      "schema_coverage": {
+        "overall_coverage_percent": 57.14285714285714,
+        "by_category": {
+          "tables": {
+            "found": [
+              "argo_profiles",
+              "argo_measurements"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "key_columns": {
+            "found": [
+              "platform_number",
+              "profile_date",
+              "latitude",
+              "longitude",
+              "temperature",
+              "salinity",
+              "pressure"
+            ],
+            "missing": [
+              "surface_temp",
+              "surface_salinity"
+            ],
+            "coverage_percent": 77.77777777777779
+          },
+          "relationships": {
+            "found": [
+              "join",
+              "profile_id"
+            ],
+            "missing": [
+              "foreign key"
+            ],
+            "coverage_percent": 66.66666666666666
+          },
+          "data_types": {
+            "found": [],
+            "missing": [
+              "varchar",
+              "integer",
+              "timestamp",
+              "double precision"
+            ],
+            "coverage_percent": 0.0
+          },
+          "constraints": {
+            "found": [
+              "not null"
+            ],
+            "missing": [
+              "primary key",
+              "index"
+            ],
+            "coverage_percent": 33.33333333333333
+          }
+        },
+        "assessment": "moderate"
+      },
+      "sql_example_coverage": {
+        "sql_patterns_found": [
+          "select",
+          "from",
+          "where",
+          "join",
+          "order by"
+        ],
+        "apparent_query_count": 3,
+        "query_types_covered": {
+          "basic_select": false,
+          "join_query": false,
+          "aggregation": true,
+          "spatial_filter": true,
+          "temporal_filter": true
+        },
+        "examples_quality": "excellent",
+        "has_working_examples": true
+      },
+      "expected_needs_met": {
+        "needs_coverage": {
+          "argo_profiles table": true,
+          "argo_measurements table": true,
+          "JOIN relationship": true,
+          "depth/pressure": false
+        },
+        "coverage_percent": 75.0,
+        "met_count": 3,
+        "total_needs": 4,
+        "assessment": "good"
+      },
+      "llm_usability_score": 79.64,
+      "recommendations": [
+        "Add more comprehensive database schema documentation to vector store",
+        "Add JOIN query examples for profile analysis capabilities"
+      ]
+    },
+    {
+      "test_case": "Complex Scientific Query",
+      "query": "Calculate mixed layer depth variability in monsoon-influenced regions",
+      "category": "complex",
+      "retrieval_time": 0.026914358139038086,
+      "context_length": 2929,
+      "context_content": "ARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geographic bounds to improve performance\n- Include date filters for temporal analysis\n- JOIN operations require proper WHERE clauses\n\nARGO DATA CHARACTERISTICS\n==============================\n\nSURFACE MEASUREMENTS (argo_profiles):\nTemperature: -1.8\u00b0C to 31.8\u00b0C (avg: 16.7\u00b0C)\nSalinity: 15.0 to 37.1 PSU (avg: 34.6)\nGeographic Coverage: -63.9\u00b0N to 24.5\u00b0N, 21.5\u00b0E to 138.7\u00b0E\n\nDEPTH MEASUREMENTS (argo_measurements):\nPressure: 4.0 to 1999.1 dbar\nProfile Temperature: -0.8\u00b0C to 28.2\u00b0C\n\nDATA QUALITY GUIDELINES:\n- Always filter for NOT NULL on required parameters\n- Use geograph... [truncated]",
+      "quality_assessment": {
+        "overall": "excellent",
+        "strengths": [
+          "Contains argo_profiles table info",
+          "Contains argo_measurements table info",
+          "Contains JOIN relationship information",
+          "Contains column info: ['platform_number', 'latitude', 'longitude', 'temperature', 'salinity']"
+        ],
+        "issues": [],
+        "detailed_analysis": "4 strengths, 0 issues"
+      },
+      "schema_coverage": {
+        "overall_coverage_percent": 57.14285714285714,
+        "by_category": {
+          "tables": {
+            "found": [
+              "argo_profiles",
+              "argo_measurements"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "key_columns": {
+            "found": [
+              "platform_number",
+              "profile_date",
+              "latitude",
+              "longitude",
+              "temperature",
+              "salinity",
+              "pressure"
+            ],
+            "missing": [
+              "surface_temp",
+              "surface_salinity"
+            ],
+            "coverage_percent": 77.77777777777779
+          },
+          "relationships": {
+            "found": [
+              "join",
+              "profile_id"
+            ],
+            "missing": [
+              "foreign key"
+            ],
+            "coverage_percent": 66.66666666666666
+          },
+          "data_types": {
+            "found": [],
+            "missing": [
+              "varchar",
+              "integer",
+              "timestamp",
+              "double precision"
+            ],
+            "coverage_percent": 0.0
+          },
+          "constraints": {
+            "found": [
+              "not null"
+            ],
+            "missing": [
+              "primary key",
+              "index"
+            ],
+            "coverage_percent": 33.33333333333333
+          }
+        },
+        "assessment": "moderate"
+      },
+      "sql_example_coverage": {
+        "sql_patterns_found": [
+          "select",
+          "from",
+          "where",
+          "join",
+          "order by"
+        ],
+        "apparent_query_count": 2,
+        "query_types_covered": {
+          "basic_select": false,
+          "join_query": false,
+          "aggregation": true,
+          "spatial_filter": true,
+          "temporal_filter": true
+        },
+        "examples_quality": "good",
+        "has_working_examples": true
+      },
+      "expected_needs_met": {
+        "needs_coverage": {
+          "both tables": false,
+          "mixed_layer_depth calculation": false,
+          "advanced filtering": false
+        },
+        "coverage_percent": 0.0,
+        "met_count": 0,
+        "total_needs": 3,
+        "assessment": "poor"
+      },
+      "llm_usability_score": 52.14,
+      "recommendations": [
+        "Add more comprehensive database schema documentation to vector store",
+        "Add JOIN query examples for profile analysis capabilities",
+        "Address missing information needs: both tables, mixed_layer_depth calculation, advanced filtering",
+        "Context quality moderate - expect inconsistent LLM performance"
+      ]
+    },
+    {
+      "test_case": "Schema Information Query",
+      "query": "Show me the database schema structure for oceanographic data",
+      "category": "metadata",
+      "retrieval_time": 0.026456594467163086,
+      "context_length": 37665,
+      "context_content": "ARGO OCEANOGRAPHIC DATABASE SCHEMA\n==================================================\n\nCRITICAL: Use ONLY these exact table and column names in SQL queries.\n\nTABLE: spatial_ref_sys\n------------------------------\nRow Count: 8,500\n\nColumns:\n  - srid (INTEGER) NOT NULL\n  - auth_name (VARCHAR(256)) NULL\n  - auth_srid (INTEGER) NULL\n  - srtext (VARCHAR(2048)) NULL\n  - proj4text (VARCHAR(2048)) NULL\n\nTABLE: argo_profiles\n------------------------------\nRow Count: 2,801\n\nColumns:\n  - id (INTEGER) NOT NULL\n  - platform_number (VARCHAR(20)) NOT NULL\n  - cycle_number (INTEGER) NULL\n  - profile_date (TIMESTAMP) NOT NULL\n  - latitude (DOUBLE PRECISION) NOT NULL\n  - longitude (DOUBLE PRECISION) NOT NULL\n  - max_pressure (DOUBLE PRECISION) NULL\n  - n_levels (INTEGER) NULL\n  - surface_temp (DOUBLE PRECISION) NULL\n  - surface_salinity (DOUBLE PRECISION) NULL\n  - max_temp (DOUBLE PRECISION) NULL\n  - min_temp (DOUBLE PRECISION) NULL\n  - temp_at_1000m (DOUBLE PRECISION) NULL\n  - mixed_layer_depth (DOUBLE ... [truncated]",
+      "quality_assessment": {
+        "overall": "excellent",
+        "strengths": [
+          "Contains argo_profiles table info",
+          "Contains argo_measurements table info",
+          "Contains JOIN relationship information",
+          "Contains column info: ['platform_number', 'latitude', 'longitude', 'temperature', 'salinity']"
+        ],
+        "issues": [],
+        "detailed_analysis": "4 strengths, 0 issues"
+      },
+      "schema_coverage": {
+        "overall_coverage_percent": 95.23809523809523,
+        "by_category": {
+          "tables": {
+            "found": [
+              "argo_profiles",
+              "argo_measurements"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "key_columns": {
+            "found": [
+              "platform_number",
+              "profile_date",
+              "latitude",
+              "longitude",
+              "surface_temp",
+              "surface_salinity",
+              "temperature",
+              "salinity",
+              "pressure"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "relationships": {
+            "found": [
+              "join",
+              "foreign key",
+              "profile_id"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "data_types": {
+            "found": [
+              "varchar",
+              "integer",
+              "timestamp",
+              "double precision"
+            ],
+            "missing": [],
+            "coverage_percent": 100.0
+          },
+          "constraints": {
+            "found": [
+              "not null",
+              "index"
+            ],
+            "missing": [
+              "primary key"
+            ],
+            "coverage_percent": 66.66666666666666
+          }
+        },
+        "assessment": "excellent"
+      },
+      "sql_example_coverage": {
+        "sql_patterns_found": [
+          "select",
+          "from",
+          "where",
+          "join",
+          "order by"
+        ],
+        "apparent_query_count": 3,
+        "query_types_covered": {
+          "basic_select": false,
+          "join_query": false,
+          "aggregation": true,
+          "spatial_filter": true,
+          "temporal_filter": true
+        },
+        "examples_quality": "excellent",
+        "has_working_examples": true
+      },
+      "expected_needs_met": {
+        "needs_coverage": {
+          "table descriptions": true,
+          "column definitions": true,
+          "relationships": false
+        },
+        "coverage_percent": 66.66666666666666,
+        "met_count": 2,
+        "total_needs": 3,
+        "assessment": "moderate"
+      },
+      "llm_usability_score": 88.57,
+      "recommendations": [
+        "Address missing information needs: relationships"
+      ]
+    }
+  ]
+}
